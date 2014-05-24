@@ -1,12 +1,61 @@
 *.class
+dist
+download
+push.sh
+remotebuild.py
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+## Gradle
+/.gradle
+/build
+/eclipse
+/gradlew.bat
 
-# Package Files #
-*.jar
-*.war
-*.ear
+## ForgeGradle
+/run
+/out
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+## Idea
+*.iml
+*.ipr
+*.iws
+
+## Eclipse
+/.settings
+/.metadata
+/.classpath
+/.project
+/bin
+/.idea
+/client/
+/Server/
+/classes/
+## misc
+TCDEOBF.jar*
+
+## Ignore OS cache files
+*.DS_Store
+_MACOSX
+Thumbs.db
+
+## Ignore unnecessary files
+*.log
+*.lck
+
+## Forge
+/CREDITS-fml.txt
+/LICENSE-fml.txt
+/MinecraftForge-Credits.txt
+/MinecraftForge-License.txt
+/forge-1.6.4-9.11.1.964-changelog.txt
+
+##Minecraft
+options.txt
+/saves
+/logs
+/config
+/crash-reports
+
+forge-1.7.2-10.12.1.1085-changelog.txt
+
+mods/OpenEye-0.5-1.7.2.jar
+reports/
