@@ -11,7 +11,7 @@
  *
  * File created @ 23-May-2014
  */
-package boilerplate.common;
+package boilerplate.common.utils;
 
 import java.util.Iterator;
 import java.util.Random;
