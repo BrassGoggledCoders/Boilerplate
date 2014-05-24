@@ -1,4 +1,14 @@
 Boilerplate
 ===========
 
-A collection of utilities centered around mods with a steampunk flare intended to eliminate redundancies and conflicts.
+Boilerplate aims to add a common core of different utils for steampunk-themed mods.
+
+### Utils
+- Render utils
+- Entity utils
+- Vector handling
+- Customizable projectiles
+- Effect utils (lightning, steam, gases, etc.)
+- Inventory utils
+- Wrench compatibilities
+- A common guidebook for mods to add custom info
