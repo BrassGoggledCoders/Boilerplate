@@ -1,5 +1,7 @@
 package boilerplate.common.utils.recipe;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
@@ -33,9 +35,11 @@ public void addArmorSet(ItemStack input, ItemStack[] outputs)
  *
  * @param recipe should be in this format Block, Ingot, Nugget.
  */
-public static void addMetalRecipes(Object[][] recipe)
+public void addMetalRecipes(Block block, Item ingot, Item nugget)
 {
-	CustomMetalRecipes.recipeItems = recipe;
+	CustomMetalRecipes.block = block;
+	CustomMetalRecipes.ingot = ingot;
+	CustomMetalRecipes.nugget = nugget;
 	CustomMetalRecipes.addRecipes(CraftingManager.getInstance());
 }
 }

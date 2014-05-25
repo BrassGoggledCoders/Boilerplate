@@ -13,8 +13,8 @@
  */
 package boilerplate.common;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import boilerplate.common.utils.recipe.RecipeUtils;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -25,8 +25,11 @@ public class Boilerplate
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent event)
 	{
+		// Derpy Recipe testing
 		RecipeUtils util = new RecipeUtils();
+		util.addMetalRecipes(Blocks.bedrock,Items.arrow, Items.boat);
 		//util.addArmorSet(new ItemStack(Items.cookie), new ItemStack[]{new ItemStack(Items.bed), new ItemStack(Items.apple), new ItemStack(Items.bone), new ItemStack(Items.book), new ItemStack(Items.blaze_rod)});
 		//util.addToolSet(new ItemStack(Items.baked_potato), new ItemStack[]{new ItemStack(Items.bed), new ItemStack(Items.apple), new ItemStack(Items.bone), new ItemStack(Items.book), new ItemStack(Items.blaze_rod)});
+		//*/
 	}
 }
