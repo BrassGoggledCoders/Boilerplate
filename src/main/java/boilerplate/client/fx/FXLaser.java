@@ -17,14 +17,33 @@ import net.minecraft.client.particle.EntityReddustFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class FXLaser.
+ *
  * @author Surseance (Johnny Eatmon)
- * 
  */
 public class FXLaser extends EntityReddustFX
 {
+	
+	/** The part. */
 	private int part;
 
+	/**
+	 * Instantiates a new FX laser.
+	 *
+	 * @param world the world
+	 * @param dx the dx
+	 * @param dy the dy
+	 * @param dz the dz
+	 * @param r the r
+	 * @param g the g
+	 * @param b the b
+	 * @param movX the mov x
+	 * @param movY the mov y
+	 * @param movZ the mov z
+	 * @param part the part
+	 */
 	public FXLaser(final World world, final double dx, final double dy,
 			final double dz, final float r, final float g, final float b,
 			final int movX, final int movY, final int movZ, final int part)
@@ -40,6 +59,18 @@ public class FXLaser extends EntityReddustFX
 		noClip = true;
 	}
 
+	/**
+	 * Instantiates a new FX laser.
+	 *
+	 * @param world the world
+	 * @param dx the dx
+	 * @param dy the dy
+	 * @param dz the dz
+	 * @param r the r
+	 * @param g the g
+	 * @param b the b
+	 * @param scale the scale
+	 */
 	public FXLaser(final World world, final double dx, final double dy,
 			final double dz, final float r, final float g, final float b,
 			final float scale)
@@ -47,6 +78,9 @@ public class FXLaser extends EntityReddustFX
 		super(world, dx, dy, dz, r, g, b, scale);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.client.particle.EntityReddustFX#renderParticle(net.minecraft.client.renderer.Tessellator, float, float, float, float, float, float)
+	 */
 	@Override
 	public void renderParticle(final Tessellator tessellator, final float par2,
 			final float par3, final float par4, final float par5,
@@ -55,6 +89,9 @@ public class FXLaser extends EntityReddustFX
 		super.renderParticle(tessellator, par2, par3, par4, par5, par6, par7);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.client.particle.EntityReddustFX#onUpdate()
+	 */
 	@Override
 	public void onUpdate()
 	{
@@ -106,12 +143,18 @@ public class FXLaser extends EntityReddustFX
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.entity.Entity#getBrightnessForRender(float)
+	 */
 	@Override
 	public int getBrightnessForRender(final float f)
 	{
 		return 0xf000f0;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.entity.Entity#getBrightness(float)
+	 */
 	@Override
 	public float getBrightness(final float f)
 	{

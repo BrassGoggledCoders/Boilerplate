@@ -13,6 +13,7 @@
  */
 package boilerplate.steamcraft.api;
 
+// TODO: Auto-generated Javadoc
 /**
  * Does stuff. For gases.
  * 
@@ -21,13 +22,25 @@ package boilerplate.steamcraft.api;
  */
 public class GasTuple
 {
+	
+	/** The values. */
 	int[] values;
 
+	/**
+	 * Instantiates a new gas tuple.
+	 *
+	 * @param newValues the new values
+	 */
 	public GasTuple(final int... newValues)
 	{
 		values = newValues;
 	}
 
+	/**
+	 * X.
+	 *
+	 * @return the int
+	 */
 	public int x()
 	{
 		int result = 0;
@@ -40,6 +53,11 @@ public class GasTuple
 		return result;
 	}
 
+	/**
+	 * Y.
+	 *
+	 * @return the int
+	 */
 	public int y()
 	{
 		int result = 0;
@@ -52,6 +70,11 @@ public class GasTuple
 		return result;
 	}
 
+	/**
+	 * Z.
+	 *
+	 * @return the int
+	 */
 	public int z()
 	{
 		int result = 0;
@@ -64,6 +87,12 @@ public class GasTuple
 		return result;
 	}
 
+	/**
+	 * Gets the value.
+	 *
+	 * @param index the index
+	 * @return the value
+	 */
 	public int getValue(final int index)
 	{
 		int result = 0;

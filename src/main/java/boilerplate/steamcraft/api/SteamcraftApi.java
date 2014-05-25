@@ -23,54 +23,89 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Surseance (Johnny Eatmon)
+ * The Class SteamcraftApi.
  *
+ * @author Surseance (Johnny Eatmon)
  */
 public class SteamcraftApi
 {
 	// name, int harvest level, int max uses, float efficiency, float damage,
 	// int enchantability
+	/** The tool mat obsidian. */
 	public static Item.ToolMaterial toolMatObsidian = EnumHelper
 			.addToolMaterial("T_OBSIDIAN", 4, -1, 3.0F, 6.5F, 7);
+	
+	/** The tool mat etherium. */
 	public static Item.ToolMaterial toolMatEtherium = EnumHelper
 			.addToolMaterial("T_ETHERIUM", 4, 2345, 10.5F, 9.5F, 14);
+	
+	/** The tool mat steam. */
 	public static Item.ToolMaterial toolMatSteam = EnumHelper.addToolMaterial(
 			"T_STEAM", 2, 321, 12.0F, 4.0F, 0);
 
+	/** The drill mat wood. */
 	public static Item.ToolMaterial drillMatWood = EnumHelper.addToolMaterial(
 			"D_WOOD", 0, 89, 4.0F, 0.0F, 0);
+	
+	/** The drill mat stone. */
 	public static Item.ToolMaterial drillMatStone = EnumHelper.addToolMaterial(
 			"D_STONE", 0, 197, 8.0F, 0.0F, 0);
+	
+	/** The drill mat iron. */
 	public static Item.ToolMaterial drillMatIron = EnumHelper.addToolMaterial(
 			"D_IRON", 0, 375, 12.0F, 0.0F, 0);
+	
+	/** The drill mat emerald. */
 	public static Item.ToolMaterial drillMatEmerald = EnumHelper
 			.addToolMaterial("D_EMERALD", 0, 2342, 16.0F, 0.0F, 0);
+	
+	/** The drill mat gold. */
 	public static Item.ToolMaterial drillMatGold = EnumHelper.addToolMaterial(
 			"D_GOLD", 0, 48, 24.0F, 0.0F, 0);
+	
+	/** The drill mat steam. */
 	public static Item.ToolMaterial drillMatSteam = EnumHelper.addToolMaterial(
 			"D_STEAM", 0, 482, 24.0F, 0.0F, 0);
+	
+	/** The drill mat etherium. */
 	public static Item.ToolMaterial drillMatEtherium = EnumHelper
 			.addToolMaterial("D_ETHERIUM", 0, 3518, 34.0F, 0.0F, 0);
+	
+	/** The drill mat obsidian. */
 	public static Item.ToolMaterial drillMatObsidian = EnumHelper
 			.addToolMaterial("D_OBSIDIAN", 0, -1, 6.0F, 0.0F, 0);
 
 	// name, int durability, int[] reduction amounts, int enchantability
 	// damage reduction (each 1 point is a half a shield on gui) of the piece
 	// index passed (0 = helmet, 1 = plate, 2 = legs and 3 = boots)
+	/** The armor mat obsidian. */
 	public static ItemArmor.ArmorMaterial armorMatObsidian = EnumHelper
 			.addArmorMaterial("A_OBSIDIAN", -1, new int[] { 1, 4, 3, 1 }, 7);
+	
+	/** The armor mat etherium. */
 	public static ItemArmor.ArmorMaterial armorMatEtherium = EnumHelper
 			.addArmorMaterial("A_ETHERIUM", 40, new int[] { 4, 9, 8, 4 }, 14);
+	
+	/** The armor mat steam. */
 	public static ItemArmor.ArmorMaterial armorMatSteam = EnumHelper
 			.addArmorMaterial("A_STEAM", 12, new int[] { 1, 2, 2, 1 }, 9);
 
+	/** The gas destruction white list. */
 	public static ArrayList<Object> gasDestructionWhiteList = new ArrayList<Object>();
 
 	// enchants
 	// any special crafting recipes
 	// steam pipe stuff
 
+	/**
+	 * Gets the s c2 item.
+	 *
+	 * @param item the item
+	 * @param metadata the metadata
+	 * @return the s c2 item
+	 */
 	public static ItemStack getSC2Item(final Item item, final int metadata)
 	{
 		ItemStack is = null;
@@ -89,13 +124,20 @@ public class SteamcraftApi
 			}
 		} catch (final Exception e)
 		{
-			//LoggerSteamcraft.log(Level.SEVERE, "[SC2] Could not find item: "
-			//		+ item.getUnlocalizedName());
+			// LoggerSteamcraft.log(Level.SEVERE, "[SC2] Could not find item: "
+			// + item.getUnlocalizedName());
 		}
 
 		return is;
 	}
 
+	/**
+	 * Gets the s c2 block.
+	 *
+	 * @param block the block
+	 * @param metadata the metadata
+	 * @return the s c2 block
+	 */
 	public static ItemStack getSC2Block(final Block block, final int metadata)
 	{
 		ItemStack is = null;
@@ -114,13 +156,20 @@ public class SteamcraftApi
 			}
 		} catch (final Exception e)
 		{
-			//LoggerSteamcraft.log(Level.SEVERE, "[SC2] Could not find block: "
-			//		+ block.getUnlocalizedName());
+			// LoggerSteamcraft.log(Level.SEVERE, "[SC2] Could not find block: "
+			// + block.getUnlocalizedName());
 		}
 
 		return is;
 	}
 
+	/**
+	 * Creates the gas.
+	 *
+	 * @param block the block
+	 * @param fluid the fluid
+	 * @param name the name
+	 */
 	public static void createGas(final Block block, Fluid fluid,
 			final String name)
 	{

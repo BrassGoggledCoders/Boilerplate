@@ -17,38 +17,59 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class MaterialGas.
+ *
  * @author Surseance (Johnny Eatmon)
- * 
  */
 public class MaterialGas extends MaterialLiquid
 {
+	
+	/** The can burn. */
 	private final boolean canBurn;
 
+	/**
+	 * Instantiates a new material gas.
+	 *
+	 * @param canBurn the can burn
+	 */
 	public MaterialGas(final boolean canBurn)
 	{
 		super(MapColor.airColor);
 		this.canBurn = canBurn;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.material.Material#setRequiresTool()
+	 */
 	@Override
 	public Material setRequiresTool()
 	{
 		return Material.air;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.material.Material#getCanBurn()
+	 */
 	@Override
 	public boolean getCanBurn()
 	{
 		return canBurn;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.material.Material#isReplaceable()
+	 */
 	@Override
 	public boolean isReplaceable()
 	{
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.material.Material#isOpaque()
+	 */
 	@Override
 	public boolean isOpaque()
 	{

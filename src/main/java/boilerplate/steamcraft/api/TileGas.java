@@ -21,24 +21,48 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class TileGas.
+ *
  * @author Surseance (Johnny Eatmon)
- * 
  */
 public class TileGas extends TileEntity
 {
+	
+	/** The gas. */
 	private static FluidStack gas;
+	
+	/** The Constant VOLUME. */
 	public static final int VOLUME = FluidContainerRegistry.BUCKET_VOLUME * 4;
+	
+	/** The random. */
 	private final Random random;
+	
+	/** The count. */
 	public static int count;
+	
+	/** The dissipation height. */
 	private final int dissipationHeight;
+	
+	/** The meta. */
 	private static int meta;
+	
+	/** The viscosity. */
 	private int viscosity;
+	
+	/** The utils. */
 	GasUtils utils;
 
+	/** The pos. */
 	GasTuple[] pos = new GasTuple[] { new GasTuple(0, 1), new GasTuple(1, 0),
 			new GasTuple(0, -1), new GasTuple(-1, 0) };
 
+	/**
+	 * Instantiates a new tile gas.
+	 *
+	 * @param disHeight the dis height
+	 */
 	public TileGas(final int disHeight)
 	{
 		random = new Random();
@@ -48,6 +72,13 @@ public class TileGas extends TileEntity
 		blockMetadata = meta;
 	}
 
+	/**
+	 * Instantiates a new tile gas.
+	 *
+	 * @param type the type
+	 * @param disHeight the dis height
+	 * @param viscosity the viscosity
+	 */
 	public TileGas(final Fluid type, final int disHeight, final int viscosity)
 	{
 		TileGas.gas = new FluidStack(type, VOLUME);
@@ -59,6 +90,9 @@ public class TileGas extends TileEntity
 		this.viscosity = viscosity;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.tileentity.TileEntity#updateEntity()
+	 */
 	@Override
 	public void updateEntity()
 	{
@@ -143,6 +177,9 @@ public class TileGas extends TileEntity
 		return meta;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.tileentity.TileEntity#writeToNBT(net.minecraft.nbt.NBTTagCompound)
+	 */
 	@Override
 	public void writeToNBT(final NBTTagCompound tagCompound)
 	{
@@ -152,6 +189,9 @@ public class TileGas extends TileEntity
 		tagCompound.setBoolean("Explosive", Gas.isExplosive);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.tileentity.TileEntity#readFromNBT(net.minecraft.nbt.NBTTagCompound)
+	 */
 	@Override
 	public void readFromNBT(final NBTTagCompound tagCompound)
 	{

@@ -29,20 +29,36 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class Gas.
+ *
  * @author Surseance (Johnny Eatmon)
- * 
  */
 public class Gas extends BlockContainer implements IFluidBlock
 {
+	
+	/** The gas. */
 	public Fluid gas;
+	
+	/** The is flammable. */
 	public static boolean isFlammable;
+	
+	/** The is explosive. */
 	public static boolean isExplosive;
+	
+	/** The dissipation height. */
 	public int dissipationHeight;
+	
+	/** The viscosity. */
 	public int viscosity;
 
+	/** The icon. */
 	protected IIcon[] icon = new IIcon[16];
 
+	/**
+	 * Instantiates a new gas.
+	 */
 	public Gas()
 	{
 		super(new MaterialGas(false));
@@ -53,6 +69,16 @@ public class Gas extends BlockContainer implements IFluidBlock
 		viscosity = 5;
 	}
 
+	/**
+	 * Instantiates a new gas.
+	 *
+	 * @param canBurn the can burn
+	 * @param lightLevel the light level
+	 * @param isFlammable the is flammable
+	 * @param isExplosive the is explosive
+	 * @param disHeight the dis height
+	 * @param viscosity the viscosity
+	 */
 	public Gas(final boolean canBurn, final int lightLevel,
 			final boolean isFlammable, final boolean isExplosive,
 			final int disHeight, final int viscosity)
@@ -66,18 +92,27 @@ public class Gas extends BlockContainer implements IFluidBlock
 		this.viscosity = viscosity;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
+	 */
 	@Override
 	public TileEntity createNewTileEntity(final World world, final int metadata)
 	{
 		return new TileGas(getFluid(), dissipationHeight, viscosity);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraftforge.fluids.IFluidBlock#getFluid()
+	 */
 	@Override
 	public Fluid getFluid()
 	{
 		return gas;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraftforge.fluids.IFluidBlock#drain(net.minecraft.world.World, int, int, int, boolean)
+	 */
 	@Override
 	public FluidStack drain(final World world, final int x, final int y,
 			final int z, final boolean doDrain)
@@ -100,6 +135,9 @@ public class Gas extends BlockContainer implements IFluidBlock
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraftforge.fluids.IFluidBlock#canDrain(net.minecraft.world.World, int, int, int)
+	 */
 	@Override
 	public boolean canDrain(final World world, final int x, final int y,
 			final int z)
@@ -114,6 +152,9 @@ public class Gas extends BlockContainer implements IFluidBlock
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraftforge.fluids.IFluidBlock#getFilledPercentage(net.minecraft.world.World, int, int, int)
+	 */
 	@Override
 	public float getFilledPercentage(final World world, final int x,
 			final int y, final int z)
@@ -121,30 +162,45 @@ public class Gas extends BlockContainer implements IFluidBlock
 		return 0;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#getRenderBlockPass()
+	 */
 	@Override
 	public int getRenderBlockPass()
 	{
 		return 1; // 0 for solids, 1 for alpha
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#isOpaqueCube()
+	 */
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#renderAsNormalBlock()
+	 */
 	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#quantityDropped(java.util.Random)
+	 */
 	@Override
 	public int quantityDropped(final Random random)
 	{
 		return 0;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#getCollisionBoundingBoxFromPool(net.minecraft.world.World, int, int, int)
+	 */
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(final World world,
 			final int x, final int y, final int z)
@@ -152,6 +208,9 @@ public class Gas extends BlockContainer implements IFluidBlock
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#onBlockDestroyedByExplosion(net.minecraft.world.World, int, int, int, net.minecraft.world.Explosion)
+	 */
 	@Override
 	public void onBlockDestroyedByExplosion(final World world, final int x,
 			final int y, final int z, final Explosion explosion)
@@ -162,6 +221,9 @@ public class Gas extends BlockContainer implements IFluidBlock
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#onNeighborBlockChange(net.minecraft.world.World, int, int, int, net.minecraft.block.Block)
+	 */
 	@Override
 	public void onNeighborBlockChange(final World world, final int x,
 			final int y, final int z, final Block block)
@@ -180,6 +242,9 @@ public class Gas extends BlockContainer implements IFluidBlock
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.BlockContainer#onBlockAdded(net.minecraft.world.World, int, int, int)
+	 */
 	@Override
 	public void onBlockAdded(final World world, final int x, final int y,
 			final int z)
@@ -196,6 +261,14 @@ public class Gas extends BlockContainer implements IFluidBlock
 		}
 	}
 
+	/**
+	 * Creates the explosion.
+	 *
+	 * @param world the world
+	 * @param x the x
+	 * @param y the y
+	 * @param z the z
+	 */
 	public static void createExplosion(final World world, final int x,
 			final int y, final int z)
 	{
@@ -204,6 +277,14 @@ public class Gas extends BlockContainer implements IFluidBlock
 				(world.rand.nextFloat() / 0.5F) + 0.9F, isFlammable, true);
 	}
 
+	/**
+	 * Sets the fire.
+	 *
+	 * @param world the world
+	 * @param x the x
+	 * @param y the y
+	 * @param z the z
+	 */
 	public static void setFire(final World world, final int x, final int y,
 			final int z)
 	{

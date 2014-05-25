@@ -15,8 +15,20 @@ package boilerplate.common.utils;
 
 import java.util.Random;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Utils.
+ */
 public class Utils
 {
+	
+	/**
+	 * Rand int.
+	 *
+	 * @param min the min
+	 * @param max the max
+	 * @return the int
+	 */
 	public static int randInt(final int min, final int max)
 	{
 		final Random rand = new Random();

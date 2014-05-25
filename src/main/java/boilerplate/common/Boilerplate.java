@@ -13,23 +13,36 @@
  */
 package boilerplate.common;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import boilerplate.common.utils.recipe.RecipeUtils;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Boilerplate.
+ */
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.0")
 public class Boilerplate
 {
+	
+	/**
+	 * Pre init.
+	 *
+	 * @param event the event
+	 */
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent event)
 	{
-		/** Derpy Recipe testing
-		RecipeUtils util = new RecipeUtils();
-		util.addMetalRecipes(Blocks.bedrock,Items.arrow, Items.boat);
-		//util.addArmorSet(new ItemStack(Items.cookie), new ItemStack[]{new ItemStack(Items.bed), new ItemStack(Items.apple), new ItemStack(Items.bone), new ItemStack(Items.book), new ItemStack(Items.blaze_rod)});
-		//util.addToolSet(new ItemStack(Items.baked_potato), new ItemStack[]{new ItemStack(Items.bed), new ItemStack(Items.apple), new ItemStack(Items.bone), new ItemStack(Items.book), new ItemStack(Items.blaze_rod)});
-		*/
+		/**
+		 * Derpy Recipe testing RecipeUtils util = new RecipeUtils();
+		 * util.addMetalRecipes(Blocks.bedrock,Items.arrow, Items.boat);
+		 * //util.addArmorSet(new ItemStack(Items.cookie), new ItemStack[]{new
+		 * ItemStack(Items.bed), new ItemStack(Items.apple), new
+		 * ItemStack(Items.bone), new ItemStack(Items.book), new
+		 * ItemStack(Items.blaze_rod)}); //util.addToolSet(new
+		 * ItemStack(Items.baked_potato), new ItemStack[]{new
+		 * ItemStack(Items.bed), new ItemStack(Items.apple), new
+		 * ItemStack(Items.bone), new ItemStack(Items.book), new
+		 * ItemStack(Items.blaze_rod)});
+		 */
 	}
 }

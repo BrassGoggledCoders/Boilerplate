@@ -15,7 +15,7 @@ package boilerplate.steamcraft.api.vanity;
 
 /**
  * The Interface IHead.
- *
+ * 
  * @author warlordjones
  */
 public interface IHead

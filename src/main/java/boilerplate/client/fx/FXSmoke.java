@@ -19,21 +19,49 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+// TODO: Auto-generated Javadoc
 /**
- * Created by Surseance (Johnny Eatmon)
+ * Created by Surseance (Johnny Eatmon).
  */
 public class FXSmoke extends EntityReddustFX
 {
+	
+	/** The smoke particle scale. */
 	float smokeParticleScale;
+	
+	/** The Constant smoke. */
 	private static final ResourceLocation smoke = new ResourceLocation("sc2",
 			"textures/misc/smoke.png");
 
+	/**
+	 * Instantiates a new FX smoke.
+	 *
+	 * @param world the world
+	 * @param dx the dx
+	 * @param dy the dy
+	 * @param dz the dz
+	 * @param r the r
+	 * @param g the g
+	 * @param b the b
+	 */
 	public FXSmoke(final World world, final double dx, final double dy,
 			final double dz, final float r, final float g, final float b)
 	{
 		this(world, dx, dy, dz, r, g, b, 1.0F);
 	}
 
+	/**
+	 * Instantiates a new FX smoke.
+	 *
+	 * @param world the world
+	 * @param dx the dx
+	 * @param dy the dy
+	 * @param dz the dz
+	 * @param r the r
+	 * @param g the g
+	 * @param b the b
+	 * @param scale the scale
+	 */
 	public FXSmoke(final World world, final double dx, final double dy,
 			final double dz, final float r, final float g, final float b,
 			final float scale)
@@ -54,6 +82,9 @@ public class FXSmoke extends EntityReddustFX
 		noClip = false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.client.particle.EntityReddustFX#renderParticle(net.minecraft.client.renderer.Tessellator, float, float, float, float, float, float)
+	 */
 	@Override
 	public void renderParticle(final Tessellator tessellator, final float par2,
 			final float par3, final float par4, final float par5,
@@ -76,6 +107,9 @@ public class FXSmoke extends EntityReddustFX
 		super.renderParticle(tessellator, par2, par3, par4, par5, par6, par7);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.client.particle.EntityReddustFX#onUpdate()
+	 */
 	@Override
 	public void onUpdate()
 	{

@@ -15,7 +15,7 @@ package boilerplate.steamcraft.api.vanity;
 
 /**
  * The Interface IBoots.
- *
+ * 
  * @author warlordjones
  */
 public interface IBoots

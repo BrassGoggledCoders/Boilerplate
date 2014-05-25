@@ -18,26 +18,28 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Surseance (Johnny Eatmon)
+ * The Class GasUtils.
  *
+ * @author Surseance (Johnny Eatmon)
  */
 public class GasUtils
 {
+	
+	/** The world. */
 	static World world;
+	
+	/** The iz. */
 	static int ix, iy, iz;
 
 	/**
-	 * GasUtils
+	 * GasUtils.
 	 *
-	 * @param world
-	 *            - the TileGas worldObj
-	 * @param x
-	 *            - TileGas xCoord
-	 * @param y
-	 *            - TileGas yCoord
-	 * @param z
-	 *            - TileGas zCoord
+	 * @param world            - the TileGas worldObj
+	 * @param x            - TileGas xCoord
+	 * @param y            - TileGas yCoord
+	 * @param z            - TileGas zCoord
 	 */
 	public GasUtils(final World world, final int x, final int y, final int z)
 	{
@@ -50,7 +52,7 @@ public class GasUtils
 
 	/**
 	 * Determines how high the gas will float before dissipating.
-	 *
+	 * 
 	 * @param height
 	 *            - the height before dissipating
 	 * @return - when the block above != Blocks.air
@@ -75,7 +77,7 @@ public class GasUtils
 	/**
 	 * Plays the fizz sound and spawns various smoke particles around the
 	 * general area. Woo.
-	 *
+	 * 
 	 * @param particleAmount
 	 *            - the particle spawn amount
 	 */
@@ -95,7 +97,7 @@ public class GasUtils
 	/**
 	 * Moves the gas with the given offset. Removes previous TileEntities and
 	 * Gas blocks.
-	 *
+	 * 
 	 * @param x
 	 *            - xCoord offset
 	 * @param y
@@ -122,7 +124,7 @@ public class GasUtils
 	/**
 	 * Partially dissipates the gas and divides the volume and metadata. Removes
 	 * previous TileEntities and Gas blocks.
-	 *
+	 * 
 	 * @param x
 	 *            - xCoord offset
 	 * @param y
@@ -155,7 +157,7 @@ public class GasUtils
 
 	/**
 	 * Grabs the block at the given offset using the TileGas' coordinates.
-	 *
+	 * 
 	 * @param x
 	 *            - xCoord offset
 	 * @param y
@@ -171,7 +173,7 @@ public class GasUtils
 
 	/**
 	 * Grabs the TileEntity at the given offset using the TileGas' coordinates.
-	 *
+	 * 
 	 * @param x
 	 *            - xCoord offset
 	 * @param y
@@ -188,7 +190,7 @@ public class GasUtils
 	/**
 	 * Determines whether the block at the given offset is an air block. The
 	 * offset is determined by passing the TileGas' coordinates.
-	 *
+	 * 
 	 * @param x
 	 *            - xCoord offset
 	 * @param y
@@ -206,7 +208,7 @@ public class GasUtils
 	/**
 	 * Places a block at the given offset. The offset is determined by passing
 	 * the TileGas' coordinates.
-	 *
+	 * 
 	 * @param x
 	 *            - xCoord offset
 	 * @param y
@@ -226,8 +228,6 @@ public class GasUtils
 	/**
 	 * Uses the TileGas' coordinates to determine whether to start a fire or
 	 * not.
-	 *
-	 * @param
 	 */
 	public static void updateForFireCheck()
 	{
@@ -259,7 +259,7 @@ public class GasUtils
 	/**
 	 * Determines whether the block at the given offset can be broken/replaced
 	 * by the gas.
-	 *
+	 * 
 	 * @param x
 	 *            - zCoord offset
 	 * @param y

@@ -18,7 +18,7 @@ import java.util.List;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface ISteamStorage.
- *
+ * 
  * @author Surseance (Johnny Eatmon)
  */
 public abstract interface ISteamStorage
@@ -26,20 +26,26 @@ public abstract interface ISteamStorage
 
 	/**
 	 * Supply steam.
-	 *
-	 * @param steam the steam
-	 * @param amount the amount
-	 * @param list the list
+	 * 
+	 * @param steam
+	 *            the steam
+	 * @param amount
+	 *            the amount
+	 * @param list
+	 *            the list
 	 * @return the float
 	 */
 	public abstract float supplySteam(float steam, int amount, List<?> list);
 
 	/**
 	 * Request steam.
-	 *
-	 * @param steam the steam
-	 * @param amount the amount
-	 * @param list the list
+	 * 
+	 * @param steam
+	 *            the steam
+	 * @param amount
+	 *            the amount
+	 * @param list
+	 *            the list
 	 * @return the float
 	 */
 	public abstract float requestSteam(float steam, int amount, List<?> list);

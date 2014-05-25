@@ -2,22 +2,47 @@ package boilerplate.common.utils;
 
 import net.minecraft.util.StatCollector;
 
-public final class StringUtils {
-	
-	public static String camelCase(String input) {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StringUtils.
+ */
+public final class StringUtils
+{
+
+	/**
+	 * Camel case.
+	 *
+	 * @param input the input
+	 * @return the string
+	 */
+	public static String camelCase(final String input)
+	{
 
 		return input.substring(0, 1).toLowerCase() + input.substring(1);
 	}
 
-	public static String titleCase(String input) {
+	/**
+	 * Title case.
+	 *
+	 * @param input the input
+	 * @return the string
+	 */
+	public static String titleCase(final String input)
+	{
 
 		return input.substring(0, 1).toUpperCase() + input.substring(1);
 	}
 
-	public static String localize(String key) {
+	/**
+	 * Localize.
+	 *
+	 * @param key the key
+	 * @return the string
+	 */
+	public static String localize(final String key)
+	{
 
 		return StatCollector.translateToLocal(key);
 	}
-
 
 }

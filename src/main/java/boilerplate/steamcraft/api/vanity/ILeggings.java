@@ -15,7 +15,7 @@ package boilerplate.steamcraft.api.vanity;
 
 /**
  * The Interface ILeggings.
- *
+ * 
  * @author warlordjones
  */
 public interface ILeggings
