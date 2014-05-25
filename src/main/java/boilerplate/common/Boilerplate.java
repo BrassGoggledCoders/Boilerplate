@@ -13,10 +13,20 @@
  */
 package boilerplate.common;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import boilerplate.common.utils.recipe.RecipeUtils;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.0")
 public class Boilerplate
 {
-
+	@Mod.EventHandler
+	public void preInit(final FMLPreInitializationEvent event)
+	{
+		RecipeUtils util = new RecipeUtils();
+		//util.addArmorSet(new ItemStack(Items.cookie), new ItemStack[]{new ItemStack(Items.bed), new ItemStack(Items.apple), new ItemStack(Items.bone), new ItemStack(Items.book), new ItemStack(Items.blaze_rod)});
+		//util.addToolSet(new ItemStack(Items.baked_potato), new ItemStack[]{new ItemStack(Items.bed), new ItemStack(Items.apple), new ItemStack(Items.bone), new ItemStack(Items.book), new ItemStack(Items.blaze_rod)});
+	}
 }
