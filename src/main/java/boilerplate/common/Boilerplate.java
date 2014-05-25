@@ -14,7 +14,9 @@
 package boilerplate.common;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,7 +25,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.0")
 public class Boilerplate
 {
-	
+	@Instance
+	public static Boilerplate instance;
 	/**
 	 * Pre init.
 	 *
@@ -45,4 +48,9 @@ public class Boilerplate
 		 * ItemStack(Items.blaze_rod)});
 		 */
 	}
+	@Mod.EventHandler
+	public void serverStart(FMLServerStartingEvent event)
+    {
+
+    }
 }

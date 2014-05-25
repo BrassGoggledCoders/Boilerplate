@@ -13,10 +13,18 @@
  */
 package boilerplate.common.utils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.network.Packet;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 // TODO: Auto-generated Javadoc
@@ -25,7 +33,21 @@ import net.minecraft.world.World;
  */
 public class PlayerUtils
 {
-	
+	/**
+	 * Hmm...I wonder what this method does? Indeed! It *does* spawn potatoes!
+	 *
+	 * @param player
+	 *            - the player to send the message
+	 * @param message
+	 *            - the message to send
+	 */
+	public static void sendMessage(EntityPlayer player, String message)
+	{
+		IChatComponent chat = new ChatComponentText(message);
+
+		if (!player.worldObj.isRemote)
+			player.addChatMessage(chat);
+	}
 	/**
 	 * Send to players.
 	 *
