@@ -21,7 +21,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TileGas.
  *
@@ -177,9 +176,6 @@ public class TileGas extends TileEntity
 		return meta;
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.tileentity.TileEntity#writeToNBT(net.minecraft.nbt.NBTTagCompound)
-	 */
 	@Override
 	public void writeToNBT(final NBTTagCompound tagCompound)
 	{
@@ -189,9 +185,6 @@ public class TileGas extends TileEntity
 		tagCompound.setBoolean("Explosive", Gas.isExplosive);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.tileentity.TileEntity#readFromNBT(net.minecraft.nbt.NBTTagCompound)
-	 */
 	@Override
 	public void readFromNBT(final NBTTagCompound tagCompound)
 	{

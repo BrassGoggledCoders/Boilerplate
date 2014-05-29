@@ -25,7 +25,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IMachine.
  * 
@@ -33,7 +32,6 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public interface IMachine
 {
-
 	/**
 	 * Checks if is active.
 	 * 
@@ -57,12 +55,11 @@ public interface IMachine
 	public abstract void setFacingDirection(int paramInt);
 
 	/**
-	 * A.
 	 * 
-	 * @param paramNBTTagCompound
-	 *            the param nbt tag compound
+	 * 
+	 * @param paramNBTTagCompound the param nbt tag compound
 	 */
-	public abstract void a(NBTTagCompound paramNBTTagCompound);
+	public abstract void writeTag(NBTTagCompound tagCompound);
 
 	/**
 	 * B.
@@ -70,38 +67,32 @@ public interface IMachine
 	 * @param paramNBTTagCompound
 	 *            the param nbt tag compound
 	 */
-	public abstract void b(NBTTagCompound paramNBTTagCompound);
+	public abstract void readTag(NBTTagCompound tagCompound);
 
 	/**
 	 * Write packet.
 	 * 
-	 * @param paramDataOutputStream
-	 *            the param data output stream
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @param outputStream the param data output stream
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public abstract void writePacket(DataOutputStream paramDataOutputStream)
-			throws IOException;
+	public abstract void writePacket(DataOutputStream outputStream) throws IOException;
 
 	/**
 	 * Read packet.
 	 * 
-	 * @param paramDataInputStream
-	 *            the param data input stream
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @param inputStream the param data input stream
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public abstract void readPacket(DataInputStream paramDataInputStream)
-			throws IOException;
+	public abstract void readPacket(DataInputStream inputStream) throws IOException;
 
 	/**
 	 * Checks if is solid on side.
 	 * 
-	 * @param paramForgeDirection
+	 * @param direction
 	 *            the param forge direction
 	 * @return true, if is solid on side
 	 */
-	public abstract boolean isSolidOnSide(ForgeDirection paramForgeDirection);
+	public abstract boolean isSolidOnSide(ForgeDirection direction);
 
 	/**
 	 * On break.
@@ -111,38 +102,25 @@ public interface IMachine
 	/**
 	 * On block placed by.
 	 * 
-	 * @param paramWorld
-	 *            the param world
-	 * @param paramInt1
-	 *            the param int1
-	 * @param paramInt2
-	 *            the param int2
-	 * @param paramInt3
-	 *            the param int3
-	 * @param paramEntityLiving
-	 *            the param entity living
+	 * @param world the param world
+	 * @param x the param int1
+	 * @param y the param int2
+	 * @param z the param int3
+	 * @param entityLiving the param entity living
 	 */
-	public abstract void onBlockPlacedBy(World paramWorld, int paramInt1,
-			int paramInt2, int paramInt3, EntityLiving paramEntityLiving);
+	public abstract void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entityLiving);
 
 	/**
 	 * On activated.
 	 * 
-	 * @param paramEntityPlayer
-	 *            the param entity player
-	 * @param paramInt
-	 *            the param int
-	 * @param paramFloat1
-	 *            the param float1
-	 * @param paramFloat2
-	 *            the param float2
-	 * @param paramFloat3
-	 *            the param float3
+	 * @param player the param entity player
+	 * @param paramInt the param int
+	 * @param hitX the param float1
+	 * @param hitY the param float2
+	 * @param hitZ the param float3
 	 * @return true, if successful
 	 */
-	public abstract boolean onActivated(EntityPlayer paramEntityPlayer,
-			int paramInt, float paramFloat1, float paramFloat2,
-			float paramFloat3);
+	public abstract boolean onActivated(EntityPlayer player, int paramInt, float hitX, float hitY, float hitZ);
 
 	/**
 	 * Gets the block dropped.

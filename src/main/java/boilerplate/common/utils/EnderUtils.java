@@ -106,42 +106,6 @@ public class EnderUtils
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 	}
 
-	/**
-	 * Creates a new item-based, metadata-inclusive item stack for the given
-	 * block and metadata. Relays the metadata to item subtypes.
-	 *
-	 * @param block - the block to be converted
-	 * @param metadata - the metadata > subtypes
-	 *
-	 * @return new item stack
-	 */
-	public static ItemStack createStackedBlock(Block block, int metadata)
-	{
-		int md = 0;
-		Item item = Item.getItemFromBlock(block);
-
-		if (item != null && item.getHasSubtypes())
-			md = metadata;
-
-		return new ItemStack(item, 1, md);
-	}
-
-	/**
-	 * Only used for BlockRedstoneOre. If you use the above method, it'll crash
-	 * your game. Guaranteed. Don't believe me? Give it a go.
-	 * 
-	 * @return new item stack
-	 */
-	public static ItemStack createStackedBlock()
-	{
-		return new ItemStack(Blocks.redstone_ore);
-	}
-
-	//private boolean handleTileEntities() // TODO: Some handling for TileEntities
-	//{
-	//	return false;
-	//}
-
 	// XXX: doesn't work for some weird reason; keeps returning 4
 	public static int getRotationMeta(EntityLivingBase entLiving)
 	{
