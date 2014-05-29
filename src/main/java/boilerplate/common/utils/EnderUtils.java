@@ -11,7 +11,6 @@ package boilerplate.common.utils;
 
 import java.util.ArrayList;
 
-import boilerplate.common.entity.EntityMinedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import enderglove.common.item.ItemEnderGlove;
+import boilerplate.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -105,21 +104,6 @@ public class EnderUtils
 	public static void playSFX(World world, int x, int y, int z, String sound)
 	{
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
-	}
-
-	/**
-	 * Determines whether the player is wearing an instance of an Ender Glove.
-	 *
-	 * @param player - the player carrying the item
-	 *
-	 * @return false if not carrying
-	 */
-	public static boolean isCarryingGlove(EntityPlayer player)
-	{
-		if (player != null && player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove)
-			return true;
-
-		return false;
 	}
 
 	/**
