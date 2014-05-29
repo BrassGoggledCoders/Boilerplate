@@ -15,6 +15,8 @@ package boilerplate.client.utils;
 
 import java.util.Random;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.world.World;
 
 // TODO: Auto-generated Javadoc
@@ -23,7 +25,7 @@ import net.minecraft.world.World;
  */
 public class EffectUtils
 {
-	
+
 	/**
 	 * Sparkle.
 	 *
@@ -88,6 +90,44 @@ public class EffectUtils
 						-1.0D);
 				// Steamcraft.proxy.smokeFX(world, dx, dy, dz, FXSmoke.class);
 			}
+		}
+	}
+	public static void blockSparkle(World world, int x, int y, int z, int count)
+	{
+		if (!world.isRemote)
+			return;
+
+		for (; count < 10; ++count)
+		{
+			double startX = x + world.rand.nextFloat();
+			double startY = y + world.rand.nextFloat() * 1.0F;
+			double startZ = z + world.rand.nextFloat();
+
+			double endX = world.rand.nextGaussian() * 0.02D;
+			double endY = world.rand.nextGaussian() * 0.02D;
+			double endZ = world.rand.nextGaussian() * 0.02D;
+
+			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
+			ef.setRBGColorF(0.45F, 0.0F, 0.35F);
+			ef.setParticleTextureIndex(82);
+			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
+		}
+	}
+
+	public static void blockFlameFX(World world, int x, int y, int z, int count)
+	{
+		for (; count < 10; ++count)
+		{
+			double startX = x + world.rand.nextFloat();
+			double startY = y + world.rand.nextFloat() * 1.0F;
+			double startZ = z + world.rand.nextFloat();
+
+			double endX = world.rand.nextGaussian() * 0.02D;
+			double endY = world.rand.nextGaussian() * 0.02D;
+			double endZ = world.rand.nextGaussian() * 0.02D;
+
+			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
+			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
 		}
 	}
 
