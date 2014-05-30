@@ -11,7 +11,7 @@
  *
  * File created @ [May 7, 2014, 1:26:41 PM]
  */
-package boilerplate.steamcraft.api;
+package boilerplate.steamapi;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

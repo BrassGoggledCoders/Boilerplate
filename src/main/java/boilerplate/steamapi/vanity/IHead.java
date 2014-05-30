@@ -9,16 +9,16 @@
  * Steamcraft (c) Proloe 2011
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
- * File created @ [Apr 8, 2014, 12:53:17 PM]
+ * File created @ [Apr 8, 2014, 12:55:23 PM]
  */
-package boilerplate.steamcraft.api.vanity;
+package boilerplate.steamapi.vanity;
 
 /**
- * The Interface IBoots.
+ * The Interface IHead.
  * 
  * @author warlordjones
  */
-public interface IBoots
+public interface IHead
 {
 
 }

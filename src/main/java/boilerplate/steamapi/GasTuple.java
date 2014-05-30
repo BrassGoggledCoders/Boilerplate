@@ -11,7 +11,7 @@
  *
  * File created @ [May 7, 2014, 1:32:26 PM]
  */
-package boilerplate.steamcraft.api;
+package boilerplate.steamapi;
 
 // TODO: Auto-generated Javadoc
 /**

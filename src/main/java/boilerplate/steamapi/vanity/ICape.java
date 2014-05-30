@@ -9,25 +9,16 @@
  * Steamcraft (c) Proloe 2011
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
- * File created @ [Apr 8, 2014, 1:29:43 PM]
+ * File created @ [Apr 8, 2014, 12:55:04 PM]
  */
-package boilerplate.steamcraft.api.steam;
+package boilerplate.steamapi.vanity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface ISteamConsumer.
+ * The Interface ICape.
  * 
- * @author Surseance (Johnny Eatmon)
+ * @author warlordjones
  */
-public abstract interface ISteamConsumer
+public interface ICape
 {
 
-	/**
-	 * Adds the steam.
-	 * 
-	 * @param steam
-	 *            the steam
-	 * @return the float
-	 */
-	public abstract float addSteam(float steam);
 }

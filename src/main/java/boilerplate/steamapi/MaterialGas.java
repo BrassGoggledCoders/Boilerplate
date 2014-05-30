@@ -11,7 +11,7 @@
  *
  * File created @ [May 7, 2014, 11:21:06 AM]
  */
-package boilerplate.steamcraft.api;
+package boilerplate.steamapi;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;

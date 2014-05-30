@@ -11,7 +11,7 @@
  * 
  * File created @ [Mar 14, 2014, 10:27:11 AM]
  */
-package boilerplate.steamcraft.api.utils;
+package boilerplate.steamapi.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;

@@ -11,7 +11,7 @@
  *
  * File created @ [Mar 12, 2014, 5:27:16 PM]
  */
-package boilerplate.steamcraft.api;
+package boilerplate.steamapi;
 
 import java.util.ArrayList;
 

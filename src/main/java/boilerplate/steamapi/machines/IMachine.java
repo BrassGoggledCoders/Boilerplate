@@ -11,7 +11,7 @@
  *
  * File created @ [Mar 12, 2014, 5:46:41 PM]
  */
-package boilerplate.steamcraft.api.machines;
+package boilerplate.steamapi.machines;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

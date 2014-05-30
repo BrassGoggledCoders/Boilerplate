@@ -11,7 +11,7 @@
  *
  * File created @ [May 7, 2014, 11:43:24 AM]
  */
-package boilerplate.steamcraft.api;
+package boilerplate.steamapi;
 
 import java.util.Random;
 
