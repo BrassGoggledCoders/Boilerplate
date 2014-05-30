@@ -106,12 +106,48 @@ public class EnderUtils
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 	}
 
+	/**
+	 * Creates a new item-based, metadata-inclusive item stack for the given
+	 * block and metadata. Relays the metadata to item subtypes.
+	 *
+	 * @param block - the block to be converted
+	 * @param metadata - the metadata > subtypes
+	 *
+	 * @return new item stack
+	 */
+	public static ItemStack createStackedBlock(Block block, int metadata)
+	{
+		int md = 0;
+		Item item = Item.getItemFromBlock(block);
+
+		if (item != null && item.getHasSubtypes())
+			md = metadata;
+
+		return new ItemStack(item, 1, md);
+	}
+
+	/**
+	 * Only used for BlockRedstoneOre. If you use the above method, it'll crash
+	 * your game. Guaranteed. Don't believe me? Give it a go.
+	 *
+	 * @return new item stack
+	 */
+	public static ItemStack createStackedBlock()
+	{
+		return new ItemStack(Blocks.redstone_ore);
+	}
+
+	//private boolean handleTileEntities() // TODO: Some handling for TileEntities
+	//{
+	//	return false;
+	//}
+
 	// XXX: doesn't work for some weird reason; keeps returning 4
 	public static int getRotationMeta(EntityLivingBase entLiving)
 	{
 		int md = 0;
 		int rot = MathHelper.floor_double((double)(entLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		
+
 		switch (rot)
 		{
 			case 0:
@@ -126,10 +162,10 @@ public class EnderUtils
 
 		return md;
 	}
-	
+
 	/**
 	 * @author decebaldecebal
-	 * 
+	 *
 	 * @param world
 	 * @param x
 	 * @param y
@@ -137,16 +173,16 @@ public class EnderUtils
 	 * @param stack
 	 */
 	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
-    {		
+    {
     	world.setBlockToAir(x, y, z);
 		world.spawnEntityInWorld(new EntityItem(world, x + 0.5F, y + 0.5F, z + 0.5F, stack.copy()));
     }
-	
+
 	@Deprecated
 	public static void spawnBlockEntity(EntityPlayer player, Block block, int x, int y, int z, int md, ItemStack drops)
 	{
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
-		
+
 		if ((player.worldObj.isRemote) && (InventoryHelper.isInvEmpty(enderInv, drops)))
 			player.worldObj.spawnEntityInWorld(new EntityMinedBlock(player.worldObj, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
 	}
