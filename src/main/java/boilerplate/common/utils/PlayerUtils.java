@@ -13,15 +13,10 @@
  */
 package boilerplate.common.utils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.network.Packet;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;

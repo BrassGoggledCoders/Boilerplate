@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -102,4 +103,19 @@ public class ItemStackUtils
 				|| FurnaceRecipes.smelting().getSmeltingResult(is) == null ? false
 				: true;
 	}
+
+	/**
+	 * @author decebaldecebal
+	 *
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param stack
+	 */
+	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
+    {
+    	world.setBlockToAir(x, y, z);
+		world.spawnEntityInWorld(new EntityItem(world, x + 0.5F, y + 0.5F, z + 0.5F, stack.copy()));
+    }
 }

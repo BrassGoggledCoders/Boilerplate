@@ -15,9 +15,12 @@ package boilerplate.client.utils;
 
 import java.util.Random;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityFlameFX;
+import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -128,6 +131,61 @@ public class EffectUtils
 
 			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
+		}
+	}
+	/** The particle. */
+	private static EntityFX particle;
+
+	/**
+	 * Display fx.
+	 *
+	 * @param name
+	 *            the name
+	 * @param world
+	 *            the world
+	 * @param dx
+	 *            the dx
+	 * @param dy
+	 *            the dy
+	 * @param dz
+	 *            the dz
+	 * @param velX
+	 *            the vel x
+	 * @param velY
+	 *            the vel y
+	 * @param velZ
+	 *            the vel z
+	 * @param scale
+	 *            the scale
+	 */
+	public static void displayFX(final String name, final World world,
+			final double dx, final double dy, final double dz,
+			final double velX, final double velY, final double velZ,
+			final float scale)
+	{
+		particle = null;
+
+		/** An example of adding an EntityFX class. */
+		if (name.equals("smoke"))
+		{
+			particle = new EntitySmokeFX(world, dx, dy, dz, velX, velY, velZ,
+					scale);
+		}
+
+		final Minecraft mc = Minecraft.getMinecraft();
+		final double distX = mc.renderViewEntity.posX - particle.posX;
+		final double distY = mc.renderViewEntity.posY - particle.posY;
+		final double distZ = mc.renderViewEntity.posZ - particle.posZ;
+		int display = mc.gameSettings.particleSetting;
+
+		if ((display == 1) && (particle.worldObj.rand.nextInt(3) == 0))
+		{
+			display = 2;
+		}
+		if ((display <= 1)
+				&& (distX * distX + distY * distY + distZ * distZ <= 4096.0D))
+		{
+			mc.effectRenderer.addEffect(particle);
 		}
 	}
 
