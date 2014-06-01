@@ -11,7 +11,6 @@ package boilerplate.client.renderers.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
@@ -26,9 +25,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * @author Surseance (Johnny Eatmon) 
+ * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
- * 
+ *
  */
 @SideOnly(Side.CLIENT)
 public class RenderMinedBlock extends Render
@@ -45,9 +44,9 @@ public class RenderMinedBlock extends Render
 		World world = entBlock.getWorldObj();
 		Block block = entBlock.getBlock();
 
-		int x = MathHelper.floor_double(entBlock.posX);
-		int y = MathHelper.floor_double(entBlock.posY);
-		int z = MathHelper.floor_double(entBlock.posZ);
+		MathHelper.floor_double(entBlock.posX);
+		MathHelper.floor_double(entBlock.posY);
+		MathHelper.floor_double(entBlock.posZ);
 
 		GL11.glDisable(GL11.GL_LIGHTING);
 
@@ -60,8 +59,6 @@ public class RenderMinedBlock extends Render
 
 		GL11.glScalef(scale, scale, scale);
 		GL11.glRotatef(rot, 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat());
-
-		Tessellator tessellator = Tessellator.instance;
 
 		this.blockRenderer.blockAccess = entBlock.worldObj;
 		this.blockRenderer.useInventoryTint = true;

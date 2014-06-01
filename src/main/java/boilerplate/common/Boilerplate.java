@@ -15,6 +15,7 @@ package boilerplate.common;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
@@ -25,6 +26,9 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.0")
 public class Boilerplate
 {
+	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
+	public static CommonProxy proxy;
+
 	@Instance
 	public static Boilerplate instance;
 	/**

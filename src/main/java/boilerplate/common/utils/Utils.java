@@ -59,4 +59,12 @@ public class Utils
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F,
 				world.rand.nextFloat() * 0.4F + 0.8F);
 	}
+	public static boolean getBlockUnbreakable(World world, int x, int y, int z)
+	{
+		if(world.getBlock(x, y, z).getBlockHardness(world,x,y,z) == -1)
+		{
+			return true;
+		}
+		else return false;
+	}
 }
