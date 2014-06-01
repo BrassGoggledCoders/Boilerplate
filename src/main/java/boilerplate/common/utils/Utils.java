@@ -15,6 +15,7 @@ package boilerplate.common.utils;
 
 import java.util.Random;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 // TODO: Auto-generated Javadoc
@@ -58,6 +59,14 @@ public class Utils
 	{
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F,
 				world.rand.nextFloat() * 0.4F + 0.8F);
+	}
+	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, int x, int y, int z)
+	{
+		if(getBlockUnbreakable(world, x, y, z) && !player.capabilities.allowEdit)
+		{
+			return false;
+		}
+		else return true;
 	}
 	public static boolean getBlockUnbreakable(World world, int x, int y, int z)
 	{

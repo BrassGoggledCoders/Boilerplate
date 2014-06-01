@@ -1,12 +1,3 @@
-/**
- * This class was created by <Surseance> as a part of the
- * EnderGloves mod for Minecraft.
- *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
- *
- * File created @[May 25, 2014, 3:05:32 PM]
- */
 package boilerplate.common.entity;
 
 import net.minecraft.block.Block;
@@ -26,6 +17,7 @@ public class EntityMinedBlock extends Entity
 {
 	public Block block;
 	public int metadata;
+	public boolean doesRotate;
 
 	public float scale;
 
@@ -42,14 +34,15 @@ public class EntityMinedBlock extends Entity
 	//	this(world, x, y, z, block, 0);
 	//}
 
-	public EntityMinedBlock(World world, double x, double y, double z, Block block, int md)
+	public EntityMinedBlock(World world, double x, double y, double z, Block block, int md, boolean rotate)
 	{
 		super(world);
 		this.block = block;
 		this.metadata = md;
+		this.doesRotate = rotate;
 		this.preventEntitySpawning = true;
 		// this.setSize(0.98F, 0.98F);
-		this.yOffset = this.height / 2.0F; 
+		this.yOffset = this.height / 2.0F;
 		this.setPosition(x, y, z);
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
@@ -67,7 +60,7 @@ public class EntityMinedBlock extends Entity
 	}
 
 	@Override
-	protected void entityInit() {} 
+	protected void entityInit() {}
 
 	@Override
 	public boolean canBeCollidedWith()

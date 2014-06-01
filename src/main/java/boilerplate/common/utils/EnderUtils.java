@@ -57,6 +57,6 @@ public class EnderUtils
 		InventoryEnderChest enderInv = InventoryUtils.getPlayerEnderChest(player);
 
 		if ((player.worldObj.isRemote) && (InventoryUtils.isInvEmpty(enderInv, drops)))
-			player.worldObj.spawnEntityInWorld(new EntityMinedBlock(player.worldObj, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
+			player.worldObj.spawnEntityInWorld(new EntityMinedBlock(player.worldObj, x + 0.5F, y + 0.5F, z + 0.5F, block, md, true));
 	}
 }
