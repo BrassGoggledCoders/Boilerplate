@@ -13,11 +13,20 @@ public class RegistryHelper
 		String id = "TE" + name.substring(5);
 		GameRegistry.registerTileEntity(tile, id);
 	}
-	public static void registerArmorSet(Item helm, Item chest, Item legs, Item boots, String name)
+	public static void registerArmorSet(Item helm, Item chestplate, Item legs, Item boots, String name, String modid)
 	{
-		GameRegistry.registerItem(helm, "ItemHelmet" + name);
-		GameRegistry.registerItem(chest, "ItemChest" + name);
-		GameRegistry.registerItem(legs, "ItemLegs" + name);
-		GameRegistry.registerItem(boots, "ItemBoots" + name);
+		GameRegistry.registerItem(helm, "ItemHelmet" + name, modid);
+		GameRegistry.registerItem(chestplate, "ItemChestplate" + name, modid);
+		GameRegistry.registerItem(legs, "ItemLegs" + name, modid);
+		GameRegistry.registerItem(boots, "ItemBoots" + name, modid);
+	}
+	public static void registerToolSet(Item axe, Item hoe, Item pickaxe, Item spade, Item sword, String name, String modid)
+	{
+		//TODO: Reorder to Sword, Shovel, Pick, Axe, Hoe
+		GameRegistry.registerItem(sword, "ItemSword" + name, modid);
+		GameRegistry.registerItem(spade, "ItemShovel" + name, modid);
+		GameRegistry.registerItem(pickaxe, "ItemPickaxe" + name, modid);
+		GameRegistry.registerItem(axe, "ItemAxe" + name, modid);
+		GameRegistry.registerItem(hoe, "ItemHoe" + name, modid);
 	}
 }

@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 public class PlayerUtils
 {
 	// Grabs a vector from the player
-	public static MovingObjectPosition getTargetBlock(World world, Entity entity, boolean flag)
+	public static MovingObjectPosition getTargetBlock(World world, Entity entity, boolean liquids)
 	{
 		float var4 = 1.0F;
 		float var5 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * var4;
@@ -50,7 +50,7 @@ public class PlayerUtils
 		float var20 = var14 * var16;
 		double var21 = 10.0D;
 		Vec3 var23 = var13.addVector(var18 * var21, var17 * var21, var20 * var21);
-		return world.rayTraceBlocks(var13, var23, flag);
+		return world.rayTraceBlocks(var13, var23, liquids);
 	}
 	/**
 	 * Hmm...I wonder what this method does? Indeed! It *does* spawn potatoes!
