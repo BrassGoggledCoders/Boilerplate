@@ -13,11 +13,15 @@
  */
 package boilerplate.common;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -26,6 +30,9 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.0")
 public class Boilerplate
 {
+	public Block testBlock;
+	public Item  testItem;
+
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -51,6 +58,10 @@ public class Boilerplate
 		 * ItemStack(Items.bone), new ItemStack(Items.book), new
 		 * ItemStack(Items.blaze_rod)});
 		 */
+		testItem = new ItemTest();
+		testBlock = new BlockTest(Material.web);
+		GameRegistry.registerBlock(testBlock, "TestBlock");
+		GameRegistry.registerItem(testItem, "TestItem");
 	}
 	@Mod.EventHandler
 	public void serverStart(FMLServerStartingEvent event)
