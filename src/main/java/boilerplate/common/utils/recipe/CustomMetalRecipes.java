@@ -24,15 +24,17 @@ import net.minecraft.item.crafting.CraftingManager;
  */
 public class CustomMetalRecipes
 {
-	
+
 	/** The block. */
 	static Block block;
-	
+
 	/** The ingot. */
 	static Item ingot;
-	
+
 	/** The nugget. */
 	static Item nugget;
+
+	static int meta;
 
 	/**
 	 * Instantiates a new custom metal recipes.
@@ -49,13 +51,13 @@ public class CustomMetalRecipes
 	 */
 	public static void addRecipes(final CraftingManager par1CraftingManager)
 	{
-		par1CraftingManager.addRecipe(new ItemStack(block), new Object[] {
-				"###", "###", "###", '#', new ItemStack(ingot, 9) });
-		par1CraftingManager.addRecipe(new ItemStack(ingot, 9), new Object[] {
-				"#", '#', block });
-		par1CraftingManager.addRecipe(new ItemStack(nugget, 9), new Object[] {
-				"#", '#', ingot });
-		par1CraftingManager.addRecipe(new ItemStack(ingot), new Object[] {
-				"###", "###", "###", '#', new ItemStack(nugget, 9) });
+		par1CraftingManager.addRecipe(new ItemStack(block, 1, meta), new Object[] {
+				"###", "###", "###", '#', new ItemStack(ingot, 9, meta) });
+		par1CraftingManager.addRecipe(new ItemStack(ingot, 9, meta), new Object[] {
+				"#", '#', new ItemStack(block, 1, meta) });
+		par1CraftingManager.addRecipe(new ItemStack(nugget, 9, meta), new Object[] {
+				"#", '#', new ItemStack(ingot, 1, meta) });
+		par1CraftingManager.addRecipe(new ItemStack(ingot, 1, meta), new Object[] {
+				"###", "###", "###", '#', new ItemStack(nugget, 9, meta) });
 	}
 }

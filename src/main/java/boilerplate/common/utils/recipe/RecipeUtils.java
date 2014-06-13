@@ -62,12 +62,13 @@ public class RecipeUtils
 	 * @param ingot the ingot
 	 * @param nugget the nugget
 	 */
-	public void addMetalRecipes(final Block block, final Item ingot,
-			final Item nugget)
+	public static void addMetalRecipes(final Block block, final Item ingot,
+			final Item nugget, int meta)
 	{
 		CustomMetalRecipes.block = block;
 		CustomMetalRecipes.ingot = ingot;
 		CustomMetalRecipes.nugget = nugget;
+		CustomMetalRecipes.meta = meta;
 		CustomMetalRecipes.addRecipes(CraftingManager.getInstance());
 	}
 }
