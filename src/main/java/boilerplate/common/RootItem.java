@@ -14,15 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class RootItem extends Item
 {
-	public String modPrefix;
 	boolean descNeedsShift = true;
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
-            itemIcon = par1IconRegister.registerIcon(modPrefix + this.getUnlocalizedName().substring(5));
-    }
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
