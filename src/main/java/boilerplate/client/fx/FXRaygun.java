@@ -57,7 +57,7 @@ public class FXRaygun extends EntityFX
 	private float prevSize = 0.0F;
 	public int impact;
 	private static final ResourceLocation rayTex = new ResourceLocation(
-			"steamcraft:", "textures/misc/ray.png");
+			"steamcraft:textures/misc/ray.png");
 	public static boolean amITooLazyToLearnTheUntiCircle = true;
 
 	public FXRaygun(final World world, final EntityPlayer player,
