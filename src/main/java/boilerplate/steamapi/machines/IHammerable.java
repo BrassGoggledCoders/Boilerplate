@@ -4,5 +4,5 @@ import net.minecraft.item.ItemStack;
 
 public interface IHammerable
 {
-	public abstract ItemStack getOutput();
+	public abstract ItemStack getOutput(int meta);
 }
