@@ -32,7 +32,7 @@ public class RecipeUtils
 	 * @param outputs            should be a list of the tools, in this order: Pickaxe, Shovel,
 	 *            Axe, Hoe, Sword
 	 */
-	public void addToolSet(final ItemStack input, final ItemStack[] outputs)
+	public static void addToolSet(final ItemStack input, final ItemStack[] outputs)
 	{
 		CustomToolRecipes.input = input;
 		CustomToolRecipes.outputs = outputs;
@@ -47,7 +47,7 @@ public class RecipeUtils
 	 * @param outputs            a list of the tools, in this order: Helmet, Chestplate,
 	 *            Leggings, Boots
 	 */
-	public void addArmorSet(final ItemStack input, final ItemStack[] outputs)
+	public static void addArmorSet(final ItemStack input, final ItemStack[] outputs)
 	{
 		CustomArmorRecipes.input = input;
 		CustomArmorRecipes.outputs = outputs;
