@@ -105,4 +105,9 @@ public class PlayerUtils
 			}
 		}
 	}
+	@SuppressWarnings("unused")
+	private boolean isSC2Developer(String username)
+	{
+		return (username.equals("Surseance") || (username.equals("decebaldecebal") || (username.equals("warlordjones"))));
+	}
 }
