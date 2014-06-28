@@ -77,8 +77,8 @@ public class PlayerUtils
 	 * @param z the z
 	 * @param maxDistance the max distance
 	 */
-	public static void sendToPlayers(final Packet packet, final World world,
-			final int x, final int y, final int z, Integer maxDistance)
+	public static void sendToPlayers( Packet packet,  World world,
+			 int x,  int y,  int z, Integer maxDistance)
 	{
 		if (maxDistance == null)
 		{
@@ -91,8 +91,8 @@ public class PlayerUtils
 		{
 			for (iterator = world.playerEntities.iterator(); iterator.hasNext();)
 			{
-				final Object player = iterator.next();
-				final EntityPlayerMP playerMP = (EntityPlayerMP) player;
+				 Object player = iterator.next();
+				 EntityPlayerMP playerMP = (EntityPlayerMP) player;
 
 				if ((Math.abs(playerMP.posX - x) <= maxDistance.intValue())
 						&& (Math.abs(playerMP.posY - y) <= maxDistance
