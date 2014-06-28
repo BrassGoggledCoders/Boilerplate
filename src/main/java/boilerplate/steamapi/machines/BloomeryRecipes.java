@@ -45,13 +45,14 @@ public class BloomeryRecipes
         this.smeltingList.put(input, result);
     }
 
+
     /**
      * Returns the smelting result of an item.
      */
-    public ItemStack getSmeltingResult(ItemStack stack)
+    public ItemStack getSmeltingResult(ItemStack p_151395_1_)
     {
-        Iterator<?> iterator = this.smeltingList.entrySet().iterator();
-        Entry<?, ?> entry;
+        Iterator iterator = this.smeltingList.entrySet().iterator();
+        Entry entry;
 
         do
         {
@@ -60,9 +61,9 @@ public class BloomeryRecipes
                 return null;
             }
 
-            entry = (Entry<?, ?>)iterator.next();
+            entry = (Entry)iterator.next();
         }
-        while (!this.func_151397_a(stack, (ItemStack)entry.getKey()));
+        while (!this.func_151397_a(p_151395_1_, (ItemStack)entry.getKey()));
 
         return (ItemStack)entry.getValue();
     }
