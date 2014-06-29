@@ -13,6 +13,12 @@ public class RegistryHelper
 		String id = "TE" + name.substring(5);
 		GameRegistry.registerTileEntity(tile, id);
 	}
+	public static void registerContainerBlockWithDesc(Block block, Class<? extends TileEntity> tile, String name)
+	{
+		GameRegistry.registerBlock(block,ItemBlockWithDesc.class, name);
+		String id = "TE" + name.substring(5);
+		GameRegistry.registerTileEntity(tile, id);
+	}
 	public static void registerArmorSet(Item helm, Item chestplate, Item legs, Item boots, String name, String modid)
 	{
 		GameRegistry.registerItem(helm, "ItemHelmet" + name, modid);
