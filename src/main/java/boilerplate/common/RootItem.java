@@ -40,7 +40,7 @@ public class RootItem extends Item
     }
     public void getWrappedDesc(List list)
     {
-		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(getUnlocalizedName() + ".desc"), 30);
+		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(getUnlocalizedName() + ".desc"), 35);
 		for(int i = 0; i<wrappedDesc.length; i++)
 			list.add(wrappedDesc[i].trim());
     }
