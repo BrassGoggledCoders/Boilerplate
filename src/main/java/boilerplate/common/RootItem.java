@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class RootItem extends Item
 {
+	//TODO This dosn't work
 	boolean descNeedsShift = true;
 
     @SideOnly(Side.CLIENT)
