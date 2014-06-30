@@ -25,7 +25,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 /**
  * The Class Boilerplate.
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.1")
+@Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.2")
 public class Boilerplate
 {
 	public Block testBlock;
