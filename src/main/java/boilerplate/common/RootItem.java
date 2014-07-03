@@ -13,29 +13,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class RootItem extends Item
 {
-	//TODO This dosn't work
-	boolean descNeedsShift = true;
-
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
     {
     	if(!StatCollector.translateToLocal(getUnlocalizedName() + ".desc").contains("item."))
     	{
-    		if(descNeedsShift)
-    		{
     		if(ClientHelper.isShiftKeyDown())
     		{
     			getWrappedDesc(list);
     		}
     		else
     		list.add(ClientHelper.shiftForInfo);
-    		}
-    		else
-    		{
-    			getWrappedDesc(list);
-    		}
-
     	}
     }
     public void getWrappedDesc(List list)
