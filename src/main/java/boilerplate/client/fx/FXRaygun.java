@@ -34,7 +34,7 @@ public class FXRaygun extends EntityFX
 {
 	public int particle = 16;
 	EntityPlayer player = null;
-	private double offset = 0.0D;
+	private double offset = 0D;
 	private float length = 0.0F;
 	private float rotYaw = 0.0F;
 	private float rotPitch = 0.0F;
@@ -60,9 +60,7 @@ public class FXRaygun extends EntityFX
 			"steamcraft:textures/misc/ray.png");
 	public static boolean amITooLazyToLearnTheUntiCircle = true;
 
-	public FXRaygun(final World world, final EntityPlayer player,
-			final double tx, final double ty, final double tz, final float red,
-			final float green, final float blue, final int age)
+	public FXRaygun(final World world, final EntityPlayer player, final double tx, final double ty, final double tz, final float red, final float green, final float blue, final int age)
 	{
 		super(world, player.posX, player.posY, player.posZ, 0.0D, 0.0D, 0.0D);
 
@@ -208,7 +206,7 @@ public class FXRaygun extends EntityFX
 		final float slide = worldObj.getWorldTime();
 		final float rot = worldObj.provider.getWorldTime()
 				% (360 / rotationspeed) * rotationspeed + rotationspeed * f;
-		float size = 1.0F;
+		float size = 0.5F;
 
 		if (pulse)
 		{
@@ -287,7 +285,7 @@ public class FXRaygun extends EntityFX
 		final double var17b = 0.15D * size * endMod;
 		GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
 
-		for (int t = 0; t < 3; t++)
+		for (int t = 0; t < 5; t++)
 		{
 			final double var29 = length * size * var9;
 			final double var31 = 0.0D;
