@@ -14,14 +14,21 @@
 package boilerplate.common.utils;
 
 import java.util.ArrayList;
+import java.util.UUID;
+
+import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -118,4 +125,23 @@ public class ItemStackUtils
     	world.setBlockToAir(x, y, z);
 		world.spawnEntityInWorld(new EntityItem(world, x + 0.5F, y + 0.5F, z + 0.5F, stack.copy()));
     }
+	
+	public static void addModifier(ItemStack itemStack, String attribute, double amount, int mode)
+	{
+		NBTTagList list = new NBTTagList();
+		NBTTagCompound attributes = new NBTTagCompound();
+		attributes.setString("Name", "Attribute");
+		attributes.setString("AttributeName", attribute);
+		attributes.setDouble("Amount", amount);
+		attributes.setLong("UUIDMost", UUID.randomUUID().getMostSignificantBits());
+		attributes.setLong("UUIDLeast", UUID.randomUUID().getLeastSignificantBits());
+		attributes.setInteger("Operation", mode);
+
+		list.appendTag(attributes);
+
+		NBTTagCompound attributeModifierTag = itemStack.getTagCompound();
+		attributeModifierTag.setTag("AttributeModifiers", list);
+
+		itemStack.setTagCompound(attributeModifierTag);
+	}
 }
