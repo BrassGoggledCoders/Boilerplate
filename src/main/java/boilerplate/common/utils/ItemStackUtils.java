@@ -25,6 +25,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -125,7 +127,7 @@ public class ItemStackUtils
     	world.setBlockToAir(x, y, z);
 		world.spawnEntityInWorld(new EntityItem(world, x + 0.5F, y + 0.5F, z + 0.5F, stack.copy()));
     }
-	
+
 	public static void addModifier(ItemStack itemStack, String attribute, double amount, int mode)
 	{
 		NBTTagList list = new NBTTagList();
@@ -143,5 +145,17 @@ public class ItemStackUtils
 		attributeModifierTag.setTag("AttributeModifiers", list);
 
 		itemStack.setTagCompound(attributeModifierTag);
+	}
+	public static int getStackPosition(InventoryPlayer inventory, Item item)
+	{
+		for(int i = 0; i < inventory.getSizeInventory(); i++)
+		{
+			if(inventory.getStackInSlot(i) != null && item == inventory.getStackInSlot(i).getItem())
+			{
+				return i;
+			}
+		}
+
+		return -1;
 	}
 }
