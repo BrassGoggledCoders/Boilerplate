@@ -15,7 +15,10 @@ package boilerplate.common.utils;
 
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 // TODO: Auto-generated Javadoc
@@ -76,4 +79,13 @@ public class Utils
 		}
 		else return false;
 	}
+	public static void spawnEntityAtCoords(World world, Entity entity, int x, int y, int z)
+	  {
+        EntityLiving entityliving = (EntityLiving)entity;
+        entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+        entityliving.rotationYawHead = entityliving.rotationYaw;
+        entityliving.renderYawOffset = entityliving.rotationYaw;
+        world.spawnEntityInWorld(entity);
+        entityliving.playLivingSound();
+	  }
 }
