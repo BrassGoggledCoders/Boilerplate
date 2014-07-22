@@ -141,4 +141,8 @@ public class BaseElectricItem extends RootItem implements IEnergyContainerItem
 	{
 		return this.maxEnergy;
 	}
+	public short getMaxSend()
+	{
+		return this.maxSend;
+	}
 }
