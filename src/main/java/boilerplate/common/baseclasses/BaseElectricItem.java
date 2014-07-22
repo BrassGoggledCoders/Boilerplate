@@ -20,13 +20,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import cofh.api.energy.IEnergyContainerItem;
+import boilerplate.common.IEnergyItem;
 
 /**
  * @author decebaldecebal
  *
  */
-public class BaseElectricItem extends RootItem implements IEnergyContainerItem
+public class BaseElectricItem extends RootItem implements IEnergyItem
 {
 	protected int maxEnergy;
 	protected short maxReceive;
