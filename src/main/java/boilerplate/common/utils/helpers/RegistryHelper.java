@@ -1,5 +1,6 @@
-package boilerplate.common;
+package boilerplate.common.utils.helpers;
 
+import boilerplate.common.baseclasses.ItemBlockWithDesc;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;

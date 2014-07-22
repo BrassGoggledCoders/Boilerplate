@@ -2,7 +2,7 @@ package boilerplate.steamapi;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import boilerplate.common.RootItem;
+import boilerplate.common.baseclasses.RootItem;
 //Reference implementation of IUniversalWrench
 public class UniversalWrench extends RootItem implements IUniversalWrench
 {

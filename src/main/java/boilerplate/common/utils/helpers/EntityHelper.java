@@ -1,4 +1,4 @@
-package boilerplate.common;
+package boilerplate.common.utils.helpers;
 
 import net.minecraft.entity.Entity;
 import cpw.mods.fml.common.registry.EntityRegistry;

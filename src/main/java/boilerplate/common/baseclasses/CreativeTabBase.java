@@ -10,7 +10,7 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common;
+package boilerplate.common.baseclasses;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

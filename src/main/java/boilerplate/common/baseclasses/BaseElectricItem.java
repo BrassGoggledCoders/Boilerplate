@@ -10,11 +10,10 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common;
+package boilerplate.common.baseclasses;
 
 import java.util.List;
 
-import steamcraft.common.items.BaseItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -27,7 +26,7 @@ import cofh.api.energy.IEnergyContainerItem;
  * @author decebaldecebal
  *
  */
-public class BaseElectricItem extends BaseItem implements IEnergyContainerItem
+public class BaseElectricItem extends RootItem implements IEnergyContainerItem
 {
 	protected int maxEnergy;
 	protected short maxReceive;

@@ -1,4 +1,4 @@
-package boilerplate.common;
+package boilerplate.common.baseclasses;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

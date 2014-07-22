@@ -1,7 +1,7 @@
 /*
  *
  */
-package boilerplate.common;
+package boilerplate.common.baseclasses;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;

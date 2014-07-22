@@ -1,4 +1,4 @@
-package boilerplate.common;
+package boilerplate.common.baseclasses;
 
 import java.util.List;
 
