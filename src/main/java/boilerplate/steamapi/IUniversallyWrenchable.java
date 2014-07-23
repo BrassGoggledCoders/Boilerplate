@@ -1,7 +1,7 @@
 package boilerplate.steamapi;
 
-import cofh.api.block.IDismantleable;
 import ic2.api.tile.IWrenchable;
+import cofh.api.block.IDismantleable;
 
 public interface IUniversallyWrenchable extends IWrenchable, IDismantleable
 {

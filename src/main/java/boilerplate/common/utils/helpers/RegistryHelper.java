@@ -1,9 +1,9 @@
 package boilerplate.common.utils.helpers;
 
-import boilerplate.common.baseclasses.ItemBlockWithDesc;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
+import boilerplate.common.baseclasses.ItemBlockWithDesc;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegistryHelper
