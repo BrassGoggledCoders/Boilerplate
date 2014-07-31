@@ -1,7 +1,9 @@
 package boilerplate.common.utils;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -198,6 +200,18 @@ public class InventoryUtils
 			return false;
 
 		return true;
+	}
+
+	public static int isInInventory(IInventory inventory, ItemStack stack)
+	{
+		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+		{
+			if (inventory.getStackInSlot(slot) != null
+					&& inventory.getStackInSlot(slot) == stack)
+				return slot;
+		}
+
+		return -1;
 	}
 
 }
