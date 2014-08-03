@@ -6,7 +6,8 @@ import net.minecraft.world.World;
 
 public interface IModule
 {
-	public EnumApplicablePiece getApplicablePiece();
+	//0 is helmet, 1 is plate, 2 is legs and 3 is boots. Return -1 for any piece
+	public int getApplicablePiece();
 	public String getName();
 	public void getArmorEffect(World world, EntityPlayer player, ItemStack stack);
 	public EnumArmorEffectType getArmorEffectType();
