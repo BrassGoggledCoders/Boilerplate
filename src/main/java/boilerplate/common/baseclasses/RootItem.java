@@ -13,7 +13,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class RootItem extends Item
 {
-    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("all")
+	@SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
     {
@@ -27,6 +28,8 @@ public class RootItem extends Item
     		list.add(ClientHelper.shiftForInfo);
     	}
     }
+    
+    @SuppressWarnings("all")
     public void getWrappedDesc(List list)
     {
 		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(getUnlocalizedName() + ".desc"), 35);

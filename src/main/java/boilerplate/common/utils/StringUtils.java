@@ -47,6 +47,8 @@ public final class StringUtils
 
 		return StatCollector.translateToLocal(key);
 	}
+	
+    @SuppressWarnings("all")
 	public static String[] wrap(String input, int len)
 	{
 		// return empty array for null text

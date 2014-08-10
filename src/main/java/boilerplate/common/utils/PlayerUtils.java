@@ -28,7 +28,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerUtils.
  */
@@ -118,12 +117,14 @@ public class PlayerUtils
 	{
 		return (username.equals("Surseance") || (username.equals("decebaldecebal") || (username.equals("warlordjones"))));
 	}
-	 public static void sendChatToServer(String message)
-	  {
-		  List<EntityPlayerMP> players = MinecraftServer.getServer().worldServers[0].playerEntities;
-		  for (int t = 0; t < players.size(); t++)
-		  {
-		  	players.get(t).addChatMessage(new ChatComponentText(message));
-		  }
-	  }
+	
+    @SuppressWarnings("all")
+    public static void sendChatToServer(String message)
+    {
+    	List<EntityPlayerMP> players = MinecraftServer.getServer().worldServers[0].playerEntities;
+    	for (int t = 0; t < players.size(); t++)
+    	{
+    		players.get(t).addChatMessage(new ChatComponentText(message));
+    	}
+    }
 }

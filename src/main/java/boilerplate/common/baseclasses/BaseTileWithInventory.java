@@ -18,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import boilerplate.steamapi.IUniversallyWrenchable;
 
 /**
@@ -226,17 +225,5 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	public ItemStack getWrenchDrop(EntityPlayer entityPlayer)
 	{
 		return new ItemStack(this.getBlockType());
-	}
-
-	@Override
-	public ItemStack dismantleBlock(EntityPlayer player, World world, int x, int y, int z, boolean returnBlock)
-	{
-		return new ItemStack(this.getBlockType());
-	}
-
-	@Override
-	public boolean canDismantle(EntityPlayer player, World world, int x, int y, int z)
-	{
-		return true;
 	}
 }
