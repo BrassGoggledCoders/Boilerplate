@@ -1,4 +1,4 @@
-package boilerplate.steamapi;
+package boilerplate.steamapi.block;
 
 import net.minecraft.block.Block;
 

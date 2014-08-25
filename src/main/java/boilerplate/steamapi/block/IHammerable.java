@@ -1,4 +1,4 @@
-package boilerplate.steamapi.machines;
+package boilerplate.steamapi.block;
 
 import net.minecraft.item.ItemStack;
 

@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.steamapi.items;
+package boilerplate.steamapi.item;
 
 import cofh.api.energy.IEnergyContainerItem;
 
