@@ -8,12 +8,15 @@
  */
 package boilerplate.common.baseclasses;
 
+import java.util.ArrayList;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import boilerplate.steamapi.block.IUniversallyWrenchable;
 
 /**
@@ -188,6 +191,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	{
 	}
 
+	
 	// TODO
 	@Override
 	public boolean wrenchCanSetFacing(EntityPlayer entityPlayer, int side)
@@ -223,5 +227,31 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	public ItemStack getWrenchDrop(EntityPlayer entityPlayer)
 	{
 		return new ItemStack(this.getBlockType());
+	}
+
+	//Not entirely sure if it is correct
+	@Override
+	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, int x, int y, int z, boolean returnDrops)
+	{
+		BaseTileWithInventory var7 = (BaseTileWithInventory) worldObj.getTileEntity(xCoord, yCoord, zCoord);
+
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>(); 
+		
+		if(var7 != null)
+			for(int var8 = 0; var8 < var7.getSizeInventory(); ++var8)
+			{
+				ItemStack var9 = var7.getStackInSlot(var8);
+
+				if(var9 != null)
+					items.add(var9);
+			}
+		
+		return items;
+	}
+
+	@Override
+	public boolean canDismantle(EntityPlayer player, World world, int x, int y, int z)
+	{
+		return true;
 	}
 }

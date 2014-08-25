@@ -8,6 +8,7 @@
  */
 package boilerplate.common.baseclasses;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import boilerplate.steamapi.item.IUniversalWrench;
@@ -27,8 +28,18 @@ public abstract class UniversalWrench extends RootItem implements IUniversalWren
 	@Override
 	public void wrenchUsed(EntityPlayer player, int x, int y, int z)
 	{
-		player.inventory.addItemStackToInventory(new ItemStack(player.worldObj.getBlock(x, y, z)));
-		player.worldObj.setBlockToAir(x, y, z);
+		
 	}
 
+	@Override
+	public boolean isUsable(ItemStack item, EntityLivingBase user, int x, int y, int z)
+	{
+		return true;
+	}
+
+	@Override
+	public void toolUsed(ItemStack item, EntityLivingBase user, int x, int y, int z)
+	{
+		
+	}
 }
