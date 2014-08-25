@@ -8,14 +8,13 @@
  */
 package boilerplate.steamapi.block;
 
-import cofh.api.block.IDismantleable;
 import ic2.api.tile.IWrenchable;
 
 /**
  * @author warlordjones
  *
  */
-public interface IUniversallyWrenchable extends IWrenchable, IDismantleable
+public interface IUniversallyWrenchable extends IWrenchable
 {
 
 }
