@@ -7,15 +7,22 @@ import net.minecraft.util.EnumChatFormatting;
 
 import org.lwjgl.input.Keyboard;
 
-public class ClientHelper {
+/**
+ * @author warlordjones
+ *
+ */
+public class ClientHelper
+{
 	public static String shiftForInfo = EnumChatFormatting.GRAY + "Hold " + EnumChatFormatting.GREEN + "SHIFT" + EnumChatFormatting.GRAY + " for more info.";
 
-	public static boolean isShiftKeyDown() {
+	public static boolean isShiftKeyDown()
+	{
 		return (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) || (Keyboard.isKeyDown(Keyboard.KEY_RSHIFT));
 	}
+
 	/**
 	 * Mc.
-	 *
+	 * 
 	 * @return the minecraft
 	 */
 	public static Minecraft mc()
@@ -25,7 +32,7 @@ public class ClientHelper {
 
 	/**
 	 * Font renderer.
-	 *
+	 * 
 	 * @return the font renderer
 	 */
 	public static FontRenderer fontRenderer()
@@ -35,7 +42,7 @@ public class ClientHelper {
 
 	/**
 	 * Client player.
-	 *
+	 * 
 	 * @return the entity client player mp
 	 */
 	public static EntityClientPlayerMP clientPlayer()
