@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.steamapi;
+package boilerplate.steamapi.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

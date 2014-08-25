@@ -16,7 +16,7 @@ import boilerplate.steamapi.item.IUniversalWrench;
  * @author decebaldecebal
  * 
  */
-public class UniversalWrench extends RootItem implements IUniversalWrench
+public abstract class UniversalWrench extends RootItem implements IUniversalWrench
 {
 	@Override
 	public boolean canWrench(EntityPlayer player, int x, int y, int z)
