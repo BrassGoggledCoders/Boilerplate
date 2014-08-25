@@ -1,13 +1,9 @@
 /**
  * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
  *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
 package boilerplate.common.baseclasses;
@@ -20,13 +16,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import boilerplate.common.IEnergyItem;
+import boilerplate.steamapi.items.IEnergyItem;
 
 /**
  * @author decebaldecebal
- *
+ * 
  */
-public class BaseElectricItem extends RootItem implements IEnergyItem
+public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 {
 	protected int maxEnergy;
 	protected short maxReceive;
@@ -79,7 +75,7 @@ public class BaseElectricItem extends RootItem implements IEnergyItem
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
 	{
-		list.add("Energy: " + this.getEnergyStored(stack) / 1000 + "k / " + this.maxEnergy / 1000 + "k");
+		list.add("Energy: " + (this.getEnergyStored(stack) / 1000) + "k / " + (this.maxEnergy / 1000) + "k");
 		list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
 	}
 
@@ -93,13 +89,13 @@ public class BaseElectricItem extends RootItem implements IEnergyItem
 	{
 		NBTTagCompound tag = stack.getTagCompound();
 
-		if (energy < 0)
+		if(energy < 0)
 			energy = 0;
 
-		if (energy > this.maxEnergy)
+		if(energy > this.maxEnergy)
 			energy = this.maxEnergy;
 
-		stack.setItemDamage(20 - energy * 20 / this.maxEnergy);
+		stack.setItemDamage(20 - ((energy * 20) / this.maxEnergy));
 
 		tag.setInteger("energy", energy);
 
@@ -112,7 +108,7 @@ public class BaseElectricItem extends RootItem implements IEnergyItem
 		int received = Math.min(this.maxEnergy - this.getEnergyStored(itemStack), maxReceive);
 		received = Math.min(received, this.maxReceive);
 
-		if (!simulate)
+		if(!simulate)
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received);
 
 		return received;
@@ -124,7 +120,7 @@ public class BaseElectricItem extends RootItem implements IEnergyItem
 		int extracted = Math.min(this.getEnergyStored(itemStack), maxExtract);
 		extracted = Math.min(extracted, this.maxSend);
 
-		if (!simulate)
+		if(!simulate)
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) - extracted);
 
 		return extracted;
@@ -141,6 +137,8 @@ public class BaseElectricItem extends RootItem implements IEnergyItem
 	{
 		return this.maxEnergy;
 	}
+
+	@Override
 	public short getMaxSend()
 	{
 		return this.maxSend;

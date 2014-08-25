@@ -1,4 +1,9 @@
-/*
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
+ *
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
 package boilerplate.common.baseclasses;
@@ -7,44 +12,30 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BaseItemBlockWithMetadata.
+ * @author warlordjones
+ * 
  */
 public class BaseItemBlockWithMetadata extends ItemBlockWithMetadata
 {
-	/**
-	 * Instantiates a new base item block with metadata.
-	 * 
-	 * @param p_i45328_1_
-	 *            the p_i45328_1_
-	 * @param block
-	 *            the block
-	 */
-	public BaseItemBlockWithMetadata(Block p_i45328_1_, Block block)
+	public BaseItemBlockWithMetadata(Block block)
 	{
-		super(p_i45328_1_, block);
-		setHasSubtypes(true);
+		super(block, block);
+	}
+	
+	public BaseItemBlockWithMetadata(Block block1, Block block2)
+	{
+		super(block1, block2);
+		
+		this.setHasSubtypes(true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.minecraft.item.Item#getMetadata(int)
-	 */
 	@Override
 	public int getMetadata(int metadata)
 	{
 		return metadata;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.minecraft.item.ItemBlock#getUnlocalizedName(net.minecraft.item.ItemStack
-	 * )
-	 */
 	@Override
 	public String getUnlocalizedName(ItemStack is)
 	{

@@ -1,4 +1,4 @@
-package boilerplate.steamapi;
+package boilerplate.steamapi.machines;
 
 import ic2.api.tile.IWrenchable;
 

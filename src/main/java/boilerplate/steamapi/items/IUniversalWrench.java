@@ -1,4 +1,4 @@
-package boilerplate.steamapi;
+package boilerplate.steamapi.items;
 
 import buildcraft.api.tools.IToolWrench;
 

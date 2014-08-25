@@ -1,15 +1,10 @@
 /**
- * This class was created by <Surseance> or his SC2 development team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
  *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- *
- * File created @ 25-May-2014
  */
 package boilerplate.client.utils;
 
@@ -25,88 +20,77 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EffectUtils.
+ * @author Surseance
+ * 
  */
 public class EffectUtils
 {
-
-	/**
-	 * Sparkle.
-	 *
-	 * @param world the world
-	 * @param x the x
-	 * @param y the y
-	 * @param z the z
-	 * @param particleName the particle name
-	 */
-	public static void sparkle(final World world, final int x, final int y,
-			final int z, final String particleName)
+	public static void sparkle(final World world, final int x, final int y, final int z, final String particleName)
 	{
 		final Random random = world.rand;
 		final double offset = 0.0625D;
 
-		for (int amount = 0; amount < 6; amount++)
+		for(int amount = 0; amount < 6; amount++)
 		{
 			double dx = x + random.nextFloat();
 			double dy = y + random.nextFloat();
 			double dz = z + random.nextFloat();
 
-			if ((amount == 0)
+			if((amount == 0)
 					&& (!world.isBlockNormalCubeDefault(x, y + 1, z, false)))
 			{
 				dy = y + 1 + offset;
 			}
 
-			if ((amount == 1)
+			if((amount == 1)
 					&& (!world.isBlockNormalCubeDefault(x, y - 1, z, false)))
 			{
-				dy = y + 0 - offset;
+				dy = (y + 0) - offset;
 			}
 
-			if ((amount == 2)
+			if((amount == 2)
 					&& (!world.isBlockNormalCubeDefault(x, y, z + 1, false)))
 			{
 				dz = z + 1 + offset;
 			}
 
-			if ((amount == 3)
+			if((amount == 3)
 					&& (!world.isBlockNormalCubeDefault(x, y, z - 1, false)))
 			{
-				dz = z + 0 - offset;
+				dz = (z + 0) - offset;
 			}
 
-			if ((amount == 4)
+			if((amount == 4)
 					&& (!world.isBlockNormalCubeDefault(x + 1, y, z, false)))
 			{
 				dx = x + 1 + offset;
 			}
 
-			if ((amount == 5)
+			if((amount == 5)
 					&& (!world.isBlockNormalCubeDefault(x - 1, y, z, false)))
 			{
-				dx = x + 0 - offset;
+				dx = (x + 0) - offset;
 			}
 
-			if ((dx < x) || (dx > x + 1) || (dy < 0.0D) || (dy > y + 1)
-					|| (dz < z) || (dz > z + 1))
+			if((dx < x) || (dx > (x + 1)) || (dy < 0.0D) || (dy > (y + 1))
+					|| (dz < z) || (dz > (z + 1)))
 			{
-				world.spawnParticle(particleName, dx, dy, dz, -1.0D, 1.0D,
-						-1.0D);
+				world.spawnParticle(particleName, dx, dy, dz, -1.0D, 1.0D, -1.0D);
 				// Steamcraft.proxy.smokeFX(world, dx, dy, dz, FXSmoke.class);
 			}
 		}
 	}
+
 	public static void blockSparkle(World world, int x, int y, int z, int count)
 	{
-		if (!world.isRemote)
+		if(!world.isRemote)
 			return;
 
-		for (; count < 10; ++count)
+		for(; count < 10; ++count)
 		{
 			double startX = x + world.rand.nextFloat();
-			double startY = y + world.rand.nextFloat() * 1.0F;
+			double startY = y + (world.rand.nextFloat() * 1.0F);
 			double startZ = z + world.rand.nextFloat();
 
 			double endX = world.rand.nextGaussian() * 0.02D;
@@ -122,10 +106,10 @@ public class EffectUtils
 
 	public static void blockFlameFX(World world, int x, int y, int z, int count)
 	{
-		for (; count < 10; ++count)
+		for(; count < 10; ++count)
 		{
 			double startX = x + world.rand.nextFloat();
-			double startY = y + world.rand.nextFloat() * 1.0F;
+			double startY = y + (world.rand.nextFloat() * 1.0F);
 			double startZ = z + world.rand.nextFloat();
 
 			double endX = world.rand.nextGaussian() * 0.02D;
@@ -136,40 +120,17 @@ public class EffectUtils
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
 		}
 	}
-	/** The particle. */
+
 	private static EntityFX particle;
 
-	/**
-	 * Display fx.
-	 *
-	 * @param name
-	 *            the name
-	 * @param world
-	 *            the world
-	 * @param dx
-	 *            the dx
-	 * @param dy
-	 *            the dy
-	 * @param dz
-	 *            the dz
-	 * @param velX
-	 *            the vel x
-	 * @param velY
-	 *            the vel y
-	 * @param velZ
-	 *            the vel z
-	 * @param scale
-	 *            the scale
-	 */
-	public static void displayFX(final String name, final World world,
-			final double dx, final double dy, final double dz,
+	public static void displayFX(final String name, final World world, final double dx, final double dy, final double dz,
 			final double velX, final double velY, final double velZ,
 			final float scale)
 	{
 		particle = null;
 
 		/** An example of adding an EntityFX class. */
-		if (name.equals("smoke"))
+		if(name.equals("smoke"))
 		{
 			particle = new EntitySmokeFX(world, dx, dy, dz, velX, velY, velZ,
 					scale);
@@ -181,29 +142,22 @@ public class EffectUtils
 		final double distZ = mc.renderViewEntity.posZ - particle.posZ;
 		int display = mc.gameSettings.particleSetting;
 
-		if ((display == 1) && (particle.worldObj.rand.nextInt(3) == 0))
+		if((display == 1) && (particle.worldObj.rand.nextInt(3) == 0))
 		{
 			display = 2;
 		}
-		if ((display <= 1)
-				&& (distX * distX + distY * distY + distZ * distZ <= 4096.0D))
+		if((display <= 1)
+				&& (((distX * distX) + (distY * distY) + (distZ * distZ)) <= 4096.0D))
 		{
 			mc.effectRenderer.addEffect(particle);
 		}
 	}
 
-	/**
-	 * Sets the GL color from int.
-	 *
-	 * @param color
-	 *            the new GL color from int
-	*/
 	public static void setGLColorFromInt(int color)
 	{
-		float red = (color >> 16 & 255) / 255.0F;
-		float green = (color >> 8 & 255) / 255.0F;
+		float red = ((color >> 16) & 255) / 255.0F;
+		float green = ((color >> 8) & 255) / 255.0F;
 		float blue = (color & 255) / 255.0F;
 		GL11.glColor4f(red, green, blue, 1.0F);
 	}
-
 }

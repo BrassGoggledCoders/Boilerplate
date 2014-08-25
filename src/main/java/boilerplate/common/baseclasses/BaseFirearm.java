@@ -1,3 +1,11 @@
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
+ *
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
+ *
+ */
 package boilerplate.common.baseclasses;
 
 import net.minecraft.entity.Entity;
@@ -8,7 +16,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class BaseFirearm extends RootItem
+/**
+ * @author warlordjones
+ * 
+ */
+public abstract class BaseFirearm extends RootItem
 {
 	protected int damage;
 	protected short reloadTime;
@@ -39,21 +51,21 @@ public class BaseFirearm extends RootItem
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
-		if (entity instanceof EntityPlayer && ((EntityPlayer) entity).getCurrentEquippedItem() == stack)
+		if((entity instanceof EntityPlayer) && (((EntityPlayer) entity).getCurrentEquippedItem() == stack))
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 
-			if (!stack.hasTagCompound())
+			if(!stack.hasTagCompound())
 				stack.setTagCompound(new NBTTagCompound());
 
 			NBTTagCompound tag = stack.getTagCompound();
 
-			if (tag.getShort("reloadTime") > 0)
+			if(tag.getShort("reloadTime") > 0)
 			{
 				tag.setShort("reloadTime", (short) (tag.getShort("reloadTime") - 1));
 				stack.setTagCompound(tag);
 
-				if (tag.getShort("reloadTime") == 10)
+				if(tag.getShort("reloadTime") == 10)
 					world.playSoundAtEntity(player, this.reloadSound, 0.8F, 1.0F);
 
 			}
@@ -65,10 +77,10 @@ public class BaseFirearm extends RootItem
 	{
 		NBTTagCompound tag = stack.getTagCompound();
 
-		if (tag.getShort("reloadTime") == 0 && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
-			if (this.twoAmmo)
+		if((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
+			if(this.twoAmmo)
 			{
-				if (player.inventory.hasItem(this.ammo2))
+				if(player.inventory.hasItem(this.ammo2))
 					this.shotBullet(stack, world, player);
 				player.inventory.consumeInventoryItem(this.ammo2);
 			}
@@ -76,9 +88,6 @@ public class BaseFirearm extends RootItem
 				this.shotBullet(stack, world, player);
 		return stack;
 	}
-	protected void shotBullet(ItemStack stack, World world, EntityPlayer player)
-	{
 
-	}
-
+	protected abstract void shotBullet(ItemStack stack, World world, EntityPlayer player);
 }

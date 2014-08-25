@@ -1,3 +1,11 @@
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
+ *
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
+ *
+ */
 package boilerplate.common.entity;
 
 import net.minecraft.block.Block;
@@ -9,9 +17,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * Email: surseance@autistici.org
- *
+ * @author Surseance
+ * 
  */
 public class EntityMinedBlock extends Entity
 {
@@ -28,11 +35,6 @@ public class EntityMinedBlock extends Entity
 		this.renderDistanceWeight = 20.0D;
 		this.scale = 0.9F;
 	}
-
-	//public EntityMinedBlock(World world, double x, double y, double z, Block block)
-	//{
-	//	this(world, x, y, z, block, 0);
-	//}
 
 	public EntityMinedBlock(World world, double x, double y, double z, Block block, int md, boolean rotate)
 	{
@@ -60,7 +62,9 @@ public class EntityMinedBlock extends Entity
 	}
 
 	@Override
-	protected void entityInit() {}
+	protected void entityInit()
+	{
+	}
 
 	@Override
 	public boolean canBeCollidedWith()
@@ -73,12 +77,12 @@ public class EntityMinedBlock extends Entity
 	{
 		super.onUpdate();
 
-		if (this.getBlock() != null)
+		if(this.getBlock() != null)
 		{
-			if ((this.worldObj.getWorldTime() % 1) == 0)
+			if((this.worldObj.getWorldTime() % 1) == 0)
 				this.scale -= 0.0625F;
 
-			if (this.scale <= 0.0F)
+			if(this.scale <= 0.0F)
 				this.setDead();
 		}
 	}
@@ -102,7 +106,7 @@ public class EntityMinedBlock extends Entity
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tagCompound)
 	{
-		if (tagCompound.hasKey("TileID", 99))
+		if(tagCompound.hasKey("TileID", 99))
 			this.block = Block.getBlockById(tagCompound.getInteger("TileID"));
 		else
 			this.block = Block.getBlockById(tagCompound.getByte("Tile") & 255);

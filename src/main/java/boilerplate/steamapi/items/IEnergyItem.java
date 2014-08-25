@@ -6,16 +6,15 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common;
+package boilerplate.steamapi.items;
+
+import cofh.api.energy.IEnergyContainerItem;
 
 /**
- * @author Surseance
- * 
+ * @author warlordjones
+ *
  */
-public class CommonProxy
+public interface IEnergyItem extends IEnergyContainerItem
 {
-
-	public void registerRenderHandlers()
-	{
-	}
+	public short getMaxSend();
 }

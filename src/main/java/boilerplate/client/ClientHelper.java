@@ -1,3 +1,11 @@
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
+ *
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
+ *
+ */
 package boilerplate.client;
 
 import net.minecraft.client.Minecraft;
@@ -8,8 +16,8 @@ import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
 
 /**
- * @author warlordjones
- *
+ * @author Surseance
+ * 
  */
 public class ClientHelper
 {
@@ -20,31 +28,17 @@ public class ClientHelper
 		return (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) || (Keyboard.isKeyDown(Keyboard.KEY_RSHIFT));
 	}
 
-	/**
-	 * Mc.
-	 * 
-	 * @return the minecraft
-	 */
+	// Not used anywhere
 	public static Minecraft mc()
 	{
 		return Minecraft.getMinecraft();
 	}
 
-	/**
-	 * Font renderer.
-	 * 
-	 * @return the font renderer
-	 */
 	public static FontRenderer fontRenderer()
 	{
 		return mc().fontRenderer;
 	}
 
-	/**
-	 * Client player.
-	 * 
-	 * @return the entity client player mp
-	 */
 	public static EntityClientPlayerMP clientPlayer()
 	{
 		return mc().thePlayer;

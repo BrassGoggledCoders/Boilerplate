@@ -1,13 +1,9 @@
 /**
  * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
  *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
 package boilerplate.common.baseclasses;
@@ -18,13 +14,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import boilerplate.steamapi.IUniversallyWrenchable;
+import boilerplate.steamapi.machines.IUniversallyWrenchable;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
- *
- * @author Decebaldecebal
- *
+ * 
+ * @author decebaldecebal
+ * 
  */
 public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable
 {
@@ -32,7 +28,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 
 	public BaseTileWithInventory(byte invSize)
 	{
-		inventory = new ItemStack[invSize];
+		this.inventory = new ItemStack[invSize];
 	}
 
 	@Override
@@ -41,15 +37,15 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 		super.readFromNBT(tag);
 
 		NBTTagList nbttaglist = (NBTTagList) tag.getTag("Items");
-		inventory = new ItemStack[getSizeInventory()];
+		this.inventory = new ItemStack[this.getSizeInventory()];
 
-		for (int i = 0; i < nbttaglist.tagCount(); ++i)
+		for(int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
-			if ((b0 >= 0) && (b0 < inventory.length))
-				inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if((b0 >= 0) && (b0 < this.inventory.length))
+				this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		}
 	}
 
@@ -60,12 +56,12 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < inventory.length; ++i)
-			if (inventory[i] != null)
+		for(int i = 0; i < this.inventory.length; ++i)
+			if(this.inventory[i] != null)
 			{
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				inventory[i].writeToNBT(nbttagcompound1);
+				this.inventory[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 
@@ -75,34 +71,34 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public int getSizeInventory()
 	{
-		return inventory.length;
+		return this.inventory.length;
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int par1)
 	{
-		return inventory[par1];
+		return this.inventory[par1];
 	}
 
 	@Override
 	public ItemStack decrStackSize(int par1, int par2)
 	{
-		if (inventory[par1] != null)
+		if(this.inventory[par1] != null)
 		{
 			ItemStack var3;
 
-			if (inventory[par1].stackSize <= par2)
+			if(this.inventory[par1].stackSize <= par2)
 			{
-				var3 = inventory[par1];
-				inventory[par1] = null;
+				var3 = this.inventory[par1];
+				this.inventory[par1] = null;
 				return var3;
 			}
 			else
 			{
-				var3 = inventory[par1].splitStack(par2);
+				var3 = this.inventory[par1].splitStack(par2);
 
-				if (inventory[par1].stackSize == 0)
-					inventory[par1] = null;
+				if(this.inventory[par1].stackSize == 0)
+					this.inventory[par1] = null;
 
 				return var3;
 			}
@@ -114,10 +110,10 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1)
 	{
-		if (inventory[par1] != null)
+		if(this.inventory[par1] != null)
 		{
-			ItemStack var2 = inventory[par1];
-			inventory[par1] = null;
+			ItemStack var2 = this.inventory[par1];
+			this.inventory[par1] = null;
 			return var2;
 		}
 		else
@@ -127,10 +123,10 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
 	{
-		inventory[par1] = par2ItemStack;
+		this.inventory[par1] = par2ItemStack;
 
-		if ((par2ItemStack != null) && (par2ItemStack.stackSize > getInventoryStackLimit()))
-			par2ItemStack.stackSize = getInventoryStackLimit();
+		if((par2ItemStack != null) && (par2ItemStack.stackSize > this.getInventoryStackLimit()))
+			par2ItemStack.stackSize = this.getInventoryStackLimit();
 	}
 
 	@Override
@@ -142,7 +138,8 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return worldObj.getTileEntity(xCoord, yCoord, zCoord) != this ? false : player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq(this.xCoord + 0.5D,
+				this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -190,7 +187,8 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	public void closeInventory()
 	{
 	}
-	//TODO
+
+	// TODO
 	@Override
 	public boolean wrenchCanSetFacing(EntityPlayer entityPlayer, int side)
 	{
