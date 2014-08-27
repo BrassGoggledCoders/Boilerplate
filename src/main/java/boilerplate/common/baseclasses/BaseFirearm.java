@@ -90,6 +90,13 @@ public abstract class BaseFirearm extends RootItem
 			else
 				this.shotBullet(stack, world, player);
 	}
+	 /**
+     * How long it takes to use or consume an item
+     */
+    public int getMaxItemUseDuration(ItemStack p_77626_1_)
+    {
+        return 72000;
+    }
 
 	protected abstract void shotBullet(ItemStack stack, World world, EntityPlayer player);
 }
