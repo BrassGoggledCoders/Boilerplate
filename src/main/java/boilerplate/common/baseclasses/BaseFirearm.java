@@ -76,8 +76,8 @@ public abstract class BaseFirearm extends RootItem
 	/**
      * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
-    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int timeinuse)
-    {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
 		NBTTagCompound tag = stack.getTagCompound();
 
 		if((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
@@ -89,6 +89,7 @@ public abstract class BaseFirearm extends RootItem
 			}
 			else
 				this.shotBullet(stack, world, player);
+		return stack;
 	}
 
 	protected abstract void shotBullet(ItemStack stack, World world, EntityPlayer player);
