@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public abstract class BaseFirearm extends RootItem
 {
@@ -73,8 +73,11 @@ public abstract class BaseFirearm extends RootItem
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-	{
+	/**
+     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
+     */
+    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int timeinuse)
+    {
 		NBTTagCompound tag = stack.getTagCompound();
 
 		if((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
@@ -86,7 +89,6 @@ public abstract class BaseFirearm extends RootItem
 			}
 			else
 				this.shotBullet(stack, world, player);
-		return stack;
 	}
 
 	protected abstract void shotBullet(ItemStack stack, World world, EntityPlayer player);
