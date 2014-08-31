@@ -22,14 +22,14 @@ import org.lwjgl.opengl.GL11;
  */
 public class RenderFloatingItem extends RenderItem
 {
-	public static void render(double dx, double dy, double dz, ItemStack stack)
+	public static void render(double dx, double dy, double dz, float rotX, float rotY, float rotZ, ItemStack stack)
 	{
 		EntityItem entItem = new EntityItem(Minecraft.getMinecraft().thePlayer.getEntityWorld(), 0D, 0D, 0D, stack);
 		//Without the below line, the item will spazz out
 		entItem.hoverStart = 0.0F;
 		RenderItem.renderInFrame = true;
-		GL11.glTranslatef((float)dx + 0.5F, (float)dy + 0.3F, (float)dz + 0.3F);
-		GL11.glRotatef(180, 0, 5.5F, 1);
+		GL11.glTranslatef((float)dx, (float)dy, (float)dz);
+		GL11.glRotatef(10, rotX, rotY, rotZ);
 		GL11.glScalef(1.6F, 1.6F, 1.6F);
 		RenderManager.instance.renderEntityWithPosYaw(entItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 		RenderItem.renderInFrame = false;
