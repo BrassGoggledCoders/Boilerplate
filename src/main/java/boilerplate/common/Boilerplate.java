@@ -21,7 +21,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
  * @author Surseance
  *
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "1.0.3")
+@Mod(modid = "boilerplate", name = "Boilerplate", version = "2.0.0")
 public class Boilerplate
 {
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
@@ -41,13 +41,13 @@ public class Boilerplate
 	{
 		proxy.registerRenderHandlers();
 	}
-	
+
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		
+
 	}
-	
+
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
