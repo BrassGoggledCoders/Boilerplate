@@ -18,15 +18,15 @@ import boilerplate.steamapi.block.IUniversallyWrenchable;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
- * 
+ *
  * @author decebaldecebal
- * 
+ *
  */
 public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable
 {
 	public ItemStack[] inventory;
 
-	public BaseTileWithInventory(byte invSize)
+	public BaseTileWithInventory(int invSize)
 	{
 		this.inventory = new ItemStack[invSize];
 	}
@@ -188,7 +188,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	{
 	}
 
-	
+
 	// TODO
 	@Override
 	public boolean wrenchCanSetFacing(EntityPlayer entityPlayer, int side)

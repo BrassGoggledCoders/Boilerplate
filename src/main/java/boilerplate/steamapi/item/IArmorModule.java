@@ -21,15 +21,22 @@ public interface IArmorModule
 	// 0 is helmet, 1 is plate, 2 is legs and 3 is boots. Return -1 for any piece
 	public int getApplicablePiece();
 
+	//Localized Name
 	public String getName();
 
-	public void getArmorEffect(World world, EntityPlayer player, ItemStack stack);
+	//Unlocalized Name
+	public String getModuleId();
 
+	//The Effect this module has
+	public void applyArmorEffect(World world, EntityPlayer player, ItemStack stack);
+
+	//The type of effect (see below)
 	public EnumArmorEffectType getArmorEffectType();
 
+	//
 	public static enum EnumArmorEffectType
 	{
 		ONTICK,
-		DEFENSIVE
+		//DEFENSIVE
 	}
 }
