@@ -8,6 +8,8 @@
  */
 package boilerplate.steamapi.item;
 
+import java.util.ArrayList;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -32,6 +34,8 @@ public interface IArmorModule
 
 	//The type of effect (see below)
 	public EnumArmorEffectType getArmorEffectType();
+
+	public ArrayList<IArmorModule> getListOfIncompatibleModules();
 
 	//
 	public static enum EnumArmorEffectType
