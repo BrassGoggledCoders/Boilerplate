@@ -41,6 +41,7 @@ public interface IArmorModule
 	public static enum EnumArmorEffectType
 	{
 		ONTICK,
-		//DEFENSIVE
+		DEFENSIVE,
+		HUD
 	}
 }
