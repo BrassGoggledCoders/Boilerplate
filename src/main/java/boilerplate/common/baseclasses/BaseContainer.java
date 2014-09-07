@@ -11,9 +11,9 @@ public class BaseContainer extends Container
 	private static BaseTileWithInventory tileent;
 
 	@Override
-	public boolean canInteractWith(EntityPlayer p_75145_1_)
+	public boolean canInteractWith(EntityPlayer player)
 	{
-		return true;
+		return this.tileent.isUseableByPlayer(player);
 	}
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
