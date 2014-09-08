@@ -27,6 +27,12 @@ public class CreativeTabBase extends CreativeTabs
 		//this.icon = icon;
 	}
 
+	@Override
+	public Item getTabIconItem()
+	{
+		return null;
+	}
+
 	/*@Override Dosn't seem to work for me
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
