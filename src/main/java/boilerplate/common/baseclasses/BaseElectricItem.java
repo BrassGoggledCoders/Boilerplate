@@ -84,11 +84,15 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
     @Override
 	public void onCreated(ItemStack stack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		stack = this.getUnchargedItem(stack.getItem());
+    	setEnergy(stack, 0);
 	}
 
 	public void setEnergy(ItemStack stack, int energy)
 	{
+		if(!stack.hasTagCompound())
+		{
+			stack.setTagCompound(new NBTTagCompound());
+		}
 		NBTTagCompound tag = stack.getTagCompound();
 
 		if(energy < 0)
