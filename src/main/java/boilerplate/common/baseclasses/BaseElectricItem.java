@@ -20,7 +20,7 @@ import boilerplate.steamapi.item.IEnergyItem;
 
 /**
  * @author decebaldecebal
- * 
+ *
  */
 public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 {
@@ -43,30 +43,32 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, List list)
 	{
-		list.add(this.getUnchargedItem());
-		list.add(this.getChargedItem());
+		list.add(this.getUnchargedItem(item));
+		list.add(this.getChargedItem(item));
 	}
 
-	public ItemStack getUnchargedItem()
+	public ItemStack getUnchargedItem(Item item)
 	{
-		ItemStack uncharged = new ItemStack(this, 1, 20);
+		ItemStack uncharged = new ItemStack(item, 1, 20);
 
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setInteger("energy", 0);
-
-		uncharged.setTagCompound(tag);
+		if(!uncharged.hasTagCompound())
+		{
+			uncharged.setTagCompound(new NBTTagCompound());
+		}
+		uncharged.getTagCompound().setInteger("energy", 0);
 
 		return uncharged.copy();
 	}
 
-	public ItemStack getChargedItem()
+	public ItemStack getChargedItem(Item item)
 	{
-		ItemStack charged = new ItemStack(this, 1, 0);
+		ItemStack charged = new ItemStack(item, 1, 20);
 
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setInteger("energy", this.maxEnergy);
-
-		charged.setTagCompound(tag);
+		if(!charged.hasTagCompound())
+		{
+			charged.setTagCompound(new NBTTagCompound());
+		}
+		charged.getTagCompound().setInteger("energy", this.maxEnergy);
 
 		return charged.copy();
 	}
@@ -79,10 +81,10 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
 	}
 
-	@Override
+    @Override
 	public void onCreated(ItemStack stack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		stack = this.getUnchargedItem();
+		stack = this.getUnchargedItem(stack.getItem());
 	}
 
 	public void setEnergy(ItemStack stack, int energy)
