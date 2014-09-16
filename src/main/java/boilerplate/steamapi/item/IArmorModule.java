@@ -30,18 +30,26 @@ public interface IArmorModule
 	public String getModuleId();
 
 	//The Effect this module has
-	public void applyArmorEffect(World world, EntityPlayer player, ItemStack stack);
+	public boolean applyArmorEffect(World world, EntityPlayer player, ItemStack stack);
 
 	//The type of effect (see below)
 	public EnumArmorEffectType getArmorEffectType();
 
+	//NYI
 	public ArrayList<IArmorModule> getListOfIncompatibleModules();
 
 	//
 	public static enum EnumArmorEffectType
 	{
 		ONTICK,
-		DEFENSIVE,
+		/*DEFENSIVE,*/
 		HUD
 	}
+	/**	Whenever applyArmorEffect returns true, this amount of steam will be consumed from canisters in the player's inventory.
+	* 	The effect will not be run if the player does not have enough steam.
+	*/
+	public int getSteamConsumedOnEffect();
+
+	//NYI
+	public int getEnergyConsumedOnEffect();
 }
