@@ -50,6 +50,8 @@ public interface IArmorModule
 	*/
 	public int getSteamConsumedOnEffect();
 
-	//NYI
+	/**	Whenever applyArmorEffect returns true, this amount of RF will be consumed from electric storage items in the player's inventory.
+	* 	The effect will not be run if the player does not have enough RF.
+	*/
 	public int getEnergyConsumedOnEffect();
 }
