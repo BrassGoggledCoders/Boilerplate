@@ -62,7 +62,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 
 	public ItemStack getChargedItem(Item item)
 	{
-		ItemStack charged = new ItemStack(item, 1, 20);
+		ItemStack charged = new ItemStack(item, 1, 1);
 
 		if(!charged.hasTagCompound())
 		{
