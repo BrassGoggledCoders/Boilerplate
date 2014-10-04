@@ -12,7 +12,7 @@ import ic2.api.tile.IWrenchable;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IUniversallyWrenchable extends IWrenchable
 {

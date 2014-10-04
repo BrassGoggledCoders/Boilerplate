@@ -29,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon)
- *
+ * 
  */
 public abstract class BaseProjectileEntity extends Entity implements IProjectile
 {
@@ -74,7 +74,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		double dz = target.posZ - shooter.posZ;
 		double magnitude = MathHelper.sqrt_double((dx * dx) + (dz * dz));
 
-		if(magnitude >= 1.0E-7D)
+		if (magnitude >= 1.0E-7D)
 		{
 			float fx = (float) ((Math.atan2(dz, dx) * 180.0D) / Math.PI) - 90.0F;
 			float fy = (float) -((Math.atan2(dy, magnitude) * 180.0D) / Math.PI);
@@ -148,7 +148,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		this.motionY = dy;
 		this.motionZ = dz;
 
-		if((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F))
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F))
 		{
 			float magnitude = MathHelper.sqrt_double((dx * dx) + (dz * dz));
 			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(dx, dz) * 180D) / 3.1415927410125732D);
@@ -161,10 +161,10 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 	{
 		super.onUpdate();
 
-		if(this.flyTime > 1000)
+		if (this.flyTime > 1000)
 			this.setDead();
 
-		if((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F))
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F))
 		{
 			float magnitude = MathHelper.sqrt_double((this.motionX * this.motionX) + (this.motionZ * this.motionZ));
 			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180D) / 3.1415927410125732D);
@@ -179,7 +179,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		posVector = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 		velVector = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
-		if(mop != null)
+		if (mop != null)
 			velVector = Vec3.createVectorHelper(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
 
 		Entity entity = null;
@@ -187,41 +187,41 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 				.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 		double distance = 0.0D;
 
-		for(int listSize = 0; listSize < entList.size(); listSize++)
+		for (int listSize = 0; listSize < entList.size(); listSize++)
 		{
 			Entity collidableEnt = (Entity) entList.get(listSize);
 
-			if(!collidableEnt.canBeCollidedWith() || ((collidableEnt == this.shootingEntity) && (this.flyTime < 5)))
+			if (!collidableEnt.canBeCollidedWith() || ((collidableEnt == this.shootingEntity) && (this.flyTime < 5)))
 				continue;
 
 			float amount = 0.3F;
 			AxisAlignedBB aaBB = collidableEnt.boundingBox.expand(amount, amount, amount);
 			MovingObjectPosition objectInVector = aaBB.calculateIntercept(posVector, velVector);
 
-			if(objectInVector == null)
+			if (objectInVector == null)
 				continue;
 
 			double distanceToObject = posVector.distanceTo(objectInVector.hitVec);
 
-			if((distanceToObject < distance) || (distance == 0.0D))
+			if ((distanceToObject < distance) || (distance == 0.0D))
 			{
 				entity = collidableEnt;
 				distance = distanceToObject;
 			}
 		}
 
-		if(entity != null)
+		if (entity != null)
 			mop = new MovingObjectPosition(entity);
 
-		if(mop != null)
-			if(mop.entityHit != null)
+		if (mop != null)
+			if (mop.entityHit != null)
 			{
-					this.onHitEntity(mop.entityHit);
-					this.motionX *= 0.10000000149011612D;
-					this.motionY *= 0.10000000149011612D;
-					this.motionZ *= 0.10000000149011612D;
-					this.flyTime = 0;
-					this.setDead();
+				this.onHitEntity(mop.entityHit);
+				this.motionX *= 0.10000000149011612D;
+				this.motionY *= 0.10000000149011612D;
+				this.motionZ *= 0.10000000149011612D;
+				this.flyTime = 0;
+				this.setDead();
 			}
 			else
 			{
@@ -230,7 +230,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 				this.zTile = mop.blockZ;
 				this.inTile = this.worldObj.getBlock(this.xTile, this.yTile, this.zTile);
 
-				onHitBlock(inTile, mop);
+				this.onHitBlock(this.inTile, mop);
 			}
 
 		this.posX += this.motionX * 3.0D;
@@ -239,19 +239,19 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		float magnitude = MathHelper.sqrt_double((this.motionX * this.motionX) + (this.motionZ * this.motionZ));
 		this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180D) / 3.1415927410125732D);
 
-		for(this.rotationPitch = (float) ((Math.atan2(this.motionY, magnitude) * 180D) / 3.1415927410125732D); (this.rotationPitch - this.prevRotationPitch) < -180F; this.prevRotationPitch -= 360F)
+		for (this.rotationPitch = (float) ((Math.atan2(this.motionY, magnitude) * 180D) / 3.1415927410125732D); (this.rotationPitch - this.prevRotationPitch) < -180F; this.prevRotationPitch -= 360F)
 		{
 		}
 
-		for(; (this.rotationPitch - this.prevRotationPitch) >= 180F; this.prevRotationPitch += 360F)
+		for (; (this.rotationPitch - this.prevRotationPitch) >= 180F; this.prevRotationPitch += 360F)
 		{
 		}
 
-		for(; (this.rotationYaw - this.prevRotationYaw) < -180F; this.prevRotationYaw -= 360F)
+		for (; (this.rotationYaw - this.prevRotationYaw) < -180F; this.prevRotationYaw -= 360F)
 		{
 		}
 
-		for(; (this.rotationYaw - this.prevRotationYaw) >= 180F; this.prevRotationYaw += 360F)
+		for (; (this.rotationYaw - this.prevRotationYaw) >= 180F; this.prevRotationYaw += 360F)
 		{
 		}
 
@@ -259,7 +259,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		this.rotationYaw = this.prevRotationYaw + ((this.rotationYaw - this.prevRotationYaw) * 0.2F);
 		float speed = 0.99F;
 
-		if(this.handleWaterMovement())
+		if (this.handleWaterMovement())
 			this.setDead();
 
 		this.motionX *= speed;
@@ -267,7 +267,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		this.motionZ *= speed;
 		this.setPosition(this.posX, this.posY, this.posZ);
 
-		if(this.worldObj.isRemote)
+		if (this.worldObj.isRemote)
 		{
 			this.worldObj.spawnParticle("explode", this.posX, this.posY, this.posZ, 0, 0, 0);
 		}
@@ -297,10 +297,16 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public float getShadowSize() { return 0.0F; }
+	public float getShadowSize()
+	{
+		return 0.0F;
+	}
 
 	@Override
-	public boolean canAttackWithItem() { return false; }
+	public boolean canAttackWithItem()
+	{
+		return false;
+	}
 
 	public abstract void onHitEntity(Entity entity);
 

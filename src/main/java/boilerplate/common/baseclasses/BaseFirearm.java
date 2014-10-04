@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public abstract class BaseFirearm extends RootItem
 {
@@ -51,21 +51,21 @@ public abstract class BaseFirearm extends RootItem
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
-		if((entity instanceof EntityPlayer) && (((EntityPlayer) entity).getCurrentEquippedItem() == stack))
+		if ((entity instanceof EntityPlayer) && (((EntityPlayer) entity).getCurrentEquippedItem() == stack))
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 
-			if(!stack.hasTagCompound())
+			if (!stack.hasTagCompound())
 				stack.setTagCompound(new NBTTagCompound());
 
 			NBTTagCompound tag = stack.getTagCompound();
 
-			if(tag.getShort("reloadTime") > 0)
+			if (tag.getShort("reloadTime") > 0)
 			{
 				tag.setShort("reloadTime", (short) (tag.getShort("reloadTime") - 1));
 				stack.setTagCompound(tag);
 
-				if(tag.getShort("reloadTime") == 10)
+				if (tag.getShort("reloadTime") == 10)
 					world.playSoundAtEntity(player, this.reloadSound, 0.8F, 1.0F);
 
 			}
@@ -74,16 +74,16 @@ public abstract class BaseFirearm extends RootItem
 
 	@Override
 	/**
-     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
-     */
+	 * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
+	 */
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		NBTTagCompound tag = stack.getTagCompound();
 
-		if((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
-			if(this.twoAmmo)
+		if ((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
+			if (this.twoAmmo)
 			{
-				if(player.inventory.hasItem(this.ammo2))
+				if (player.inventory.hasItem(this.ammo2))
 					this.shotBullet(stack, world, player);
 				player.inventory.consumeInventoryItem(this.ammo2);
 			}

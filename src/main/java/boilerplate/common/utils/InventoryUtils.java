@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author Surseance
- *
+ * 
  */
 public class InventoryUtils
 {
@@ -28,21 +28,21 @@ public class InventoryUtils
 
 	public static boolean addItemStackToInventory(IInventory inv, ItemStack is)
 	{
-		if(!is.isItemDamaged())
+		if (!is.isItemDamaged())
 		{
 			int stackSize;
 			do
 			{
 				stackSize = is.stackSize;
 				is.stackSize = storePartially(inv, is);
-			}while((is.stackSize > 0) && (is.stackSize < stackSize));
+			} while ((is.stackSize > 0) && (is.stackSize < stackSize));
 
 			return is.stackSize < stackSize;
 		}
 
 		int slot = getFirstEmptySlot(inv, is);
 
-		if(slot >= 0)
+		if (slot >= 0)
 		{
 			inv.setInventorySlotContents(slot, ItemStack.copyItemStack(is));
 			is.stackSize = 0;
@@ -57,43 +57,37 @@ public class InventoryUtils
 		Item item = is.getItem();
 		int size = is.stackSize;
 
-		if(is.getMaxStackSize() == 1) // Not stackable
+		if (is.getMaxStackSize() == 1) // Not stackable
 		{
 			int freeSlot = getFirstEmptySlot(inv, is);
 
-			if(freeSlot < 0)
+			if (freeSlot < 0)
 				return size;
 
-			if(inv.getStackInSlot(freeSlot) == null)
-				inv.setInventorySlotContents(freeSlot,
-						ItemStack.copyItemStack(is));
+			if (inv.getStackInSlot(freeSlot) == null)
+				inv.setInventorySlotContents(freeSlot, ItemStack.copyItemStack(is));
 
 			return 0;
 		}
 
 		int freeSlot = getNonFilledStack(inv, is);
 
-		if(freeSlot < 0)
+		if (freeSlot < 0)
 			freeSlot = getFirstEmptySlot(inv, is);
-		if(freeSlot < 0)
+		if (freeSlot < 0)
 			return size;
 
-		if(inv.getStackInSlot(freeSlot) == null)
-			inv.setInventorySlotContents(freeSlot,
-					new ItemStack(item, 0, is.getItemDamage()));
+		if (inv.getStackInSlot(freeSlot) == null)
+			inv.setInventorySlotContents(freeSlot, new ItemStack(item, 0, is.getItemDamage()));
 
 		int canStore = size;
 
-		if(canStore > (inv.getStackInSlot(freeSlot).getMaxStackSize()
-		- inv.getStackInSlot(freeSlot).stackSize))
-			canStore = inv.getStackInSlot(freeSlot).getMaxStackSize()
-					- inv.getStackInSlot(freeSlot).stackSize;
-		if(canStore > (inv.getInventoryStackLimit()
-		- inv.getStackInSlot(freeSlot).stackSize))
-			canStore = inv.getInventoryStackLimit()
-					- inv.getStackInSlot(freeSlot).stackSize;
+		if (canStore > (inv.getStackInSlot(freeSlot).getMaxStackSize() - inv.getStackInSlot(freeSlot).stackSize))
+			canStore = inv.getStackInSlot(freeSlot).getMaxStackSize() - inv.getStackInSlot(freeSlot).stackSize;
+		if (canStore > (inv.getInventoryStackLimit() - inv.getStackInSlot(freeSlot).stackSize))
+			canStore = inv.getInventoryStackLimit() - inv.getStackInSlot(freeSlot).stackSize;
 
-		if(canStore == 0)
+		if (canStore == 0)
 		{
 			return size;
 		}
@@ -107,17 +101,13 @@ public class InventoryUtils
 
 	public static int getNonFilledStack(IInventory inv, ItemStack is)
 	{
-		for(int slot = 0; slot < inv.getSizeInventory(); slot++)
+		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
 			ItemStack stackInSlot = inv.getStackInSlot(slot);
 
-			if((stackInSlot != null)
-					&& (stackInSlot.getItem() == is.getItem())
-					&& stackInSlot.isStackable()
-					&& (stackInSlot.stackSize < stackInSlot.getMaxStackSize())
-					&& (stackInSlot.stackSize < inv.getInventoryStackLimit())
-					&& (!stackInSlot.getHasSubtypes() || (stackInSlot
-							.getItemDamage() == is.getItemDamage())))
+			if ((stackInSlot != null) && (stackInSlot.getItem() == is.getItem()) && stackInSlot.isStackable()
+					&& (stackInSlot.stackSize < stackInSlot.getMaxStackSize()) && (stackInSlot.stackSize < inv.getInventoryStackLimit())
+					&& (!stackInSlot.getHasSubtypes() || (stackInSlot.getItemDamage() == is.getItemDamage())))
 			{
 				return slot;
 			}
@@ -128,9 +118,9 @@ public class InventoryUtils
 
 	public static int getFirstEmptySlot(IInventory inv, ItemStack is)
 	{
-		for(int slot = 0; slot < inv.getSizeInventory(); slot++)
+		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
-			if(inv.getStackInSlot(slot) == null)
+			if (inv.getStackInSlot(slot) == null)
 				return slot;
 		}
 
@@ -139,10 +129,9 @@ public class InventoryUtils
 
 	public static int isInPlayerInventory(EntityPlayer player, Item item)
 	{
-		for(int slot = 0; slot < player.inventory.mainInventory.length; slot++)
+		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
-			if((player.inventory.mainInventory[slot] != null)
-					&& (player.inventory.mainInventory[slot].getItem() == item))
+			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].getItem() == item))
 				return slot;
 		}
 
@@ -151,7 +140,7 @@ public class InventoryUtils
 
 	public static boolean isInvEmpty(IInventory inv, ItemStack is)
 	{
-		if(!addItemStackToInventory(inv, is))
+		if (!addItemStackToInventory(inv, is))
 			return false;
 
 		return true;
@@ -159,22 +148,22 @@ public class InventoryUtils
 
 	public static int isInInventory(InventoryBasic inventory, ItemStack stack)
 	{
-		for(int slot = 0; slot < inventory.getSizeInventory(); slot++)
+		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
 		{
-			if((inventory.getStackInSlot(slot) != null)
-					&& (inventory.getStackInSlot(slot) == stack))
+			if ((inventory.getStackInSlot(slot) != null) && (inventory.getStackInSlot(slot) == stack))
 				return slot;
 		}
 
 		return -1;
 	}
+
 	public static ItemStack getItemStackInInventory(EntityPlayer player, ItemStack stack)
 	{
-		for(int i = 0; i<player.inventory.mainInventory.length; i++)
+		for (ItemStack element : player.inventory.mainInventory)
 		{
-			if(player.inventory.mainInventory[i] == stack)
+			if (element == stack)
 			{
-				return player.inventory.mainInventory[i];
+				return element;
 			}
 		}
 		return null;

@@ -31,8 +31,7 @@ public class RecipeUtils
 		customArmorRecipes.addRecipes(CraftingManager.getInstance());
 	}
 
-	public static void addMetalRecipes(final Block block, final Item ingot,
-			final Item nugget, int meta)
+	public static void addMetalRecipes(final Block block, final Item ingot, final Item nugget, int meta)
 	{
 		CustomMetalRecipes customMetalRecipes = new CustomMetalRecipes(block, ingot, nugget, meta);
 		customMetalRecipes.addRecipes(CraftingManager.getInstance());

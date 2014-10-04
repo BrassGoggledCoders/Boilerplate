@@ -52,18 +52,17 @@ public class FXRaygun extends EntityFX
 	private int rotationspeed = 5;
 	private float prevSize = 0.0F;
 	public int impact;
-	
+
 	private static final ResourceLocation rayTex = new ResourceLocation("steamcraft:textures/misc/ray.png");
 
 	public static boolean amITooLazyToLearnTheUntiCircle = true;
 
-	public FXRaygun(final World world, final EntityPlayer player, final double tx, final double ty, final double tz, final float red, final float green,
-			final float blue, final int age)
+	public FXRaygun(final World world, final EntityPlayer player, final double tx, final double ty, final double tz, final float red,
+			final float green, final float blue, final int age)
 	{
 		super(world, player.posX, player.posY, player.posZ, 0.0D, 0.0D, 0.0D);
 
-		if(player.getEntityData() != Minecraft.getMinecraft().renderViewEntity
-				.getEntityData())
+		if (player.getEntityData() != Minecraft.getMinecraft().renderViewEntity.getEntityData())
 		{
 			this.offset = ((player.height / 2.0F) + 0.25D);
 		}
@@ -90,15 +89,14 @@ public class FXRaygun extends EntityFX
 		this.prevYaw = this.rotYaw;
 		this.prevPitch = this.rotPitch;
 		this.particleMaxAge = age;
-		final EntityLivingBase renderentity = FMLClientHandler.instance()
-				.getClient().renderViewEntity;
+		final EntityLivingBase renderentity = FMLClientHandler.instance().getClient().renderViewEntity;
 		int visibleDistance = 50;
 
-		if(!FMLClientHandler.instance().getClient().gameSettings.fancyGraphics)
+		if (!FMLClientHandler.instance().getClient().gameSettings.fancyGraphics)
 		{
 			visibleDistance = 25;
 		}
-		if(renderentity.getDistance(player.posX, player.posY, player.posZ) > visibleDistance)
+		if (renderentity.getDistance(player.posX, player.posY, player.posZ) > visibleDistance)
 		{
 			this.particleMaxAge = 0;
 		}
@@ -110,7 +108,7 @@ public class FXRaygun extends EntityFX
 		this.tY = y;
 		this.tZ = z;
 
-		while((this.particleMaxAge - this.particleAge) < 4)
+		while ((this.particleMaxAge - this.particleAge) < 4)
 		{
 			this.particleMaxAge += 1;
 		}
@@ -134,28 +132,27 @@ public class FXRaygun extends EntityFX
 		final double var7 = MathHelper.sqrt_double((xd * xd) + (zd * zd));
 		this.rotYaw = (float) ((Math.atan2(xd, zd) * 180.0D) / 3.141592653589793D);
 
-		for(this.rotPitch = (float) ((Math.atan2(yd, var7) * 180.0D) / 3.141592653589793D); (this.rotPitch
-		- this.prevPitch) < -180.0F; this.prevPitch -= 360.0F)
+		for (this.rotPitch = (float) ((Math.atan2(yd, var7) * 180.0D) / 3.141592653589793D); (this.rotPitch - this.prevPitch) < -180.0F; this.prevPitch -= 360.0F)
 		{
 			;
 		}
-		while((this.rotPitch - this.prevPitch) >= 180.0F)
+		while ((this.rotPitch - this.prevPitch) >= 180.0F)
 		{
 			this.prevPitch += 360.0F;
 		}
-		while((this.rotYaw - this.prevYaw) < -180.0F)
+		while ((this.rotYaw - this.prevYaw) < -180.0F)
 		{
 			this.prevYaw -= 360.0F;
 		}
-		while((this.rotYaw - this.prevYaw) >= 180.0F)
+		while ((this.rotYaw - this.prevYaw) >= 180.0F)
 		{
 			this.prevYaw += 360.0F;
 		}
-		if(this.impact > 0)
+		if (this.impact > 0)
 		{
 			this.impact -= 1;
 		}
-		if(this.particleAge++ >= this.particleMaxAge)
+		if (this.particleAge++ >= this.particleMaxAge)
 		{
 			this.setDead();
 		}
@@ -194,19 +191,17 @@ public class FXRaygun extends EntityFX
 	}
 
 	@Override
-	public void renderParticle(final Tessellator tessellator, final float f,
-			final float f1, final float f2, final float f3, final float f4,
+	public void renderParticle(final Tessellator tessellator, final float f, final float f1, final float f2, final float f3, final float f4,
 			final float f5)
 	{
 		tessellator.draw();
 		GL11.glPushMatrix();
 		final float var9 = 1.0F;
 		final float slide = this.worldObj.getWorldTime();
-		final float rot = ((this.worldObj.provider.getWorldTime()
-				% (360 / this.rotationspeed)) * this.rotationspeed) + (this.rotationspeed * f);
+		final float rot = ((this.worldObj.provider.getWorldTime() % (360 / this.rotationspeed)) * this.rotationspeed) + (this.rotationspeed * f);
 		float size = 0.5F;
 
-		if(this.pulse)
+		if (this.pulse)
 		{
 			size = Math.min(this.particleAge / 4.0F, 1.0F);
 			size = this.prevSize + ((size - this.prevSize) * f);
@@ -214,22 +209,22 @@ public class FXRaygun extends EntityFX
 
 		float op = 0.4F;
 
-		if((this.pulse) && ((this.particleMaxAge - this.particleAge) <= 4))
+		if ((this.pulse) && ((this.particleMaxAge - this.particleAge) <= 4))
 		{
 			op = 0.4F - ((4 - (this.particleMaxAge - this.particleAge)) * 0.1F);
 		}
 
-		switch(this.type)
+		switch (this.type)
 		{
-			default:
-				// In case I make another type of beam, I can change the beam
-				// texture here
-				break;
-			case 1:
-				// and here...
-				break;
-			case 2:
-				Minecraft.getMinecraft().renderEngine.bindTexture(rayTex);
+		default:
+			// In case I make another type of beam, I can change the beam
+			// texture here
+			break;
+		case 1:
+			// and here...
+			break;
+		case 2:
+			Minecraft.getMinecraft().renderEngine.bindTexture(rayTex);
 		}
 
 		GL11.glTexParameterf(3553, 10242, 10497.0F);
@@ -237,14 +232,13 @@ public class FXRaygun extends EntityFX
 		GL11.glDisable(2884);
 		float var11 = slide + f;
 
-		if(this.reverse)
+		if (this.reverse)
 		{
 			var11 *= -1.0F; // why name your variables "var11"? That is so
 							// un-helpful
 		}
 
-		final float var12 = (-var11 * 0.2F)
-				- MathHelper.floor_float(-var11 * 0.1F);
+		final float var12 = (-var11 * 0.2F) - MathHelper.floor_float(-var11 * 0.1F);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, 1);
 		GL11.glDepthMask(false);
@@ -283,7 +277,7 @@ public class FXRaygun extends EntityFX
 		final double var17b = 0.15D * size * this.endMod;
 		GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
 
-		for(int t = 0; t < 5; t++)
+		for (int t = 0; t < 5; t++)
 		{
 			final double var29 = this.length * size * var9;
 			final double var31 = 0.0D;
@@ -293,8 +287,7 @@ public class FXRaygun extends EntityFX
 			GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
 			tessellator.startDrawingQuads();
 			tessellator.setBrightness(200);
-			tessellator.setColorRGBA_F(this.particleRed, this.particleGreen,
-					this.particleBlue, op);
+			tessellator.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, op);
 			tessellator.addVertexWithUV(var44b, var29, 0.0D, var33, var37);
 			tessellator.addVertexWithUV(var44, 0.0D, 0.0D, var33, var35);
 			tessellator.addVertexWithUV(var17, 0.0D, 0.0D, var31, var35);

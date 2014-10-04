@@ -6,7 +6,8 @@ public class IncorrectAPIUsageException extends RuntimeException
 
 	private static final long serialVersionUID = 1L;
 
-    public IncorrectAPIUsageException() {
-        super(message);
-    }
+	public IncorrectAPIUsageException()
+	{
+		super(message);
+	}
 }

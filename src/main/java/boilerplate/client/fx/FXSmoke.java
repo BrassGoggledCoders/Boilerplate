@@ -22,7 +22,7 @@ public class FXSmoke extends EntityReddustFX
 {
 	float smokeParticleScale;
 
-	private static final ResourceLocation smoke = new ResourceLocation("sc2","textures/misc/smoke.png");
+	private static final ResourceLocation smoke = new ResourceLocation("sc2", "textures/misc/smoke.png");
 
 	public FXSmoke(final World world, final double dx, final double dy, final double dz, final float r, final float g, final float b)
 	{
@@ -49,17 +49,16 @@ public class FXSmoke extends EntityReddustFX
 	}
 
 	@Override
-	public void renderParticle(final Tessellator tessellator, final float par2,
-			final float par3, final float par4, final float par5,
+	public void renderParticle(final Tessellator tessellator, final float par2, final float par3, final float par4, final float par5,
 			final float par6, final float par7)
 	{
 		float f6 = ((this.particleAge + par2) / this.particleMaxAge) * 32.0F;
 
-		if(f6 < 0.0F)
+		if (f6 < 0.0F)
 		{
 			f6 = 0.0F;
 		}
-		if(f6 > 1.0F)
+		if (f6 > 1.0F)
 		{
 			f6 = 1.0F;
 		}
@@ -77,7 +76,7 @@ public class FXSmoke extends EntityReddustFX
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 
-		if(this.particleAge++ >= this.particleMaxAge)
+		if (this.particleAge++ >= this.particleMaxAge)
 		{
 			this.setDead();
 		}
@@ -86,7 +85,7 @@ public class FXSmoke extends EntityReddustFX
 		this.motionY += 0.004D;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 
-		if(this.posY == this.prevPosY)
+		if (this.posY == this.prevPosY)
 		{
 			this.motionX *= 1.1D;
 			this.motionZ *= 1.1D;
@@ -96,7 +95,7 @@ public class FXSmoke extends EntityReddustFX
 		this.motionY *= 0.9599999785423279D;
 		this.motionZ *= 0.9599999785423279D;
 
-		if(this.onGround)
+		if (this.onGround)
 		{
 			this.motionX *= 0.699999988079071D;
 			this.motionZ *= 0.699999988079071D;

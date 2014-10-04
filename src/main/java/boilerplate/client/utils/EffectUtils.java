@@ -31,50 +31,43 @@ public class EffectUtils
 		final Random random = world.rand;
 		final double offset = 0.0625D;
 
-		for(int amount = 0; amount < 6; amount++)
+		for (int amount = 0; amount < 6; amount++)
 		{
 			double dx = x + random.nextFloat();
 			double dy = y + random.nextFloat();
 			double dz = z + random.nextFloat();
 
-			if((amount == 0)
-					&& (!world.isBlockNormalCubeDefault(x, y + 1, z, false)))
+			if ((amount == 0) && (!world.isBlockNormalCubeDefault(x, y + 1, z, false)))
 			{
 				dy = y + 1 + offset;
 			}
 
-			if((amount == 1)
-					&& (!world.isBlockNormalCubeDefault(x, y - 1, z, false)))
+			if ((amount == 1) && (!world.isBlockNormalCubeDefault(x, y - 1, z, false)))
 			{
 				dy = (y + 0) - offset;
 			}
 
-			if((amount == 2)
-					&& (!world.isBlockNormalCubeDefault(x, y, z + 1, false)))
+			if ((amount == 2) && (!world.isBlockNormalCubeDefault(x, y, z + 1, false)))
 			{
 				dz = z + 1 + offset;
 			}
 
-			if((amount == 3)
-					&& (!world.isBlockNormalCubeDefault(x, y, z - 1, false)))
+			if ((amount == 3) && (!world.isBlockNormalCubeDefault(x, y, z - 1, false)))
 			{
 				dz = (z + 0) - offset;
 			}
 
-			if((amount == 4)
-					&& (!world.isBlockNormalCubeDefault(x + 1, y, z, false)))
+			if ((amount == 4) && (!world.isBlockNormalCubeDefault(x + 1, y, z, false)))
 			{
 				dx = x + 1 + offset;
 			}
 
-			if((amount == 5)
-					&& (!world.isBlockNormalCubeDefault(x - 1, y, z, false)))
+			if ((amount == 5) && (!world.isBlockNormalCubeDefault(x - 1, y, z, false)))
 			{
 				dx = (x + 0) - offset;
 			}
 
-			if((dx < x) || (dx > (x + 1)) || (dy < 0.0D) || (dy > (y + 1))
-					|| (dz < z) || (dz > (z + 1)))
+			if ((dx < x) || (dx > (x + 1)) || (dy < 0.0D) || (dy > (y + 1)) || (dz < z) || (dz > (z + 1)))
 			{
 				world.spawnParticle(particleName, dx, dy, dz, -1.0D, 1.0D, -1.0D);
 				// Steamcraft.proxy.smokeFX(world, dx, dy, dz, FXSmoke.class);
@@ -84,10 +77,10 @@ public class EffectUtils
 
 	public static void blockSparkle(World world, int x, int y, int z, int count)
 	{
-		if(!world.isRemote)
+		if (!world.isRemote)
 			return;
 
-		for(; count < 10; ++count)
+		for (; count < 10; ++count)
 		{
 			double startX = x + world.rand.nextFloat();
 			double startY = y + (world.rand.nextFloat() * 1.0F);
@@ -106,7 +99,7 @@ public class EffectUtils
 
 	public static void blockFlameFX(World world, int x, int y, int z, int count)
 	{
-		for(; count < 10; ++count)
+		for (; count < 10; ++count)
 		{
 			double startX = x + world.rand.nextFloat();
 			double startY = y + (world.rand.nextFloat() * 1.0F);
@@ -123,17 +116,15 @@ public class EffectUtils
 
 	private static EntityFX particle;
 
-	public static void displayFX(final String name, final World world, final double dx, final double dy, final double dz,
-			final double velX, final double velY, final double velZ,
-			final float scale)
+	public static void displayFX(final String name, final World world, final double dx, final double dy, final double dz, final double velX,
+			final double velY, final double velZ, final float scale)
 	{
 		particle = null;
 
 		/** An example of adding an EntityFX class. */
-		if(name.equals("smoke"))
+		if (name.equals("smoke"))
 		{
-			particle = new EntitySmokeFX(world, dx, dy, dz, velX, velY, velZ,
-					scale);
+			particle = new EntitySmokeFX(world, dx, dy, dz, velX, velY, velZ, scale);
 		}
 
 		final Minecraft mc = Minecraft.getMinecraft();
@@ -142,12 +133,11 @@ public class EffectUtils
 		final double distZ = mc.renderViewEntity.posZ - particle.posZ;
 		int display = mc.gameSettings.particleSetting;
 
-		if((display == 1) && (particle.worldObj.rand.nextInt(3) == 0))
+		if ((display == 1) && (particle.worldObj.rand.nextInt(3) == 0))
 		{
 			display = 2;
 		}
-		if((display <= 1)
-				&& (((distX * distX) + (distY * distY) + (distZ * distZ)) <= 4096.0D))
+		if ((display <= 1) && (((distX * distX) + (distY * distY) + (distZ * distZ)) <= 4096.0D))
 		{
 			mc.effectRenderer.addEffect(particle);
 		}

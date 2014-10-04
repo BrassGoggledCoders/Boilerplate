@@ -23,6 +23,7 @@ public final class StringUtils
 	{
 		return input.substring(0, 1).toLowerCase() + input.substring(1);
 	}
+
 	public static String titleCase(final String input)
 	{
 		return input.substring(0, 1).toUpperCase() + input.substring(1);
@@ -37,15 +38,15 @@ public final class StringUtils
 	public static String[] wrap(String input, int len)
 	{
 		// return empty array for null text
-		if(input == null)
+		if (input == null)
 			return new String[] {};
 
 		// return text if len is zero or less
-		if(len <= 0)
+		if (len <= 0)
 			return new String[] { input };
 
 		// return text if less than length
-		if(input.length() <= len)
+		if (input.length() <= len)
 			return new String[] { input };
 
 		char[] chars = input.toCharArray();
@@ -53,13 +54,13 @@ public final class StringUtils
 		StringBuffer line = new StringBuffer();
 		StringBuffer word = new StringBuffer();
 
-		for(char c : chars)
+		for (char c : chars)
 		{
 			word.append(c);
 
-			if(c == ' ')
+			if (c == ' ')
 			{
-				if((line.length() + word.length()) > len)
+				if ((line.length() + word.length()) > len)
 				{
 					lines.add(line.toString());
 					line.delete(0, line.length());
@@ -71,9 +72,9 @@ public final class StringUtils
 		}
 
 		// handle any extra chars in current word
-		if(word.length() > 0)
+		if (word.length() > 0)
 		{
-			if((line.length() + word.length()) > len)
+			if ((line.length() + word.length()) > len)
 			{
 				lines.add(line.toString());
 				line.delete(0, line.length());
@@ -82,14 +83,14 @@ public final class StringUtils
 		}
 
 		// handle extra line
-		if(line.length() > 0)
+		if (line.length() > 0)
 		{
 			lines.add(line.toString());
 		}
 
 		String[] ret = new String[lines.size()];
 		int c = 0; // counter
-		for(Enumeration e = lines.elements(); e.hasMoreElements(); c++)
+		for (Enumeration e = lines.elements(); e.hasMoreElements(); c++)
 		{
 			ret[c] = (String) e.nextElement();
 		}

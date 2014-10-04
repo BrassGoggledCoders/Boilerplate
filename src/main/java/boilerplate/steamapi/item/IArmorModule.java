@@ -16,42 +16,48 @@ import net.minecraft.world.World;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IArmorModule
 {
-	// 0 is helmet, 1 is plate, 2 is legs and 3 is boots. Return -1 for any piece
+	// 0 is helmet, 1 is plate, 2 is legs and 3 is boots. Return -1 for any
+	// piece
 	public int getApplicablePiece();
 
-	//Localized Name
+	// Localized Name
 	public String getName();
 
-	//Unlocalized Name
+	// Unlocalized Name
 	public String getModuleId();
 
-	//The Effect this module has
+	// The Effect this module has
 	public boolean applyArmorEffect(World world, EntityPlayer player, ItemStack stack);
 
-	//The type of effect (see below)
+	// The type of effect (see below)
 	public EnumArmorEffectType getArmorEffectType();
 
-	//NYI
+	// NYI
 	public ArrayList<IArmorModule> getListOfIncompatibleModules();
 
 	//
 	public static enum EnumArmorEffectType
 	{
 		ONTICK,
-		/*DEFENSIVE,*/
+		/* DEFENSIVE, */
 		HUD
 	}
-	/**	Whenever applyArmorEffect returns true, this amount of steam will be consumed from canisters in the player's inventory.
-	* 	The effect will not be run if the player does not have enough steam.
-	*/
+
+	/**
+	 * Whenever applyArmorEffect returns true, this amount of steam will be
+	 * consumed from canisters in the player's inventory. The effect will not be
+	 * run if the player does not have enough steam.
+	 */
 	public int getSteamConsumedOnEffect();
 
-	/**	Whenever applyArmorEffect returns true, this amount of RF will be consumed from electric storage items in the player's inventory.
-	* 	The effect will not be run if the player does not have enough RF.
-	*/
+	/**
+	 * Whenever applyArmorEffect returns true, this amount of RF will be
+	 * consumed from electric storage items in the player's inventory. The
+	 * effect will not be run if the player does not have enough RF.
+	 */
 	public int getEnergyConsumedOnEffect();
 }

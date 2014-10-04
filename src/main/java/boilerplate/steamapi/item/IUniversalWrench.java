@@ -13,7 +13,7 @@ import cofh.api.item.IToolHammer;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IUniversalWrench extends IToolWrench, IToolHammer
 {

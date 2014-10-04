@@ -56,8 +56,8 @@ public class RenderMinedBlock extends Render
 		float rot = world.getWorldTime() * 17.6F;
 
 		GL11.glScalef(scale, scale, scale);
-		
-		if(entBlock.doesRotate)
+
+		if (entBlock.doesRotate)
 			GL11.glRotatef(rot, 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat());
 
 		this.blockRenderer.blockAccess = entBlock.worldObj;

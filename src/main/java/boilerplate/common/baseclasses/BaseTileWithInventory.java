@@ -18,9 +18,9 @@ import boilerplate.steamapi.block.IUniversallyWrenchable;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
- *
+ * 
  * @author decebaldecebal
- *
+ * 
  */
 public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable
 {
@@ -39,12 +39,12 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 		NBTTagList nbttaglist = (NBTTagList) tag.getTag("Items");
 		this.inventory = new ItemStack[this.getSizeInventory()];
 
-		for(int i = 0; i < nbttaglist.tagCount(); ++i)
+		for (int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
-			if((b0 >= 0) && (b0 < this.inventory.length))
+			if ((b0 >= 0) && (b0 < this.inventory.length))
 				this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		}
 	}
@@ -56,8 +56,8 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for(int i = 0; i < this.inventory.length; ++i)
-			if(this.inventory[i] != null)
+		for (int i = 0; i < this.inventory.length; ++i)
+			if (this.inventory[i] != null)
 			{
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
@@ -83,11 +83,11 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public ItemStack decrStackSize(int par1, int par2)
 	{
-		if(this.inventory[par1] != null)
+		if (this.inventory[par1] != null)
 		{
 			ItemStack var3;
 
-			if(this.inventory[par1].stackSize <= par2)
+			if (this.inventory[par1].stackSize <= par2)
 			{
 				var3 = this.inventory[par1];
 				this.inventory[par1] = null;
@@ -97,7 +97,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 			{
 				var3 = this.inventory[par1].splitStack(par2);
 
-				if(this.inventory[par1].stackSize == 0)
+				if (this.inventory[par1].stackSize == 0)
 					this.inventory[par1] = null;
 
 				return var3;
@@ -110,7 +110,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1)
 	{
-		if(this.inventory[par1] != null)
+		if (this.inventory[par1] != null)
 		{
 			ItemStack var2 = this.inventory[par1];
 			this.inventory[par1] = null;
@@ -125,7 +125,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	{
 		this.inventory[par1] = par2ItemStack;
 
-		if((par2ItemStack != null) && (par2ItemStack.stackSize > this.getInventoryStackLimit()))
+		if ((par2ItemStack != null) && (par2ItemStack.stackSize > this.getInventoryStackLimit()))
 			par2ItemStack.stackSize = this.getInventoryStackLimit();
 	}
 
@@ -187,7 +187,6 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	public void closeInventory()
 	{
 	}
-
 
 	// TODO
 	@Override

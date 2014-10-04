@@ -21,7 +21,8 @@ import org.lwjgl.input.Keyboard;
  */
 public class ClientHelper
 {
-	public static String shiftForInfo = EnumChatFormatting.GRAY + "Hold " + EnumChatFormatting.GREEN + "SHIFT" + EnumChatFormatting.GRAY + " for more info.";
+	public static String shiftForInfo = EnumChatFormatting.GRAY + "Hold " + EnumChatFormatting.GREEN + "SHIFT" + EnumChatFormatting.GRAY
+			+ " for more info.";
 
 	public static boolean isShiftKeyDown()
 	{

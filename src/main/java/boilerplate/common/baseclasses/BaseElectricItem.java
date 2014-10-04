@@ -20,7 +20,7 @@ import boilerplate.steamapi.item.IEnergyItem;
 
 /**
  * @author decebaldecebal
- *
+ * 
  */
 public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 {
@@ -51,7 +51,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	{
 		ItemStack uncharged = new ItemStack(item, 1, 20);
 
-		if(!uncharged.hasTagCompound())
+		if (!uncharged.hasTagCompound())
 		{
 			uncharged.setTagCompound(new NBTTagCompound());
 		}
@@ -64,7 +64,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	{
 		ItemStack charged = new ItemStack(item, 1, 1);
 
-		if(!charged.hasTagCompound())
+		if (!charged.hasTagCompound())
 		{
 			charged.setTagCompound(new NBTTagCompound());
 		}
@@ -81,24 +81,24 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
 	}
 
-    @Override
+	@Override
 	public void onCreated(ItemStack stack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-    	setEnergy(stack, 0);
+		this.setEnergy(stack, 0);
 	}
 
 	public void setEnergy(ItemStack stack, int energy)
 	{
-		if(!stack.hasTagCompound())
+		if (!stack.hasTagCompound())
 		{
 			stack.setTagCompound(new NBTTagCompound());
 		}
 		NBTTagCompound tag = stack.getTagCompound();
 
-		if(energy < 0)
+		if (energy < 0)
 			energy = 0;
 
-		if(energy > this.maxEnergy)
+		if (energy > this.maxEnergy)
 			energy = this.maxEnergy;
 
 		stack.setItemDamage(20 - ((energy * 20) / this.maxEnergy));
@@ -114,7 +114,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		int received = Math.min(this.maxEnergy - this.getEnergyStored(itemStack), maxReceive);
 		received = Math.min(received, this.maxReceive);
 
-		if(!simulate)
+		if (!simulate)
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received);
 
 		return received;
@@ -126,7 +126,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		int extracted = Math.min(this.getEnergyStored(itemStack), maxExtract);
 		extracted = Math.min(extracted, this.maxSend);
 
-		if(!simulate)
+		if (!simulate)
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) - extracted);
 
 		return extracted;

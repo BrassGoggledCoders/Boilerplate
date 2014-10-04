@@ -12,7 +12,7 @@ import cofh.api.energy.IEnergyContainerItem;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IEnergyItem extends IEnergyContainerItem
 {

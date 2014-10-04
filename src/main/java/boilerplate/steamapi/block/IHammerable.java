@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IHammerable
 {

@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IVanityItem
 {

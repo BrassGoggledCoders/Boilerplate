@@ -18,13 +18,12 @@ import net.minecraft.item.crafting.CraftingManager;
  */
 public class CustomToolRecipes
 {
-	private static String[][] recipePatterns = new String[][] {
-			{ "XXX", " # ", " # " }, { "X", "#", "#" }, { "XX", "X#", " #" },
+	private static String[][] recipePatterns = new String[][] { { "XXX", " # ", " # " }, { "X", "#", "#" }, { "XX", "X#", " #" },
 			{ "XX", " #", " #" }, { "X", "X", "#" } };
 
 	public ItemStack input;
 	public ItemStack[] outputs;
-	
+
 	public CustomToolRecipes(ItemStack input, ItemStack[] outputs)
 	{
 		this.input = input;
@@ -33,10 +32,10 @@ public class CustomToolRecipes
 
 	public void addRecipes(final CraftingManager manager)
 	{
-		manager.addRecipe(outputs[0], new Object[] { recipePatterns[0], '#', Items.stick, 'X', input });
-		manager.addRecipe(outputs[1], new Object[] { recipePatterns[1], '#', Items.stick, 'X', input });
-		manager.addRecipe(outputs[2], new Object[] { recipePatterns[2], '#', Items.stick, 'X', input });
-		manager.addRecipe(outputs[3], new Object[] { recipePatterns[3], '#', Items.stick, 'X', input });
-		manager.addRecipe(outputs[4], new Object[] { recipePatterns[4], '#', Items.stick, 'X', input });
+		manager.addRecipe(this.outputs[0], new Object[] { recipePatterns[0], '#', Items.stick, 'X', this.input });
+		manager.addRecipe(this.outputs[1], new Object[] { recipePatterns[1], '#', Items.stick, 'X', this.input });
+		manager.addRecipe(this.outputs[2], new Object[] { recipePatterns[2], '#', Items.stick, 'X', this.input });
+		manager.addRecipe(this.outputs[3], new Object[] { recipePatterns[3], '#', Items.stick, 'X', this.input });
+		manager.addRecipe(this.outputs[4], new Object[] { recipePatterns[4], '#', Items.stick, 'X', this.input });
 	}
 }

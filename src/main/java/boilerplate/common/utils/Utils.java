@@ -33,13 +33,12 @@ public class Utils
 
 	public static void playSFX(World world, int x, int y, int z, String sound)
 	{
-		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F,
-				(world.rand.nextFloat() * 0.4F) + 0.8F);
+		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, (world.rand.nextFloat() * 0.4F) + 0.8F);
 	}
 
 	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, int x, int y, int z)
 	{
-		if(getBlockUnbreakable(world, x, y, z) && !player.capabilities.allowEdit)
+		if (getBlockUnbreakable(world, x, y, z) && !player.capabilities.allowEdit)
 		{
 			return false;
 		}
@@ -49,7 +48,7 @@ public class Utils
 
 	public static boolean getBlockUnbreakable(World world, int x, int y, int z)
 	{
-		if(world.getBlock(x, y, z).getBlockHardness(world, x, y, z) == -1)
+		if (world.getBlock(x, y, z).getBlockHardness(world, x, y, z) == -1)
 		{
 			return true;
 		}

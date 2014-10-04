@@ -19,7 +19,7 @@ public class OreDictHelper
 {
 	public static void registerOreWithAlts(String[] names, ItemStack ore)
 	{
-		for(String name : names)
+		for (String name : names)
 			OreDictionary.registerOre(name, ore);
 	}
 }

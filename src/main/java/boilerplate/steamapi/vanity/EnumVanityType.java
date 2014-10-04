@@ -10,16 +10,9 @@ package boilerplate.steamapi.vanity;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public enum EnumVanityType
 {
-	HAT,
-	TUNIC,
-	LEGGINGS,
-	BOOTS,
-	HAT1,
-	TUNIC1,
-	LEGGINGS1,
-	BOOTS1
+	HAT, TUNIC, LEGGINGS, BOOTS, HAT1, TUNIC1, LEGGINGS1, BOOTS1
 }

@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public class RootItem extends Item
 {
@@ -30,9 +30,9 @@ public class RootItem extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
 	{
-		if(!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
+		if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
 		{
-			if(ClientHelper.isShiftKeyDown())
+			if (ClientHelper.isShiftKeyDown())
 			{
 				this.getWrappedDesc(list, stack);
 			}
@@ -44,8 +44,9 @@ public class RootItem extends Item
 	@SuppressWarnings("all")
 	public void getWrappedDesc(List list, ItemStack stack)
 	{
-		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
-		for(String element : wrappedDesc)
+		String[] wrappedDesc = StringUtils
+				.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+		for (String element : wrappedDesc)
 			list.add(element.trim());
 	}
 }

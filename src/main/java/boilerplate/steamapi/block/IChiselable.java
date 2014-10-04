@@ -12,7 +12,7 @@ import net.minecraft.block.Block;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IChiselable
 {

@@ -13,16 +13,16 @@ import net.minecraft.item.Item;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public class CreativeTabBase extends CreativeTabs
 {
-	//Item icon;
+	// Item icon;
 
-	public CreativeTabBase(int id, String name/*, Item icon*/)
+	public CreativeTabBase(int id, String name/* , Item icon */)
 	{
 		super(id, name);
-		//this.icon = icon;
+		// this.icon = icon;
 	}
 
 	@Override
@@ -31,10 +31,9 @@ public class CreativeTabBase extends CreativeTabs
 		return null;
 	}
 
-	/*@Override Dosn't seem to work for me
-	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem()
-	{
-		return this.icon;
-	}*/
+	/*
+	 * @Override Dosn't seem to work for me
+	 * 
+	 * @SideOnly(Side.CLIENT) public Item getTabIconItem() { return this.icon; }
+	 */
 }

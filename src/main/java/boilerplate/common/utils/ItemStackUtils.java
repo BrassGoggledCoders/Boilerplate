@@ -33,7 +33,7 @@ public class ItemStackUtils
 {
 	public static Material getBlockMaterial(final IBlockAccess world, final int x, final int y, final int z)
 	{
-		if(world.getBlock(x, y, z) != null)
+		if (world.getBlock(x, y, z) != null)
 		{
 			return world.getBlock(x, y, z).getMaterial();
 		}
@@ -41,16 +41,14 @@ public class ItemStackUtils
 		return Material.air;
 	}
 
-	public static ItemStack getDroppedItemStack(World world,
-			EntityPlayer player, Block block, int x, int y, int z, int md)
+	public static ItemStack getDroppedItemStack(World world, EntityPlayer player, Block block, int x, int y, int z, int md)
 	{
-		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
-				EnchantmentHelper.getFortuneModifier(player));
+		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
 		ItemStack drops = null;
 
-		if((items != null) && (items.size() > 0))
+		if ((items != null) && (items.size() > 0))
 		{
-			for(int size = 0; size < items.size(); size++)
+			for (int size = 0; size < items.size(); size++)
 			{
 				drops = items.get(size);
 			}
@@ -61,9 +59,7 @@ public class ItemStackUtils
 
 	public static boolean isSmeltable(ItemStack is)
 	{
-		return (is == null)
-				|| (FurnaceRecipes.smelting().getSmeltingResult(is) == null) ? false
-				: true;
+		return (is == null) || (FurnaceRecipes.smelting().getSmeltingResult(is) == null) ? false : true;
 	}
 
 	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
@@ -93,9 +89,9 @@ public class ItemStackUtils
 
 	public static int getStackPosition(InventoryPlayer inventory, Item item)
 	{
-		for(int i = 0; i < inventory.getSizeInventory(); i++)
+		for (int i = 0; i < inventory.getSizeInventory(); i++)
 		{
-			if((inventory.getStackInSlot(i) != null) && (item == inventory.getStackInSlot(i).getItem()))
+			if ((inventory.getStackInSlot(i) != null) && (item == inventory.getStackInSlot(i).getItem()))
 			{
 				return i;
 			}

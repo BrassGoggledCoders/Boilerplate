@@ -18,10 +18,9 @@ import net.minecraft.util.StatCollector;
 import boilerplate.client.ClientHelper;
 import boilerplate.common.utils.StringUtils;
 
-
 /**
  * @author warlordjones
- *
+ * 
  */
 public class ItemBlockWithDesc extends ItemBlock
 {
@@ -38,10 +37,10 @@ public class ItemBlockWithDesc extends ItemBlock
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		if(!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
-			if(this.descNeedsShift)
+		if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
+			if (this.descNeedsShift)
 			{
-				if(ClientHelper.isShiftKeyDown())
+				if (ClientHelper.isShiftKeyDown())
 					this.getWrappedDesc(list, stack);
 				else
 					list.add(ClientHelper.shiftForInfo);
@@ -52,8 +51,9 @@ public class ItemBlockWithDesc extends ItemBlock
 
 	public void getWrappedDesc(List<String> list, ItemStack stack)
 	{
-		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
-		for(String element : wrappedDesc)
+		String[] wrappedDesc = StringUtils
+				.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+		for (String element : wrappedDesc)
 			list.add(element.trim());
 	}
 }

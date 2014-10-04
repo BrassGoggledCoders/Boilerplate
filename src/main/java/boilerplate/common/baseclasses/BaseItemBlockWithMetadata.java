@@ -22,11 +22,11 @@ public class BaseItemBlockWithMetadata extends ItemBlockWithMetadata
 	{
 		super(block, block);
 	}
-	
+
 	public BaseItemBlockWithMetadata(Block block1, Block block2)
 	{
 		super(block1, block2);
-		
+
 		this.setHasSubtypes(true);
 	}
 

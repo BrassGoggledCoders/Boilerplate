@@ -19,7 +19,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 /**
  * @author Surseance
- *
+ * 
  */
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "2.0.0")
 public class Boilerplate

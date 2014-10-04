@@ -28,7 +28,7 @@ public abstract class UniversalWrench extends RootItem implements IUniversalWren
 	@Override
 	public void wrenchUsed(EntityPlayer player, int x, int y, int z)
 	{
-		
+
 	}
 
 	@Override
@@ -40,6 +40,6 @@ public abstract class UniversalWrench extends RootItem implements IUniversalWren
 	@Override
 	public void toolUsed(ItemStack item, EntityLivingBase user, int x, int y, int z)
 	{
-		
+
 	}
 }
