@@ -8,8 +8,8 @@
  */
 package boilerplate.steamapi.item;
 
-import cofh.api.item.IToolHammer;
 import buildcraft.api.tools.IToolWrench;
+import cofh.api.item.IToolHammer;
 
 /**
  * @author warlordjones
