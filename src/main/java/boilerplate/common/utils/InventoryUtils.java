@@ -168,4 +168,15 @@ public class InventoryUtils
 
 		return -1;
 	}
+	public static ItemStack getItemStackInInventory(EntityPlayer player, ItemStack stack)
+	{
+		for(int i = 0; i<player.inventory.mainInventory.length; i++)
+		{
+			if(player.inventory.mainInventory[i] == stack)
+			{
+				return player.inventory.mainInventory[i];
+			}
+		}
+		return null;
+	}
 }

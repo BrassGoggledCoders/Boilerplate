@@ -28,13 +28,13 @@ public class RootItem extends Item
 	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
+	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
 	{
-		if(!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
+		if(!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
 		{
 			if(ClientHelper.isShiftKeyDown())
 			{
-				this.getWrappedDesc(list);
+				this.getWrappedDesc(list, stack);
 			}
 			else
 				list.add(ClientHelper.shiftForInfo);
@@ -42,9 +42,9 @@ public class RootItem extends Item
 	}
 
 	@SuppressWarnings("all")
-	public void getWrappedDesc(List list)
+	public void getWrappedDesc(List list, ItemStack stack)
 	{
-		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
+		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		for(String element : wrappedDesc)
 			list.add(element.trim());
 	}

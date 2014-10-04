@@ -15,7 +15,7 @@ public abstract class BaseModule extends RootItem implements IArmorModule
 	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
+	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
 	{
 			if(ClientHelper.isShiftKeyDown())
 			{
@@ -25,7 +25,7 @@ public abstract class BaseModule extends RootItem implements IArmorModule
 				if(!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
 				{
 					list.add("Module Effect: ");
-					this.getWrappedDesc(list);
+					this.getWrappedDesc(list, stack);
 				}
 				if(this.getEnergyConsumedOnEffect() != 0)
 				list.add("Energy Usage on Effect: " + this.getEnergyConsumedOnEffect());
