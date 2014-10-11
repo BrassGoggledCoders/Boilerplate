@@ -60,6 +60,8 @@ public abstract class BaseModule extends RootItem implements IArmorModule
 			return "On Equipped Tick";
 		else if (type == EnumArmorEffectType.HUD)
 			return "HUD Element";
+		else if(type == EnumArmorEffectType.DEFENSIVE)
+			return "Defensive";
 		else
 			return "Error!";
 	}
