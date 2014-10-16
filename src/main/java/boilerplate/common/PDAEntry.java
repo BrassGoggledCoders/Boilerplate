@@ -1,6 +1,7 @@
 package boilerplate.common;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PDAEntry
 {
@@ -11,7 +12,7 @@ public class PDAEntry
 	}
 	public static class EntryRegistry
 	{
-		public static LinkedList<PDAEntry> entries = new LinkedList();
+		public static List<PDAEntry> entries = new ArrayList();
 	}
 	public enum EnumEntryType
 	{
@@ -20,5 +21,10 @@ public class PDAEntry
 	public static String getName()
 	{
 		return name;
+	}
+	public PDAEntry register()
+	{
+		EntryRegistry.entries.add(this);
+		return this;
 	}
 }
