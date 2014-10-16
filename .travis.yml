@@ -1,11 +1,10 @@
 language: java
 jdk:
-  - oraclejdk7
+- oraclejdk7
 deploy:
   provider: releases
-  api-key: "7bc479844dda613c514b792fa649c03f2828243a"
-  file: "boilerplate.jar"
-  skip_cleanup: true
+  api_key:
+    secure: B0PR5/9lqav6QdkiN6iMEvxc3rc3St6fKEnIt9imMK5ygKz7g/nSloSDn4iJYcP2aBjynHVNCILIbf+0ch8uEo/MuJEUugvaV8OPMC0tV4sjY+3vxgs+ImazKjtYvAK7rgtgyIfu8+ElBxwlO42AktVt7+QUs1rHoPin9PHNqn8=
+  file: boilerplate.jar
   on:
-    tags: true
-    all_branches: true
+    repo: BrassGoggledCoders/Boilerplate
