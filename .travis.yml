@@ -6,5 +6,6 @@ deploy:
   api_key:
     secure: B0PR5/9lqav6QdkiN6iMEvxc3rc3St6fKEnIt9imMK5ygKz7g/nSloSDn4iJYcP2aBjynHVNCILIbf+0ch8uEo/MuJEUugvaV8OPMC0tV4sjY+3vxgs+ImazKjtYvAK7rgtgyIfu8+ElBxwlO42AktVt7+QUs1rHoPin9PHNqn8=
   file: boilerplate.jar
+  tag_name: v2.0.0
   on:
     repo: BrassGoggledCoders/Boilerplate
