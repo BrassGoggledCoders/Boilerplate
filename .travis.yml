@@ -1,3 +1,11 @@
 language: java
 jdk:
   - oraclejdk7
+deploy:
+  provider: releases
+  api-key: "7bc479844dda613c514b792fa649c03f2828243a"
+  file: "boilerplate.jar"
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
