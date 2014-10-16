@@ -42,4 +42,4 @@ http://www.patreon.com/BrassGoggledCoders
 
 Interested in alpha builds?
 ==========================
-We are currently testing Travis CI.
+We are currently testing Travis CI. Seems to be working :P
