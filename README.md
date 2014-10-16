@@ -39,3 +39,7 @@ Want to support us?
 Simply using the adfly links to download the mod supports the team in creating more awesome features. Want to support more directly?
 
 http://www.patreon.com/BrassGoggledCoders
+
+Interested in alpha builds?
+==========================
+We are currently testing Travis CI.
