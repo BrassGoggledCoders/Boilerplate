@@ -21,31 +21,43 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class RootItem extends Item
 {
 	@SuppressWarnings("all")
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
+	public void addInformation(ItemStack stack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
+		if(stack.getItemDamage() > 0)
 		{
-			if (ClientHelper.isShiftKeyDown())
-			{
-				this.getWrappedDesc(list, stack);
-			}
-			else
-				list.add(ClientHelper.shiftForInfo);
+			if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
+					if (ClientHelper.isShiftKeyDown())
+						this.getWrappedDesc(list, stack);
+					else
+						list.add(ClientHelper.shiftForInfo);
+		}
+		else
+		{
+			if (!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
+				if (ClientHelper.isShiftKeyDown())
+					this.getWrappedDesc(list, stack);
+				else
+					list.add(ClientHelper.shiftForInfo);
 		}
 	}
 
-	@SuppressWarnings("all")
-	public void getWrappedDesc(List list, ItemStack stack)
+	public void getWrappedDesc(List<String> list, ItemStack stack)
 	{
-		String[] wrappedDesc = StringUtils
-				.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+		String[] wrappedDesc;
+		if(stack.getItemDamage() > 0)
+		{
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+		}
+		else
+		{
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
+		}
 		for (String element : wrappedDesc)
 			list.add(element.trim());
 	}

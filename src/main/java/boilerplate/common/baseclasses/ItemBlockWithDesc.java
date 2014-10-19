@@ -20,12 +20,11 @@ import boilerplate.common.utils.StringUtils;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class ItemBlockWithDesc extends ItemBlock
 {
 	Block block;
-	boolean descNeedsShift = true;
 
 	public ItemBlockWithDesc(Block block)
 	{
@@ -37,22 +36,35 @@ public class ItemBlockWithDesc extends ItemBlock
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
-			if (this.descNeedsShift)
-			{
+		if(stack.getItemDamage() > 0)
+		{
+			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
+					if (ClientHelper.isShiftKeyDown())
+						this.getWrappedDesc(list, stack);
+					else
+						list.add(ClientHelper.shiftForInfo);
+		}
+		else
+		{
+			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + ".desc").contains("tile."))
 				if (ClientHelper.isShiftKeyDown())
 					this.getWrappedDesc(list, stack);
 				else
 					list.add(ClientHelper.shiftForInfo);
-			}
-			else
-				this.getWrappedDesc(list, stack);
+		}
 	}
 
 	public void getWrappedDesc(List<String> list, ItemStack stack)
 	{
-		String[] wrappedDesc = StringUtils
-				.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+		String[] wrappedDesc;
+		if(stack.getItemDamage() > 0)
+		{
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+		}
+		else
+		{
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
+		}
 		for (String element : wrappedDesc)
 			list.add(element.trim());
 	}
