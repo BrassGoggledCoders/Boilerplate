@@ -16,8 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import boilerplate.client.ClientHelper;
 import boilerplate.common.utils.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author warlordjones
