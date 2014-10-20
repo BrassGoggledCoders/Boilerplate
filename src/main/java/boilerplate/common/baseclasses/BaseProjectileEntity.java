@@ -29,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon)
- * 
+ *
  */
 public abstract class BaseProjectileEntity extends Entity implements IProjectile
 {
@@ -216,12 +216,15 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		if (mop != null)
 			if (mop.entityHit != null)
 			{
-				this.onHitEntity(mop.entityHit);
-				this.motionX *= 0.10000000149011612D;
-				this.motionY *= 0.10000000149011612D;
-				this.motionZ *= 0.10000000149011612D;
-				this.flyTime = 0;
-				this.setDead();
+				if(mop.entityHit != this.shootingEntity)
+				{
+					this.onHitEntity(mop.entityHit);
+					this.motionX *= 0.10000000149011612D;
+					this.motionY *= 0.10000000149011612D;
+					this.motionZ *= 0.10000000149011612D;
+					this.flyTime = 0;
+					this.setDead();
+				}
 			}
 			else
 			{
