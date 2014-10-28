@@ -8,6 +8,23 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class IMCHelper
 {
+	public static void addNewToolMaterial(int matID, String name, int dura, int minespeed, int attack, float handlemodifier, int reinforcedLevel,
+			String matTextColor, int color)
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setInteger("Id", matID);
+		tag.setString("Name", name);
+		tag.setInteger("Durability", dura);
+		tag.setInteger("MiningSpeed", minespeed);
+		tag.setInteger("Attack", attack);
+		tag.setFloat("HandleModifier", handlemodifier);
+		tag.setInteger("Reinforced", reinforcedLevel);
+		tag.setString("Style", matTextColor);
+		tag.setInteger("Color", color);
+
+		FMLInterModComms.sendMessage("TConstruct", "addMaterial", tag);
+	}
+
 	public static void addNewSmeltable(ItemStack item, Block toRender, FluidStack toProduce, int tempRequired)
 	{
 		NBTTagCompound tag = new NBTTagCompound();
