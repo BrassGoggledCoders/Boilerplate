@@ -22,27 +22,15 @@ import boilerplate.common.utils.StringUtils;
  * @author warlordjones
  * 
  */
-public class BaseItemBlockWithMetadata extends ItemBlockWithMetadata
+public class ItemBlockWithDescAndMeta extends ItemBlockWithMetadata
 {
 	Block block;
 
-	public BaseItemBlockWithMetadata(Block block)
+	public ItemBlockWithDescAndMeta(Block block)
 	{
 		super(block, block);
 		this.block = block;
-	}
-
-	public BaseItemBlockWithMetadata(Block block1, Block block2)
-	{
-		super(block1, block2);
-
 		this.setHasSubtypes(true);
-	}
-
-	@Override
-	public int getMetadata(int metadata)
-	{
-		return metadata;
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import boilerplate.common.baseclasses.ItemBlockWithDesc;
+import boilerplate.common.baseclasses.ItemBlockWithDescAndMeta;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -30,6 +31,13 @@ public class RegistryHelper
 	public static void registerContainerBlockWithDesc(Block block, Class<? extends TileEntity> tile, String name)
 	{
 		GameRegistry.registerBlock(block, ItemBlockWithDesc.class, name);
+		String id = "TE" + name.substring(5);
+		GameRegistry.registerTileEntity(tile, id);
+	}
+
+	public static void registerContainerBlockWithDescAndMeta(Block block, Class<? extends TileEntity> tile, String name)
+	{
+		GameRegistry.registerBlock(block, ItemBlockWithDescAndMeta.class, name);
 		String id = "TE" + name.substring(5);
 		GameRegistry.registerTileEntity(tile, id);
 	}
