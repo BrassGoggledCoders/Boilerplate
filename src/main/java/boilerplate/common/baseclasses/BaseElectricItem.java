@@ -25,15 +25,15 @@ import boilerplate.steamapi.item.IEnergyItem;
 public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 {
 	protected int maxEnergy;
-	protected short maxReceive;
-	protected short maxSend;
+	protected int maxReceive;
+	protected int maxSend;
 
 	public BaseElectricItem(int maxEnergy, int maxSend, int maxReceive)
 	{
 		super();
 		this.maxEnergy = maxEnergy * 1000;
-		this.maxReceive = (short) maxReceive;
-		this.maxSend = (short) maxSend;
+		this.maxReceive = maxReceive;
+		this.maxSend = maxSend;
 		this.setMaxStackSize(1);
 		this.setMaxDamage(20);
 		this.setHasSubtypes(false);
@@ -112,24 +112,24 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	public int receiveEnergy(ItemStack itemStack, int maxReceive, boolean simulate)
 	{
 		int received = Math.min(this.maxEnergy - this.getEnergyStored(itemStack), maxReceive);
-		received = Math.min(received, this.maxReceive);
+		int received1 = Math.min(received, this.maxReceive);
 
 		if (!simulate)
-			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received);
+			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received1);
 
-		return received;
+		return received1;
 	}
 
 	@Override
 	public int extractEnergy(ItemStack itemStack, int maxExtract, boolean simulate)
 	{
 		int extracted = Math.min(this.getEnergyStored(itemStack), maxExtract);
-		extracted = Math.min(extracted, this.maxSend);
+		int extracted1 = Math.min(extracted, this.maxSend);
 
 		if (!simulate)
-			this.setEnergy(itemStack, this.getEnergyStored(itemStack) - extracted);
+			this.setEnergy(itemStack, this.getEnergyStored(itemStack) - extracted1);
 
-		return extracted;
+		return extracted1;
 	}
 
 	@Override
@@ -147,6 +147,6 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	@Override
 	public short getMaxSend()
 	{
-		return this.maxSend;
+		return (short) this.maxSend;
 	}
 }
