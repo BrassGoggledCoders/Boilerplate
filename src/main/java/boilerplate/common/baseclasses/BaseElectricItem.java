@@ -135,7 +135,11 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	@Override
 	public int getEnergyStored(ItemStack itemStack)
 	{
-		return itemStack.getTagCompound().getInteger("energy");
+		if (itemStack.hasTagCompound())
+			return itemStack.getTagCompound().getInteger("energy");
+		else
+			this.setEnergy(itemStack, 0);
+		return 0;
 	}
 
 	@Override
