@@ -115,7 +115,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		received = Math.min(received, this.maxReceive);
 
 		if (!simulate)
-			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received;
+			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received);
 
 		return received;
 	}
