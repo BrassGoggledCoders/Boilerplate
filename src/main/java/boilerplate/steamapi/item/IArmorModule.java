@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public interface IArmorModule
 {
@@ -33,10 +33,6 @@ public interface IArmorModule
 	// The Effect this module has
 	public boolean applyArmorEffect(World world, EntityPlayer player, ItemStack stack);
 
-	// Temporary Solultion for defensive modules
-	@Deprecated
-	public int getDefenseModifier();
-
 	// The type of effect (see below)
 	public EnumArmorEffectType getArmorEffectType();
 
@@ -46,9 +42,7 @@ public interface IArmorModule
 	//
 	public static enum EnumArmorEffectType
 	{
-		ONTICK,
-		DEFENSIVE,
-		HUD
+		ONTICK, DEFENSIVE, HUD
 	}
 
 	/**
