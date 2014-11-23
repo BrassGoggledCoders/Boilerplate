@@ -58,4 +58,9 @@ public interface IArmorModule
 	 * effect will not be run if the player does not have enough RF.
 	 */
 	public int getEnergyConsumedOnEffect();
+
+	/**
+	 * 40 Weight = One level of slowness applied to the player
+	 */
+	public int getModuleWeight();
 }
