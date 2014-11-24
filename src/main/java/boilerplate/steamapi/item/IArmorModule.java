@@ -42,7 +42,7 @@ public interface IArmorModule
 	//
 	public static enum EnumArmorEffectType
 	{
-		ONTICK, DEFENSIVE, HUD
+		ONTICK, DEFENSIVE, HUD, /* SC2 Use Only */SPECIAL
 	}
 
 	/**
