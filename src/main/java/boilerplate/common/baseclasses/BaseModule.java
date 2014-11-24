@@ -62,6 +62,8 @@ public abstract class BaseModule extends RootItem implements IArmorModule
 			return "HUD Element";
 		else if (type == EnumArmorEffectType.DEFENSIVE)
 			return "Defensive";
+		else if (type == EnumArmorEffectType.SPECIAL)
+			return "Unique";
 		else
 			return "Error!";
 	}
