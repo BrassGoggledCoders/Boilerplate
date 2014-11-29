@@ -22,7 +22,7 @@ group= "boilerplate" // http://maven.apache.org/guides/mini/guide-naming-convent
 archivesBaseName = "boilerplate"
 
 minecraft {
-    version = "1.7.2-10.12.2.1124"
+    version = "1.7.10-10.13.2.1240"
     assetDir = "eclipse/assets"
 }
 
