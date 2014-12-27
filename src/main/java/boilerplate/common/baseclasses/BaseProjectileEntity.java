@@ -311,6 +311,11 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		return false;
 	}
 
+	@Override
+	public void entityInit()
+	{
+	}
+
 	public abstract void onHitEntity(Entity entity);
 
 	public abstract void onHitBlock(Block block, MovingObjectPosition mop);
