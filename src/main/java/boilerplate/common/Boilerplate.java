@@ -21,7 +21,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
  * @author Surseance
  * 
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "3.0.3")
+@Mod(modid = "boilerplate", name = "Boilerplate", version = "3.0.4", dependencies = "after:BuildCraft|Core")
 public class Boilerplate
 {
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
