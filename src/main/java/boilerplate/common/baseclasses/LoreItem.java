@@ -92,21 +92,6 @@ public class LoreItem extends RootItem
 		this.pages = pages;
 	}
 
-	@Override
-	public void onCreated(ItemStack stack, World world, EntityPlayer player)
-	{
-		NBTTagCompound nbttagcompound = stack.getTagCompound();
-		NBTTagList bookPages = new NBTTagList();
-		for (int i = 0; i < pages.length; i++)
-		{
-			NBTTagString page = new NBTTagString(pages[i]);
-			bookPages.appendTag(page);
-		}
-		stack.setTagInfo("pages", bookPages);
-		stack.setTagInfo("author", new NBTTagString(author));
-		stack.setTagInfo("title", new NBTTagString(title));
-	}
-
 	public static boolean validBookTagContents(NBTTagCompound p_77828_0_)
 	{
 		if (!ItemWritableBook.func_150930_a(p_77828_0_))
@@ -147,11 +132,11 @@ public class LoreItem extends RootItem
 	 */
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_)
+	public void addInformation(ItemStack stack, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_)
 	{
-		if (p_77624_1_.hasTagCompound())
+		if (stack.hasTagCompound())
 		{
-			NBTTagCompound nbttagcompound = p_77624_1_.getTagCompound();
+			NBTTagCompound nbttagcompound = stack.getTagCompound();
 			String s = nbttagcompound.getString("author");
 
 			if (!StringUtils.isNullOrEmpty(s))
@@ -166,10 +151,26 @@ public class LoreItem extends RootItem
 	 * pressed. Args: itemStack, world, entityPlayer
 	 */
 	@Override
-	public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_)
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer p_77659_3_)
 	{
-		p_77659_3_.displayGUIBook(p_77659_1_);
-		return p_77659_1_;
+		// if (!world.isRemote)
+		// {
+		p_77659_3_.displayGUIBook(stack);
+		// }
+		if (stack.getTagCompound() == null)
+		{
+			NBTTagCompound nbttagcompound = stack.getTagCompound();
+			NBTTagList bookPages = new NBTTagList();
+			for (int i = 0; i < pages.length; i++)
+			{
+				NBTTagString page = new NBTTagString(pages[i]);
+				bookPages.appendTag(page);
+			}
+			stack.setTagInfo("pages", bookPages);
+			stack.setTagInfo("author", new NBTTagString(author));
+			stack.setTagInfo("title", new NBTTagString(title));
+		}
+		return stack;
 	}
 
 	/**
