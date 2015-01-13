@@ -7,11 +7,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import boilerplate.client.ClientHelper;
 import boilerplate.steamapi.item.IArmorModule;
+import boilerplate.steamapi.item.ModuleRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class BaseModule extends RootItem implements IArmorModule
 {
+	public BaseModule()
+	{
+		ModuleRegistry.setModuleIncompatibilities(this, new String[] {});
+	}
+
 	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)
 	@Override
