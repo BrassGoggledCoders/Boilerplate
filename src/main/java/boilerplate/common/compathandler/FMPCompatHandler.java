@@ -12,7 +12,7 @@ public class FMPCompatHandler
 {
 	public static void registerFMP(Block block)
 	{
-		registerFMP(block, 0, 15);
+		registerFMP(block, 0);
 	}
 
 	public static void registerFMP(Block block, int minMeta, int maxMeta)
