@@ -29,7 +29,9 @@ public class RenderFloatingItem extends RenderItem
 		entItem.hoverStart = 0.0F;
 		RenderItem.renderInFrame = true;
 		GL11.glTranslatef((float) dx, (float) dy, (float) dz);
-		GL11.glRotatef(10, rotX, rotY, rotZ);
+		GL11.glRotatef(rotX, 1, 0, 0);
+		GL11.glRotatef(rotY, 0, 1, 0);
+		GL11.glRotatef(rotZ, 0, 0, 1);
 		GL11.glScalef(1.3F, 1.3F, 1.3F);
 		RenderManager.instance.renderEntityWithPosYaw(entItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 		RenderItem.renderInFrame = false;
