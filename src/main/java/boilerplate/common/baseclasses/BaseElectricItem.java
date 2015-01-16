@@ -37,6 +37,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		this.setMaxStackSize(1);
 		this.setMaxDamage(20);
 		this.setHasSubtypes(false);
+		this.setNoRepair();
 	}
 
 	@SuppressWarnings("all")
