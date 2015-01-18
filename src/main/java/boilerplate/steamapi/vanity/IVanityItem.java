@@ -22,4 +22,10 @@ public interface IVanityItem
 	public ResourceLocation getVanityTextureLocation();
 
 	public EnumVanityType getVanityItemType();
+
+	public float getModelOffsetX();
+
+	public float getModelOffsetY();
+
+	public float getModelOffsetZ();
 }
