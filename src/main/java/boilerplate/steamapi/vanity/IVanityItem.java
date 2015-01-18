@@ -19,7 +19,7 @@ public interface IVanityItem
 {
 	public ModelBase getVanityItemModel();
 
-	public ResourceLocation getVanityTextureLocation();
+	public ResourceLocation getItemTextureLocation();
 
 	public EnumVanityType getVanityItemType();
 
