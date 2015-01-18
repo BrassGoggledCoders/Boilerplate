@@ -7,20 +7,20 @@ import scala.actors.threadpool.Arrays;
 
 public class ModuleRegistry
 {
-	private static HashMap<String, IArmorModule> modules = new HashMap<String, IArmorModule>();
+	private static HashMap<String, IModule> modules = new HashMap<String, IModule>();
 	private static HashMap<String, ArrayList> moduleIncompatibilities = new HashMap<String, ArrayList>();
 
-	public static void registerModule(IArmorModule module)
+	public static void registerModule(IModule module)
 	{
 		modules.put(module.getModuleId(), module);
 	}
 
-	public static IArmorModule getModule(String id)
+	public static IModule getModule(String id)
 	{
 		return modules.get(id);
 	}
 
-	public static void setModuleIncompatibilities(IArmorModule module, String[] incompatibilities)
+	public static void setModuleIncompatibilities(IModule module, String[] incompatibilities)
 	{
 		ArrayList list = new ArrayList(Arrays.asList(incompatibilities));
 		System.out.print("RegistryArray:" + list);

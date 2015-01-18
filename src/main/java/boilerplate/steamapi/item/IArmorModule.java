@@ -8,28 +8,16 @@
  */
 package boilerplate.steamapi.item;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 /**
  * @author warlordjones
  * 
  */
-public interface IArmorModule
+public interface IArmorModule extends IModule
 {
 	// 0 is helmet, 1 is plate, 2 is legs and 3 is boots. Return -1 for any
 	// piece
 	public int getApplicablePiece();
-
-	// Localized Name
-	public String getName();
-
-	// Unlocalized Name
-	public String getModuleId();
-
-	// The Effect this module has
-	public boolean applyArmorEffect(World world, EntityPlayer player, ItemStack stack);
 
 	// The type of effect (see below)
 	public EnumArmorEffectType getArmorEffectType();
@@ -41,21 +29,7 @@ public interface IArmorModule
 	}
 
 	/**
-	 * Whenever applyArmorEffect returns true, this amount of steam will be
-	 * consumed from canisters in the player's inventory. The effect will not be
-	 * run if the player does not have enough steam.
-	 */
-	public int getSteamConsumedOnEffect();
-
-	/**
-	 * Whenever applyArmorEffect returns true, this amount of RF will be
-	 * consumed from electric storage items in the player's inventory. The
-	 * effect will not be run if the player does not have enough RF.
-	 */
-	public int getEnergyConsumedOnEffect();
-
-	/**
-	 * 40 Weight = One level of slowness applied to the player
+	 * 40 Weight = One level of slowness applied to the player. Doesn't work :P
 	 */
 	public int getModuleWeight();
 }

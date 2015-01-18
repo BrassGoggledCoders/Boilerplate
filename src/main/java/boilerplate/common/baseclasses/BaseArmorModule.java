@@ -11,9 +11,9 @@ import boilerplate.steamapi.item.ModuleRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class BaseModule extends RootItem implements IArmorModule
+public abstract class BaseArmorModule extends RootItem implements IArmorModule
 {
-	public BaseModule()
+	public BaseArmorModule()
 	{
 		ModuleRegistry.setModuleIncompatibilities(this, new String[] {});
 	}
