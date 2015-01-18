@@ -22,11 +22,11 @@ import net.minecraft.world.World;
  */
 public class Utils
 {
+	public static final Random RANDOM = new Random();
+
 	public static int randInt(final int min, final int max)
 	{
-		final Random rand = new Random();
-
-		final int randomNum = rand.nextInt((max - min) + 1) + min;
+		final int randomNum = RANDOM.nextInt((max - min) + 1) + min;
 
 		return randomNum;
 	}
