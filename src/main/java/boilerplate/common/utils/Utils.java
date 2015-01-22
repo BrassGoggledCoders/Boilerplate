@@ -65,4 +65,33 @@ public class Utils
 		world.spawnEntityInWorld(entity);
 		entityliving.playLivingSound();
 	}
+
+	/**
+	 * This method merges any number of arrays of any count.
+	 * 
+	 * @param arrays
+	 * @return merged array
+	 */
+	public static <T> T[] merge(T[]... arrays)
+	{
+		// Count the number of arrays passed for merging and the total size of
+		// resulting array
+		int arrCount = 0;
+		int count = 0;
+		for (T[] array : arrays)
+		{
+			arrCount++;
+			count += array.length;
+		}
+
+		// Create new array and copy all array contents
+		T[] mergedArray = (T[]) java.lang.reflect.Array.newInstance(arrays[0][0].getClass(), count);
+		int start = 0;
+		for (T[] array : arrays)
+		{
+			System.arraycopy(array, 0, mergedArray, start, array.length);
+			start += array.length;
+		}
+		return mergedArray;
+	}
 }

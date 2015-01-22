@@ -104,26 +104,9 @@ public final class StringUtils
 	 * @param arrays
 	 * @return merged array
 	 */
+	@Deprecated
 	public static String[] merge(String[]... arrays)
 	{
-		// Count the number of arrays passed for merging and the total size of
-		// resulting array
-		int arrCount = 0;
-		int count = 0;
-		for (String[] array : arrays)
-		{
-			arrCount++;
-			count += array.length;
-		}
-
-		// Create new array and copy all array contents
-		String[] mergedArray = (String[]) java.lang.reflect.Array.newInstance(arrays[0][0].getClass(), count);
-		int start = 0;
-		for (String[] array : arrays)
-		{
-			System.arraycopy(array, 0, mergedArray, start, array.length);
-			start += array.length;
-		}
-		return mergedArray;
+		return Utils.merge(arrays);
 	}
 }
