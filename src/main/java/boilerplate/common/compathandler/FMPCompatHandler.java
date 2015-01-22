@@ -36,12 +36,13 @@ public class FMPCompatHandler
 
 	public static void doRegisterMeta()
 	{
-		Iterator i = metaBlocksToRegister.entrySet().iterator();
-		while (i.hasNext())
+		Iterator it = metaBlocksToRegister.entrySet().iterator();
+		while (it.hasNext())
 		{
-			Map.Entry pairs = (Map.Entry) i.next();
-			FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack((Block) pairs.getKey(), 1, (int) pairs.getValue()));
-			i.remove();
+			Map.Entry pairs = (Map.Entry) it.next();
+			for (int i = 0; i < (int) pairs.getValue(); i++)
+				FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack((Block) pairs.getKey(), 1, i));
+			it.remove();
 		}
 	}
 }
