@@ -23,8 +23,10 @@ public class FMPCompatHandler
 	{
 		for (int i = 0; i < blocksToRegister.size(); i++)
 		{
-			for (int i2 = 0; i < 15; i++)
+			for (int i2 = 0; i2 < 15; i2++)
+			{
 				FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(blocksToRegister.get(i), 1, i2));
+			}
 		}
 	}
 }
