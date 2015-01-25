@@ -10,6 +10,8 @@ package boilerplate.steamapi.vanity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author warlordjones
@@ -17,8 +19,10 @@ import net.minecraft.util.ResourceLocation;
  */
 public interface IVanityItem
 {
+	@SideOnly(Side.CLIENT)
 	public ModelBase getVanityItemModel();
 
+	@SideOnly(Side.CLIENT)
 	public ResourceLocation getItemTextureLocation();
 
 	public EnumVanityType getVanityItemType();
