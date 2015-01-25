@@ -35,8 +35,8 @@ public class BaseItemBlockWithMetadata extends ItemBlockWithMetadata
 	public BaseItemBlockWithMetadata(Block block1, Block block2)
 	{
 		super(block1, block2);
-
 		this.setHasSubtypes(true);
+		this.setMaxDamage(((BaseMetadataBlock) block1).icon.length);
 	}
 
 	@Override
