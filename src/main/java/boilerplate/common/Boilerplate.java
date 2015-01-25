@@ -30,10 +30,10 @@ public class Boilerplate
 	@Instance("boilerplate")
 	public static Boilerplate instance;
 
-	@Mod.EventHandler
+	@EventHandler
 	public void preInit(final FMLPreInitializationEvent event)
 	{
-
+		// MinecraftForge.EVENT_BUS.register(ForgeEventHandler.class);
 	}
 
 	@EventHandler
