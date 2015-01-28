@@ -25,7 +25,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "3.0.5c", dependencies = "after:BuildCraft|Core")
 public class Boilerplate
 {
-	public static String[] donors = { "warlordjones"/* Donate PLZ */, "MrIbby"};
+	public static String[] donors = { "warlordjones"/* Donate PLZ *//*, "MrIbby"*/};
 
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
