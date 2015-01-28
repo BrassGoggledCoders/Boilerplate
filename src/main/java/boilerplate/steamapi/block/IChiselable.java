@@ -16,7 +16,15 @@ import net.minecraft.block.Block;
  */
 public interface IChiselable
 {
+	/**
+	 * 
+	 * @return the block created from chiseling
+	 */
 	public Block getChiseledVariant();
 
+	/**
+	 * 
+	 * @return the metadata of the block created from chiseling
+	 */
 	public int getChiseledVariantMeta();
 }

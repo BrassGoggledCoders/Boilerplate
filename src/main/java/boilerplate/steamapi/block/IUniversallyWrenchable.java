@@ -11,10 +11,13 @@ package boilerplate.steamapi.block;
 import ic2.api.tile.IWrenchable;
 
 /**
+ * 
+ * Helper interface that allows implementing blocks to be wrenchable with mod
+ * wrenches. Currently only works on IC2.
+ * 
  * @author warlordjones
  * 
  */
 public interface IUniversallyWrenchable extends IWrenchable
 {
-
 }
