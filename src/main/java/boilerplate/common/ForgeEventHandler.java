@@ -22,13 +22,13 @@ public class ForgeEventHandler
 			{
 				for (int i = 0; i < 3; i++)
 					world.spawnParticle("iconcrack_" + Item.getIdFromItem(Items.gold_ingot), player.posX + world.rand.nextDouble() - 0.7D,
-							player.posY + world.rand.nextDouble() - 2D, player.posZ + world.rand.nextDouble() - 0.7D, -player.motionX,
+							player.posY + world.rand.nextDouble() - 2.2D, player.posZ + world.rand.nextDouble() - 0.7D, -player.motionX,
 							-player.motionY, -player.motionZ);
 			}
 			if (Arrays.asList(Boilerplate.devs).contains(player.getCommandSenderName()))
 			{
 				for (int i = 0; i < 3; i++)
-					world.spawnParticle("flame", player.posX + world.rand.nextDouble() - 0.7D, player.posY + world.rand.nextDouble() - 3D,
+					world.spawnParticle("flame", player.posX + world.rand.nextDouble() - 0.7D, player.posY + world.rand.nextDouble() - 3.2D,
 							player.posZ + world.rand.nextDouble() - 0.7D, -player.motionX, -player.motionY, -player.motionZ);
 			}
 		}
