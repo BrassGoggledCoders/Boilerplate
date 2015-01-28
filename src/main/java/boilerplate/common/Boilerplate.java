@@ -8,7 +8,7 @@
  */
 package boilerplate.common;
 
-import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -25,7 +25,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "3.0.5c", dependencies = "after:BuildCraft|Core")
 public class Boilerplate
 {
-	public static String[] donors = { "warlordjones"/* Donate PLZ */};
+	public static String[] donors = { "warlordjones"/* Donate PLZ */, "MrIbby"};
 
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
@@ -42,7 +42,8 @@ public class Boilerplate
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
+		// MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());//Handles Forge Events
+		FMLCommonHandler.instance().bus().register(new ForgeEventHandler());//Handles FML Events
 		proxy.registerRenderHandlers();
 	}
 

@@ -4,19 +4,18 @@ import java.util.Arrays;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class ForgeEventHandler
 {
-	// TODO There must be a more efficient way to handle this!
 	@SubscribeEvent
-	public void tickPlayer(LivingUpdateEvent event)
+	public void tickPlayer(PlayerTickEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.isRemote)
+		if (event.side.isClient())
 		{
-			World world = event.entityLiving.worldObj;
-			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			World world = event.player.worldObj;
+			EntityPlayer player = event.player;
 			if (Arrays.asList(Boilerplate.donors).contains(player.getCommandSenderName()))
 			{
 				for (int i = 0; i < 10; i++)
