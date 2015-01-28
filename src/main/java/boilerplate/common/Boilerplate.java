@@ -8,6 +8,7 @@
  */
 package boilerplate.common;
 
+import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -28,6 +29,8 @@ public class Boilerplate
 	public static String[] donors = { "warlordjones" };
 	public static String[] devs = { "warlordjones", "decebaldecebal", "Snurly" };
 
+	public int trailParticles;
+
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -37,7 +40,10 @@ public class Boilerplate
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+		trailParticles = config.get("general", "numberOfParticlesInDonorTrails (0 to disable)", 5).getInt();
+		config.save();
 	}
 
 	@EventHandler
