@@ -82,4 +82,10 @@ public abstract class UniversalWrench extends RootItem implements IUniversalWren
 		crowbar.damageItem(2, player);
 		player.swingItem();
 	}
+
+	@Override
+	public boolean isActive(ItemStack stack)
+	{
+		return true;
+	}
 }
