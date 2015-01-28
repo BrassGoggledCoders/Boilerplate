@@ -6,17 +6,15 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.steamapi.item;
+package boilerplate.steamapi.block;
 
-import mods.railcraft.api.core.items.IToolCrowbar;
-import buildcraft.api.tools.IToolWrench;
-import cofh.api.item.IToolHammer;
+import net.minecraft.item.ItemStack;
 
 /**
  * @author warlordjones
  * 
  */
-public interface IUniversalWrench extends IToolWrench, IToolHammer, IToolCrowbar
+public interface IHammerable
 {
-
+	public abstract ItemStack getOutput(int meta);
 }
