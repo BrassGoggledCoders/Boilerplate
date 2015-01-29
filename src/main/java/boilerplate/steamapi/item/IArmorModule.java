@@ -8,51 +8,43 @@
  */
 package boilerplate.steamapi.item;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IArmorModule.
- *
+ * 
  * @author warlordjones
  */
 public interface IArmorModule extends IModule
 {
-	// 0 is helmet, 1 is plate, 2 is legs and 3 is boots. Return -1 for any
-	// piece
 	/**
-	 * Gets the applicable piece.
-	 *
+	 * Gets the armor piece the module can be applied to. 0 is helmet, 1 is
+	 * plate, 2 is legs and 3 is boots. Return -1 for any piece
+	 * 
 	 * @return the applicable piece
 	 */
 	public int getApplicablePiece();
 
-	// The type of effect (see below)
 	/**
-	 * Gets the armor effect type.
-	 *
+	 * Gets the armor effect type. See @link EnumArmorEffectType
+	 * 
 	 * @return the armor effect type
 	 */
 	public EnumArmorEffectType getArmorEffectType();
 
-	//
 	/**
-	 * The Enum EnumArmorEffectType.
+	 * EnumArmorEffectType.
 	 */
 	public static enum EnumArmorEffectType
 	{
-		
-		/** The ontick. */
-		ONTICK, 
- /** The defensive. */
- DEFENSIVE, 
- /** The hud. */
- HUD, /* SC2 Use Only *//** The special. */
- SPECIAL
+		/** Called every tick while the armor is worn, server and clientside. */
+		ONTICK,
+		/** See @link IDefensiveArmorModule for more info on this */
+		DEFENSIVE,
+		/** Clientside. Allows you to display on the player's screen */
+		HUD,
+		/** SC2 Use Only! */
+		SPECIAL
 	}
 
-	/**
-	 * 40 Weight = One level of slowness applied to the player. Doesn't work :P
-	 *
-	 * @return the module weight
-	 */
+	@Deprecated
 	public int getModuleWeight();
 }

@@ -14,8 +14,10 @@ import buildcraft.api.tools.IToolWrench;
 import cofh.api.item.IToolHammer;
 
 /**
- * The Interface IUniversalWrench.
- *
+ * The Interface IUniversalWrench. Helper interface - implementing items will be
+ * compatible with Railcraft, MFR, BC and TE wrenches as well as Steamcraft's
+ * spanner
+ * 
  * @author warlordjones
  */
 public interface IUniversalWrench extends IToolWrench, IToolHammer, IToolCrowbar, IToolHammerAdvanced

@@ -1,5 +1,5 @@
 /**
- * This class was created by BrassGoggledCoders modding team. 
+ * This class was created by BrassGoggledCoders modding team.
  * This class is available as part of the Steamcraft 2 Mod for Minecraft.
  *
  * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
@@ -8,7 +8,7 @@
  * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
  * Steamcraft (c) Proloe 2011
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- * 
+ *
  */
 package boilerplate.steamapi.item;
 
@@ -22,17 +22,18 @@ import java.util.HashMap;
  */
 public class ModuleRegistry
 {
-	
+
 	/** The modules. */
 	private static HashMap<String, IModule> modules = new HashMap<String, IModule>();
-	
+
 	/** The module incompatibilities. */
 	private static HashMap<String, ArrayList> moduleIncompatibilities = new HashMap<String, ArrayList>();
 
 	/**
 	 * Register module.
-	 *
-	 * @param module the module
+	 * 
+	 * @param module
+	 *            the module
 	 */
 	public static void registerModule(IModule module)
 	{
@@ -41,8 +42,9 @@ public class ModuleRegistry
 
 	/**
 	 * Gets the module.
-	 *
-	 * @param id the id
+	 * 
+	 * @param id
+	 *            the id
 	 * @return the module
 	 */
 	public static IModule getModule(String id)
@@ -52,21 +54,23 @@ public class ModuleRegistry
 
 	/**
 	 * Sets the module incompatibilities.
-	 *
-	 * @param module the module
-	 * @param incompatibilities the incompatibilities
+	 * 
+	 * @param module
+	 *            the module
+	 * @param incompatibilities
+	 *            the incompatibilities
 	 */
 	public static void setModuleIncompatibilities(IModule module, String[] incompatibilities)
 	{
 		ArrayList list = new ArrayList(Arrays.asList(incompatibilities));
-		System.out.print("RegistryArray:" + list);
 		moduleIncompatibilities.put(module.getModuleId(), list);
 	}
 
 	/**
 	 * Gets the module incompatibilities.
-	 *
-	 * @param id the id
+	 * 
+	 * @param id
+	 *            the id
 	 * @return the module incompatibilities
 	 */
 	public static ArrayList getModuleIncompatibilities(String id)

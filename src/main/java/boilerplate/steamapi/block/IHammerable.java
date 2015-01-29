@@ -10,19 +10,21 @@ package boilerplate.steamapi.block;
 
 import net.minecraft.item.ItemStack;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IHammerable.
- *
+ * 
  * @author warlordjones
  */
+@Deprecated
 public interface IHammerable
 {
-	
+
 	/**
-	 * Gets the output.
-	 *
-	 * @param meta the meta
+	 * Gets the output when the Drop Hammer (NYI) is used on the implementing
+	 * Block
+	 * 
+	 * @param meta
+	 *            the meta
 	 * @return the output
 	 */
 	public abstract ItemStack getOutput(int meta);
