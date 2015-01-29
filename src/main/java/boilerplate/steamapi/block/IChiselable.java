@@ -10,20 +10,25 @@ package boilerplate.steamapi.block;
 
 import net.minecraft.block.Block;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Interface IChiselable.
+ *
  * @author warlordjones
- * 
  */
 public interface IChiselable
 {
+	
 	/**
-	 * 
+	 * Gets the chiseled variant.
+	 *
 	 * @return the block created from chiseling
 	 */
 	public Block getChiseledVariant();
 
 	/**
-	 * 
+	 * Gets the chiseled variant meta.
+	 *
 	 * @return the metadata of the block created from chiseling
 	 */
 	public int getChiseledVariantMeta();

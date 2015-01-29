@@ -8,18 +8,35 @@
  */
 package boilerplate.steamapi.item;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Interface IDefensiveArmorModule.
+ *
  * @author warlordjones
- * 
  */
 public interface IDefensiveArmorModule extends IArmorModule
 {
 	// ALWAYS return DEFENSIVE as the module type when using this interface!!
 
+	/**
+	 * Gets the max damage absorb.
+	 *
+	 * @return the max damage absorb
+	 */
 	public int getMaxDamageAbsorb();
 
+	/**
+	 * Gets the damage absorb ratio.
+	 *
+	 * @return the damage absorb ratio
+	 */
 	public int getDamageAbsorbRatio();
 
+	/**
+	 * Gets the armor to display.
+	 *
+	 * @return the armor to display
+	 */
 	public int getArmorToDisplay();
 
 }

@@ -10,11 +10,19 @@ package boilerplate.steamapi.item;
 
 import cofh.api.energy.IEnergyContainerItem;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Interface IEnergyItem.
+ *
  * @author warlordjones
- * 
  */
 public interface IEnergyItem extends IEnergyContainerItem
 {
+	
+	/**
+	 * Gets the max send.
+	 *
+	 * @return the max send
+	 */
 	public short getMaxSend();
 }

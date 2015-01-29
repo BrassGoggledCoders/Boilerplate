@@ -8,11 +8,29 @@
  */
 package boilerplate.steamapi.vanity;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Enum EnumVanityType.
+ *
  * @author warlordjones
- * 
  */
 public enum EnumVanityType
 {
-	HAT, TUNIC, LEGGINGS, BOOTS, HAT1, TUNIC1, LEGGINGS1, BOOTS1
+	
+	/** The hat. */
+	HAT, 
+ /** The tunic. */
+ TUNIC, 
+ /** The leggings. */
+ LEGGINGS, 
+ /** The boots. */
+ BOOTS, 
+ /** The HA t1. */
+ HAT1, 
+ /** The TUNI c1. */
+ TUNIC1, 
+ /** The LEGGING s1. */
+ LEGGINGS1, 
+ /** The BOOT s1. */
+ BOOTS1
 }

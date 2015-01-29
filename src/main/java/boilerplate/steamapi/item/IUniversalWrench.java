@@ -14,8 +14,9 @@ import buildcraft.api.tools.IToolWrench;
 import cofh.api.item.IToolHammer;
 
 /**
+ * The Interface IUniversalWrench.
+ *
  * @author warlordjones
- * 
  */
 public interface IUniversalWrench extends IToolWrench, IToolHammer, IToolCrowbar, IToolHammerAdvanced
 {
