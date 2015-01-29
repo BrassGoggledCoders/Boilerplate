@@ -20,7 +20,7 @@ import boilerplate.common.utils.StringUtils;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public class ItemBlockWithDesc extends ItemBlock
 {
@@ -36,13 +36,13 @@ public class ItemBlockWithDesc extends ItemBlock
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		if(stack.getItemDamage() > 0)
+		if (stack.getItemDamage() > 0)
 		{
 			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
-					if (ClientHelper.isShiftKeyDown())
-						this.getWrappedDesc(list, stack);
-					else
-						list.add(ClientHelper.shiftForInfo);
+				if (ClientHelper.isShiftKeyDown())
+					this.getWrappedDesc(list, stack);
+				else
+					list.add(ClientHelper.shiftForInfo);
 		}
 		else
 		{
@@ -57,7 +57,7 @@ public class ItemBlockWithDesc extends ItemBlock
 	public void getWrappedDesc(List<String> list, ItemStack stack)
 	{
 		String[] wrappedDesc;
-		if(stack.getItemDamage() > 0)
+		if (stack.getItemDamage() > 0)
 		{
 			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}

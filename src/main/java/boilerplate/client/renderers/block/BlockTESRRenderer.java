@@ -42,7 +42,7 @@ public class BlockTESRRenderer implements ISimpleBlockRenderingHandler
 	{
 		GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-		TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, 0.0D, 0.0D, 0.0D, 0.0F);
+		TileEntityRendererDispatcher.instance.renderTileEntityAt(this.tile, 0.0D, 0.0D, 0.0D, 0.0F);
 		GL11.glEnable(32826);
 	}
 
@@ -61,6 +61,6 @@ public class BlockTESRRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId()
 	{
-		return renderID;
+		return this.renderID;
 	}
 }

@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author Surseance
- *
+ * 
  */
 public class InventoryUtils
 {

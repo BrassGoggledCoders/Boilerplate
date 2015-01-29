@@ -19,7 +19,7 @@ import boilerplate.common.utils.StringUtils;
 
 /**
  * @author warlordjones
- *
+ * 
  */
 public class RootItem extends Item
 {
@@ -27,13 +27,13 @@ public class RootItem extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		if(stack.getItemDamage() > 0)
+		if (stack.getItemDamage() > 0)
 		{
 			if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
-					if (ClientHelper.isShiftKeyDown())
-						this.getWrappedDesc(list, stack);
-					else
-						list.add(ClientHelper.shiftForInfo);
+				if (ClientHelper.isShiftKeyDown())
+					this.getWrappedDesc(list, stack);
+				else
+					list.add(ClientHelper.shiftForInfo);
 		}
 		else
 		{
@@ -48,7 +48,7 @@ public class RootItem extends Item
 	public void getWrappedDesc(List<String> list, ItemStack stack)
 	{
 		String[] wrappedDesc;
-		if(stack.getItemDamage() > 0)
+		if (stack.getItemDamage() > 0)
 		{
 			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
