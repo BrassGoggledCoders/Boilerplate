@@ -8,7 +8,6 @@
  */
 package boilerplate.common;
 
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -19,6 +18,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
+import net.minecraftforge.common.config.Configuration;
+
 /**
  * @author Surseance
  * 
@@ -26,7 +27,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "3.0.5c", dependencies = "after:BuildCraft|Core")
 public class Boilerplate
 {
-	public static String[] donors = { "warlordjones" };
+	public static String[] donors = { "ClockwerkKaiser" };
 	public static String[] devs = { "warlordjones", "decebaldecebal", "Snurly" };
 
 	public int trailParticles;
