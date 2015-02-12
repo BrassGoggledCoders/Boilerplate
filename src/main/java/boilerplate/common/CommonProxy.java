@@ -14,7 +14,6 @@ package boilerplate.common;
  */
 public class CommonProxy
 {
-
 	public void registerRenderHandlers()
 	{
 	}

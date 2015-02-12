@@ -58,12 +58,10 @@ public class Boilerplate
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-
 	}
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
-
 	}
 }
