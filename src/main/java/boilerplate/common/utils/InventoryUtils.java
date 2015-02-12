@@ -140,10 +140,7 @@ public class InventoryUtils
 
 	public static boolean isInvEmpty(IInventory inv, ItemStack is)
 	{
-		if (!addItemStackToInventory(inv, is))
-			return false;
-
-		return true;
+		return addItemStackToInventory(inv, is);
 	}
 
 	public static int isInInventory(InventoryBasic inventory, ItemStack stack)

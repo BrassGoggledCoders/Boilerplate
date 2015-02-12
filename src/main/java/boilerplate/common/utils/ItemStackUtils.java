@@ -59,7 +59,7 @@ public class ItemStackUtils
 
 	public static boolean isSmeltable(ItemStack is)
 	{
-		return (is == null) || (FurnaceRecipes.smelting().getSmeltingResult(is) == null) ? false : true;
+		return (is != null) && (FurnaceRecipes.smelting().getSmeltingResult(is) != null);
 	}
 
 	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)

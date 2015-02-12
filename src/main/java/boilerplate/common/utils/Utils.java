@@ -26,9 +26,7 @@ public class Utils
 
 	public static int randInt(final int min, final int max)
 	{
-		final int randomNum = RANDOM.nextInt((max - min) + 1) + min;
-
-		return randomNum;
+		return RANDOM.nextInt((max - min) + 1) + min;
 	}
 
 	public static void playSFX(World world, int x, int y, int z, String sound)
@@ -38,22 +36,12 @@ public class Utils
 
 	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, int x, int y, int z)
 	{
-		if (getBlockUnbreakable(world, x, y, z) && !player.capabilities.allowEdit)
-		{
-			return false;
-		}
-		else
-			return true;
+		return !getBlockUnbreakable(world, x, y, z) && player.capabilities.allowEdit;
 	}
 
 	public static boolean getBlockUnbreakable(World world, int x, int y, int z)
 	{
-		if (world.getBlock(x, y, z).getBlockHardness(world, x, y, z) == -1)
-		{
-			return true;
-		}
-		else
-			return false;
+		return world.getBlock(x, y, z).getBlockHardness(world, x, y, z) == -1;
 	}
 
 	public static void spawnEntityAtCoords(World world, Entity entity, int x, int y, int z)
