@@ -1,5 +1,5 @@
 /**
- * This class was created by BrassGoggledCoders modding team. 
+ * This class was created by BrassGoggledCoders modding team.
  * This class is available as part of the Steamcraft 2 Mod for Minecraft.
  *
  * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
@@ -8,7 +8,7 @@
  * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
  * Steamcraft (c) Proloe 2011
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- * 
+ *
  */
 package boilerplate.common.compathandler;
 
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
@@ -25,15 +26,25 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class FMPCompatHandler
 {
 	static ArrayList<Block> blocksToRegister = new ArrayList();
+	static ArrayList<Block> metaBlocksToRegister = new ArrayList();
 
 	public static void registerFMP(Block block)
 	{
 		blocksToRegister.add(block);
 	}
 
+	public static void registerMetaFMP(Block block)
+	{
+		metaBlocksToRegister.add(block);
+	}
+
 	public static void doRegister()
 	{
 		for (Block block : blocksToRegister)
+		{
+			FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(block));
+		}
+		for (Block block : metaBlocksToRegister)
 		{
 			for (int meta = 0; meta < 15; meta++)
 			{
