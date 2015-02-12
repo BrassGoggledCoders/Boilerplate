@@ -13,8 +13,9 @@
 package boilerplate.steamapi.item;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+
+import com.google.common.collect.Lists;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -60,9 +61,9 @@ public class ModuleRegistry
 	 * @param incompatibilities
 	 *            the incompatibilities
 	 */
-	public static void setModuleIncompatibilities(IModule module, String[] incompatibilities)
+	public static void setModuleIncompatibilities(IModule module, String... incompatibilities)
 	{
-		ArrayList list = new ArrayList(Arrays.asList(incompatibilities));
+		ArrayList list = Lists.newArrayList(incompatibilities);
 		moduleIncompatibilities.put(module.getModuleId(), list);
 	}
 

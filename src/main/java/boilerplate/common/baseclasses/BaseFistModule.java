@@ -27,7 +27,7 @@ public abstract class BaseFistModule extends RootItem implements IFistModule
 {
 	public BaseFistModule()
 	{
-		ModuleRegistry.setModuleIncompatibilities(this, new String[] {});
+		ModuleRegistry.setModuleIncompatibilities(this);
 	}
 
 	@SuppressWarnings("all")

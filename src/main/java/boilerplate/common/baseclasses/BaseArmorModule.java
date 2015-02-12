@@ -27,7 +27,7 @@ public abstract class BaseArmorModule extends RootItem implements IArmorModule
 {
 	public BaseArmorModule()
 	{
-		ModuleRegistry.setModuleIncompatibilities(this, new String[] {});
+		ModuleRegistry.setModuleIncompatibilities(this);
 	}
 
 	@SuppressWarnings("all")
