@@ -32,10 +32,10 @@ public class CustomToolRecipes
 
 	public void addRecipes(final CraftingManager manager)
 	{
-		manager.addRecipe(this.outputs[0], new Object[] { recipePatterns[0], '#', Items.stick, 'X', this.input });
-		manager.addRecipe(this.outputs[1], new Object[] { recipePatterns[1], '#', Items.stick, 'X', this.input });
-		manager.addRecipe(this.outputs[2], new Object[] { recipePatterns[2], '#', Items.stick, 'X', this.input });
-		manager.addRecipe(this.outputs[3], new Object[] { recipePatterns[3], '#', Items.stick, 'X', this.input });
-		manager.addRecipe(this.outputs[4], new Object[] { recipePatterns[4], '#', Items.stick, 'X', this.input });
+		manager.addRecipe(this.outputs[0], recipePatterns[0], '#', Items.stick, 'X', this.input);
+		manager.addRecipe(this.outputs[1], recipePatterns[1], '#', Items.stick, 'X', this.input);
+		manager.addRecipe(this.outputs[2], recipePatterns[2], '#', Items.stick, 'X', this.input);
+		manager.addRecipe(this.outputs[3], recipePatterns[3], '#', Items.stick, 'X', this.input);
+		manager.addRecipe(this.outputs[4], recipePatterns[4], '#', Items.stick, 'X', this.input);
 	}
 }

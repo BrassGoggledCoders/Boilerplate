@@ -37,10 +37,9 @@ public class CustomMetalRecipes
 
 	public void addRecipes(final CraftingManager manager)
 	{
-		manager.addRecipe(new ItemStack(this.block, 1, this.meta), new Object[] { "###", "###", "###", '#', new ItemStack(this.ingot, 9, this.meta) });
-		manager.addRecipe(new ItemStack(this.ingot, 9, this.meta), new Object[] { "#", '#', new ItemStack(this.block, 1, this.meta) });
-		manager.addRecipe(new ItemStack(this.nugget, 9, this.meta), new Object[] { "#", '#', new ItemStack(this.ingot, 1, this.meta) });
-		manager.addRecipe(new ItemStack(this.ingot, 1, this.meta),
-				new Object[] { "###", "###", "###", '#', new ItemStack(this.nugget, 9, this.meta) });
+		manager.addRecipe(new ItemStack(this.block, 1, this.meta), "###", "###", "###", '#', new ItemStack(this.ingot, 9, this.meta));
+		manager.addRecipe(new ItemStack(this.ingot, 9, this.meta), "#", '#', new ItemStack(this.block, 1, this.meta));
+		manager.addRecipe(new ItemStack(this.nugget, 9, this.meta), "#", '#', new ItemStack(this.ingot, 1, this.meta));
+		manager.addRecipe(new ItemStack(this.ingot, 1, this.meta), "###", "###", "###", '#', new ItemStack(this.nugget, 9, this.meta));
 	}
 }

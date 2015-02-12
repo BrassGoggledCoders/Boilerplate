@@ -33,11 +33,11 @@ public class FMPCompatHandler
 
 	public static void doRegister()
 	{
-		for (int i = 0; i < blocksToRegister.size(); i++)
+		for (Block block : blocksToRegister)
 		{
-			for (int i2 = 0; i2 < 15; i2++)
+			for (int meta = 0; meta < 15; meta++)
 			{
-				FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(blocksToRegister.get(i), 1, i2));
+				FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(block, 1, meta));
 			}
 		}
 	}

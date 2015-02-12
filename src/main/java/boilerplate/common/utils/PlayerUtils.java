@@ -65,7 +65,7 @@ public class PlayerUtils
 	{
 		if (maxDistance == null)
 		{
-			maxDistance = Integer.valueOf(128);
+			maxDistance = 128;
 		}
 
 		Iterator<?> iterator;
@@ -77,8 +77,8 @@ public class PlayerUtils
 				Object player = iterator.next();
 				EntityPlayerMP playerMP = (EntityPlayerMP) player;
 
-				if ((Math.abs(playerMP.posX - x) <= maxDistance.intValue()) && (Math.abs(playerMP.posY - y) <= maxDistance.intValue())
-						&& (Math.abs(playerMP.posZ - z) <= maxDistance.intValue()))
+				if ((Math.abs(playerMP.posX - x) <= maxDistance) && (Math.abs(playerMP.posY - y) <= maxDistance)
+						&& (Math.abs(playerMP.posZ - z) <= maxDistance))
 				{
 					playerMP.playerNetServerHandler.sendPacket(packet);
 				}

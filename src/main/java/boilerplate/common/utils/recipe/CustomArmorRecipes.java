@@ -30,9 +30,9 @@ public class CustomArmorRecipes
 
 	public void addRecipes(CraftingManager manager)
 	{
-		manager.addRecipe(this.outputs[0], new Object[] { recipePatterns[0], 'X', this.input });
-		manager.addRecipe(this.outputs[1], new Object[] { recipePatterns[1], 'X', this.input });
-		manager.addRecipe(this.outputs[2], new Object[] { recipePatterns[2], 'X', this.input });
-		manager.addRecipe(this.outputs[3], new Object[] { recipePatterns[3], 'X', this.input });
+		manager.addRecipe(this.outputs[0], recipePatterns[0], 'X', this.input);
+		manager.addRecipe(this.outputs[1], recipePatterns[1], 'X', this.input);
+		manager.addRecipe(this.outputs[2], recipePatterns[2], 'X', this.input);
+		manager.addRecipe(this.outputs[3], recipePatterns[3], 'X', this.input);
 	}
 }
