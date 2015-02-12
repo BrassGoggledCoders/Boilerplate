@@ -10,5 +10,5 @@ deploy:
   file: boilerplate.jar
   on:
     repo: BrassGoggledCoders/Boilerplate
-install: ./gradlew setupCIWorkspace
-script: ./gradlew build
+install: gradle setupCIWorkspace
+script: gradle build
