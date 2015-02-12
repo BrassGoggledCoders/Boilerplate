@@ -8,7 +8,6 @@
  */
 package boilerplate.client.fx;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,7 +19,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import boilerplate.client.ClientHelper;
 
 /**
  * Created by Surseance
@@ -62,7 +61,7 @@ public class FXRaygun extends EntityFX
 	{
 		super(world, player.posX, player.posY, player.posZ, 0.0D, 0.0D, 0.0D);
 
-		if (player.getEntityData() != Minecraft.getMinecraft().renderViewEntity.getEntityData())
+		if (player.getEntityData() != ClientHelper.viewEntity().getEntityData())
 		{
 			this.offset = ((player.height / 2.0F) + 0.25D);
 		}
@@ -89,10 +88,10 @@ public class FXRaygun extends EntityFX
 		this.prevYaw = this.rotYaw;
 		this.prevPitch = this.rotPitch;
 		this.particleMaxAge = age;
-		final EntityLivingBase renderentity = FMLClientHandler.instance().getClient().renderViewEntity;
+		final EntityLivingBase renderentity = ClientHelper.viewEntity();
 		int visibleDistance = 50;
 
-		if (!FMLClientHandler.instance().getClient().gameSettings.fancyGraphics)
+		if (!ClientHelper.settings().fancyGraphics)
 		{
 			visibleDistance = 25;
 		}
@@ -224,7 +223,7 @@ public class FXRaygun extends EntityFX
 			// and here...
 			break;
 		case 2:
-			Minecraft.getMinecraft().renderEngine.bindTexture(rayTex);
+			ClientHelper.textureManager().bindTexture(rayTex);
 		}
 
 		GL11.glTexParameterf(3553, 10242, 10497.0F);

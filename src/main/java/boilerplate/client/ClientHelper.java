@@ -11,9 +11,19 @@ package boilerplate.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.particle.EffectRenderer;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumChatFormatting;
 
 import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 /**
  * @author Surseance
@@ -29,10 +39,9 @@ public class ClientHelper
 		return (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) || (Keyboard.isKeyDown(Keyboard.KEY_RSHIFT));
 	}
 
-	// Not used anywhere
 	public static Minecraft mc()
 	{
-		return Minecraft.getMinecraft();
+		return FMLClientHandler.instance().getClient();
 	}
 
 	public static FontRenderer fontRenderer()
@@ -40,8 +49,48 @@ public class ClientHelper
 		return mc().fontRenderer;
 	}
 
-	public static EntityClientPlayerMP clientPlayer()
+	public static EntityClientPlayerMP player()
 	{
 		return mc().thePlayer;
+	}
+
+	public static WorldClient world()
+	{
+		return mc().theWorld;
+	}
+	
+	public static EntityLivingBase viewEntity()
+	{
+		return mc().renderViewEntity;
+	}
+	
+	public static EffectRenderer effectRenderer()
+	{
+		return mc().effectRenderer;
+	}
+	
+	public static TextureManager textureManager()
+	{
+		return mc().getTextureManager();
+	}
+	
+	public static GuiScreen screen()
+	{
+		return mc().currentScreen;
+	}
+	
+	public static GameSettings settings()
+	{
+		return mc().gameSettings;
+	}
+	
+	public static EntityRenderer entityRenderer()
+	{
+		return mc().entityRenderer;
+	}
+	
+	public static ScaledResolution resolution()
+	{
+		return new ScaledResolution(mc(), mc().displayWidth, mc().displayHeight);
 	}
 }

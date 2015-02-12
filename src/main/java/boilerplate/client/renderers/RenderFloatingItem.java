@@ -8,13 +8,14 @@
  */
 package boilerplate.client.renderers;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
+
+import boilerplate.client.ClientHelper;
 
 /**
  * @author warlordjones
@@ -24,7 +25,7 @@ public class RenderFloatingItem extends RenderItem
 {
 	public static void render(double dx, double dy, double dz, float rotX, float rotY, float rotZ, ItemStack stack)
 	{
-		EntityItem entItem = new EntityItem(Minecraft.getMinecraft().thePlayer.getEntityWorld(), 0D, 0D, 0D, stack);
+		EntityItem entItem = new EntityItem(ClientHelper.world(), 0D, 0D, 0D, stack);
 		// Without the below line, the item will spazz out
 		entItem.hoverStart = 0.0F;
 		RenderItem.renderInFrame = true;
@@ -40,7 +41,7 @@ public class RenderFloatingItem extends RenderItem
 	public static void render(double dx, double dy, double dz, float rotX, float rotY, float rotZ, float scaleX, float scaleY, float scaleZ,
 			ItemStack stack)
 	{
-		EntityItem entItem = new EntityItem(Minecraft.getMinecraft().thePlayer.getEntityWorld(), 0D, 0D, 0D, stack);
+		EntityItem entItem = new EntityItem(ClientHelper.world(), 0D, 0D, 0D, stack);
 		// Without the below line, the item will spazz out
 		entItem.hoverStart = 0.0F;
 		RenderItem.renderInFrame = true;

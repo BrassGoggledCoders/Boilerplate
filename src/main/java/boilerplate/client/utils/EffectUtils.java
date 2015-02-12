@@ -10,7 +10,6 @@ package boilerplate.client.utils;
 
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.client.particle.EntitySmokeFX;
@@ -18,7 +17,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import boilerplate.client.ClientHelper;
 
 /**
  * @author Surseance
@@ -93,7 +92,7 @@ public class EffectUtils
 			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
 			ef.setRBGColorF(0.45F, 0.0F, 0.35F);
 			ef.setParticleTextureIndex(82);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
+			ClientHelper.effectRenderer().addEffect(ef);
 		}
 	}
 
@@ -110,7 +109,7 @@ public class EffectUtils
 			double endZ = world.rand.nextGaussian() * 0.02D;
 
 			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
+			ClientHelper.effectRenderer().addEffect(ef);
 		}
 	}
 
@@ -127,11 +126,10 @@ public class EffectUtils
 			particle = new EntitySmokeFX(world, dx, dy, dz, velX, velY, velZ, scale);
 		}
 
-		final Minecraft mc = Minecraft.getMinecraft();
-		final double distX = mc.renderViewEntity.posX - particle.posX;
-		final double distY = mc.renderViewEntity.posY - particle.posY;
-		final double distZ = mc.renderViewEntity.posZ - particle.posZ;
-		int display = mc.gameSettings.particleSetting;
+		final double distX = ClientHelper.viewEntity().posX - particle.posX;
+		final double distY = ClientHelper.viewEntity().posY - particle.posY;
+		final double distZ = ClientHelper.viewEntity().posZ - particle.posZ;
+		int display = ClientHelper.settings().particleSetting;
 
 		if ((display == 1) && (particle.worldObj.rand.nextInt(3) == 0))
 		{
@@ -139,7 +137,7 @@ public class EffectUtils
 		}
 		if ((display <= 1) && (((distX * distX) + (distY * distY) + (distZ * distZ)) <= 4096.0D))
 		{
-			mc.effectRenderer.addEffect(particle);
+			ClientHelper.effectRenderer().addEffect(particle);
 		}
 	}
 
