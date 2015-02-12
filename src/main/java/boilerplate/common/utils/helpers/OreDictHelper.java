@@ -34,20 +34,20 @@ public class OreDictHelper
 		registerOreWithAlts(ore, 0, names);
 	}
 
-    public static void registerOreWithAlts(Block ore, int meta, String... names)
-    {
-        registerOreWithAlts(new ItemStack(ore, 1, meta), names);
-    }
+	public static void registerOreWithAlts(Block ore, int meta, String... names)
+	{
+		registerOreWithAlts(new ItemStack(ore, 1, meta), names);
+	}
 
 	public static void registerOreWithAlts(Item ore, String... names)
 	{
 		registerOreWithAlts(ore, 0, names);
 	}
 
-    public static void registerOreWithAlts(Item ore, int meta, String... names)
-    {
-        registerOreWithAlts(new ItemStack(ore, 1, meta), names);
-    }
+	public static void registerOreWithAlts(Item ore, int meta, String... names)
+	{
+		registerOreWithAlts(new ItemStack(ore, 1, meta), names);
+	}
 
 	public static void registerOreWithAlts(ItemStack ore, String... names)
 	{
