@@ -31,20 +31,21 @@ public class ForgeEventHandler
 		{
 			World world = event.player.worldObj;
 			EntityPlayer player = event.player;
-			if (Arrays.asList(Boilerplate.donors).contains(player.getCommandSenderName()))
+			if(player.isAirBorne)
 			{
-				for (int i = 0; i < Boilerplate.instance.trailParticles; i++)
-					if (player.isAirBorne)
+				if (Arrays.asList(Boilerplate.donors).contains(player.getCommandSenderName()))
+				{
+					for (int i = 0; i < Boilerplate.instance.trailParticles; i++)
 						world.spawnParticle("iconcrack_" + Item.getIdFromItem(Items.gold_ingot), (player.posX + world.rand.nextDouble()) - 0.7D,
 								(player.posY + world.rand.nextDouble()) - 2.2D, (player.posZ + world.rand.nextDouble()) - 0.7D, -player.motionX,
 								-player.motionY, -player.motionZ);
-			}
-			/* else */if (Arrays.asList(Boilerplate.devs).contains(player.getCommandSenderName()))
-			{
-				for (int i = 0; i < Boilerplate.instance.trailParticles; i++)
-					if (player.isAirBorne)
+				}
+				/* else */if (Arrays.asList(Boilerplate.devs).contains(player.getCommandSenderName()))
+				{
+					for (int i = 0; i < Boilerplate.instance.trailParticles; i++)
 						world.spawnParticle("flame", (player.posX + world.rand.nextDouble()) - 0.7D, (player.posY + world.rand.nextDouble()) - 3.2D,
 								(player.posZ + world.rand.nextDouble()) - 0.7D, -player.motionX, -player.motionY, -player.motionZ);
+				}
 			}
 		}
 	}
