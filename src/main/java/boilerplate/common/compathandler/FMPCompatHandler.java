@@ -47,7 +47,7 @@ public class FMPCompatHandler
 		}
 		for (Block block : metaBlocksToRegister.keySet())
 		{
-			for (int meta = 0; meta < metaBlocksToRegister.get(block); meta++)
+			for (int meta = 0; meta < metaBlocksToRegister.get(block).intValue(); meta++)
 			{
 				FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(block, 1, meta));
 			}
