@@ -13,6 +13,7 @@
 package boilerplate.common.compathandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -26,16 +27,16 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class FMPCompatHandler
 {
 	static ArrayList<Block> blocksToRegister = new ArrayList();
-	static ArrayList<Block> metaBlocksToRegister = new ArrayList();
+	static HashMap<Block, Integer> metaBlocksToRegister = new HashMap();
 
 	public static void registerFMP(Block block)
 	{
 		blocksToRegister.add(block);
 	}
 
-	public static void registerMetaFMP(Block block)
+	public static void registerMetaFMP(Block block, int size)
 	{
-		metaBlocksToRegister.add(block);
+		metaBlocksToRegister.put(block, size);
 	}
 
 	public static void doRegister()
@@ -44,9 +45,9 @@ public class FMPCompatHandler
 		{
 			FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(block));
 		}
-		for (Block block : metaBlocksToRegister)
+		for (Block block : metaBlocksToRegister.keySet())
 		{
-			for (int meta = 0; meta < 15; meta++)
+			for (int meta = 0; meta < metaBlocksToRegister.get(block); meta++)
 			{
 				FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(block, 1, meta));
 			}
