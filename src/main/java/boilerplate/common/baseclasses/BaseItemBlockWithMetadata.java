@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
 import boilerplate.client.ClientHelper;
 import boilerplate.common.utils.StringUtils;
 
@@ -30,6 +31,8 @@ public class BaseItemBlockWithMetadata extends ItemBlockWithMetadata
 	{
 		super(block, block);
 		this.block = block;
+		this.setHasSubtypes(true);
+		this.setMaxDamage(((BaseMetadataBlock) block).icon.length);
 	}
 
 	public BaseItemBlockWithMetadata(Block block1, Block block2)
