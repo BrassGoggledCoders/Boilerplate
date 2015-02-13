@@ -30,7 +30,7 @@ public class Boilerplate
 	public static String[] donors = { "ClockwerkKaiser" };
 	public static String[] devs = { "warlordjones", "decebaldecebal", "Snurly" };
 
-	public int trailParticles;
+	public static int trailParticles;
 
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
@@ -44,7 +44,7 @@ public class Boilerplate
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		// TODO: particles config option on client only
-		this.trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 3, "0 to disable").getInt();
+		trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 3, "0 to disable").getInt();
 		config.save();
 	}
 
