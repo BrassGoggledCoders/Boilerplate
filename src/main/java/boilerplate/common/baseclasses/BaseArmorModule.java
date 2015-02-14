@@ -1,5 +1,5 @@
 /**
- * This class was created by BrassGoggledCoders modding team. 
+ * This class was created by BrassGoggledCoders modding team.
  * This class is available as part of the Steamcraft 2 Mod for Minecraft.
  *
  * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
@@ -8,7 +8,7 @@
  * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
  * Steamcraft (c) Proloe 2011
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- * 
+ *
  */
 package boilerplate.common.baseclasses;
 
@@ -17,11 +17,14 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import boilerplate.client.ClientHelper;
-import boilerplate.steamapi.item.IArmorModule;
-import boilerplate.steamapi.item.ModuleRegistry;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import boilerplate.client.ClientHelper;
+import boilerplate.steamapi.item.IArmorModule;
+import boilerplate.steamapi.item.IPoweredModuleHelper;
+import boilerplate.steamapi.item.ModuleRegistry;
 
 public abstract class BaseArmorModule extends RootItem implements IArmorModule
 {
@@ -45,10 +48,12 @@ public abstract class BaseArmorModule extends RootItem implements IArmorModule
 				list.add("Module Effect: ");
 				this.getWrappedDesc(list, stack);
 			}
-			if (this.getEnergyConsumedOnEffect() != 0)
-				list.add("Energy Usage on Effect: " + this.getEnergyConsumedOnEffect());
-			if (this.getSteamConsumedOnEffect() != 0)
-				list.add("Steam Usage on Effect: " + this.getSteamConsumedOnEffect());
+			if (this instanceof IPoweredModuleHelper)
+			{
+				IPoweredModuleHelper module = (IPoweredModuleHelper) this;
+				list.add("Energy Consumption: " + module.rfToConsume);
+				list.add("Steam Consumption: " + module.steamToConsume);
+			}
 		}
 		else
 			list.add(ClientHelper.shiftForInfo);

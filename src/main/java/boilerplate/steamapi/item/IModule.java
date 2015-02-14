@@ -38,7 +38,6 @@ public interface IModule
 	 */
 	public String getModuleId();
 
-	// The Effect this module has
 	/**
 	 * Apply module effect.
 	 * 
@@ -48,25 +47,6 @@ public interface IModule
 	 *            the player
 	 * @param stack
 	 *            the stack
-	 * @return true, if successful
 	 */
-	public boolean applyModuleEffect(World world, EntityPlayer player, ItemStack stack);
-
-	/**
-	 * Whenever applyModuleEffect returns true, this amount of steam will be
-	 * consumed from canisters in the player's inventory. The effect will not be
-	 * run if the player does not have enough steam.
-	 * 
-	 * @return the steam consumed on effect
-	 */
-	public int getSteamConsumedOnEffect();
-
-	/**
-	 * Whenever applyModuleEffect returns true, this amount of RF will be
-	 * consumed from electric storage items in the player's inventory. The
-	 * effect will not be run if the player does not have enough RF.
-	 * 
-	 * @return the energy consumed on effect
-	 */
-	public int getEnergyConsumedOnEffect();
+	public void applyModuleEffect(World world, EntityPlayer player, ItemStack stack);
 }
