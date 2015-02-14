@@ -23,7 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.client.ClientHelper;
 import boilerplate.steamapi.item.IArmorModule;
-import boilerplate.steamapi.item.IPoweredModuleHelper;
 import boilerplate.steamapi.item.ModuleRegistry;
 
 public abstract class BaseArmorModule extends RootItem implements IArmorModule
@@ -47,12 +46,6 @@ public abstract class BaseArmorModule extends RootItem implements IArmorModule
 			{
 				list.add("Module Effect: ");
 				this.getWrappedDesc(list, stack);
-			}
-			if (this instanceof IPoweredModuleHelper)
-			{
-				IPoweredModuleHelper module = (IPoweredModuleHelper) this;
-				list.add("Energy Consumption: " + module.rfToConsume);
-				list.add("Steam Consumption: " + module.steamToConsume);
 			}
 		}
 		else
