@@ -44,7 +44,7 @@ public class Boilerplate
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		// TODO: particles config option on client only
-		trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 3, "0 to disable").getInt();
+		trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 0, "0 to disable").getInt();
 		config.save();
 	}
 
