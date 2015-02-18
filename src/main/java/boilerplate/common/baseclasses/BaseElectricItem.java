@@ -37,7 +37,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		this.maxSend = (short) maxSend;
 		this.setMaxStackSize(1);
 		this.setMaxDamage(20);
-		this.setHasSubtypes(false);
+		this.setHasSubtypes(true);
 		this.setNoRepair();
 	}
 
@@ -64,7 +64,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 
 	public ItemStack getChargedItem(Item item)
 	{
-		ItemStack charged = new ItemStack(item, 1, 1);
+		ItemStack charged = new ItemStack(item, 1, 0);
 
 		if (!charged.hasTagCompound())
 		{
@@ -103,7 +103,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		if (energy > this.maxEnergy)
 			energy = this.maxEnergy;
 
-		stack.setItemDamage(21 - ((energy * 20) / this.maxEnergy));
+		stack.setItemDamage(20 - ((energy * 20) / this.maxEnergy));
 
 		tag.setInteger("energy", energy);
 
