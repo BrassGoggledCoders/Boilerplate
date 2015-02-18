@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
 import boilerplate.steamapi.item.IEnergyItem;
 
 /**
@@ -102,7 +103,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		if (energy > this.maxEnergy)
 			energy = this.maxEnergy;
 
-		stack.setItemDamage(20 - ((energy * 20) / this.maxEnergy));
+		stack.setItemDamage(21 - ((energy * 20) / this.maxEnergy));
 
 		tag.setInteger("energy", energy);
 
