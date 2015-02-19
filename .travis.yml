@@ -15,6 +15,3 @@ deploy:
     all_branches: true
 install: gradle setupCIWorkspace
 script: gradle build
-notifications:
-  email:
-    - warlordjones@gmail.com
