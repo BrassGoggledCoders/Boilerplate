@@ -24,6 +24,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -49,13 +50,14 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 	public BaseProjectileEntity(World world)
 	{
 		super(world);
+		this.setSize(1F, 1F);
 		this.renderDistanceWeight = 10.0D;
-		this.setSize(0.5F, 0.5F);
 	}
 
 	public BaseProjectileEntity(World world, double dx, double dy, double dz)
 	{
 		super(world);
+		this.setSize(1F, 1F);
 		this.renderDistanceWeight = 10.0D;
 		this.setSize(0.5F, 0.5F);
 		this.setPosition(dx, dy, dz);
