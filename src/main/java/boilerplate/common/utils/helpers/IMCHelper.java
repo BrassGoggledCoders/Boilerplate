@@ -1,5 +1,5 @@
 /**
- * This class was created by BrassGoggledCoders modding team. 
+ * This class was created by BrassGoggledCoders modding team.
  * This class is available as part of the Steamcraft 2 Mod for Minecraft.
  *
  * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
@@ -8,15 +8,18 @@
  * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
  * Steamcraft (c) Proloe 2011
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- * 
+ *
  */
 package boilerplate.common.utils.helpers;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
+
 import cpw.mods.fml.common.event.FMLInterModComms;
+
+import net.minecraftforge.fluids.FluidStack;
 
 public class IMCHelper
 {
@@ -65,5 +68,20 @@ public class IMCHelper
 
 		tag.setInteger("Value", value);
 		FMLInterModComms.sendMessage("TConstruct", "addPartBuilderMaterial", tag);
+	}
+
+	public static void addNewCastable(String fluidName, int materialID)
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		// liquid to use
+		tag.setString("FluidName", fluidName);
+		tag.setInteger("MaterialId", materialID);
+		FMLInterModComms.sendMessage("TConstruct", "addPartCastingMaterial", tag);
+	}
+
+	public static void addNewFluxBattery(Item fluxBattery)
+	{
+		ItemStack battery = new ItemStack(fluxBattery);
+		FMLInterModComms.sendMessage("TConstruct", "addFluxBattery", battery);
 	}
 }
