@@ -9,9 +9,13 @@
 package boilerplate.steamapi.item;
 
 import mods.railcraft.api.core.items.IToolCrowbar;
-import powercrystals.minefactoryreloaded.api.IToolHammerAdvanced;
-import buildcraft.api.tools.IToolWrench;
 import cofh.api.item.IToolHammer;
+
+import cpw.mods.fml.common.Optional;
+
+import powercrystals.minefactoryreloaded.api.IToolHammerAdvanced;
+
+import buildcraft.api.tools.IToolWrench;
 
 /**
  * The Interface IUniversalWrench. Helper interface - implementing items will be
@@ -20,7 +24,10 @@ import cofh.api.item.IToolHammer;
  * 
  * @author warlordjones
  */
-public interface IUniversalWrench extends IToolWrench, IToolHammer, IToolCrowbar, IToolHammerAdvanced
+@Optional.InterfaceList({ @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "Buildcraft"),
+		@Optional.Interface(iface = "mods.railcraft.api.core.items.IToolCrowbar", modid = "Railcraft"),
+		@Optional.Interface(iface = "powercrystals.minefactoryreloaded.api.IToolHammerAdvanced", modid = "MineFactoryReloaded") })
+public interface IUniversalWrench extends IToolHammer, IToolWrench, IToolCrowbar, IToolHammerAdvanced
 {
 
 }
