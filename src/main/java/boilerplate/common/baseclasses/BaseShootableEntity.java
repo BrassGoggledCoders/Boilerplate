@@ -32,7 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Surseance (Johnny Eatmon)
  * 
  */
-public abstract class BaseProjectileEntity extends Entity implements IProjectile
+public abstract class BaseShootableEntity extends Entity implements IProjectile
 {
 	protected int xTile = -1;
 	protected int yTile = -1;
@@ -47,14 +47,14 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 
 	protected int accuracy;
 
-	public BaseProjectileEntity(World world)
+	public BaseShootableEntity(World world)
 	{
 		super(world);
 		this.setSize(1F, 1F);
 		this.renderDistanceWeight = 10.0D;
 	}
 
-	public BaseProjectileEntity(World world, double dx, double dy, double dz)
+	public BaseShootableEntity(World world, double dx, double dy, double dz)
 	{
 		super(world);
 		this.setSize(1F, 1F);
@@ -64,7 +64,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		this.yOffset = 0.0F;
 	}
 
-	public BaseProjectileEntity(World world, EntityLivingBase shooter, EntityLivingBase target, float frotY, float frotP)
+	public BaseShootableEntity(World world, EntityLivingBase shooter, EntityLivingBase target, float frotY, float frotP)
 	{
 		super(world);
 		this.renderDistanceWeight = 10.0D;
@@ -89,7 +89,7 @@ public abstract class BaseProjectileEntity extends Entity implements IProjectile
 		}
 	}
 
-	public BaseProjectileEntity(World world, EntityLivingBase shooter, int damage, int accuracy)
+	public BaseShootableEntity(World world, EntityLivingBase shooter, int damage, int accuracy)
 	{
 		super(world);
 		this.renderDistanceWeight = 10.0D;
