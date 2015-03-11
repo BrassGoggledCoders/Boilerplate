@@ -36,10 +36,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public abstract class BaseThrowableEntity extends EntityThrowable
 {
-	private int field_145788_c = -1;
-	private int field_145786_d = -1;
-	private int field_145787_e = -1;
-	private Block field_145785_f;
+	private int xTile = -1;
+	private int yTile = -1;
+	private int zTile = -1;
+	private Block inTile;
 	protected boolean inGround;
 	public int throwableShake;
 	/** The entity that threw this throwable item. */
@@ -68,13 +68,12 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		return p_70112_1_ < (d1 * d1);
 	}
 
-	public BaseThrowableEntity(World p_i1777_1_, EntityLivingBase p_i1777_2_)
+	public BaseThrowableEntity(World world, EntityLivingBase entity)
 	{
-		super(p_i1777_1_);
-		this.thrower = p_i1777_2_;
+		super(world);
+		this.thrower = entity;
 		this.setSize(0.25F, 0.25F);
-		this.setLocationAndAngles(p_i1777_2_.posX, p_i1777_2_.posY + p_i1777_2_.getEyeHeight(), p_i1777_2_.posZ, p_i1777_2_.rotationYaw,
-				p_i1777_2_.rotationPitch);
+		this.setLocationAndAngles(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ, entity.rotationYaw, entity.rotationPitch);
 		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
 		this.posY -= 0.10000000149011612D;
 		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
@@ -194,7 +193,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 		if (this.inGround)
 		{
-			if (this.worldObj.getBlock(this.field_145788_c, this.field_145786_d, this.field_145787_e) == this.field_145785_f)
+			if (this.worldObj.getBlock(this.xTile, this.yTile, this.zTile) == this.inTile)
 			{
 				++this.ticksInGround;
 
@@ -336,10 +335,10 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 	@Override
 	public void writeEntityToNBT(NBTTagCompound p_70014_1_)
 	{
-		p_70014_1_.setShort("xTile", (short) this.field_145788_c);
-		p_70014_1_.setShort("yTile", (short) this.field_145786_d);
-		p_70014_1_.setShort("zTile", (short) this.field_145787_e);
-		p_70014_1_.setByte("inTile", (byte) Block.getIdFromBlock(this.field_145785_f));
+		p_70014_1_.setShort("xTile", (short) this.xTile);
+		p_70014_1_.setShort("yTile", (short) this.yTile);
+		p_70014_1_.setShort("zTile", (short) this.zTile);
+		p_70014_1_.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
 		p_70014_1_.setByte("shake", (byte) this.throwableShake);
 		p_70014_1_.setByte("inGround", (byte) (this.inGround ? 1 : 0));
 
@@ -357,10 +356,10 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 	@Override
 	public void readEntityFromNBT(NBTTagCompound p_70037_1_)
 	{
-		this.field_145788_c = p_70037_1_.getShort("xTile");
-		this.field_145786_d = p_70037_1_.getShort("yTile");
-		this.field_145787_e = p_70037_1_.getShort("zTile");
-		this.field_145785_f = Block.getBlockById(p_70037_1_.getByte("inTile") & 255);
+		this.xTile = p_70037_1_.getShort("xTile");
+		this.yTile = p_70037_1_.getShort("yTile");
+		this.zTile = p_70037_1_.getShort("zTile");
+		this.inTile = Block.getBlockById(p_70037_1_.getByte("inTile") & 255);
 		this.throwableShake = p_70037_1_.getByte("shake") & 255;
 		this.inGround = p_70037_1_.getByte("inGround") == 1;
 		this.throwerName = p_70037_1_.getString("ownerName");

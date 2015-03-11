@@ -54,6 +54,20 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		this.renderDistanceWeight = 10.0D;
 	}
 
+	/**
+	 * Checks if the entity is in range to render by using the past in distance
+	 * and comparing it to its average edge length * 64 * renderDistanceWeight
+	 * Args: distance
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean isInRangeToRenderDist(double distance)
+	{
+		double d1 = this.boundingBox.getAverageEdgeLength() * 4.0D;
+		d1 *= 64.0D;
+		return distance < (d1 * d1);
+	}
+
 	public BaseShootableEntity(World world, double dx, double dy, double dz)
 	{
 		super(world);
