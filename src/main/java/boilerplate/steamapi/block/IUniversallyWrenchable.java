@@ -10,6 +10,8 @@ package boilerplate.steamapi.block;
 
 import ic2.api.tile.IWrenchable;
 
+import cpw.mods.fml.common.Optional;
+
 /**
  * 
  * Helper interface that allows implementing blocks to be wrenchable with mod
@@ -18,6 +20,7 @@ import ic2.api.tile.IWrenchable;
  * @author warlordjones
  * 
  */
+@Optional.Interface(iface = "ic2.api.tile.IWrenchable", modid = "IC2")
 public interface IUniversallyWrenchable extends IWrenchable
 {
 }
