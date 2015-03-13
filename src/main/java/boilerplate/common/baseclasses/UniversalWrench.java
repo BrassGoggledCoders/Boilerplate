@@ -24,14 +24,14 @@ import boilerplate.steamapi.item.IUniversalWrench;
 public abstract class UniversalWrench extends RootItem implements IUniversalWrench
 {
 	@Override
-	@Optional.Method(modid = "Buildcraft")
+	@Optional.Method(modid = "BuildCraft|Core")
 	public boolean canWrench(EntityPlayer player, int x, int y, int z)
 	{
 		return true;
 	}
 
 	@Override
-	@Optional.Method(modid = "Buildcraft")
+	@Optional.Method(modid = "BuildCraft|Core")
 	public void wrenchUsed(EntityPlayer player, int x, int y, int z)
 	{
 

@@ -24,7 +24,7 @@ import buildcraft.api.tools.IToolWrench;
  * 
  * @author warlordjones
  */
-@Optional.InterfaceList({ @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "Buildcraft"),
+@Optional.InterfaceList({ @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core"),
 		@Optional.Interface(iface = "mods.railcraft.api.core.items.IToolCrowbar", modid = "Railcraft"),
 		@Optional.Interface(iface = "powercrystals.minefactoryreloaded.api.IToolHammerAdvanced", modid = "MineFactoryReloaded") })
 public interface IUniversalWrench extends IToolHammer, IToolWrench, IToolCrowbar, IToolHammerAdvanced
