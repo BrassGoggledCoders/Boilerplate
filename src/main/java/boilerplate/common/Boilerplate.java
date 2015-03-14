@@ -9,6 +9,7 @@
 package boilerplate.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -58,6 +59,7 @@ public class Boilerplate
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		FMLLog.getLogger().info("GNU Terry Prachett");
 	}
 
 	@EventHandler
