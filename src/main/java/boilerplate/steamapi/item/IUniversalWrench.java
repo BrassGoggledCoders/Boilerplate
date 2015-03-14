@@ -13,7 +13,7 @@ import cofh.api.item.IToolHammer;
 
 import cpw.mods.fml.common.Optional;
 
-import powercrystals.minefactoryreloaded.api.IToolHammerAdvanced;
+import powercrystals.minefactoryreloaded.api.IMFRHammer;
 
 import buildcraft.api.tools.IToolWrench;
 
@@ -26,8 +26,8 @@ import buildcraft.api.tools.IToolWrench;
  */
 @Optional.InterfaceList({ @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core"),
 		@Optional.Interface(iface = "mods.railcraft.api.core.items.IToolCrowbar", modid = "Railcraft"),
-		@Optional.Interface(iface = "powercrystals.minefactoryreloaded.api.IToolHammerAdvanced", modid = "MineFactoryReloaded") })
-public interface IUniversalWrench extends IToolHammer, IToolWrench, IToolCrowbar, IToolHammerAdvanced
+		@Optional.Interface(iface = "powercrystals.minefactoryreloaded.api.IMFRHammer", modid = "MineFactoryReloaded") })
+public interface IUniversalWrench extends IToolHammer, IToolWrench, IToolCrowbar, IMFRHammer
 {
 
 }

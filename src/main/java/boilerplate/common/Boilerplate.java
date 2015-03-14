@@ -24,7 +24,7 @@ import net.minecraftforge.common.config.Configuration;
  * @author Surseance
  * 
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "4.1.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart")
+@Mod(modid = "boilerplate", name = "Boilerplate", version = "4.1.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
 public class Boilerplate
 {
 	public static String[] donors = { "ClockwerkKaiser" };

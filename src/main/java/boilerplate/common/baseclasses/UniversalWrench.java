@@ -93,11 +93,4 @@ public abstract class UniversalWrench extends RootItem implements IUniversalWren
 		crowbar.damageItem(2, player);
 		player.swingItem();
 	}
-
-	@Override
-	@Optional.Method(modid = "MineFactoryReloaded")
-	public boolean isActive(ItemStack stack)
-	{
-		return true;
-	}
 }
