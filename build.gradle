@@ -17,7 +17,17 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = ""
+// Define properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // Load config. It shall from now be referenced as simply config or project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = "${config.minecraft_version}-${config.mod_version}"
 group= "boilerplate" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "boilerplate"
 
@@ -49,3 +59,88 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+task apiJar(type: Jar) {
+    baseName = 'boilerplateAPI'
+    
+    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
+        include 'boilerplate/steamapi/**'
+    }
+}
+
+task apiZip(type: Zip) {
+    baseName = 'boilerplateZIPAPI'
+
+    from sourceSets.main.java.srcDirs 
+    include 'boilerplate/steamapi/**'
+}
+
+task deobfJar(type: Jar) {
+    baseName = 'deobf_boilerplate'
+    from(sourceSets.main.output)
+}
+
+task devLibsDir() << {
+    def subdir = new File(project.buildDir, "build/libs/devBuilds")
+    println("subdir: "+subdir)
+
+    if(!subdir.exists()) {
+        println("creating subdir")
+
+        if(subdir.mkdirs()) {
+            if(!subdir.exists()) {
+                println("devBuilds directory failed to be created.")
+            }
+        } else {
+            println("devBuilds directory failed to be created.")
+        }
+    }
+}
+
+task devDistDir() << {
+    def subdir = new File(project.buildDir, "build/distributions/devBuilds")
+    println("subdir: "+subdir)
+
+    if(!subdir.exists()) {
+        println("creating subdir")
+
+        if(subdir.mkdirs()) {
+            if(!subdir.exists()) {
+                println("devBuilds directory failed to be created.")
+            }
+        } else {
+            println("devBuilds directory failed to be created.")
+        }
+    }
+}
+
+task devLibBuilds(type: Copy) {
+    from apiJar
+    from deobfJar
+
+    ext.env = System.getenv()
+    ext.buildNumber = env.BUILD_NUMBER?.toInteger()
+
+    rename '-(.*)jar', "${config.minecraft_version}-${config.mod_version}.${buildNumber}.jar"
+    into './build/libs/devBuilds/'
+}
+
+task devDistBuilds(type: Copy) {
+    from apiZip
+
+    ext.env = System.getenv()
+    ext.buildNumber = env.BUILD_NUMBER?.toInteger()
+
+    rename '-(.*)zip', "${config.minecraft_version}-${config.mod_version}.${buildNumber}.jar"
+    into './build/distributions/devBuilds/'
+}
+
+task devBuilds() << {
+}
+
+apiJar.dependsOn('build')
+deobfJar.dependsOn('build')
+devLibBuilds.dependsOn('devLibsDir')
+devDistBuilds.dependsOn('devDistDir')
+devBuilds.dependsOn('devLibBuilds')
+devBuilds.dependsOn('devDistBuilds')
