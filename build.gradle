@@ -131,7 +131,7 @@ task devDistBuilds(type: Copy) {
     ext.env = System.getenv()
     ext.buildNumber = env.BUILD_NUMBER?.toInteger()
 
-    rename '-(.*)zip', "${config.minecraft_version}-${config.mod_version}.${buildNumber}.jar"
+    rename '-(.*)zip', "${config.minecraft_version}-${config.mod_version}.${buildNumber}.zip"
     into './build/distributions/devBuilds/'
 }
 
