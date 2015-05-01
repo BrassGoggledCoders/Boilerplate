@@ -17,11 +17,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-import org.lwjgl.opengl.GL11;
-
-import boilerplate.common.entity.EntityMinedBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
+import boilerplate.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance
