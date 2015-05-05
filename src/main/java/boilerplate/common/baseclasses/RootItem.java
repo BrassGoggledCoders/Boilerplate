@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
 import boilerplate.client.ClientHelper;
 import boilerplate.common.utils.StringUtils;
 

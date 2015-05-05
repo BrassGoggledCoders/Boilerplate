@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.steamapi.block;
+package boilerplate.api;
 
 import ic2.api.tile.IWrenchable;
 

@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.steamapi.item;
+package boilerplate.api;
 
 import mods.railcraft.api.core.items.IToolCrowbar;
 import cofh.api.item.IToolHammer;

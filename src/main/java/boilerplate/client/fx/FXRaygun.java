@@ -18,7 +18,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
-
 import boilerplate.client.ClientHelper;
 
 /**

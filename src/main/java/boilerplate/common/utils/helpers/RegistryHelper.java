@@ -11,9 +11,11 @@ package boilerplate.common.utils.helpers;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+
 import boilerplate.common.baseclasses.ItemBlockWithDesc;
 import boilerplate.common.baseclasses.ItemBlockWithDescAndMeta;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author warlordjones

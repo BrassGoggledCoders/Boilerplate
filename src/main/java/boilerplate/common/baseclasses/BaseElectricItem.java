@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import boilerplate.steamapi.item.IEnergyItem;
+import boilerplate.api.IEnergyItem;
 
 /**
  * @author decebaldecebal

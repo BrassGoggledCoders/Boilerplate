@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Optional;
 
-import boilerplate.steamapi.item.IUniversalWrench;
+import boilerplate.api.IUniversalWrench;
 
 /**
  * @author decebaldecebal
