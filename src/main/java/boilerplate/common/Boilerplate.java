@@ -9,7 +9,6 @@
 package boilerplate.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -59,7 +58,18 @@ public class Boilerplate
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		FMLLog.getLogger().info("GNU Terry Prachett");
+		/*
+		 * FMLLog.getLogger().info("GNU Terry Prachett"); NBTTagCompound tag =
+		 * new NBTTagCompound(); NBTTagCompound item1 = new NBTTagCompound();
+		 * new ItemStack(Items.cake).writeToNBT(item1); item1.setTag("input1",
+		 * tag); NBTTagCompound item2 = new NBTTagCompound(); new
+		 * ItemStack(Items.apple).writeToNBT(item2); item2.setTag("input2",
+		 * tag); NBTTagCompound item3 = new NBTTagCompound(); new
+		 * ItemStack(Items.baked_potato).writeToNBT(item3);
+		 * item3.setTag("result", tag);
+		 * FMLInterModComms.sendMessage("steamcraft2", "addBloomeryRecipe",
+		 * tag);
+		 */
 	}
 
 	@EventHandler
