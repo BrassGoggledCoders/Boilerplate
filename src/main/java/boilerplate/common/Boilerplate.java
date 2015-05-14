@@ -9,6 +9,7 @@
 package boilerplate.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,8 +28,15 @@ import net.minecraftforge.common.config.Configuration;
 @Mod(modid = "boilerplate", name = "Boilerplate", version = "5.0.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
 public class Boilerplate
 {
-	public static String[] donors = { "ClockwerkKaiser" };
-	public static String[] devs = { "warlordjones", "decebaldecebal", "Snurly" };
+	/**
+	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
+	 *
+	 * decebaldecebal - 5eed1615-0ec9-4f4b-a4c9-58454ad5b04f
+	 *
+	 * Snurly - ???
+	 */
+	public static String[] donors = {};
+	public static String[] devs = { "c2e83bd4-e8df-40d6-a639-58ba8b05401e", "5eed1615-0ec9-4f4b-a4c9-58454ad5b04f" };
 
 	public static int trailParticles;
 
@@ -58,13 +66,14 @@ public class Boilerplate
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		FMLLog.getLogger().info("GNU Terry Prachett");
 		/*
-		 * FMLLog.getLogger().info("GNU Terry Prachett"); NBTTagCompound tag =
-		 * new NBTTagCompound(); NBTTagCompound item1 = new NBTTagCompound();
-		 * new ItemStack(Items.cake).writeToNBT(item1); item1.setTag("input1",
-		 * tag); NBTTagCompound item2 = new NBTTagCompound(); new
-		 * ItemStack(Items.apple).writeToNBT(item2); item2.setTag("input2",
-		 * tag); NBTTagCompound item3 = new NBTTagCompound(); new
+		 * NBTTagCompound tag = new NBTTagCompound(); NBTTagCompound item1 = new
+		 * NBTTagCompound(); new ItemStack(Items.cake).writeToNBT(item1);
+		 * item1.setTag("input1", tag); NBTTagCompound item2 = new
+		 * NBTTagCompound(); new ItemStack(Items.apple).writeToNBT(item2);
+		 * item2.setTag("input2", tag); NBTTagCompound item3 = new
+		 * NBTTagCompound(); new
 		 * ItemStack(Items.baked_potato).writeToNBT(item3);
 		 * item3.setTag("result", tag);
 		 * FMLInterModComms.sendMessage("steamcraft2", "addBloomeryRecipe",

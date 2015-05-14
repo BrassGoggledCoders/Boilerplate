@@ -31,16 +31,16 @@ public class ForgeEventHandler
 		{
 			World world = event.player.worldObj;
 			EntityPlayer player = event.player;
-			if(player.isAirBorne)
+			if (player.isAirBorne)
 			{
-				if (Arrays.asList(Boilerplate.donors).contains(player.getCommandSenderName()))
+				if (Arrays.asList(Boilerplate.donors).contains(player.getUniqueID().toString()))
 				{
 					for (int i = 0; i < Boilerplate.trailParticles; i++)
 						world.spawnParticle("iconcrack_" + Item.getIdFromItem(Items.gold_ingot), (player.posX + world.rand.nextDouble()) - 0.7D,
 								(player.posY + world.rand.nextDouble()) - 2.2D, (player.posZ + world.rand.nextDouble()) - 0.7D, -player.motionX,
 								-player.motionY, -player.motionZ);
 				}
-				/* else */if (Arrays.asList(Boilerplate.devs).contains(player.getCommandSenderName()))
+				/* else */if (Arrays.asList(Boilerplate.devs).contains(player.getUniqueID().toString()))
 				{
 					for (int i = 0; i < Boilerplate.trailParticles; i++)
 						world.spawnParticle("flame", (player.posX + world.rand.nextDouble()) - 0.7D, (player.posY + world.rand.nextDouble()) - 3.2D,
