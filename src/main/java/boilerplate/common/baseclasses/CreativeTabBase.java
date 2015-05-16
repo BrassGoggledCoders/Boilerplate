@@ -30,10 +30,4 @@ public class CreativeTabBase extends CreativeTabs
 	{
 		return null;
 	}
-
-	/*
-	 * @Override Dosn't seem to work for me
-	 *
-	 * @SideOnly(Side.CLIENT) public Item getTabIconItem() { return this.icon; }
-	 */
 }
