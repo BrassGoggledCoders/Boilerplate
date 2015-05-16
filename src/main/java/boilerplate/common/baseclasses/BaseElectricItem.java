@@ -21,7 +21,7 @@ import boilerplate.api.IEnergyItem;
 
 /**
  * @author decebaldecebal
- * 
+ *
  */
 public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 {
@@ -98,10 +98,14 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		NBTTagCompound tag = stack.getTagCompound();
 
 		if (energy < 0)
+		{
 			energy = 0;
+		}
 
 		if (energy > this.maxEnergy)
+		{
 			energy = this.maxEnergy;
+		}
 
 		stack.setItemDamage(20 - ((energy * 20) / this.maxEnergy));
 
@@ -117,7 +121,9 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		received = Math.min(received, this.maxReceive);
 
 		if (!simulate)
+		{
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received);
+		}
 
 		return received;
 	}
@@ -129,7 +135,9 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		extracted = Math.min(extracted, this.maxSend);
 
 		if (!simulate)
+		{
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) - extracted);
+		}
 
 		return extracted;
 	}
@@ -138,9 +146,13 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	public int getEnergyStored(ItemStack itemStack)
 	{
 		if (itemStack.hasTagCompound())
+		{
 			return itemStack.getTagCompound().getInteger("energy");
+		}
 		else
+		{
 			this.setEnergy(itemStack, 0);
+		}
 		return 0;
 	}
 

@@ -24,7 +24,7 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class BlockTESRRenderer implements ISimpleBlockRenderingHandler
 {

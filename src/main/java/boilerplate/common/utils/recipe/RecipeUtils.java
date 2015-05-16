@@ -15,7 +15,7 @@ import net.minecraft.item.crafting.CraftingManager;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class RecipeUtils
 {

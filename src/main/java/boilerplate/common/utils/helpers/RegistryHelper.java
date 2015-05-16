@@ -19,7 +19,7 @@ import boilerplate.common.baseclasses.ItemBlockWithDescAndMeta;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class RegistryHelper
 {

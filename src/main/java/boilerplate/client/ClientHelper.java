@@ -27,7 +27,7 @@ import org.lwjgl.input.Keyboard;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class ClientHelper
 {
@@ -58,37 +58,37 @@ public class ClientHelper
 	{
 		return mc().theWorld;
 	}
-	
+
 	public static EntityLivingBase viewEntity()
 	{
 		return mc().renderViewEntity;
 	}
-	
+
 	public static EffectRenderer effectRenderer()
 	{
 		return mc().effectRenderer;
 	}
-	
+
 	public static TextureManager textureManager()
 	{
 		return mc().getTextureManager();
 	}
-	
+
 	public static GuiScreen screen()
 	{
 		return mc().currentScreen;
 	}
-	
+
 	public static GameSettings settings()
 	{
 		return mc().gameSettings;
 	}
-	
+
 	public static EntityRenderer entityRenderer()
 	{
 		return mc().entityRenderer;
 	}
-	
+
 	public static ScaledResolution resolution()
 	{
 		return new ScaledResolution(mc(), mc().displayWidth, mc().displayHeight);

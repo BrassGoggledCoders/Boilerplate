@@ -16,7 +16,7 @@ import boilerplate.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class ClientProxy extends CommonProxy
 {

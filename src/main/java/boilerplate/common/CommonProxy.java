@@ -10,7 +10,7 @@ package boilerplate.common;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class CommonProxy
 {

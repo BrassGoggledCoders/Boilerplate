@@ -15,7 +15,7 @@ import net.minecraft.util.StatCollector;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public final class StringUtils
 {
@@ -39,15 +39,21 @@ public final class StringUtils
 	{
 		// return empty array for null text
 		if (input == null)
+		{
 			return new String[] {};
+		}
 
 		// return text if len is zero or less
 		if (len <= 0)
+		{
 			return new String[] { input };
+		}
 
 		// return text if less than length
 		if (input.length() <= len)
+		{
 			return new String[] { input };
+		}
 
 		char[] chars = input.toCharArray();
 		Vector lines = new Vector();
@@ -100,7 +106,7 @@ public final class StringUtils
 
 	/**
 	 * This method merges any number of arrays of any count.
-	 * 
+	 *
 	 * @param arrays
 	 * @return merged array
 	 */

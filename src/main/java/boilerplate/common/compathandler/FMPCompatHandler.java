@@ -22,7 +22,7 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * @author tterrag1098
- * 
+ *
  */
 public class FMPCompatHandler
 {

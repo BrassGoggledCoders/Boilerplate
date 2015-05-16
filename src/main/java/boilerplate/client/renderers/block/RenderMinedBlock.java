@@ -25,7 +25,7 @@ import boilerplate.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance
- * 
+ *
  */
 @SideOnly(Side.CLIENT)
 public class RenderMinedBlock extends Render
@@ -58,7 +58,9 @@ public class RenderMinedBlock extends Render
 		GL11.glScalef(scale, scale, scale);
 
 		if (entBlock.doesRotate)
+		{
 			GL11.glRotatef(rot, 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat());
+		}
 
 		this.blockRenderer.blockAccess = entBlock.worldObj;
 		this.blockRenderer.useInventoryTint = true;

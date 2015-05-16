@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EntityMinedBlock extends Entity
 {
@@ -81,10 +81,14 @@ public class EntityMinedBlock extends Entity
 		if (this.getBlock() != null)
 		{
 			if ((this.worldObj.getWorldTime() % 1) == 0)
+			{
 				this.scale -= 0.0625F;
+			}
 
 			if (this.scale <= 0.0F)
+			{
 				this.setDead();
+			}
 		}
 	}
 
@@ -108,9 +112,13 @@ public class EntityMinedBlock extends Entity
 	protected void readEntityFromNBT(NBTTagCompound tagCompound)
 	{
 		if (tagCompound.hasKey("TileID", 99))
+		{
 			this.block = Block.getBlockById(tagCompound.getInteger("TileID"));
+		}
 		else
+		{
 			this.block = Block.getBlockById(tagCompound.getByte("Tile") & 255);
+		}
 
 		this.metadata = tagCompound.getByte("Data") & 255;
 		this.scale = tagCompound.getFloat("Scale");

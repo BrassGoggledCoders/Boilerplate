@@ -13,7 +13,7 @@ import net.minecraft.item.Item;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class CreativeTabBase extends CreativeTabs
 {
@@ -33,7 +33,7 @@ public class CreativeTabBase extends CreativeTabs
 
 	/*
 	 * @Override Dosn't seem to work for me
-	 * 
+	 *
 	 * @SideOnly(Side.CLIENT) public Item getTabIconItem() { return this.icon; }
 	 */
 }

@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class Utils
 {
@@ -56,7 +56,7 @@ public class Utils
 
 	/**
 	 * This method merges any number of arrays of any count.
-	 * 
+	 *
 	 * @param arrays
 	 * @return merged array
 	 */

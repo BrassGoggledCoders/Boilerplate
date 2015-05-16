@@ -12,7 +12,7 @@ public interface IToolHammer
 
 	/**
 	 * Called to ensure that the wrench can be used.
-	 * 
+	 *
 	 * @param item
 	 *            The itemstack for the tool. Not required to match equipped
 	 *            item (e.g., multi-tools that contain other tools)
@@ -30,7 +30,7 @@ public interface IToolHammer
 
 	/**
 	 * Callback for when the tool has been used reactively.
-	 * 
+	 *
 	 * @param item
 	 *            The ItemStack for the tool. Not required to match equipped
 	 *            item (e.g., multi-tools that contain other tools)

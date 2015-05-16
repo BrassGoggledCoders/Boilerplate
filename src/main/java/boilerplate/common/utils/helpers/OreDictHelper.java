@@ -16,7 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class OreDictHelper
 {
@@ -53,6 +53,8 @@ public class OreDictHelper
 	public static void registerOreWithAlts(ItemStack ore, String... names)
 	{
 		for (String name : names)
+		{
 			OreDictionary.registerOre(name, ore);
+		}
 	}
 }

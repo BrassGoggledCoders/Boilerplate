@@ -21,7 +21,7 @@ import boilerplate.common.utils.StringUtils;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class ItemBlockWithDescAndMeta extends ItemBlockWithMetadata
 {
@@ -47,18 +47,30 @@ public class ItemBlockWithDescAndMeta extends ItemBlockWithMetadata
 		if (stack.getItemDamage() > 0)
 		{
 			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
+			{
 				if (ClientHelper.isShiftKeyDown())
+				{
 					this.getWrappedDesc(list, stack);
+				}
 				else
+				{
 					list.add(ClientHelper.shiftForInfo);
+				}
+			}
 		}
 		else
 		{
 			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + ".desc").contains("tile."))
+			{
 				if (ClientHelper.isShiftKeyDown())
+				{
 					this.getWrappedDesc(list, stack);
+				}
 				else
+				{
 					list.add(ClientHelper.shiftForInfo);
+				}
+			}
 		}
 	}
 
@@ -74,6 +86,8 @@ public class ItemBlockWithDescAndMeta extends ItemBlockWithMetadata
 			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
 		}
 		for (String element : wrappedDesc)
+		{
 			list.add(element.trim());
+		}
 	}
 }

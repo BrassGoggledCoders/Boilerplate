@@ -22,7 +22,7 @@ import boilerplate.client.ClientHelper;
 
 /**
  * Created by Surseance
- * 
+ *
  */
 public class FXRaygun extends EntityFX
 {
@@ -233,7 +233,7 @@ public class FXRaygun extends EntityFX
 		if (this.reverse)
 		{
 			var11 *= -1.0F; // why name your variables "var11"? That is so
-							// un-helpful
+			// un-helpful
 		}
 
 		final float var12 = (-var11 * 0.2F) - MathHelper.floor_float(-var11 * 0.1F);

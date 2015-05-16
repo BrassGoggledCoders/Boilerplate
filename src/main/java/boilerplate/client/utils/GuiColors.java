@@ -10,7 +10,7 @@ package boilerplate.client.utils;
 
 /**
  * @author decebaldecebal
- * 
+ *
  */
 public enum GuiColors
 {

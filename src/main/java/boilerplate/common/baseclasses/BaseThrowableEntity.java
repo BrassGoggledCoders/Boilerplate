@@ -32,7 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon)
- * 
+ *
  */
 public abstract class BaseThrowableEntity extends EntityThrowable
 {

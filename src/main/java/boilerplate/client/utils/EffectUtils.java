@@ -20,7 +20,7 @@ import boilerplate.client.ClientHelper;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EffectUtils
 {
@@ -76,7 +76,9 @@ public class EffectUtils
 	public static void blockSparkle(World world, int x, int y, int z, int count)
 	{
 		if (!world.isRemote)
+		{
 			return;
+		}
 
 		for (; count < 10; ++count)
 		{

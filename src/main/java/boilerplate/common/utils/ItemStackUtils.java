@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 
 /**
  * @author warlordjones & decebaldecebal
- * 
+ *
  */
 public class ItemStackUtils
 {

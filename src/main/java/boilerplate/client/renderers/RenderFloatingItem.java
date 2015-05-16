@@ -18,7 +18,7 @@ import boilerplate.client.ClientHelper;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public class RenderFloatingItem extends RenderItem
 {

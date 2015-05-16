@@ -30,7 +30,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon)
- * 
+ *
  */
 public abstract class BaseShootableEntity extends Entity implements IProjectile
 {
@@ -178,7 +178,9 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		super.onUpdate();
 
 		if (this.flyTime > 1000)
+		{
 			this.setDead();
+		}
 
 		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F))
 		{
@@ -196,7 +198,9 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		velVector = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
 		if (mop != null)
+		{
 			velVector = Vec3.createVectorHelper(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
+		}
 
 		Entity entity = null;
 		List<?> entList = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox
@@ -208,14 +212,18 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 			Entity collidableEnt = (Entity) obj;
 
 			if (!collidableEnt.canBeCollidedWith() || ((collidableEnt == this.shootingEntity) && (this.flyTime < 5)))
+			{
 				continue;
+			}
 
 			float amount = 0.3F;
 			AxisAlignedBB aaBB = collidableEnt.boundingBox.expand(amount, amount, amount);
 			MovingObjectPosition objectInVector = aaBB.calculateIntercept(posVector, velVector);
 
 			if (objectInVector == null)
+			{
 				continue;
+			}
 
 			double distanceToObject = posVector.distanceTo(objectInVector.hitVec);
 
@@ -227,9 +235,12 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		}
 
 		if (entity != null)
+		{
 			mop = new MovingObjectPosition(entity);
+		}
 
 		if (mop != null)
+		{
 			if (mop.entityHit != null)
 			{
 				if (mop.entityHit != this.shootingEntity)
@@ -251,6 +262,7 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 
 				this.onHitBlock(this.inTile, mop);
 			}
+		}
 
 		this.posX += this.motionX * 3.0D;
 		this.posY += this.motionY * 3.0D;
@@ -279,7 +291,9 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		float speed = 0.99F;
 
 		if (this.handleWaterMovement())
+		{
 			this.setDead();
+		}
 
 		this.motionX *= speed;
 		this.motionY *= speed;

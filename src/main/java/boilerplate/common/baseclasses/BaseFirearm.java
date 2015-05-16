@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 /**
  * @author warlordjones
- * 
+ *
  */
 public abstract class BaseFirearm extends RootItem
 {
@@ -56,7 +56,9 @@ public abstract class BaseFirearm extends RootItem
 			EntityPlayer player = (EntityPlayer) entity;
 
 			if (!stack.hasTagCompound())
+			{
 				stack.setTagCompound(new NBTTagCompound());
+			}
 
 			NBTTagCompound tag = stack.getTagCompound();
 
@@ -66,7 +68,9 @@ public abstract class BaseFirearm extends RootItem
 				stack.setTagCompound(tag);
 
 				if (tag.getShort("reloadTime") == 10)
+				{
 					world.playSoundAtEntity(player, this.reloadSound, 0.8F, 1.0F);
+				}
 
 			}
 		}
@@ -81,14 +85,20 @@ public abstract class BaseFirearm extends RootItem
 		NBTTagCompound tag = stack.getTagCompound();
 
 		if ((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
+		{
 			if (this.twoAmmo)
 			{
 				if (player.inventory.hasItem(this.ammo2))
+				{
 					this.shotBullet(stack, world, player);
+				}
 				player.inventory.consumeInventoryItem(this.ammo2);
 			}
 			else
+			{
 				this.shotBullet(stack, world, player);
+			}
+		}
 		return stack;
 	}
 

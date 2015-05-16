@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class InventoryUtils
 {
@@ -62,10 +62,14 @@ public class InventoryUtils
 			int freeSlot = getFirstEmptySlot(inv, is);
 
 			if (freeSlot < 0)
+			{
 				return size;
+			}
 
 			if (inv.getStackInSlot(freeSlot) == null)
+			{
 				inv.setInventorySlotContents(freeSlot, ItemStack.copyItemStack(is));
+			}
 
 			return 0;
 		}
@@ -73,19 +77,29 @@ public class InventoryUtils
 		int freeSlot = getNonFilledStack(inv, is);
 
 		if (freeSlot < 0)
+		{
 			freeSlot = getFirstEmptySlot(inv, is);
+		}
 		if (freeSlot < 0)
+		{
 			return size;
+		}
 
 		if (inv.getStackInSlot(freeSlot) == null)
+		{
 			inv.setInventorySlotContents(freeSlot, new ItemStack(item, 0, is.getItemDamage()));
+		}
 
 		int canStore = size;
 
 		if (canStore > (inv.getStackInSlot(freeSlot).getMaxStackSize() - inv.getStackInSlot(freeSlot).stackSize))
+		{
 			canStore = inv.getStackInSlot(freeSlot).getMaxStackSize() - inv.getStackInSlot(freeSlot).stackSize;
+		}
 		if (canStore > (inv.getInventoryStackLimit() - inv.getStackInSlot(freeSlot).stackSize))
+		{
 			canStore = inv.getInventoryStackLimit() - inv.getStackInSlot(freeSlot).stackSize;
+		}
 
 		if (canStore == 0)
 		{
@@ -121,7 +135,9 @@ public class InventoryUtils
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
 			if (inv.getStackInSlot(slot) == null)
+			{
 				return slot;
+			}
 		}
 
 		return -1;
@@ -132,7 +148,9 @@ public class InventoryUtils
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
 			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].getItem() == item))
+			{
 				return slot;
+			}
 		}
 
 		return -1;
@@ -148,7 +166,9 @@ public class InventoryUtils
 		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
 		{
 			if ((inventory.getStackInSlot(slot) != null) && (inventory.getStackInSlot(slot) == stack))
+			{
 				return slot;
+			}
 		}
 
 		return -1;
