@@ -36,9 +36,6 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		this.maxReceive = (short) maxReceive;
 		this.maxSend = (short) maxSend;
 		this.setMaxStackSize(1);
-		this.setMaxDamage(20);
-		this.setHasSubtypes(true);
-		this.setNoRepair();
 	}
 
 	@SuppressWarnings("all")
@@ -166,5 +163,17 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	public short getMaxSend()
 	{
 		return this.maxSend;
+	}
+
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack)
+	{
+		return 1.0D - ((double) getEnergyStored(stack) / getMaxEnergyStored(stack));
+	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+		return true;
 	}
 }
