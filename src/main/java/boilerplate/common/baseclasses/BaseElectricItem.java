@@ -48,7 +48,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 
 	public ItemStack getUnchargedItem(Item item)
 	{
-		ItemStack uncharged = new ItemStack(item, 1, 20);
+		ItemStack uncharged = new ItemStack(item);
 
 		if (!uncharged.hasTagCompound())
 		{
@@ -61,7 +61,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 
 	public ItemStack getChargedItem(Item item)
 	{
-		ItemStack charged = new ItemStack(item, 1, 0);
+		ItemStack charged = new ItemStack(item);
 
 		if (!charged.hasTagCompound())
 		{
@@ -103,8 +103,6 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		{
 			energy = this.maxEnergy;
 		}
-
-		stack.setItemDamage(20 - ((energy * 20) / this.maxEnergy));
 
 		tag.setInteger("energy", energy);
 
