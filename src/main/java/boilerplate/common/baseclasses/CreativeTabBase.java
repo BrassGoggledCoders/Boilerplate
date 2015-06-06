@@ -17,12 +17,9 @@ import net.minecraft.item.Item;
  */
 public class CreativeTabBase extends CreativeTabs
 {
-	// Item icon;
-
-	public CreativeTabBase(int id, String name/* , Item icon */)
+	public CreativeTabBase(String name)
 	{
-		super(id, name);
-		// this.icon = icon;
+		super(CreativeTabs.getNextID(), name);
 	}
 
 	@Override
