@@ -15,29 +15,27 @@ buildscript {
     }
 }
 
-apply plugin: 'forge'
-
-// Define properties file
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-    // Load config. It shall from now be referenced as simply config or project.config
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
+repositories {
+    maven {
+        name "K4Repo"
+        url "http://maven.k-4u.nl"
+    }
 }
 
-version = "${config.minecraft_version}-${config.mod_version}"
+apply plugin: 'forge'
+
+project.ext {
+    buildNum = System.getenv("BUILD_NUMBER")
+    mcVersion = "1.7.10"
+}
+
+version = project.ext.mcVersion + "—5.0.0." + project.ext.buildNum
 group= "boilerplate" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "boilerplate"
 
 minecraft {
-    version = "1.7.10-10.13.2.1240"
+    version = "${project.ext.mcVersion}-10.13.3.1424-${project.ext.mcVersion}"
     runDir = "eclipse/"
-}
-
-dependencies {
-
 }
 
 processResources
@@ -60,87 +58,80 @@ processResources
     }
 }
 
-task apiJar(type: Jar) {
-    baseName = 'boilerplateAPI'
-    
-    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
-        include 'boilerplate/steamapi/**'
-    }
-}
-
-task apiZip(type: Zip) {
-    baseName = 'boilerplateZIPAPI'
-
-    from sourceSets.main.java.srcDirs 
-    include 'boilerplate/steamapi/**'
+jar {
+    classifier = "universal"
 }
 
 task deobfJar(type: Jar) {
-    baseName = 'deobf_boilerplate'
-    from(sourceSets.main.output)
-}
-
-task devLibsDir() << {
-    def subdir = new File(project.buildDir, "build/libs/devBuilds")
-    println("subdir: "+subdir)
-
-    if(!subdir.exists()) {
-        println("creating subdir")
-
-        if(subdir.mkdirs()) {
-            if(!subdir.exists()) {
-                println("devBuilds directory failed to be created.")
-            }
-        } else {
-            println("devBuilds directory failed to be created.")
-        }
+    from(sourceSets.main.output) {
+        classifier = "deobf"
     }
 }
 
-task devDistDir() << {
-    def subdir = new File(project.buildDir, "build/distributions/devBuilds")
-    println("subdir: "+subdir)
+// Create API library zip
+task apiZip(type: Zip) {
+    from(sourceSets.main.java) {
+        include 'k4unl/minecraft/Hydraulicraft/api/**'
 
-    if(!subdir.exists()) {
-        println("creating subdir")
+        destinationDir = file 'output'
 
-        if(subdir.mkdirs()) {
-            if(!subdir.exists()) {
-                println("devBuilds directory failed to be created.")
-            }
-        } else {
-            println("devBuilds directory failed to be created.")
-        }
+        classifier = "api"
     }
 }
 
-task devLibBuilds(type: Copy) {
-    from apiJar
-    from deobfJar
+apiZip.mustRunAfter deobfJar
 
-    ext.env = System.getenv()
-    ext.buildNumber = env.BUILD_NUMBER?.toInteger()
 
-    rename '-(.*)jar', "${config.minecraft_version}-${config.mod_version}.${buildNumber}.jar"
-    into './build/libs/devBuilds/'
+artifacts {
+    archives deobfJar
+    archives apiZip
 }
 
-task devDistBuilds(type: Copy) {
-    from apiZip
-
-    ext.env = System.getenv()
-    ext.buildNumber = env.BUILD_NUMBER?.toInteger()
-
-    rename '-(.*)zip', "${config.minecraft_version}-${config.mod_version}.${buildNumber}.zip"
-    into './build/distributions/devBuilds/'
+task("uploadJars", dependsOn: "reobf") {
+    description = "uploads JARs"
+    if (System.getenv("local_maven") != null) {
+        apply plugin: 'maven'
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    repository(url: "file://" + System.getenv("local_maven"))
+                    pom {
+                        groupId = project.group
+                        version = project.version
+                        artifactId = project.archivesBaseName
+                        project {
+                            name project.archivesBaseName
+                            packaging 'jar'
+                            description 'Boilerplate'
+                            url ''
+                            scm {
+                                url 'https://github.com/BrassGoggledCoders/Boilerplate'
+                                connection 'scm:git:git@github.com:BrassGoggledCoders/Boilerplate.git'
+                                developerConnection 'scm:git:git@github.com:BrassGoggledCoders/Boilerplate.git'
+                            }
+                            issueManagement {
+                                system 'github'
+                                url 'https://github.com/BrassGoggledCoders/Boilerplate/issues'
+                            }
+                            licenses {
+                                license {
+                                    name 'MMPL'
+                                    url 'https://github.com/BrassGoggledCoders/Boilerplate/blob/master/LICENSE'
+                                    distribution 'repo'
+                                }
+                            }
+                            developers {
+                                developer {
+                                    id 'warlordjones'
+                                    name 'warlordjones'
+                                    roles { role 'developer' }
+					//TODO
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-
-task devBuilds() << {
-}
-
-apiJar.dependsOn('build')
-deobfJar.dependsOn('build')
-devLibBuilds.dependsOn('devLibsDir')
-devDistBuilds.dependsOn('devDistDir')
-devBuilds.dependsOn('devLibBuilds')
-devBuilds.dependsOn('devDistBuilds')
