@@ -29,7 +29,7 @@ project.ext {
     mcVersion = "1.7.10"
 }
 
-version = project.ext.mcVersion + "—5.0.0." + project.ext.buildNum
+version = project.ext.mcVersion + "-5.0.0." + project.ext.buildNum
 group= "boilerplate" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "boilerplate"
 
