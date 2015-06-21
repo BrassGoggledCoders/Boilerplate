@@ -27,6 +27,7 @@ public class BaseMetadataBlock extends Block
 	protected BaseMetadataBlock(Material p_i45394_1_)
 	{
 		super(p_i45394_1_);
+		this.setHardness(1F);
 	}
 
 	@Override
