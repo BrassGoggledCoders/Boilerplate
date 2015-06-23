@@ -35,4 +35,10 @@ public class BaseMetadataBlock extends Block
 	{
 		return new ItemStack(world.getBlock(x, y, z), 1, world.getBlockMetadata(x, y, z));
 	}
+
+	@Override
+	public int damageDropped(int meta)
+	{
+		return meta;
+	}
 }
