@@ -62,8 +62,18 @@ public final class StringUtils
 
 		for (char c : chars)
 		{
-			word.append(c);
-
+			if (c == '|')
+			{
+				line.append(word);
+				word.delete(0, word.length());
+				
+				lines.add(line.toString());
+				line.delete(0, line.length());
+				
+			}
+			else
+				word.append(c);
+			
 			if (c == ' ')
 			{
 				if ((line.length() + word.length()) > len)
@@ -102,17 +112,5 @@ public final class StringUtils
 		}
 
 		return ret;
-	}
-
-	/**
-	 * This method merges any number of arrays of any count.
-	 *
-	 * @param arrays
-	 * @return merged array
-	 */
-	@Deprecated
-	public static String[] merge(String[]... arrays)
-	{
-		return Utils.merge(arrays);
 	}
 }
