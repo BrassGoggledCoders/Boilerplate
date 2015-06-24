@@ -23,6 +23,11 @@ import boilerplate.common.baseclasses.ItemBlockWithDescAndMeta;
  */
 public class RegistryHelper
 {
+	public static void registerBlockWithDesc(Block block, String name)
+	{
+		GameRegistry.registerBlock(block, ItemBlockWithDesc.class, name);
+	}
+
 	public static void registerContainerBlock(Block block, Class<? extends TileEntity> tile, String name)
 	{
 		GameRegistry.registerBlock(block, name);
