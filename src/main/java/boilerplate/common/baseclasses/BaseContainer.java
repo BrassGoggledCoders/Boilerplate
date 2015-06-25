@@ -19,12 +19,12 @@ import net.minecraft.item.ItemStack;
 
 public class BaseContainer extends Container
 {
-	private static BaseTileWithInventory tileent;
+	private BaseTileWithInventory baseTile;
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return BaseContainer.tileent.isUseableByPlayer(player);
+		return baseTile.isUseableByPlayer(player);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class BaseContainer extends Container
 					return null;
 				}
 			}
-			else if (!this.mergeItemStack(itemstack, 36, 36 + BaseContainer.getTile().getSizeInventory(), false))
+			else if (!this.mergeItemStack(itemstack, 36, 36 + getTile().getSizeInventory(), false))
 			{
 				return null;
 			}
@@ -63,13 +63,13 @@ public class BaseContainer extends Container
 		return null;
 	}
 
-	public static BaseTileWithInventory getTile()
+	public BaseTileWithInventory getTile()
 	{
-		return tileent;
+		return baseTile;
 	}
 
-	public static void setTile(BaseTileWithInventory tileent)
+	public void setTile(BaseTileWithInventory tileent)
 	{
-		BaseContainer.tileent = tileent;
+		this.baseTile = tileent;
 	}
 }
