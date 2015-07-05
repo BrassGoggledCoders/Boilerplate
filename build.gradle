@@ -29,7 +29,7 @@ project.ext {
     mcVersion = "1.7.10"
 }
 
-version = project.ext.mcVersion + "-5.0.0." + project.ext.buildNum
+version = project.ext.mcVersion + "-6.0.0." + project.ext.buildNum
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
 

@@ -25,7 +25,7 @@ import net.minecraftforge.common.config.Configuration;
  * @author Surseance
  *
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "5.0.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
+@Mod(modid = "boilerplate", name = "Boilerplate", version = "6.0.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
 public class Boilerplate
 {
 	/**
