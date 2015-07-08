@@ -29,7 +29,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	protected short maxReceive;
 	protected short maxSend;
 
-	public BaseElectricItem(int maxEnergy, int maxSend, int maxReceive)
+	public BaseElectricItem(int maxEnergy, int maxReceive, int maxSend)
 	{
 		super();
 		this.maxEnergy = maxEnergy * 1000;
