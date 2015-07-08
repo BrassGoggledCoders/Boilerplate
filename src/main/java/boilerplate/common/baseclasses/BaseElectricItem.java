@@ -77,7 +77,12 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
 	{
 		list.add("Energy: " + (this.getEnergyStored(stack) / 1000) + "k / " + (this.maxEnergy / 1000) + "k");
-		list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
+		if (this.maxSend > 0 && this.maxReceive > 0)
+			list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
+		else if (this.maxReceive > 0)
+			list.add("Transfer(in): " + this.maxReceive);
+		else if (this.maxSend > 0)
+			list.add("Transfer(out): " + this.maxSend);
 	}
 
 	@Override
