@@ -36,6 +36,11 @@ public class IMCHelper
 		tag.setInteger("Reinforced", reinforcedLevel);
 		tag.setString("Style", matTextColor);
 		tag.setInteger("Color", color);
+		// TODO
+		tag.setInteger("Bow_DrawSpeed", 100);
+		tag.setFloat("Bow_ProjectileSpeed", 1.0f);
+		tag.setFloat("Projectile_Mass", 2.0f);
+		tag.setFloat("Projectile_Fragility", 0.9f);
 
 		FMLInterModComms.sendMessage("TConstruct", "addMaterial", tag);
 	}
