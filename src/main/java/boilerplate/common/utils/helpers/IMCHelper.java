@@ -89,4 +89,18 @@ public class IMCHelper
 		ItemStack battery = new ItemStack(fluxBattery);
 		FMLInterModComms.sendMessage("TConstruct", "addFluxBattery", battery);
 	}
+
+	public static void addNewSmeltable(Item item, int metadata, Block toRender, FluidStack toProduce, int tempRequired)
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		NBTTagCompound itemtag = new NBTTagCompound();
+		(new ItemStack(item, 1, metadata)).writeToNBT(itemtag);
+		tag.setTag("Item", itemtag);
+		NBTTagCompound block = new NBTTagCompound();
+		(new ItemStack(toRender, 1)).writeToNBT(block);
+		tag.setTag("Block", block);
+		toProduce.writeToNBT(tag);
+		tag.setInteger("Temperature", tempRequired);
+		FMLInterModComms.sendMessage("TConstruct", "addSmelteryMelting", tag);
+	}
 }
