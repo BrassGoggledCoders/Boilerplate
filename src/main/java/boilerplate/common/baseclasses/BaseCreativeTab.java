@@ -15,9 +15,9 @@ import net.minecraft.item.Item;
  * @author warlordjones
  *
  */
-public class CreativeTabBase extends CreativeTabs
+public class BaseCreativeTab extends CreativeTabs
 {
-	public CreativeTabBase(String name)
+	public BaseCreativeTab(String name)
 	{
 		super(CreativeTabs.getNextID(), name);
 	}
