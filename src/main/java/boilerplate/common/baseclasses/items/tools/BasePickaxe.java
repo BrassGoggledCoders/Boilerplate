@@ -10,18 +10,17 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.baseclasses.tools;
+package boilerplate.common.baseclasses.items.tools;
 
 /**
  * @author Surseance
  *
  */
-public class BaseAxe extends BaseTool
+public class BasePickaxe extends BaseTool
 {
-
-	public BaseAxe(ToolMaterial mat, String prefix)
+	public BasePickaxe(ToolMaterial mat, String prefix)
 	{
-		super(2.0F, mat, prefix);
-		this.setHarvestLevel("axe", mat.getHarvestLevel());
+		super(1.0F, mat, prefix);
+		this.setHarvestLevel("pickaxe", mat.getHarvestLevel());
 	}
 }

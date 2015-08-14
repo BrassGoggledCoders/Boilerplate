@@ -10,7 +10,7 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.baseclasses;
+package boilerplate.common.baseclasses.items;
 
 import java.util.List;
 

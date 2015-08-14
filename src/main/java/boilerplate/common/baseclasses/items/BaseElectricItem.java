@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses;
+package boilerplate.common.baseclasses.items;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import boilerplate.api.IEnergyItem;
+import boilerplate.common.baseclasses.RootItem;
 
 /**
  * @author decebaldecebal

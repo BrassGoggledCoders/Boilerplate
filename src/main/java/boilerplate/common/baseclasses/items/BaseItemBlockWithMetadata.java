@@ -6,13 +6,13 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses;
+package boilerplate.common.baseclasses.items;
 
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
@@ -23,14 +23,33 @@ import boilerplate.common.utils.StringUtils;
  * @author warlordjones
  *
  */
-public class ItemBlockWithDesc extends ItemBlock
+public class BaseItemBlockWithMetadata extends ItemBlockWithMetadata
 {
 	Block block;
 
-	public ItemBlockWithDesc(Block block)
+	public BaseItemBlockWithMetadata(Block block)
 	{
-		super(block);
+		super(block, block);
 		this.block = block;
+		this.setHasSubtypes(true);
+	}
+
+	public BaseItemBlockWithMetadata(Block block1, Block block2)
+	{
+		super(block1, block2);
+		this.setHasSubtypes(true);
+	}
+
+	@Override
+	public int getMetadata(int metadata)
+	{
+		return metadata;
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack is)
+	{
+		return super.getUnlocalizedName() + "." + is.getItemDamage();
 	}
 
 	@SuppressWarnings("all")
@@ -72,11 +91,11 @@ public class ItemBlockWithDesc extends ItemBlock
 		String[] wrappedDesc;
 		if (stack.getItemDamage() > 0)
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 40);
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
 		else
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 40);
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
 		}
 		for (String element : wrappedDesc)
 		{

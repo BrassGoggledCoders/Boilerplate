@@ -14,8 +14,8 @@ import net.minecraft.tileentity.TileEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import boilerplate.common.baseclasses.ItemBlockWithDesc;
-import boilerplate.common.baseclasses.ItemBlockWithDescAndMeta;
+import boilerplate.common.baseclasses.items.ItemBlockWithDesc;
+import boilerplate.common.baseclasses.items.ItemBlockWithDescAndMeta;
 
 /**
  * @author warlordjones
