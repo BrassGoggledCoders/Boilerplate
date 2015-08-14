@@ -42,6 +42,7 @@ public class BaseArmor extends ItemArmor
 		super(mat, 0, type);
 		this.setMaxStackSize(1);
 		this.textureName = textureName;
+		this.prefix = prefix;
 	}
 
 	@Override

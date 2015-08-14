@@ -50,6 +50,7 @@ public abstract class BaseTool extends RootItem
 	protected BaseTool(float damage, ToolMaterial toolMat, String prefix)
 	{
 		super();
+		this.prefix = prefix;
 		this.toolMaterial = toolMat;
 		this.setMaxStackSize(1);
 		this.efficiencyOnProperMaterial = toolMat.getEfficiencyOnProperMaterial();
