@@ -131,7 +131,8 @@ public abstract class BaseTool extends RootItem
 	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		list.add("Efficiency: " + this.toolMaterial.getEfficiencyOnProperMaterial());
+		if (!(this instanceof BaseSword))
+			list.add("Efficiency: " + this.toolMaterial.getEfficiencyOnProperMaterial());
 	}
 
 	protected void changeToolDamage(ItemStack itemStack, double damage)
