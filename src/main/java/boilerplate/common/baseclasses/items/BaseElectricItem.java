@@ -18,7 +18,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import boilerplate.api.IEnergyItem;
-import boilerplate.common.baseclasses.RootItem;
 
 /**
  * @author decebaldecebal

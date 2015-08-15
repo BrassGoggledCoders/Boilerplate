@@ -16,8 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import boilerplate.common.baseclasses.RootItem;
-
 /**
  * @author warlordjones
  *
