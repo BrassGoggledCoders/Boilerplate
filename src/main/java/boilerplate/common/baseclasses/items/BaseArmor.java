@@ -33,7 +33,6 @@ import boilerplate.common.utils.StringUtils;
  */
 public class BaseArmor extends ItemArmor
 {
-
 	String textureName;
 	String prefix;
 
@@ -47,9 +46,9 @@ public class BaseArmor extends ItemArmor
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getArmorTexture(ItemStack is, Entity entity, int slot, String type)
+	public String getArmorTexture(ItemStack is, Entity entity, int slot, String stuff)
 	{
-		return slot == 2 ? prefix + "textures/models/armor/" + type + "_2.png" : prefix + "textures/models/armor/" + type + "_1.png";
+		return slot == 2 ? prefix + "textures/models/armor/" + textureName + "_2.png" : prefix + "textures/models/armor/" + textureName + "_1.png";
 	}
 
 	@SideOnly(Side.CLIENT)
