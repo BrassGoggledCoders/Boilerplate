@@ -8,16 +8,16 @@
  */
 package boilerplate.common.baseclasses;
 
-import boilerplate.api.IOpenableGUI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-
-import boilerplate.api.IUniversallyWrenchable;
 import net.minecraft.world.World;
+
+import boilerplate.api.IOpenableGUI;
+import boilerplate.api.IUniversallyWrenchable;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
@@ -25,8 +25,7 @@ import net.minecraft.world.World;
  * @author decebaldecebal
  *
  */
-public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable,
-		IOpenableGUI
+public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable, IOpenableGUI
 {
 	public ItemStack[] inventory;
 

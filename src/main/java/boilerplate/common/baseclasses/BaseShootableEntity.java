@@ -203,8 +203,8 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		}
 
 		Entity entity = null;
-		List<?> entList = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox
-				.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+		List<?> entList = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
+				this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 		double distance = 0.0D;
 
 		for (Object obj : entList)
@@ -270,7 +270,8 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		float magnitude = MathHelper.sqrt_double((this.motionX * this.motionX) + (this.motionZ * this.motionZ));
 		this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180D) / 3.1415927410125732D);
 
-		for (this.rotationPitch = (float) ((Math.atan2(this.motionY, magnitude) * 180D) / 3.1415927410125732D); (this.rotationPitch - this.prevRotationPitch) < -180F; this.prevRotationPitch -= 360F)
+		for (this.rotationPitch = (float) ((Math.atan2(this.motionY, magnitude) * 180D) / 3.1415927410125732D); (this.rotationPitch
+				- this.prevRotationPitch) < -180F; this.prevRotationPitch -= 360F)
 		{
 		}
 

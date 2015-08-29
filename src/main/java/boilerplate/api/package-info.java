@@ -6,4 +6,3 @@
 package boilerplate.api;
 
 import cpw.mods.fml.common.API;
-

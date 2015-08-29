@@ -15,13 +15,21 @@ public class MaterialHelper
 	public static Material[] getMaterialForTool(String tool)
 	{
 		if (tool == "pickaxe")
+		{
 			return pickaxeMaterials;
+		}
 		if (tool == "axe")
+		{
 			return axeMaterials;
+		}
 		if (tool == "shovel")
+		{
 			return shovelMaterials;
+		}
 		if (tool == "sword")
+		{
 			return swordMaterials;
+		}
 		return null;
 	}
 }

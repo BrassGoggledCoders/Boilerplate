@@ -35,7 +35,9 @@ public class BaseSword extends BaseTool
 	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase living)
 	{
 		if (block.getBlockHardness(world, x, y, z) != 0.0D)
+		{
 			stack.damageItem(2, living);
+		}
 
 		return true;
 	}

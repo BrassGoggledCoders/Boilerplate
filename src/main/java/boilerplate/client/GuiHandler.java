@@ -12,11 +12,13 @@
  */
 package boilerplate.client;
 
-import boilerplate.api.IOpenableGUI;
-import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.network.IGuiHandler;
+
+import boilerplate.api.IOpenableGUI;
 
 /**
  * @author Surseance
@@ -27,14 +29,14 @@ public class GuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z)
 	{
-		IOpenableGUI openableGUI = getOpenableGUI(player, world, x, y, z);
+		IOpenableGUI openableGUI = this.getOpenableGUI(player, world, x, y, z);
 		return openableGUI != null ? openableGUI.getServerGuiElement(id, player, world, x, y, z) : null;
 	}
 
 	@Override
 	public Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z)
 	{
-		IOpenableGUI openableGUI = getOpenableGUI(player, world, x, y, z);
+		IOpenableGUI openableGUI = this.getOpenableGUI(player, world, x, y, z);
 		return openableGUI != null ? openableGUI.getClientGuiElement(id, player, world, x, y, z) : null;
 	}
 
@@ -42,6 +44,7 @@ public class GuiHandler implements IGuiHandler
 	{
 		Object object = world.getTileEntity(x, y, z);
 		ItemStack itemStack = player.getHeldItem();
-		return object instanceof IOpenableGUI ? (IOpenableGUI) object : itemStack != null && itemStack.getItem() instanceof IOpenableGUI ? (IOpenableGUI) itemStack.getItem() : null;
+		return object instanceof IOpenableGUI ? (IOpenableGUI) object
+				: (itemStack != null) && (itemStack.getItem() instanceof IOpenableGUI) ? (IOpenableGUI) itemStack.getItem() : null;
 	}
 }

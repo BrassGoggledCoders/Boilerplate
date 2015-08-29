@@ -82,8 +82,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		float f = 0.4F;
 		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
 				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
-		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
-				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
+		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI)
+				* f;
 		this.motionY = -MathHelper.sin(((this.rotationPitch + this.func_70183_g()) / 180.0F) * (float) Math.PI) * f;
 		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.func_70182_d(), 1.0F);
 	}
@@ -103,8 +103,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		float f = 0.4F + addSpeed;
 		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
 				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
-		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
-				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
+		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI)
+				* f;
 		this.motionY = -MathHelper.sin(((this.rotationPitch + this.func_70183_g()) / 180.0F) * (float) Math.PI) * f;
 		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.func_70182_d(), 1.0F);
 	}
@@ -232,8 +232,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		if (!this.worldObj.isRemote)
 		{
 			Entity entity = null;
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
-					.expand(1.0D, 1.0D, 1.0D));
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
+					this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 			double d0 = 0.0D;
 			EntityLivingBase entitylivingbase = this.getThrower();
 
@@ -268,8 +268,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 		if (movingobjectposition != null)
 		{
-			if ((movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-					&& (this.worldObj.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ) == Blocks.portal))
+			if ((movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) && (this.worldObj
+					.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ) == Blocks.portal))
 			{
 				this.setInPortal();
 			}
@@ -285,7 +285,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		float f1 = MathHelper.sqrt_double((this.motionX * this.motionX) + (this.motionZ * this.motionZ));
 		this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180.0D) / Math.PI);
 
-		for (this.rotationPitch = (float) ((Math.atan2(this.motionY, f1) * 180.0D) / Math.PI); (this.rotationPitch - this.prevRotationPitch) < -180.0F; this.prevRotationPitch -= 360.0F)
+		for (this.rotationPitch = (float) ((Math.atan2(this.motionY, f1) * 180.0D) / Math.PI); (this.rotationPitch
+				- this.prevRotationPitch) < -180.0F; this.prevRotationPitch -= 360.0F)
 		{
 			;
 		}
@@ -315,8 +316,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 			for (int i = 0; i < 4; ++i)
 			{
 				float f4 = 0.25F;
-				this.worldObj.spawnParticle("bubble", this.posX - (this.motionX * f4), this.posY - (this.motionY * f4), this.posZ
-						- (this.motionZ * f4), this.motionX, this.motionY, this.motionZ);
+				this.worldObj.spawnParticle("bubble", this.posX - (this.motionX * f4), this.posY - (this.motionY * f4),
+						this.posZ - (this.motionZ * f4), this.motionX, this.motionY, this.motionZ);
 			}
 
 			f2 = 0.8F;

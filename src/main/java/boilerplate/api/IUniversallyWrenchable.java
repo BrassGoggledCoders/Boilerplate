@@ -8,9 +8,9 @@
  */
 package boilerplate.api;
 
-import ic2.api.tile.IWrenchable;
-
 import cpw.mods.fml.common.Optional;
+
+import ic2.api.tile.IWrenchable;
 
 /**
  *

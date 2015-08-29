@@ -48,14 +48,15 @@ public class BaseArmor extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack is, Entity entity, int slot, String stuff)
 	{
-		return slot == 2 ? prefix + "textures/models/armor/" + textureName + "_2.png" : prefix + "textures/models/armor/" + textureName + "_1.png";
+		return slot == 2 ? this.prefix + "textures/models/armor/" + this.textureName + "_2.png"
+				: this.prefix + "textures/models/armor/" + this.textureName + "_1.png";
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(prefix + "armor/" + this.getUnlocalizedName().substring(5));
+		this.itemIcon = par1IconRegister.registerIcon(this.prefix + "armor/" + this.getUnlocalizedName().substring(5));
 	}
 
 	@SuppressWarnings("all")
@@ -66,9 +67,13 @@ public class BaseArmor extends ItemArmor
 		if (!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
 		{
 			if (ClientHelper.isShiftKeyDown())
+			{
 				this.getWrappedDesc(list);
+			}
 			else
+			{
 				list.add(ClientHelper.shiftForInfo);
+			}
 		}
 	}
 
@@ -77,6 +82,8 @@ public class BaseArmor extends ItemArmor
 	{
 		String[] wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 30);
 		for (String element : wrappedDesc)
+		{
 			list.add(element.trim());
+		}
 	}
 }

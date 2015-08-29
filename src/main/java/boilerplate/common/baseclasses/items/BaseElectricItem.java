@@ -77,12 +77,18 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
 	{
 		list.add("Energy: " + (this.getEnergyStored(stack) / 1000) + "k / " + (this.maxEnergy / 1000) + "k");
-		if (this.maxSend > 0 && this.maxReceive > 0)
+		if ((this.maxSend > 0) && (this.maxReceive > 0))
+		{
 			list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
+		}
 		else if (this.maxReceive > 0)
+		{
 			list.add("Transfer(in): " + this.maxReceive);
+		}
 		else if (this.maxSend > 0)
+		{
 			list.add("Transfer(out): " + this.maxSend);
+		}
 	}
 
 	@Override
@@ -171,7 +177,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack)
 	{
-		return 1.0D - ((double) getEnergyStored(stack) / getMaxEnergyStored(stack));
+		return 1.0D - ((double) this.getEnergyStored(stack) / this.getMaxEnergyStored(stack));
 	}
 
 	@Override

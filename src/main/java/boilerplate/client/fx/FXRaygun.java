@@ -17,8 +17,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import org.lwjgl.opengl.GL11;
 import boilerplate.client.ClientHelper;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Created by Surseance
@@ -130,7 +130,8 @@ public class FXRaygun extends EntityFX
 		final double var7 = MathHelper.sqrt_double((xd * xd) + (zd * zd));
 		this.rotYaw = (float) ((Math.atan2(xd, zd) * 180.0D) / 3.141592653589793D);
 
-		for (this.rotPitch = (float) ((Math.atan2(yd, var7) * 180.0D) / 3.141592653589793D); (this.rotPitch - this.prevPitch) < -180.0F; this.prevPitch -= 360.0F)
+		for (this.rotPitch = (float) ((Math.atan2(yd, var7) * 180.0D) / 3.141592653589793D); (this.rotPitch
+				- this.prevPitch) < -180.0F; this.prevPitch -= 360.0F)
 		{
 			;
 		}

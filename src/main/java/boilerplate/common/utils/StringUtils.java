@@ -66,14 +66,16 @@ public final class StringUtils
 			{
 				line.append(word);
 				word.delete(0, word.length());
-				
+
 				lines.add(line.toString());
 				line.delete(0, line.length());
-				
+
 			}
 			else
+			{
 				word.append(c);
-			
+			}
+
 			if (c == ' ')
 			{
 				if ((line.length() + word.length()) > len)

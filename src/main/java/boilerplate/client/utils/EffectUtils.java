@@ -15,8 +15,8 @@ import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.world.World;
 
-import org.lwjgl.opengl.GL11;
 import boilerplate.client.ClientHelper;
+import org.lwjgl.opengl.GL11;
 
 /**
  * @author Surseance

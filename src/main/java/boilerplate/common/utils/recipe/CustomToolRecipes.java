@@ -19,7 +19,7 @@ import net.minecraft.item.crafting.CraftingManager;
 public class CustomToolRecipes
 {
 	private static String[][] recipePatterns = new String[][] { { "XXX", " # ", " # " }, { "X", "#", "#" }, { "XX", "X#", " #" },
-		{ "XX", " #", " #" }, { "X", "X", "#" } };
+			{ "XX", " #", " #" }, { "X", "X", "#" } };
 
 	public ItemStack input;
 	public ItemStack[] outputs;

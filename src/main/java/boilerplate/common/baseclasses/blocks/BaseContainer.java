@@ -26,7 +26,7 @@ public class BaseContainer extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return baseTile.isUseableByPlayer(player);
+		return this.baseTile.isUseableByPlayer(player);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class BaseContainer extends Container
 					return null;
 				}
 			}
-			else if (!this.mergeItemStack(itemstack, 36, 36 + getTile().getSizeInventory(), false))
+			else if (!this.mergeItemStack(itemstack, 36, 36 + this.getTile().getSizeInventory(), false))
 			{
 				return null;
 			}
@@ -67,7 +67,7 @@ public class BaseContainer extends Container
 
 	public BaseTileWithInventory getTile()
 	{
-		return baseTile;
+		return this.baseTile;
 	}
 
 	public void setTile(BaseTileWithInventory tileent)

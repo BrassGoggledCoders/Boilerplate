@@ -78,7 +78,8 @@ public abstract class BaseFirearm extends RootItem
 
 	@Override
 	/**
-	 * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
+	 * called when the player releases the use item button. Args: itemstack,
+	 * world, entityplayer, itemInUseCount
 	 */
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{

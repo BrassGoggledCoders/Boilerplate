@@ -71,7 +71,7 @@ public abstract class BaseTool extends RootItem
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(prefix + "tools/" + this.getUnlocalizedName().substring(5));
+		this.itemIcon = par1IconRegister.registerIcon(this.prefix + "tools/" + this.getUnlocalizedName().substring(5));
 	}
 
 	@Override
@@ -82,13 +82,19 @@ public abstract class BaseTool extends RootItem
 			for (String elem : this.getToolClasses(stack))
 			{
 				if (block.isToolEffective(elem, meta))
+				{
 					return this.efficiencyOnProperMaterial;
+				}
 				else
 				{
 					Material mat = block.getMaterial();
 					for (Material m : MaterialHelper.getMaterialForTool(elem))
+					{
 						if (m == mat)
+						{
 							return this.efficiencyOnProperMaterial;
+						}
+					}
 				}
 			}
 		}
@@ -106,9 +112,13 @@ public abstract class BaseTool extends RootItem
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase living1, EntityLivingBase living2)
 	{
 		if (this instanceof BaseSword)
+		{
 			itemstack.damageItem(1, living2);
+		}
 		else
+		{
 			itemstack.damageItem(2, living2);
+		}
 
 		return true;
 	}
@@ -132,7 +142,9 @@ public abstract class BaseTool extends RootItem
 	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
 		if (!(this instanceof BaseSword))
+		{
 			list.add("Efficiency: " + this.toolMaterial.getEfficiencyOnProperMaterial());
+		}
 	}
 
 	protected void changeToolDamage(ItemStack itemStack, double damage)

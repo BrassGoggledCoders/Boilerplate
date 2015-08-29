@@ -13,8 +13,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 
-import org.lwjgl.opengl.GL11;
 import boilerplate.client.ClientHelper;
+import org.lwjgl.opengl.GL11;
 
 /**
  * @author warlordjones

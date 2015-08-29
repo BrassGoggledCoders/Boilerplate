@@ -39,7 +39,7 @@ public class RootItem extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityPlayer, List list, boolean bool)
 	{
-		if (descMode == 0)
+		if (this.descMode == 0)
 		{
 			if (stack.getItemDamage() > 0)
 			{
@@ -70,7 +70,7 @@ public class RootItem extends Item
 				}
 			}
 		}
-		else if (descMode == 1)
+		else if (this.descMode == 1)
 		{
 			if (stack.getItemDamage() > 0)
 			{
@@ -95,7 +95,7 @@ public class RootItem extends Item
 				}
 			}
 		}
-		else if (descMode == 2)
+		else if (this.descMode == 2)
 		{
 			if (stack.getItemDamage() > 0)
 			{

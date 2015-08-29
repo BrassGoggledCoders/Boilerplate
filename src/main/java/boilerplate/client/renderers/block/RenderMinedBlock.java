@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import org.lwjgl.opengl.GL11;
 import boilerplate.common.entity.EntityMinedBlock;
+import org.lwjgl.opengl.GL11;
 
 /**
  * @author Surseance

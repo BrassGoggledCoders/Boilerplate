@@ -17,7 +17,8 @@ import net.minecraft.item.crafting.CraftingManager;
  */
 public class CustomArmorRecipes
 {
-	private static String[][] recipePatterns = new String[][] { { "XXX", "X X" }, { "X X", "XXX", "XXX" }, { "XXX", "X X", "X X" }, { "X X", "X X" } };
+	private static String[][] recipePatterns = new String[][] { { "XXX", "X X" }, { "X X", "XXX", "XXX" }, { "XXX", "X X", "X X" },
+			{ "X X", "X X" } };
 
 	public ItemStack input;
 	public ItemStack[] outputs;
