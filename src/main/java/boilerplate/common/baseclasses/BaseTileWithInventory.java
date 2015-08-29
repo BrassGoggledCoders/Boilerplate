@@ -17,6 +17,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
 import boilerplate.api.IUniversallyWrenchable;
+import net.minecraft.world.World;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
@@ -239,4 +240,10 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	{
 		return new ItemStack(this.getBlockType());
 	}
+
+	@Override
+	public abstract Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
+
+	@Override
+	public abstract Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
 }
