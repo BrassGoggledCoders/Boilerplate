@@ -1,8 +1,9 @@
 package boilerplate.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import boilerplate.api.IToolTipSlot;
+import boilerplate.client.utils.GuiColors;
+import boilerplate.common.baseclasses.BaseTileWithInventory;
+import com.google.common.collect.Lists;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -10,15 +11,12 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
-
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
-import boilerplate.client.utils.GuiColors;
-import boilerplate.common.baseclasses.BaseTileWithInventory;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseContainerGui extends GuiContainer
 {
@@ -45,15 +43,12 @@ public abstract class BaseContainerGui extends GuiContainer
 
 		for (Slot slot : (List<Slot>) this.inventorySlots.inventorySlots)
 		{
-			if (!slot.getHasStack() && this.mouseInside(slot, mouseX - x, mouseY - y))
+			if (slot instanceof IToolTipSlot && !slot.getHasStack() && this.mouseInside(slot, mouseX - x, mouseY - y))
 			{
 				if (slot.slotNumber < this.tile.getSizeInventory())
 				{
-					String tt = this.getSlotTooltipUnloc(slot.slotNumber);
-					if (!Strings.isNullOrEmpty(tt))
-					{
-						this.func_146283_a(Lists.newArrayList(StatCollector.translateToLocal(tt)), mouseX - x, mouseY - y);
-					}
+					this.func_146283_a(Lists.newArrayList(StatCollector.translateToLocal(
+							((IToolTipSlot)slot).getSlotTooltipUnloc())), mouseX - x, mouseY - y);
 				}
 			}
 		}
@@ -63,11 +58,6 @@ public abstract class BaseContainerGui extends GuiContainer
 	{
 		return (x >= slot.xDisplayPosition) && (x <= (slot.xDisplayPosition + 16)) && (y >= slot.yDisplayPosition)
 				&& (y <= (slot.yDisplayPosition + 16));
-	}
-
-	private String getSlotTooltipUnloc(int slotNumber)
-	{
-		return this.tile.getInventoryName().replaceAll(" ", "").toLowerCase() + ".slot." + slotNumber + ".tooltip";
 	}
 
 	protected void drawFluidInfo(FluidTank tank, int x, int y)
