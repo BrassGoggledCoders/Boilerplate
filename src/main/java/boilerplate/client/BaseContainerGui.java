@@ -1,9 +1,8 @@
 package boilerplate.client;
 
-import boilerplate.api.IToolTipSlot;
-import boilerplate.client.utils.GuiColors;
-import boilerplate.common.baseclasses.BaseTileWithInventory;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -11,12 +10,15 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
+
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
-import java.util.ArrayList;
-import java.util.List;
+import boilerplate.api.IToolTipSlot;
+import boilerplate.client.utils.GuiColors;
+import boilerplate.common.baseclasses.BaseTileWithInventory;
+import com.google.common.collect.Lists;
 
 public abstract class BaseContainerGui extends GuiContainer
 {
@@ -47,8 +49,8 @@ public abstract class BaseContainerGui extends GuiContainer
 			{
 				if (slot.slotNumber < this.tile.getSizeInventory())
 				{
-					this.func_146283_a(Lists.newArrayList(StatCollector.translateToLocal(
-							((IToolTipSlot)slot).getSlotTooltipUnloc())), mouseX - x, mouseY - y);
+					this.func_146283_a(Lists.newArrayList(StatCollector.translateToLocal(((IToolTipSlot) slot).getSlotTooltipUnloc())), mouseX - x,
+							mouseY - y);
 				}
 			}
 		}
@@ -64,13 +66,23 @@ public abstract class BaseContainerGui extends GuiContainer
 	{
 		ArrayList<String> lines = new ArrayList<String>();
 
-		if (tank.getFluid().getFluid() == FluidRegistry.WATER)
+		FluidStack fluidstack = tank.getFluid();
+
+		if (fluidstack == null)
+		{
+			lines.add(GuiColors.RED + "Empty");
+		}
+		else if (fluidstack.getFluid() == FluidRegistry.WATER)
 		{
 			lines.add(GuiColors.LIGHTBLUE + "Water");
 		}
-		else
+		else if (fluidstack.getFluid() == FluidRegistry.getFluid("steam"))
 		{
 			lines.add(GuiColors.GRAY + "Steam");
+		}
+		else
+		{
+			lines.add(GuiColors.GREEN + fluidstack.getLocalizedName());
 		}
 
 		lines.add(tank.getFluidAmount() + "/" + tank.getCapacity());
