@@ -1,33 +1,33 @@
 package boilerplate.common.containers.slots;
 
-import boilerplate.common.tiles.IOnSlotChange;
+import boilerplate.common.tiles.IOnSlotChanged;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
 /**
  * Created by Skylar on 8/31/2015.
  */
 public class SlotChanged extends Slot
 {
-	protected IOnSlotChange iOnSlotChange;
+	protected IOnSlotChanged iOnSlotChanged;
 
 	public SlotChanged(IInventory iInventory, int slotIndex, int posX, int posY)
 	{
 		super(iInventory, slotIndex, posX, posY);
-		if (iInventory instanceof IOnSlotChange)
+		if (iInventory instanceof IOnSlotChanged)
 		{
-			iOnSlotChange = (IOnSlotChange)iInventory;
+			iOnSlotChanged = (IOnSlotChanged)iInventory;
 		}
 	}
 
 	@Override
-	public void onSlotChange(ItemStack itemStack, ItemStack itemStack2)
+	public void onSlotChanged()
 	{
-		if (iOnSlotChange != null)
+
+		super.onSlotChanged();
+		if (iOnSlotChanged != null)
 		{
-			iOnSlotChange.onSlotChange(this, itemStack, itemStack2);
+			iOnSlotChanged.onSlotChanged(this);
 		}
-		super.onSlotChange(itemStack, itemStack2);
 	}
 }

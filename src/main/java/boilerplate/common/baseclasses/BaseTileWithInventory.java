@@ -10,7 +10,7 @@ package boilerplate.common.baseclasses;
 
 import boilerplate.api.IOpenableGUI;
 import boilerplate.api.IUniversallyWrenchable;
-import boilerplate.common.tiles.IOnSlotChange;
+import boilerplate.common.tiles.IOnSlotChanged;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.Slot;
@@ -27,7 +27,7 @@ import net.minecraft.world.World;
  *
  */
 public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable,
-		IOpenableGUI, IOnSlotChange
+		IOpenableGUI, IOnSlotChanged
 {
 	public ItemStack[] inventory;
 
