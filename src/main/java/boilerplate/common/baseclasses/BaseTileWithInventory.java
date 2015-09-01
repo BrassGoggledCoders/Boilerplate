@@ -8,16 +8,17 @@
  */
 package boilerplate.common.baseclasses;
 
+import boilerplate.api.IOpenableGUI;
+import boilerplate.api.IUniversallyWrenchable;
+import boilerplate.common.tiles.IOnSlotChange;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import boilerplate.api.IOpenableGUI;
-import boilerplate.api.IUniversallyWrenchable;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
@@ -25,7 +26,8 @@ import boilerplate.api.IUniversallyWrenchable;
  * @author decebaldecebal
  *
  */
-public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable, IOpenableGUI
+public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable,
+		IOpenableGUI, IOnSlotChange
 {
 	public ItemStack[] inventory;
 
@@ -241,8 +243,15 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	}
 
 	@Override
+	public void onSlotChange(Slot slot, ItemStack itemStack, ItemStack itemStack2)
+	{
+	}
+
+	@Override
 	public abstract Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
 
 	@Override
 	public abstract Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
+
+
 }
