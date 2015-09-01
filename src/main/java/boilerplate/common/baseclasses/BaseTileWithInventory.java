@@ -243,7 +243,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	}
 
 	@Override
-	public void onSlotChange(Slot slot, ItemStack itemStack, ItemStack itemStack2)
+	public void onSlotChanged(Slot slot)
 	{
 	}
 
