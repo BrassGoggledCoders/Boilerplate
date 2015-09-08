@@ -11,7 +11,7 @@ public class LoggerBoilerplate
 {
 	private static LoggerBoilerplate instance = null;
 
-	private LoggerBoilerplate() {}
+	protected LoggerBoilerplate() {}
 
 	public static LoggerBoilerplate getInstance()
 	{
