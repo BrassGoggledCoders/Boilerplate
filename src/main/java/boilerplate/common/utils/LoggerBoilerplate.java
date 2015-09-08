@@ -9,9 +9,21 @@ import org.apache.logging.log4j.Logger;
  */
 public class LoggerBoilerplate
 {
+	private static LoggerBoilerplate instance = null;
+
+	private LoggerBoilerplate() {}
+
+	public static LoggerBoilerplate getInstance()
+	{
+		if (instance == null) {
+			instance = new LoggerBoilerplate();
+		}
+		return instance;
+	}
+
 	public static void log(Level level, String message)
 	{
-		getLogger().log(level, message);
+		getInstance().getLogger().log(level, message);
 	}
 
 	public static void warning(String message)
@@ -34,8 +46,13 @@ public class LoggerBoilerplate
 		log(Level.ERROR, message);
 	}
 
-	protected static Logger getLogger()
+	protected Logger getLogger()
 	{
-		return LogManager.getLogger("boilerplate");
+		return LogManager.getLogger(getInstance().getLoggerName());
+	}
+
+	protected String getLoggerName()
+	{
+		return "boilerplate";
 	}
 }
