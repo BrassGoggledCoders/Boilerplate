@@ -17,7 +17,7 @@ import net.minecraft.block.BlockRailBase;
  */
 public class BlockUtils
 {
-	public boolean isRailBlock(Block block)
+	public static boolean isRailBlock(Block block)
 	{
 		return block instanceof BlockRailBase;
 	}
