@@ -1,3 +1,11 @@
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the BoilerCraft Mod for Minecraft.
+ *
+ * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
+ *
+ */
 package boilerplate.common.utils;
 
 import org.apache.logging.log4j.Level;
@@ -5,25 +13,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Created by Skylar on 9/7/2015.
+ * @author skysom
+ *
  */
 public class LoggerBoilerplate
 {
-	private static LoggerBoilerplate instance = null;
-
-	protected LoggerBoilerplate() {}
-
-	public static LoggerBoilerplate getInstance()
-	{
-		if (instance == null) {
-			instance = new LoggerBoilerplate();
-		}
-		return instance;
-	}
-
 	public static void log(Level level, String message)
 	{
-		getInstance().getLogger().log(level, message);
+		getLogger().log(level, message);
 	}
 
 	public static void warning(String message)
@@ -46,13 +43,8 @@ public class LoggerBoilerplate
 		log(Level.ERROR, message);
 	}
 
-	protected Logger getLogger()
+	protected static Logger getLogger()
 	{
-		return LogManager.getLogger(getInstance().getLoggerName());
-	}
-
-	protected String getLoggerName()
-	{
-		return "boilerplate";
+		return LogManager.getLogger("boilerplate");
 	}
 }
