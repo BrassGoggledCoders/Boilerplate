@@ -4,6 +4,7 @@ import boilerplate.common.utils.LoggerBoilerplate;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.config.Configuration;
 
 import java.util.ArrayList;
 
@@ -62,5 +63,13 @@ public class CompatibilityHandler
 			if(modCompat.getIsActive())
 				modCompat.postInit(event);
 		}
+	}
+
+	public Configuration configureModCompat(Configuration configuration)
+	{
+		for(ModCompat modCompat: getModCompat()) {
+			modCompat.setIsActive(configuration.get("ModCompat", modCompat.getName() + " Enabled", true).getBoolean(true));
+		}
+		return configuration;
 	}
 }

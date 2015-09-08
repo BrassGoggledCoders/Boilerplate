@@ -9,30 +9,33 @@ import org.apache.logging.log4j.Logger;
  */
 public class LoggerBoilerplate
 {
-	private static final Logger logger = LogManager.getLogger("boilerplate");
-
 	public static void log(Level level, String message)
 	{
-		logger.log(level, message);
+		getLogger().log(level, message);
 	}
 
 	public static void warning(String message)
 	{
-		logger.log(Level.WARN, message);
+		log(Level.WARN, message);
 	}
 
 	public static void info(String message)
 	{
-		logger.log(Level.INFO, message);
+		log(Level.INFO, message);
 	}
 
 	public static void fatal(String message)
 	{
-		logger.log(Level.FATAL, message);
+		log(Level.FATAL, message);
 	}
 
 	public static void error(String message)
 	{
-		logger.log(Level.ERROR, message);
+		log(Level.ERROR, message);
+	}
+
+	protected static Logger getLogger()
+	{
+		return LogManager.getLogger("boilerplate");
 	}
 }
