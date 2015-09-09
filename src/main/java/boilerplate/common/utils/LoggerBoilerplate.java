@@ -18,6 +18,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class LoggerBoilerplate
 {
+	private static Logger logger;
+
 	public static void log(Level level, String message)
 	{
 		getLogger().log(level, message);
@@ -45,6 +47,7 @@ public class LoggerBoilerplate
 
 	protected static Logger getLogger()
 	{
-		return LogManager.getLogger("boilerplate");
+		if (logger == null) logger = LogManager.getLogger("boilerplate");
+		return logger;
 	}
 }
