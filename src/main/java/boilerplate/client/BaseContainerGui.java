@@ -11,6 +11,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -90,17 +91,17 @@ public abstract class BaseContainerGui extends GuiContainer
 		this.drawHoveringText(lines, x - this.guiLeft, y - this.guiTop, this.fontRendererObj);
 	}
 
-	protected void drawFluid(FluidStack fluid, int level, int x, int y, int width, int height)
+	protected void drawFluid(Fluid fluid, int level, int x, int y, int width, int height)
 	{
-		if ((fluid == null) || (fluid.getFluid() == null))
+		if (fluid == null)
 		{
 			return;
 		}
 
-		IIcon icon = fluid.getFluid().getIcon();
+		IIcon icon = fluid.getIcon();
 		if (icon == null)
 		{
-			icon = fluid.getFluid().getBlock().getIcon(0, 0);
+			icon = fluid.getBlock().getIcon(0, 0);
 		}
 		if (icon != null)
 		{
