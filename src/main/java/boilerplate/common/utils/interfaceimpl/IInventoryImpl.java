@@ -106,7 +106,7 @@ public class IInventoryImpl implements IInventory
 	@Override
 	public boolean hasCustomInventoryName()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class IInventoryImpl implements IInventory
 	}
 
 	/*
-	 * Probably just better to not call this in here.
+	 * this will still need to be reimplemented in the class that instances this
 	 */
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityPlayer)
@@ -183,6 +183,10 @@ public class IInventoryImpl implements IInventory
 		tag.setTag("Items", nbttaglist);
 	}
 
+	public void setInventoryName(String name)
+	{
+		this.inventoryName = name;
+	}
 
 	public ItemStack[] getInventoryItemStacks()
 	{
