@@ -8,7 +8,6 @@
  */
 package boilerplate.common;
 
-import boilerplate.common.utils.LoggerBoilerplate;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -18,13 +17,16 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+
 import net.minecraftforge.common.config.Configuration;
+
+import boilerplate.common.utils.LoggerBoilerplate;
 
 /**
  * @author Surseance
  *
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "6.0.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
+@Mod(modid = "boilerplate", name = "Boilerplate", version = "6.1.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
 public class Boilerplate
 {
 	/**
