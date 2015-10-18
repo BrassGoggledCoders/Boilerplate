@@ -11,29 +11,12 @@ package boilerplate.common.utils;
 import java.util.Enumeration;
 import java.util.Vector;
 
-import net.minecraft.util.StatCollector;
-
 /**
  * @author warlordjones
  *
  */
 public final class StringUtils
 {
-	public static String camelCase(final String input)
-	{
-		return input.substring(0, 1).toLowerCase() + input.substring(1);
-	}
-
-	public static String titleCase(final String input)
-	{
-		return input.substring(0, 1).toUpperCase() + input.substring(1);
-	}
-
-	public static String localize(final String key)
-	{
-		return StatCollector.translateToLocal(key);
-	}
-
 	@SuppressWarnings("all")
 	public static String[] wrap(String input, int len)
 	{
