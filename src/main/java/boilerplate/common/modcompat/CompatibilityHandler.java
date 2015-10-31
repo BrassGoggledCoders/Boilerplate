@@ -1,6 +1,7 @@
 package boilerplate.common.modcompat;
 
-import boilerplate.common.utils.LoggerBoilerplate;
+import boilerplate.common.Boilerplate;
+import boilerplate.common.utils.ILogger;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -13,6 +14,18 @@ import java.util.ArrayList;
  */
 public class CompatibilityHandler
 {
+	ILogger logger;
+
+	public CompatibilityHandler()
+	{
+		this(Boilerplate.logger);
+	}
+
+	public CompatibilityHandler(ILogger logger)
+	{
+		this.logger = logger;
+	}
+
 	private ArrayList<ModCompat> modCompatEnabled = new ArrayList<ModCompat>();
 
 	public ArrayList<ModCompat> getModCompat()
@@ -32,18 +45,20 @@ public class CompatibilityHandler
 			if(!modCompat.areRequirementsMet() && modCompat.getIsActive())
 			{
 				modCompat.setIsActive(false);
-				LoggerBoilerplate.error("Requirements are not met for " + modCompat.getName() + ". Deactivating");
+				logger.error("Requirements are not met for " + modCompat.getName() + ". Deactivating");
 			}
 			if(modCompat.getIsActive())
 			{
-				LoggerBoilerplate.info("Loading " + modCompat.getName() + " module");
+				logger.info("Loading " + modCompat.getName() + " module");
 			}
 		}
 
 		for(ModCompat modCompat : getModCompat())
 		{
 			if(modCompat.getIsActive())
+			{
 				modCompat.preInit(event);
+			}
 		}
 	}
 
@@ -52,7 +67,9 @@ public class CompatibilityHandler
 		for(ModCompat modCompat : getModCompat())
 		{
 			if(modCompat.getIsActive())
+			{
 				modCompat.init(event);
+			}
 		}
 	}
 
@@ -61,7 +78,9 @@ public class CompatibilityHandler
 		for(ModCompat modCompat : getModCompat())
 		{
 			if(modCompat.getIsActive())
+			{
 				modCompat.postInit(event);
+			}
 		}
 	}
 

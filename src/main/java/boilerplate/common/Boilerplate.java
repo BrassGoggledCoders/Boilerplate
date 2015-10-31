@@ -8,7 +8,7 @@
  */
 package boilerplate.common;
 
-import boilerplate.common.utils.LoggerBoilerplate;
+import boilerplate.common.utils.ModLogger;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -24,9 +24,14 @@ import net.minecraftforge.common.config.Configuration;
  * @author Surseance
  *
  */
-@Mod(modid = "boilerplate", name = "Boilerplate", version = "6.0.0", dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart; after:MineFactoryReloaded")
+@Mod(modid = Boilerplate.MODID, name = Boilerplate.NAME, version = Boilerplate.VERSION, dependencies = Boilerplate.DEPENDENCIES)
 public class Boilerplate
 {
+	public final static String MODID = "boilerplate";
+	public final static String NAME = "Boilerplate";
+	public final static String VERSION = "6.0.0";
+	public final static String DEPENDENCIES = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;" +
+			"after:MineFactoryReloaded";
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
 	 *
@@ -49,9 +54,12 @@ public class Boilerplate
 	@Instance("boilerplate")
 	public static Boilerplate instance;
 
+	public static ModLogger logger;
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		logger = new ModLogger(Boilerplate.MODID);
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		// TODO: particles config option on client only
@@ -69,7 +77,7 @@ public class Boilerplate
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		LoggerBoilerplate.info("GNU Terry Prachett");
+		logger.info("GNU Terry Prachett");
 		/*
 		 * NBTTagCompound tag = new NBTTagCompound(); NBTTagCompound item1 = new
 		 * NBTTagCompound(); new ItemStack(Items.cake).writeToNBT(item1);
