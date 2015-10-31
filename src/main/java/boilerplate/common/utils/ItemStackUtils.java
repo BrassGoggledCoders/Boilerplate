@@ -8,9 +8,6 @@
  */
 package boilerplate.common.utils;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -24,6 +21,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * @author warlordjones & decebaldecebal
@@ -98,5 +98,19 @@ public class ItemStackUtils
 		}
 
 		return -1;
+	}
+
+	public static boolean isItemNonNull(ItemStack itemStack)
+	{
+		return itemStack != null && itemStack.getItem() != null;
+	}
+
+	public static boolean isItemInstanceOf(ItemStack itemStack, Class itemClass)
+	{
+		if(isItemNonNull(itemStack) && itemClass != null)
+		{
+			return itemClass.isInstance(itemStack.getItem());
+		}
+		return false;
 	}
 }
