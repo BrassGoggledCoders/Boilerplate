@@ -8,7 +8,9 @@
  */
 package boilerplate.common.utils.recipe;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -35,5 +37,10 @@ public class RecipeUtils
 	{
 		CustomMetalRecipes customMetalRecipes = new CustomMetalRecipes(block, ingot, nugget, meta);
 		customMetalRecipes.addRecipes(CraftingManager.getInstance());
+	}
+
+	public static void addMinecartRecipe(ItemStack resultItemStack, ItemStack cartBlock)
+	{
+		GameRegistry.addShapelessRecipe(resultItemStack, cartBlock, Items.minecart);
 	}
 }
