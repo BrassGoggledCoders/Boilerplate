@@ -16,7 +16,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
@@ -102,11 +101,11 @@ public class RegistryHelper
 		return null;
 	}
 
-	public static void registerEntity(Mod mod, Entity entity, String name)
+	public static void registerEntity(Mod mod, Class entityClass, String name)
 	{
 		int entityID = getEntityID(mod.modid(), name);
 
-		EntityRegistry.registerModEntity(entity.getClass(), name, entityID, mod, 64, 1, true);
+		EntityRegistry.registerModEntity(entityClass, name, entityID, mod, 64, 1, true);
 	}
 
 	private static int getEntityID(String modid, String entityName)
