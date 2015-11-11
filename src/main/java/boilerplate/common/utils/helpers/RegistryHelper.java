@@ -8,11 +8,11 @@
  */
 package boilerplate.common.utils.helpers;
 
+import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.baseclasses.items.ItemBlockWithDesc;
 import boilerplate.common.baseclasses.items.ItemBlockWithDescAndMeta;
 import boilerplate.common.utils.entity.KeyValue;
 import boilerplate.common.utils.entity.ModWithEntityList;
-import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -101,9 +101,9 @@ public class RegistryHelper
 		return null;
 	}
 
-	public static void registerEntity(Mod mod, Class entityClass, String name)
+	public static void registerEntity(IBoilerplateMod mod, Class entityClass, String name)
 	{
-		int entityID = getEntityID(mod.modid(), name);
+		int entityID = getEntityID(mod.getModID(), name);
 
 		EntityRegistry.registerModEntity(entityClass, name, entityID, mod, 64, 1, true);
 	}
