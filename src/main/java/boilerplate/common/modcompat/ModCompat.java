@@ -37,6 +37,11 @@ public abstract class ModCompat
 
 	}
 
+	public void clientInit(FMLInitializationEvent event)
+	{
+
+	}
+
 	public void setIsActive(Boolean isActive)
 	{
 		this.isActive = isActive;

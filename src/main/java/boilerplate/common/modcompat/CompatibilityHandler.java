@@ -84,6 +84,17 @@ public class CompatibilityHandler
 		}
 	}
 
+	public void clientInit(FMLInitializationEvent event)
+	{
+		for(ModCompat modCompat : getModCompat())
+		{
+			if(modCompat.getIsActive())
+			{
+				modCompat.clientInit(event);
+			}
+		}
+	}
+
 	public Configuration configureModCompat(Configuration configuration)
 	{
 		for(ModCompat modCompat: getModCompat()) {
