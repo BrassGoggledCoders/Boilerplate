@@ -100,6 +100,15 @@ public class ItemStackUtils
 		return -1;
 	}
 
+	public static ItemStack copyStackWithAmount(ItemStack stack, int amount)
+	{
+		if(stack==null)
+			return null;
+		ItemStack s2 = stack.copy();
+		s2.stackSize=amount;
+		return s2;
+	}
+
 	public static boolean isItemNonNull(ItemStack itemStack)
 	{
 		return itemStack != null && itemStack.getItem() != null;
