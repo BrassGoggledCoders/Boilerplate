@@ -1,3 +1,15 @@
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the Steamcraft 2 Mod for Minecraft.
+ *
+ * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
+ *
+ * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
+ * Steamcraft (c) Proloe 2011
+ * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
+ *
+ */
 package boilerplate.common.modcompat;
 
 import boilerplate.common.Boilerplate;
@@ -8,9 +20,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by Skylar on 9/7/2015.
+ * @author SkySom
  */
 public class CompatibilityHandler
 {
@@ -26,21 +40,32 @@ public class CompatibilityHandler
 		this.logger = logger;
 	}
 
-	private ArrayList<ModCompat> modCompatEnabled = new ArrayList<ModCompat>();
+	private HashMap<String, ModCompat> modCompatEnabled = new HashMap<>();
 
+	@Deprecated
 	public ArrayList<ModCompat> getModCompat()
+	{
+		ArrayList<ModCompat> arrayList = new ArrayList<>();
+		for(Map.Entry<String, ModCompat> entry : modCompatEnabled.entrySet())
+		{
+			arrayList.add(entry.getValue());
+		}
+		return arrayList;
+	}
+
+	public HashMap<String, ModCompat> getModCompatEnabled()
 	{
 		return modCompatEnabled;
 	}
 
 	public void addModCompat(ModCompat modCompat)
 	{
-		modCompatEnabled.add(modCompat);
+		modCompatEnabled.put(modCompat.getName(), modCompat);
 	}
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		for(ModCompat modCompat : getModCompat())
+		for(ModCompat modCompat : getModCompatEnabled().values())
 		{
 			if(!modCompat.areRequirementsMet() && modCompat.getIsActive())
 			{
@@ -53,7 +78,7 @@ public class CompatibilityHandler
 			}
 		}
 
-		for(ModCompat modCompat : getModCompat())
+		for(ModCompat modCompat : getModCompatEnabled().values())
 		{
 			if(modCompat.getIsActive())
 			{
@@ -64,7 +89,7 @@ public class CompatibilityHandler
 
 	public void init(FMLInitializationEvent event)
 	{
-		for(ModCompat modCompat : getModCompat())
+		for(ModCompat modCompat : getModCompatEnabled().values())
 		{
 			if(modCompat.getIsActive())
 			{
@@ -75,7 +100,7 @@ public class CompatibilityHandler
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		for(ModCompat modCompat : getModCompat())
+		for(ModCompat modCompat : getModCompatEnabled().values())
 		{
 			if(modCompat.getIsActive())
 			{
@@ -86,7 +111,7 @@ public class CompatibilityHandler
 
 	public void clientInit(FMLInitializationEvent event)
 	{
-		for(ModCompat modCompat : getModCompat())
+		for(ModCompat modCompat : getModCompatEnabled().values())
 		{
 			if(modCompat.getIsActive())
 			{
@@ -97,7 +122,7 @@ public class CompatibilityHandler
 
 	public Configuration configureModCompat(Configuration configuration)
 	{
-		for(ModCompat modCompat: getModCompat()) {
+		for(ModCompat modCompat: getModCompatEnabled().values()) {
 			modCompat.setIsActive(configuration.get("ModCompat", modCompat.getName() + " Enabled", true).getBoolean(true));
 		}
 		return configuration;
