@@ -8,8 +8,9 @@
  */
 package boilerplate.common;
 
+import boilerplate.common.baseclasses.items.ItemDebuggerStick;
 import boilerplate.common.utils.ModLogger;
-
+import boilerplate.common.utils.helpers.RegistryHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -19,7 +20,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-
+import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.config.Configuration;
 
 /**
@@ -31,7 +32,7 @@ public class Boilerplate
 {
 	public final static String MODID = "boilerplate";
 	public final static String NAME = "Boilerplate";
-	public final static String VERSION = "6.0.0";
+	public final static String VERSION = "@VERSION@";
 	public final static String DEPENDENCIES = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;" +
 			"after:MineFactoryReloaded";
 	/**
@@ -49,6 +50,9 @@ public class Boilerplate
 			"27672103-b8c7-400d-8817-49de433336dd" };
 
 	public static int trailParticles;
+	public static boolean debuggerStick;
+
+	public static ItemDebuggerStick ITEM_DEBUG_STICK;
 
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
@@ -66,6 +70,15 @@ public class Boilerplate
 		config.load();
 		// TODO: particles config option on client only
 		trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 0, "0 to disable").getInt();
+		debuggerStick = config.get("debugging", "activateDebuggingStickOfDoom", false, "True to enable").getBoolean();
+
+		if(debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
+		{
+			ITEM_DEBUG_STICK = new ItemDebuggerStick();
+			RegistryHelper.registerItem(ITEM_DEBUG_STICK, MODID);
+			logger.info("The Debugging Stick of Doom is active!");
+		}
+
 		config.save();
 	}
 
@@ -80,18 +93,6 @@ public class Boilerplate
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		logger.info("GNU Terry Prachett");
-		/*
-		 * NBTTagCompound tag = new NBTTagCompound(); NBTTagCompound item1 = new
-		 * NBTTagCompound(); new ItemStack(Items.cake).writeToNBT(item1);
-		 * item1.setTag("input1", tag); NBTTagCompound item2 = new
-		 * NBTTagCompound(); new ItemStack(Items.apple).writeToNBT(item2);
-		 * item2.setTag("input2", tag); NBTTagCompound item3 = new
-		 * NBTTagCompound(); new
-		 * ItemStack(Items.baked_potato).writeToNBT(item3);
-		 * item3.setTag("result", tag);
-		 * FMLInterModComms.sendMessage("steamcraft2", "addBloomeryRecipe",
-		 * tag);
-		 */
 	}
 
 	@EventHandler

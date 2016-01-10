@@ -29,13 +29,16 @@ project.ext {
     mcVersion = "1.7.10"
 }
 
-version = project.ext.mcVersion + "-6.1.0.50" //+ project.ext.buildNum
+version = project.ext.mcVersion + "-6.1.0." + project.ext.buildNum
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
 
 minecraft {
     version = "${project.ext.mcVersion}-10.13.3.1424-${project.ext.mcVersion}"
     runDir = "eclipse/"
+
+    replace "@VERSION@", project.version
+    replaceIn "Boilerplate.java"
 }
 
 processResources
@@ -47,7 +50,7 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
@@ -70,6 +73,16 @@ task deobfJar(type: Jar) {
 
 artifacts {
     archives deobfJar
+}
+
+sourceSets {
+    main { output.resourcesDir = output.classesDir }
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
 }
 
 task("uploadJars", dependsOn: "reobf") {

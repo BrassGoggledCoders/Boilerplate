@@ -1,0 +1,21 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "boilerplate",
+    "name": "Boilerplate",
+    "description": "Base Library Mod for all Boilerplate",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "http://minecraft.curseforge.com/projects/boilerplate",
+    "updateUrl": "http://minecraft.curseforge.com/projects/boilerplate",
+    "authorList": ["SkySom", "warlordjones", "decebaldecebal"],
+    "credits": "Created by the Brass Goggled Coders",
+    "logoFile": "assets/boilerplate/logo.png",
+    "screenshots": [],
+    "parent": "",
+    "requiredMods": ["Forge"],
+    "dependencies": [],
+    "dependants": ["SteamCraft2", "MoarCarts", "BrassUtils"],
+    "useDependencyInformation": true
+  }]
+}
