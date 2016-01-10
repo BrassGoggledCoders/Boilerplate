@@ -107,10 +107,7 @@ public class ItemStackUtils
 
 	public static boolean isItemInstanceOf(ItemStack itemStack, Class itemClass)
 	{
-		if(isItemNonNull(itemStack) && itemClass != null)
-		{
-			return itemClass.isInstance(itemStack.getItem());
-		}
-		return false;
+		return isItemNonNull(itemStack) && itemClass != null && itemClass.isInstance(itemStack.getItem());
 	}
+
 }
