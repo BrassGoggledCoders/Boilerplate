@@ -44,7 +44,7 @@ public class Tools
 
 	public static void setupToolItems()
 	{
-		HashMap<String, String> classStrings = new HashMap<>();
+		HashMap<String, String> classStrings = new HashMap<String, String>();
 		classStrings.put("BC Wrench", "buildcraft.api.tools.IToolWrench");
 		classStrings.put("TE Hammer", "cofh.api.item.IToolHammer");
 		classStrings.put("RC Crowbar", "mods.railcraft.api.core.items.IToolCrowbar");
