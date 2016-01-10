@@ -40,12 +40,12 @@ public class CompatibilityHandler
 		this.logger = logger;
 	}
 
-	private HashMap<String, ModCompat> modCompatEnabled = new HashMap<>();
+	private HashMap<String, ModCompat> modCompatEnabled = new HashMap<String, ModCompat>();
 
 	@Deprecated
 	public ArrayList<ModCompat> getModCompat()
 	{
-		ArrayList<ModCompat> arrayList = new ArrayList<>();
+		ArrayList<ModCompat> arrayList = new ArrayList<ModCompat>();
 		for(Map.Entry<String, ModCompat> entry : modCompatEnabled.entrySet())
 		{
 			arrayList.add(entry.getValue());
