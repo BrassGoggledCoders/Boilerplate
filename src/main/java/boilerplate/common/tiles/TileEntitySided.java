@@ -3,6 +3,8 @@ package boilerplate.common.tiles;
 import boilerplate.common.blocks.SideType;
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.Arrays;
+
 /**
  * @author SkySom
  */
@@ -14,6 +16,7 @@ public abstract class TileEntitySided extends TileEntityBase
 	{
 		super();
 		sideConfig = new SideType[6];
+		Arrays.fill(sideConfig, SideType.NONE);
 	}
 
 	public void toggleSide(int side)
