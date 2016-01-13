@@ -50,6 +50,7 @@ public class Tools
 		classStrings.put("RC Crowbar", "mods.railcraft.api.core.items.IToolCrowbar");
 		classStrings.put("MFR Hammer", "powercrystals.minefactoryreloaded.api.IMFRHammer");
 		classStrings.put("AE Wrench", "appeng.api.implementations.items.IAEWrench");
+		toolClasses = new HashMap<String, Class>();
 
 		for(Map.Entry<String, String> entry : classStrings.entrySet())
 		{
