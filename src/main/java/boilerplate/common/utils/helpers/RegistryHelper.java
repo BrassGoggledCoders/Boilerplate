@@ -16,6 +16,7 @@ import boilerplate.common.utils.entity.ModWithEntityList;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
@@ -101,7 +102,7 @@ public class RegistryHelper
 		return null;
 	}
 
-	public static void registerEntity(IBoilerplateMod mod, Class entityClass, String name)
+	public static void registerEntity(IBoilerplateMod mod, Class<? extends Entity> entityClass, String name)
 	{
 		int entityID = getEntityID(mod.getModID(), name);
 

@@ -18,4 +18,6 @@ package boilerplate.common;
 public interface IBoilerplateMod
 {
 	String getModID();
+
+	Object getInstance();
 }
