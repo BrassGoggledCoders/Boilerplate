@@ -16,7 +16,7 @@ public class Tools
 	public static boolean isItemATool(ItemStack itemStack)
 	{
 		boolean isTool = false;
-		if(itemStack != null)
+		if(ItemStackUtils.isItemNonNull(itemStack))
 		{
 			if(itemStack.getItem().getToolClasses(itemStack).contains("IE_HAMMER"))
 			{

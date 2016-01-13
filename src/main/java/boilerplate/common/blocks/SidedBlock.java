@@ -33,7 +33,8 @@ public abstract class SidedBlock extends BlockContainer
 	protected SidedBlock(Material material)
 	{
 		super(material);
-
+		setHardness(3.0F);
+		setResistance(15.0F);
 	}
 
 	@Override
@@ -83,9 +84,9 @@ public abstract class SidedBlock extends BlockContainer
 	{
 		if(side < 2)
 		{
-			return this.topIcons[1];
+			return this.topIcons[SideType.NONE.ordinal()];
 		} else {
-			return this.sideIcons[1];
+			return this.sideIcons[SideType.NONE.ordinal()];
 		}
 	}
 }
