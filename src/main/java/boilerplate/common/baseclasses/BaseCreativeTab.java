@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
  * @author warlordjones
  *
  */
-public class BaseCreativeTab extends CreativeTabs
+public abstract class BaseCreativeTab extends CreativeTabs
 {
 	public BaseCreativeTab(String name)
 	{
@@ -23,8 +23,5 @@ public class BaseCreativeTab extends CreativeTabs
 	}
 
 	@Override
-	public Item getTabIconItem()
-	{
-		return null;
-	}
+	public abstract Item getTabIconItem();
 }
