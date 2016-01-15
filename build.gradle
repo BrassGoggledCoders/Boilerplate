@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
@@ -11,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
     }
 }
 
@@ -22,11 +23,12 @@ repositories {
     }
 }
 
-apply plugin: 'forge'
+apply plugin: 'net.minecraftforge.gradle.forge'
 
 project.ext {
     buildNum = System.getenv("BUILD_NUMBER")
-    mcVersion = "1.7.10"
+    mcVersion = "1.8.9"
+    forgeVersion = "11.15.0.1698"
 }
 
 version = project.ext.mcVersion + "-6.2.0." + project.ext.buildNum
@@ -35,8 +37,10 @@ group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
 
 minecraft {
-    version = "${project.ext.mcVersion}-10.13.3.1424-${project.ext.mcVersion}"
+    version = "${project.ext.mcVersion}-${project.ext.forgeVersion}"
+    println version
     runDir = "eclipse/"
+    mappings = "snapshot_20160113"
 
     replace "@VERSION@", project.version
     replaceIn "Boilerplate.java"
@@ -81,7 +85,7 @@ idea {
         inheritOutputDirs = true
     }
 }
-
+/*
 task("uploadJars", dependsOn: "reobf") {
     description = "uploads JARs"
     if (System.getenv("local_maven") != null) {
@@ -129,4 +133,4 @@ task("uploadJars", dependsOn: "reobf") {
             }
         }
     }
-}
+}*/
