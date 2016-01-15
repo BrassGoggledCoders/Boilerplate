@@ -1,14 +1,20 @@
 package boilerplate.common.tiles;
 
+import boilerplate.api.IBlockOverlayText;
+import boilerplate.common.Boilerplate;
 import boilerplate.common.blocks.SideType;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Arrays;
 
 /**
  * @author SkySom
  */
-public abstract class TileEntitySided extends TileEntityBase
+public abstract class TileEntitySided extends TileEntityBase implements IBlockOverlayText
 {
 	private SideType[] sideConfig;
 
@@ -86,5 +92,22 @@ public abstract class TileEntitySided extends TileEntityBase
 		{
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
+	}
+
+	@Override
+	public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool)
+	{
+		if(tool && Boilerplate.colorblind)
+		{
+			SideType facing = sideConfig[Math.min(sideConfig.length-1, mop.sideHit)];
+			SideType opposite = sideConfig[Math.min(sideConfig.length-1, ForgeDirection.OPPOSITES[mop.sideHit])];
+			return new String[]{
+					StatCollector.translateToLocal("boilerplate.blockSide.facing")
+							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ facing.name().toLowerCase()),
+					StatCollector.translateToLocal("boilerplate.blockSide.opposite")
+							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ opposite.name().toLowerCase())
+			};
+		}
+		return null;
 	}
 }

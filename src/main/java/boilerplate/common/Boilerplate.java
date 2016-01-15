@@ -8,6 +8,7 @@
  */
 package boilerplate.common;
 
+import boilerplate.client.events.ClientEventsHandler;
 import boilerplate.common.baseclasses.items.ItemDebuggerStick;
 import boilerplate.common.utils.ModLogger;
 import boilerplate.common.utils.helpers.RegistryHelper;
@@ -21,6 +22,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.classloading.FMLForgePlugin;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 /**
@@ -51,6 +53,7 @@ public class Boilerplate
 
 	public static int trailParticles;
 	public static boolean debuggerStick;
+	public static boolean colorblind;
 
 	public static ItemDebuggerStick ITEM_DEBUG_STICK;
 
@@ -70,6 +73,7 @@ public class Boilerplate
 		config.load();
 		// TODO: particles config option on client only
 		trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 0, "0 to disable").getInt();
+		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
 		debuggerStick = config.get("debugging", "activateDebuggingStickOfDoom", false, "True to enable").getBoolean();
 
 		if(debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
@@ -86,6 +90,7 @@ public class Boilerplate
 	public void init(FMLInitializationEvent event)
 	{
 		FMLCommonHandler.instance().bus().register(new ForgeEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		proxy.registerRenderHandlers();
 	}
 
