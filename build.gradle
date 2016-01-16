@@ -28,8 +28,8 @@ project.ext {
     buildNum = System.getenv("BUILD_NUMBER")
     mcVersion = "1.7.10"
 }
-
-version = project.ext.mcVersion + "-6.2.0." + project.ext.buildNum
+bpversion = "6.2.0." + project.ext.buildNum
+version = project.ext.mcVersion + "-" + bpversion
 
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
@@ -38,7 +38,7 @@ minecraft {
     version = "${project.ext.mcVersion}-10.13.3.1424-${project.ext.mcVersion}"
     runDir = "eclipse/"
 
-    replace "@VERSION@", project.version
+    replace "@VERSION@", project.bpversion
     replaceIn "Boilerplate.java"
 }
 
