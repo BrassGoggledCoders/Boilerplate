@@ -27,9 +27,10 @@ apply plugin: 'forge'
 project.ext {
     buildNum = System.getenv("BUILD_NUMBER")
     mcVersion = "1.7.10"
+    bpversion = "6.2.0." + project.ext.buildNum
 }
-bpversion = "6.2.0." + project.ext.buildNum
-version = project.ext.mcVersion + "-" + bpversion
+
+version = project.ext.mcVersion + "-" + project.ext.bpversion
 
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
@@ -38,7 +39,7 @@ minecraft {
     version = "${project.ext.mcVersion}-10.13.3.1424-${project.ext.mcVersion}"
     runDir = "eclipse/"
 
-    replace "@VERSION@", project.bpversion
+    replace "@VERSION@", project.ext.bpversion
     replaceIn "Boilerplate.java"
 }
 
