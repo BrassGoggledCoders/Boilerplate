@@ -6,7 +6,6 @@ import boilerplate.common.blocks.SideType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Arrays;
@@ -102,10 +101,10 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 			SideType facing = sideConfig[Math.min(sideConfig.length-1, mop.sideHit)];
 			SideType opposite = sideConfig[Math.min(sideConfig.length-1, ForgeDirection.OPPOSITES[mop.sideHit])];
 			return new String[]{
-					StatCollector.translateToLocal("boilerplate.blockSide.facing")
-							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ facing.name().toLowerCase()),
-					StatCollector.translateToLocal("boilerplate.blockSide.opposite")
-							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ opposite.name().toLowerCase())
+					Boilerplate.proxy.translate("blockSide.facing") + ": " +
+							Boilerplate.proxy.translate("sidetype." + facing.name().toLowerCase()),
+					Boilerplate.proxy.translate("blockSide.opposite") + ": " +
+							Boilerplate.proxy.translate("sidetype." + opposite.name().toLowerCase())
 			};
 		}
 		return null;
