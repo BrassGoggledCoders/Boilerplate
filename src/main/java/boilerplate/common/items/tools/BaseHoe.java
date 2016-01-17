@@ -10,7 +10,7 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.baseclasses.items.tools;
+package boilerplate.common.items.tools;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

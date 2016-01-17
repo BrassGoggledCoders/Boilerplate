@@ -8,28 +8,22 @@
  */
 package boilerplate.common.blocks;
 
-import boilerplate.common.tiles.TileEntitySided;
+import boilerplate.common.tileentities.TileEntitySided;
 import boilerplate.common.utils.Tools;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * @author SkySom
  */
 public abstract class SidedBlock extends BlockContainer
 {
-	public IIcon topIcons[] = new IIcon[3];
-	public IIcon sideIcons[] = new IIcon[3];
-
 	protected SidedBlock(Material material)
 	{
 		super(material);
@@ -38,9 +32,9 @@ public abstract class SidedBlock extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		TileEntity te = world.getTileEntity(x, y, z);
+		TileEntity te = world.getTileEntity(pos);
 		if(te instanceof TileEntitySided)
 		{
 			if(!world.isRemote)
@@ -50,43 +44,13 @@ public abstract class SidedBlock extends BlockContainer
 				{
 					if(player.isSneaking())
 					{
-						side = ForgeDirection.OPPOSITES[side];
+						side = side.getOpposite();
 					}
-					tileEntitySided.toggleSide(side);
+					tileEntitySided.toggleSide(side.ordinal());
 					return true;
 				}
 			}
 		}
 		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public abstract void registerBlockIcons(IIconRegister iconRegister);
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int blockSide)
-	{
-		TileEntitySided tileEntitySided = (TileEntitySided) world.getTileEntity(x, y, z);
-		if(blockSide < 2)
-		{
-			return this.topIcons[tileEntitySided.getSideValue(blockSide).ordinal()];
-		} else
-		{
-			return this.sideIcons[tileEntitySided.getSideValue(blockSide).ordinal()];
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
-	{
-		if(side < 2)
-		{
-			return this.topIcons[SideType.NONE.ordinal()];
-		} else {
-			return this.sideIcons[SideType.NONE.ordinal()];
-		}
 	}
 }

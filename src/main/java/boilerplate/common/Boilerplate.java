@@ -9,7 +9,7 @@
 package boilerplate.common;
 
 import boilerplate.client.events.ClientEventsHandler;
-import boilerplate.common.baseclasses.items.ItemDebuggerStick;
+import boilerplate.common.items.ItemDebuggerStick;
 import boilerplate.common.utils.ModLogger;
 import boilerplate.common.utils.helpers.RegistryHelper;
 import cpw.mods.fml.common.FMLCommonHandler;

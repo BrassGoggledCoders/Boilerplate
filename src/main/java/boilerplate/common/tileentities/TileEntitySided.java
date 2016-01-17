@@ -1,4 +1,4 @@
-package boilerplate.common.tiles;
+package boilerplate.common.tileentities;
 
 import boilerplate.api.IBlockOverlayText;
 import boilerplate.common.Boilerplate;
@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Arrays;
 
@@ -34,7 +33,7 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 			type = 0;
 		}
 		this.sideConfig[side]= SideType.values()[type];
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 0, 0);
+		worldObj.addBlockEvent(this.getPos(), this.getBlockType(), 0, 0);
 	}
 
 	public void setSideConfig(int side, SideType sideType)
@@ -80,7 +79,7 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	{
 		if(id==0)
 		{
-			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			this.worldObj.markBlockForUpdate(this.getPos());
 			return true;
 		}
 		return false;
@@ -90,7 +89,7 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	{
 		if(!worldObj.isRemote)
 		{
-			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			this.worldObj.markBlockForUpdate(this.getPos());
 		}
 	}
 
@@ -99,8 +98,8 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	{
 		if(tool && Boilerplate.colorblind)
 		{
-			SideType facing = sideConfig[Math.min(sideConfig.length-1, mop.sideHit)];
-			SideType opposite = sideConfig[Math.min(sideConfig.length-1, ForgeDirection.OPPOSITES[mop.sideHit])];
+			SideType facing = sideConfig[mop.sideHit.ordinal()];
+			SideType opposite = sideConfig[mop.sideHit.getOpposite().ordinal()];
 			return new String[]{
 					StatCollector.translateToLocal("boilerplate.blockSide.facing")
 							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ facing.name().toLowerCase()),

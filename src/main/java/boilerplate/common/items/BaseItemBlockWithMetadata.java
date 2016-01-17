@@ -6,32 +6,37 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses.items;
-
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlockWithMetadata;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+package boilerplate.common.items;
 
 import boilerplate.client.ClientHelper;
 import boilerplate.common.utils.StringUtils;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+
+import java.util.List;
 
 /**
  * @author warlordjones
  *
  */
-public class ItemBlockWithDescAndMeta extends ItemBlockWithMetadata
+public class BaseItemBlockWithMetadata extends ItemBlock
 {
 	Block block;
 
-	public ItemBlockWithDescAndMeta(Block block)
+	public BaseItemBlockWithMetadata(Block block)
 	{
-		super(block, block);
+		super(block);
 		this.block = block;
 		this.setHasSubtypes(true);
+	}
+
+	@Override
+	public int getMetadata(int metadata)
+	{
+		return metadata;
 	}
 
 	@Override

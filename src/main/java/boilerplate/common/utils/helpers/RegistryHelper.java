@@ -9,8 +9,8 @@
 package boilerplate.common.utils.helpers;
 
 import boilerplate.common.IBoilerplateMod;
-import boilerplate.common.baseclasses.items.ItemBlockWithDesc;
-import boilerplate.common.baseclasses.items.ItemBlockWithDescAndMeta;
+import boilerplate.common.items.ItemBlockWithDesc;
+import boilerplate.common.items.ItemBlockWithDescAndMeta;
 import boilerplate.common.utils.entity.KeyValue;
 import boilerplate.common.utils.entity.ModWithEntityList;
 import cpw.mods.fml.common.registry.EntityRegistry;

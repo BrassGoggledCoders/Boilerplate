@@ -10,7 +10,7 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.client;
+package boilerplate.client.guis;
 
 import boilerplate.api.IOpenableGUI;
 import boilerplate.common.IBoilerplateMod;

@@ -1,4 +1,4 @@
-package boilerplate.common.tiles;
+package boilerplate.common.tileentities;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

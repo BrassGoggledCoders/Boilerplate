@@ -1,17 +1,16 @@
-package boilerplate.common.baseclasses.items;
+package boilerplate.common.items;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
 /**
- * Created by Skylar on 9/2/2015.
+ * @author Skylar on 9/2/2015.
  */
 public class BaseSteamItem extends RootItem implements IFluidContainerItem
 {
-	private IIcon fullIcon;
+	//TODO: Render Stuff
 	public int maxSteam;
 
 	public BaseSteamItem(int maxSteam)
@@ -38,9 +37,9 @@ public class BaseSteamItem extends RootItem implements IFluidContainerItem
 	@Override
 	public FluidStack getFluid(ItemStack container)
 	{
-		if ((container.stackTagCompound == null) || !container.stackTagCompound.hasKey("Fluid"))
+		if ((container.getTagCompound() == null) || !container.getTagCompound().hasKey("Fluid"))
 			return null;
-		return FluidStack.loadFluidStackFromNBT(container.stackTagCompound.getCompoundTag("Fluid"));
+		return FluidStack.loadFluidStackFromNBT(container.getTagCompound().getCompoundTag("Fluid"));
 	}
 
 	@Override
@@ -57,10 +56,10 @@ public class BaseSteamItem extends RootItem implements IFluidContainerItem
 
 		if (!doFill)
 		{
-			if ((container.stackTagCompound == null) || !container.stackTagCompound.hasKey("Fluid"))
+			if ((container.getTagCompound() == null) || !container.getTagCompound().hasKey("Fluid"))
 				return Math.min(this.maxSteam, resource.amount);
 
-			FluidStack stack = FluidStack.loadFluidStackFromNBT(container.stackTagCompound.getCompoundTag("Fluid"));
+			FluidStack stack = FluidStack.loadFluidStackFromNBT(container.getTagCompound().getCompoundTag("Fluid"));
 
 			if (stack == null)
 				return Math.min(this.maxSteam, resource.amount);
@@ -71,25 +70,25 @@ public class BaseSteamItem extends RootItem implements IFluidContainerItem
 			return Math.min(this.maxSteam - stack.amount, resource.amount);
 		}
 
-		if (container.stackTagCompound == null)
-			container.stackTagCompound = new NBTTagCompound();
+		if (container.getTagCompound() == null)
+			container.setTagCompound(new NBTTagCompound());
 
-		if (!container.stackTagCompound.hasKey("Fluid"))
+		if (!container.getTagCompound().hasKey("Fluid"))
 		{
 			NBTTagCompound fluidTag = resource.writeToNBT(new NBTTagCompound());
 
 			if (this.maxSteam < resource.amount)
 			{
 				fluidTag.setInteger("Amount", this.maxSteam);
-				container.stackTagCompound.setTag("Fluid", fluidTag);
+				container.getTagCompound().setTag("Fluid", fluidTag);
 				return this.maxSteam;
 			}
 
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 			return resource.amount;
 		}
 
-		NBTTagCompound fluidTag = container.stackTagCompound.getCompoundTag("Fluid");
+		NBTTagCompound fluidTag = container.getTagCompound().getCompoundTag("Fluid");
 		FluidStack stack = FluidStack.loadFluidStackFromNBT(fluidTag);
 
 		if (!stack.isFluidEqual(resource))
@@ -104,7 +103,7 @@ public class BaseSteamItem extends RootItem implements IFluidContainerItem
 		else
 			stack.amount = this.maxSteam;
 
-		container.stackTagCompound.setTag("Fluid", stack.writeToNBT(fluidTag));
+		container.getTagCompound().setTag("Fluid", stack.writeToNBT(fluidTag));
 
 		return filled;
 	}
@@ -112,10 +111,10 @@ public class BaseSteamItem extends RootItem implements IFluidContainerItem
 	@Override
 	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain)
 	{
-		if ((container.stackTagCompound == null) || !container.stackTagCompound.hasKey("Fluid"))
+		if ((container.getTagCompound() == null) || !container.getTagCompound().hasKey("Fluid"))
 			return null;
 
-		FluidStack stack = FluidStack.loadFluidStackFromNBT(container.stackTagCompound.getCompoundTag("Fluid"));
+		FluidStack stack = FluidStack.loadFluidStackFromNBT(container.getTagCompound().getCompoundTag("Fluid"));
 
 		if (stack == null)
 			return null;
@@ -126,17 +125,17 @@ public class BaseSteamItem extends RootItem implements IFluidContainerItem
 		{
 			if (maxDrain >= this.maxSteam)
 			{
-				container.stackTagCompound.removeTag("Fluid");
+				container.getTagCompound().removeTag("Fluid");
 
-				if (container.stackTagCompound.hasNoTags())
-					container.stackTagCompound = null;
+				if (container.getTagCompound().hasNoTags())
+					container.setTagCompound(null);
 
 				return stack;
 			}
 
-			NBTTagCompound fluidTag = container.stackTagCompound.getCompoundTag("Fluid");
+			NBTTagCompound fluidTag = container.getTagCompound().getCompoundTag("Fluid");
 			fluidTag.setInteger("Amount", fluidTag.getInteger("Amount") - stack.amount);
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 		}
 
 		return stack;

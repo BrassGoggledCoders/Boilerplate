@@ -10,14 +10,13 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.baseclasses.blocks;
+package boilerplate.common.blocks;
 
+import boilerplate.common.tileentities.BaseTileWithInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import boilerplate.common.baseclasses.BaseTileWithInventory;
 
 public class BaseContainer extends Container
 {

@@ -1,4 +1,4 @@
-package boilerplate.common.baseclasses.items;
+package boilerplate.common.items;
 
 import boilerplate.api.IDebuggable;
 import boilerplate.common.Boilerplate;

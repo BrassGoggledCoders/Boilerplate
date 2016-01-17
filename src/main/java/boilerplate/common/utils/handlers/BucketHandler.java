@@ -1,18 +1,16 @@
 package boilerplate.common.utils.handlers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
 import net.minecraftforge.event.entity.player.FillBucketEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class BucketHandler
 {
@@ -37,7 +35,7 @@ public final class BucketHandler
 			return;
 
 		event.result = result;
-		event.setResult(Result.ALLOW);
+		event.setResult(Event.Result.ALLOW);
 	}
 
 	private ItemStack fillModBucket(World world, MovingObjectPosition pos)

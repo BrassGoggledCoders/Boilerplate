@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses;
+package boilerplate.common;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

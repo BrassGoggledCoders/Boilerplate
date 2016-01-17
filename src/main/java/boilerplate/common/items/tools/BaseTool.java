@@ -10,13 +10,15 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.baseclasses.items.tools;
+package boilerplate.common.items.tools;
 
-import java.util.List;
-
+import boilerplate.common.items.RootItem;
+import boilerplate.common.utils.ItemStackUtils;
+import boilerplate.common.utils.helpers.MaterialHelper;
+import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -24,15 +26,12 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import boilerplate.common.baseclasses.items.RootItem;
-import boilerplate.common.utils.ItemStackUtils;
-import boilerplate.common.utils.helpers.MaterialHelper;
-import com.google.common.collect.Multimap;
+import java.util.List;
 
 /**
  * @author Surseance
@@ -40,6 +39,7 @@ import com.google.common.collect.Multimap;
  */
 public abstract class BaseTool extends RootItem
 {
+	//TODO: Rendering stuff
 	String prefix;
 
 	public static final int steamForRepair = 20;
@@ -67,21 +67,15 @@ public abstract class BaseTool extends RootItem
 		l.add(new ItemStack(item, 1));
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
+	public float getDigSpeed(ItemStack stack, IBlockState state)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(this.prefix + "tools/" + this.getUnlocalizedName().substring(5));
-	}
-
-	@Override
-	public float getDigSpeed(ItemStack stack, Block block, int meta)
-	{
-		if (block.getHarvestLevel(meta) <= this.toolMaterial.getHarvestLevel())
+		Block block = state.getBlock();
+		if (block.getHarvestLevel(state) <= this.toolMaterial.getHarvestLevel())
 		{
 			for (String elem : this.getToolClasses(stack))
 			{
-				if (block.isToolEffective(elem, meta))
+				if (block.isToolEffective(elem, state))
 				{
 					return this.efficiencyOnProperMaterial;
 				}
@@ -105,7 +99,7 @@ public abstract class BaseTool extends RootItem
 	@Override
 	public boolean canHarvestBlock(Block block, ItemStack stack)
 	{
-		return this.getDigSpeed(stack, block, 0) > 1.0f;
+		return this.getDigSpeed(stack, block.getBlockState().getBaseState()) > 1.0f;
 	}
 
 	@Override
@@ -130,10 +124,9 @@ public abstract class BaseTool extends RootItem
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_,
-			EntityLivingBase living)
+	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, BlockPos pos, EntityLivingBase player)
 	{
-		stack.damageItem(1, living);
+		stack.damageItem(1, player);
 		return true;
 	}
 

@@ -6,11 +6,11 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses;
+package boilerplate.common.tileentities;
 
 import boilerplate.api.IOpenableGUI;
 import boilerplate.api.IUniversallyWrenchable;
-import boilerplate.common.tiles.IOnSlotChanged;
+import boilerplate.common.tileentities.IOnSlotChanged;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.Slot;

@@ -10,22 +10,19 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.baseclasses.items;
+package boilerplate.common.items;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
+import boilerplate.client.ClientHelper;
+import boilerplate.common.utils.StringUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import boilerplate.client.ClientHelper;
-import boilerplate.common.utils.StringUtils;
+import java.util.List;
 
 /**
  * @author Surseance
@@ -50,13 +47,6 @@ public class BaseArmor extends ItemArmor
 	{
 		return slot == 2 ? this.prefix + "textures/models/armor/" + this.textureName + "_2.png"
 				: this.prefix + "textures/models/armor/" + this.textureName + "_1.png";
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(this.prefix + "armor/" + this.getUnlocalizedName().substring(5));
 	}
 
 	@SuppressWarnings("all")

@@ -1,6 +1,6 @@
 package boilerplate.common.containers.slots;
 
-import boilerplate.common.tiles.IOnSlotChanged;
+import boilerplate.common.tileentities.IOnSlotChanged;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 

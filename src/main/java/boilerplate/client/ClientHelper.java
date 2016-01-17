@@ -9,7 +9,7 @@
 package boilerplate.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -18,11 +18,10 @@ import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumChatFormatting;
-
-import cpw.mods.fml.client.FMLClientHandler;
-
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -46,10 +45,10 @@ public class ClientHelper
 
 	public static FontRenderer fontRenderer()
 	{
-		return mc().fontRenderer;
+		return mc().fontRendererObj;
 	}
 
-	public static EntityClientPlayerMP player()
+	public static EntityPlayerSP player()
 	{
 		return mc().thePlayer;
 	}
@@ -59,9 +58,9 @@ public class ClientHelper
 		return mc().theWorld;
 	}
 
-	public static EntityLivingBase viewEntity()
+	public static Entity viewEntity()
 	{
-		return mc().renderViewEntity;
+		return mc().getRenderViewEntity();
 	}
 
 	public static EffectRenderer effectRenderer()
@@ -72,6 +71,11 @@ public class ClientHelper
 	public static TextureManager textureManager()
 	{
 		return mc().getTextureManager();
+	}
+
+	public static MovingObjectPosition mop()
+	{
+		return mc().objectMouseOver;
 	}
 
 	public static GuiScreen screen()
@@ -91,6 +95,6 @@ public class ClientHelper
 
 	public static ScaledResolution resolution()
 	{
-		return new ScaledResolution(mc(), mc().displayWidth, mc().displayHeight);
+		return new ScaledResolution(mc());
 	}
 }

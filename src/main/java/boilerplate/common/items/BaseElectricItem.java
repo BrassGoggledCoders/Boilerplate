@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses.items;
+package boilerplate.common.items;
 
 import java.util.List;
 

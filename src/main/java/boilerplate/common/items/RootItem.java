@@ -6,17 +6,16 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses.items;
+package boilerplate.common.items;
 
-import java.util.List;
-
+import boilerplate.client.ClientHelper;
+import boilerplate.common.utils.StringUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-import boilerplate.client.ClientHelper;
-import boilerplate.common.utils.StringUtils;
+import java.util.List;
 
 /**
  * @author warlordjones

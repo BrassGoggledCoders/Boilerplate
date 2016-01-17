@@ -1,4 +1,4 @@
-package boilerplate.client;
+package boilerplate.client.guis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
 import net.minecraftforge.fluids.Fluid;
@@ -18,7 +17,7 @@ import net.minecraftforge.fluids.FluidTank;
 
 import boilerplate.api.IToolTipSlot;
 import boilerplate.client.utils.GuiColors;
-import boilerplate.common.baseclasses.BaseTileWithInventory;
+import boilerplate.common.tileentities.BaseTileWithInventory;
 import com.google.common.collect.Lists;
 
 public abstract class BaseContainerGui extends GuiContainer

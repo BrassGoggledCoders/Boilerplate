@@ -6,31 +6,29 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.baseclasses.items;
-
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-
-import boilerplate.client.ClientHelper;
-import boilerplate.common.utils.StringUtils;
+package boilerplate.common.items;
 
 /**
  * @author warlordjones
  *
  */
-public class ItemBlockWithDesc extends ItemBlock
+public class ItemBlockWithDescAndMeta //extends ItemBlockWithMetadata
 {
+	//TODO: LIKE ALL OF THIS I DON'T EVEN KNOW. It's an SC2 thing I assume
+	/*
 	Block block;
 
-	public ItemBlockWithDesc(Block block)
+	public ItemBlockWithDescAndMeta(Block block)
 	{
 		super(block);
 		this.block = block;
+		this.setHasSubtypes(true);
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack is)
+	{
+		return super.getUnlocalizedName() + "." + is.getItemDamage();
 	}
 
 	@SuppressWarnings("all")
@@ -72,15 +70,16 @@ public class ItemBlockWithDesc extends ItemBlock
 		String[] wrappedDesc;
 		if (stack.getItemDamage() > 0)
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 40);
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
 		else
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 40);
+			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
 		}
 		for (String element : wrappedDesc)
 		{
 			list.add(element.trim());
 		}
 	}
+	*/
 }
