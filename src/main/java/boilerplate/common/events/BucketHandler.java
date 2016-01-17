@@ -1,4 +1,4 @@
-package boilerplate.common.utils.handlers;
+package boilerplate.common.events;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -40,12 +40,12 @@ public final class BucketHandler
 
 	private ItemStack fillModBucket(World world, MovingObjectPosition pos)
 	{
-		Block block = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
+		Block block = world.getBlockState(pos.getBlockPos()).getBlock();
 		Item bucket = this.bucketMap.get(block);
 
-		if ((bucket != null) && (world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0))
+		if ((bucket != null) && (Block.getStateId(world.getBlockState(pos.getBlockPos())) == 0))
 		{
-			world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
+			world.setBlockToAir(pos.getBlockPos());
 			return new ItemStack(bucket);
 		}
 		else return null;

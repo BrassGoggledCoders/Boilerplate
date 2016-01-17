@@ -18,10 +18,10 @@ import java.util.ArrayList;
  */
 public class ItemDebuggerStick extends Item
 {
+	//TODO: Figure out models
 	public ItemDebuggerStick()
 	{
 		super();
-		this.setTextureName("minecraft:stick");
 		this.setUnlocalizedName("debuggerstick");
 		this.setCreativeTab(CreativeTabs.tabMisc);
 	}
@@ -33,7 +33,7 @@ public class ItemDebuggerStick extends Item
 		ArrayList<String> chatArray = new ArrayList<String>();
 		if(rayTrace.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
 		{
-			TileEntity tileEntity = world.getTileEntity(rayTrace.blockX, rayTrace.blockY, rayTrace.blockZ);
+			TileEntity tileEntity = world.getTileEntity(rayTrace.getBlockPos());
 			{
 				if(tileEntity instanceof IDebuggable)
 				{

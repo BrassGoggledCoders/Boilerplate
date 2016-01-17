@@ -5,4 +5,5 @@
  ******************************************************************************/
 @API(apiVersion="1.0.0", owner="RailcraftAPI|core", provides="RailcraftAPI|items")
 package mods.railcraft.api.core.items;
-import cpw.mods.fml.common.API;
+
+import net.minecraftforge.fml.common.API;

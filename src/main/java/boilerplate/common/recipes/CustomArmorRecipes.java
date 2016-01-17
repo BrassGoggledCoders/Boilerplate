@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package boilerplate.common.utils.recipe;
+package boilerplate.common.recipes;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;

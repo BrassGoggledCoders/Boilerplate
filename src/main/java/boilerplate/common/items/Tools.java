@@ -1,5 +1,6 @@
-package boilerplate.common.utils;
+package boilerplate.common.items;
 
+import boilerplate.common.utils.ItemStackUtils;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;

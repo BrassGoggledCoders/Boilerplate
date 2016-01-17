@@ -15,14 +15,12 @@ package boilerplate.common.items.tools;
 import boilerplate.common.items.RootItem;
 import boilerplate.common.utils.ItemStackUtils;
 import boilerplate.common.utils.helpers.MaterialHelper;
-import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -145,6 +143,7 @@ public abstract class BaseTool extends RootItem
 		ItemStackUtils.addModifier(itemStack, SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), damage, 0);
 	}
 
+	/* TODO: What this do
 	@SuppressWarnings("all")
 	@Override
 	public Multimap getAttributeModifiers(ItemStack stack)
@@ -153,5 +152,5 @@ public abstract class BaseTool extends RootItem
 		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
 				new AttributeModifier(field_111210_e, "Tool modifier", this.damageVsEntity, 0));
 		return multimap;
-	}
+	}*/
 }

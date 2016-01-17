@@ -2,7 +2,7 @@
  * @author warlordjones
  *
  */
-@API(apiVersion = "1", owner = "Boilerplate", provides = "Boilerplate|API")
+@API(apiVersion = "2", owner = "Boilerplate", provides = "Boilerplate|API")
 package boilerplate.api;
 
-import cpw.mods.fml.common.API;
+import net.minecraftforge.fml.common.API;

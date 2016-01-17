@@ -12,20 +12,18 @@
  */
 package boilerplate.common;
 
-import java.util.Arrays;
-
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import java.util.Arrays;
 
 public class ForgeEventHandler
 {
 	@SubscribeEvent
-	public void tickPlayer(PlayerTickEvent event)
+	public void tickPlayer(TickEvent.PlayerTickEvent event)
 	{
 		if (event.side.isClient() && (Boilerplate.trailParticles > 0))
 		{
@@ -37,7 +35,7 @@ public class ForgeEventHandler
 				{
 					for (int i = 0; i < Boilerplate.trailParticles; i++)
 					{
-						world.spawnParticle("iconcrack_" + Item.getIdFromItem(Items.gold_ingot), (player.posX + world.rand.nextDouble()) - 0.7D,
+						world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, (player.posX + world.rand.nextDouble()) - 0.7D,
 								(player.posY + world.rand.nextDouble()) - 2.2D, (player.posZ + world.rand.nextDouble()) - 0.7D, -player.motionX,
 								-player.motionY, -player.motionZ);
 					}
@@ -46,8 +44,9 @@ public class ForgeEventHandler
 				{
 					for (int i = 0; i < Boilerplate.trailParticles; i++)
 					{
-						world.spawnParticle("flame", (player.posX + world.rand.nextDouble()) - 0.7D, (player.posY + world.rand.nextDouble()) - 3.2D,
-								(player.posZ + world.rand.nextDouble()) - 0.7D, -player.motionX, -player.motionY, -player.motionZ);
+						world.spawnParticle(EnumParticleTypes.FLAME, (player.posX + world.rand.nextDouble()) - 0.7D,
+								(player.posY + world.rand.nextDouble()) - 3.2D, (player.posZ + world.rand.nextDouble())
+										- 0.7D, -player.motionX, -player.motionY, -player.motionZ);
 					}
 				}
 			}

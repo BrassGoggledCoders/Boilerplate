@@ -10,18 +10,16 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.utils.helpers;
+package boilerplate.common.modcompat;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
-import cpw.mods.fml.common.event.FMLInterModComms;
-
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
-public class IMCHelper
+public class TinkersIMCRegistration
 {
 	public static void addNewToolMaterial(int matID, String name, int dura, int minespeed, int attack, float handlemodifier, int reinforcedLevel,
 			String matTextColor, int color)

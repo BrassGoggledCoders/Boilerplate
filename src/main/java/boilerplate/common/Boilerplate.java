@@ -12,18 +12,15 @@ import boilerplate.client.events.ClientEventsHandler;
 import boilerplate.common.items.ItemDebuggerStick;
 import boilerplate.common.utils.ModLogger;
 import boilerplate.common.utils.helpers.RegistryHelper;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /**
  * @author Surseance
@@ -60,12 +57,12 @@ public class Boilerplate
 	@SidedProxy(clientSide = "boilerplate.client.ClientProxy", serverSide = "boilerplate.common.CommonProxy")
 	public static CommonProxy proxy;
 
-	@Instance("boilerplate")
+	@Mod.Instance("boilerplate")
 	public static Boilerplate instance;
 
 	public static ModLogger logger;
 
-	@EventHandler
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		logger = new ModLogger(Boilerplate.MODID);
@@ -86,21 +83,21 @@ public class Boilerplate
 		config.save();
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		FMLCommonHandler.instance().bus().register(new ForgeEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
 		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		proxy.registerRenderHandlers();
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		logger.info("GNU Terry Prachett");
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
 	}

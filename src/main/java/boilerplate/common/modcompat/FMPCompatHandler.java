@@ -10,15 +10,14 @@
  * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
  *
  */
-package boilerplate.common.compathandler;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+package boilerplate.common.modcompat;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author tterrag1098

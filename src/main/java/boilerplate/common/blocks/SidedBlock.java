@@ -9,7 +9,7 @@
 package boilerplate.common.blocks;
 
 import boilerplate.common.tileentities.TileEntitySided;
-import boilerplate.common.utils.Tools;
+import boilerplate.common.items.Tools;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

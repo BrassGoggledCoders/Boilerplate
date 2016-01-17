@@ -2,7 +2,7 @@ package boilerplate.client.events;
 
 import boilerplate.api.IBlockOverlayText;
 import boilerplate.client.ClientHelper;
-import boilerplate.common.utils.Tools;
+import boilerplate.common.items.Tools;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.EntityPlayer;

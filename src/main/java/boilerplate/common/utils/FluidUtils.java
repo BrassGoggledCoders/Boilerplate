@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
 public class FluidUtils
@@ -55,7 +54,7 @@ public class FluidUtils
 		FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(equipped);
 		if(fluid != null)
 		{
-			if(handler.fill(ForgeDirection.UNKNOWN, fluid, false) == fluid.amount || player.capabilities.isCreativeMode)
+			if(handler.fill(null, fluid, false) == fluid.amount || player.capabilities.isCreativeMode)
 			{
 				if(world.isRemote)
 					return true;
@@ -77,7 +76,7 @@ public class FluidUtils
 					player.openContainer.detectAndSendChanges();
 					((EntityPlayerMP) player).sendContainerAndContentsToPlayer(player.openContainer, player.openContainer.getInventory());
 				}
-				handler.fill(ForgeDirection.UNKNOWN, fluid, true);
+				handler.fill(null, fluid, true);
 				return true;
 			}
 		}

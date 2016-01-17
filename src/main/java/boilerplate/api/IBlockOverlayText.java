@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 
 /**
- * @author SkySom, IE Team
+ * @author IE Team
  */
 public interface IBlockOverlayText
 {

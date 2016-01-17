@@ -1,7 +1,6 @@
 package boilerplate.common.utils;
 
-import cofh.api.energy.IEnergyHandler;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
@@ -10,22 +9,23 @@ import net.minecraftforge.fluids.IFluidHandler;
  */
 public class ComparatorUtils
 {
+	/* TODO: Energy stuff
 	public static int scaleStoredEnergyTo(int scale, IEnergyHandler energyHandler)
 	{
-		return scaleStoredEnergyTo(scale, energyHandler, ForgeDirection.UNKNOWN);
+		return scaleStoredEnergyTo(scale, energyHandler, null);
 	}
 
-	public static int scaleStoredEnergyTo(int scale, IEnergyHandler energyHandler, ForgeDirection direction)
+	public static int scaleStoredEnergyTo(int scale, IEnergyHandler energyHandler, EnumFacing direction)
 	{
 		return scaleTo(scale, energyHandler.getEnergyStored(direction), energyHandler.getMaxEnergyStored(direction));
-	}
+	} */
 
 	public static int scaleSingleFluidLevelTo(int scale, IFluidHandler fluidHandler)
 	{
-		return scaleSingleFluidLevelTo(scale, fluidHandler, ForgeDirection.UNKNOWN);
+		return scaleSingleFluidLevelTo(scale, fluidHandler, null);
 	}
 
-	public static int scaleSingleFluidLevelTo(int scale, IFluidHandler fluidHandler, ForgeDirection direction)
+	public static int scaleSingleFluidLevelTo(int scale, IFluidHandler fluidHandler, EnumFacing direction)
 	{
 		if(fluidHandler.getTankInfo(direction) != null && fluidHandler.getTankInfo(direction)[0] != null)
 		{
