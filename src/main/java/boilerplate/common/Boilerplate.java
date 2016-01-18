@@ -21,6 +21,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -90,7 +91,10 @@ public class Boilerplate
 	public void init(FMLInitializationEvent event)
 	{
 		FMLCommonHandler.instance().bus().register(new ForgeEventHandler());
-		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+		{
+			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		}
 		proxy.registerRenderHandlers();
 	}
 
