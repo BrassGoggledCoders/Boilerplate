@@ -27,7 +27,7 @@ apply plugin: 'forge'
 project.ext {
     buildNum = System.getenv("BUILD_NUMBER")
     mcVersion = "1.7.10"
-    bpversion = "6.2.0." + project.ext.buildNum
+    bpversion = "6.2.1." + project.ext.buildNum
 }
 
 version = project.ext.mcVersion + "-" + project.ext.bpversion
