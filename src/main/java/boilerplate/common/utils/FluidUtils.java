@@ -84,12 +84,12 @@ public class FluidUtils
 		{
 			IFluidContainerItem container = (IFluidContainerItem)equipped.getItem();
 			fluid = container.getFluid(equipped);
-			if(handler.fill(ForgeDirection.UNKNOWN, fluid, false)>0)
+			if(handler.fill(null, fluid, false)>0)
 			{
 				if(world.isRemote)
 					return true;
 
-				int fill = handler.fill(ForgeDirection.UNKNOWN, fluid, true);
+				int fill = handler.fill(null, fluid, true);
 				if(equipped.stackSize > 1)
 				{
 					ItemStack emptied = ItemStackUtils.copyStackWithAmount(equipped, 1);

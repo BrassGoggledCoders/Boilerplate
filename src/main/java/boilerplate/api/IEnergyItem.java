@@ -8,14 +8,15 @@
  */
 package boilerplate.api;
 
-import cofh.api.energy.IEnergyContainerItem;
+//import cofh.api.energy.IEnergyContainerItem;
 
 /**
  * The Interface IEnergyItem. Just a wrapper for {@link IEnergyContainerItem}
  *
  * @author warlordjones
+ * TODO: RF Stuff
  */
-public interface IEnergyItem extends IEnergyContainerItem
+public interface IEnergyItem //extends IEnergyContainerItem
 {
 
 	/**

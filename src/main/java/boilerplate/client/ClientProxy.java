@@ -8,7 +8,7 @@
  */
 package boilerplate.client;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import boilerplate.client.renderers.block.RenderMinedBlock;
 import boilerplate.common.CommonProxy;

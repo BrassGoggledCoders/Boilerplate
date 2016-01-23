@@ -8,30 +8,17 @@
  */
 package boilerplate.client.renderers.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import boilerplate.common.entity.EntityMinedBlock;
-import org.lwjgl.opengl.GL11;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance
- *
+ * TODO: 1.8 Rendering
  */
 @SideOnly(Side.CLIENT)
-public class RenderMinedBlock extends Render
+public class RenderMinedBlock //extends Render
 {
-	private RenderBlocks blockRenderer = new RenderBlocks();
-
+	/*
 	public RenderMinedBlock()
 	{
 		this.shadowSize = 0.0F;
@@ -87,5 +74,5 @@ public class RenderMinedBlock extends Render
 	public void doRender(Entity entity, double posX, double posY, double posZ, float par8, float renderTick)
 	{
 		this.doRender((EntityMinedBlock) entity, posX, posY, posZ, par8, renderTick);
-	}
+	} */
 }

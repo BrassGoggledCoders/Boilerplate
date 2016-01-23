@@ -11,11 +11,9 @@ package boilerplate.common.entity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance
@@ -45,7 +43,6 @@ public class EntityMinedBlock extends Entity
 		this.doesRotate = rotate;
 		this.preventEntitySpawning = true;
 		// this.setSize(0.98F, 0.98F);
-		this.yOffset = this.height / 2.0F;
 		this.setPosition(x, y, z);
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
@@ -92,11 +89,13 @@ public class EntityMinedBlock extends Entity
 		}
 	}
 
+	/* TODO: Bounding Box
 	@Override
 	public AxisAlignedBB getBoundingBox()
 	{
 		return null;
 	}
+	*/
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tagCompound)
@@ -124,13 +123,14 @@ public class EntityMinedBlock extends Entity
 		this.scale = tagCompound.getFloat("Scale");
 	}
 
+	/* TODO: 1.8 Shadow
 	@SideOnly(Side.CLIENT)
 	@Override
 	public float getShadowSize()
 	{
 		return 0.0F;
 	}
-
+ 	*/
 	@SideOnly(Side.CLIENT)
 	public World getWorldObj()
 	{

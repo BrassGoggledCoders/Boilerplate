@@ -21,14 +21,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -63,7 +60,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 	@SideOnly(Side.CLIENT)
 	public boolean isInRangeToRenderDist(double p_70112_1_)
 	{
-		double d1 = this.boundingBox.getAverageEdgeLength() * 4.0D;
+		double d1 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
 		d1 *= 64.0D;
 		return p_70112_1_ < (d1 * d1);
 	}
@@ -78,7 +75,6 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		this.posY -= 0.10000000149011612D;
 		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.yOffset = 0.0F;
 		float f = 0.4F;
 		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
 				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
@@ -99,7 +95,6 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		this.posY -= 0.10000000149011612D;
 		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.yOffset = 0.0F;
 		float f = 0.4F + addSpeed;
 		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
 				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
@@ -115,9 +110,9 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		this.ticksInGround = 0;
 		this.setSize(0.25F, 0.25F);
 		this.setPosition(p_i1778_2_, p_i1778_4_, p_i1778_6_);
-		this.yOffset = 0.0F;
 	}
 
+	/* TODO What is this?
 	@Override
 	protected float func_70182_d()
 	{
@@ -129,6 +124,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 	{
 		return 0.0F;
 	}
+	*/
 
 	/**
 	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
@@ -217,15 +213,15 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 			++this.ticksInAir;
 		}
 
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-		Vec3 vec31 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		Vec3 vec3 = new Vec3(this.posX, this.posY, this.posZ);
+		Vec3 vec31 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 		MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31);
-		vec3 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-		vec31 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		vec3 = new Vec3(this.posX, this.posY, this.posZ);
+		vec31 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
 		if (movingobjectposition != null)
 		{
-			vec31 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord,
+			vec31 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord,
 					movingobjectposition.hitVec.zCoord);
 		}
 
@@ -233,7 +229,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		{
 			Entity entity = null;
 			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
-					this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+					this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 			double d0 = 0.0D;
 			EntityLivingBase entitylivingbase = this.getThrower();
 
@@ -244,7 +240,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 				if (entity1.canBeCollidedWith() && ((entity1 != entitylivingbase) || (this.ticksInAir >= 5)))
 				{
 					float f = 0.3F;
-					AxisAlignedBB axisalignedbb = entity1.boundingBox.expand(f, f, f);
+					AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f, f, f);
 					MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
 
 					if (movingobjectposition1 != null)
@@ -269,9 +265,9 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		if (movingobjectposition != null)
 		{
 			if ((movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) && (this.worldObj
-					.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ) == Blocks.portal))
+					.getBlockState(movingobjectposition.getBlockPos()).getBlock() == Blocks.portal))
 			{
-				this.setInPortal();
+				this.inPortal = true;
 			}
 			else
 			{
@@ -316,8 +312,9 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 			for (int i = 0; i < 4; ++i)
 			{
 				float f4 = 0.25F;
-				this.worldObj.spawnParticle("bubble", this.posX - (this.motionX * f4), this.posY - (this.motionY * f4),
-						this.posZ - (this.motionZ * f4), this.motionX, this.motionY, this.motionZ);
+				this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - (this.motionX * f4),
+						this.posY - (this.motionY * f4), this.posZ - (this.motionZ * f4), this.motionX, this.motionY,
+						this.motionZ);
 			}
 
 			f2 = 0.8F;
@@ -345,7 +342,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 		if (((this.throwerName == null) || (this.throwerName.length() == 0)) && (this.thrower != null) && (this.thrower instanceof EntityPlayer))
 		{
-			this.throwerName = this.thrower.getCommandSenderName();
+			this.throwerName = this.thrower.getCommandSenderEntity().getName();
 		}
 
 		p_70014_1_.setString("ownerName", this.throwerName == null ? "" : this.throwerName);

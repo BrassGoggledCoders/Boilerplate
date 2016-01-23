@@ -25,8 +25,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -63,7 +63,7 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 	@SideOnly(Side.CLIENT)
 	public boolean isInRangeToRenderDist(double distance)
 	{
-		double d1 = this.boundingBox.getAverageEdgeLength() * 4.0D;
+		double d1 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
 		d1 *= 64.0D;
 		return distance < (d1 * d1);
 	}
@@ -75,7 +75,6 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		this.renderDistanceWeight = 10.0D;
 		this.setSize(0.5F, 0.5F);
 		this.setPosition(dx, dy, dz);
-		this.yOffset = 0.0F;
 	}
 
 	public BaseShootableEntity(World world, EntityLivingBase shooter, EntityLivingBase target, float frotY, float frotP)
@@ -86,7 +85,7 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 
 		this.posY = (shooter.posY + shooter.getEyeHeight()) - 0.10000000149011612D;
 		double dx = target.posX - shooter.posX;
-		double dy = (target.boundingBox.minY + (target.height / 3.0F)) - this.posY;
+		double dy = (target.getEntityBoundingBox().minY + (target.height / 3.0F)) - this.posY;
 		double dz = target.posZ - shooter.posZ;
 		double magnitude = MathHelper.sqrt_double((dx * dx) + (dz * dz));
 
@@ -97,7 +96,6 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 			double dlx = dx / magnitude;
 			double dlz = dz / magnitude;
 			this.setLocationAndAngles(shooter.posX + dlx, this.posY, shooter.posZ + dlz, fx, fy);
-			this.yOffset = 0.0F;
 			float height = (float) magnitude * 0.2F;
 			this.setThrowableHeading(dx, dy + height, dz, frotY, frotP);
 		}
@@ -115,7 +113,6 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		this.posY -= 0.10000000149011612D;
 		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.yOffset = 0.0F;
 		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
 				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
 		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
@@ -190,21 +187,21 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		}
 		this.flyTime++;
 
-		Vec3 posVector = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-		Vec3 velVector = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		Vec3 posVector = new Vec3(this.posX, this.posY, this.posZ);
+		Vec3 velVector = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 		MovingObjectPosition mop = this.worldObj.rayTraceBlocks(posVector, velVector, false);
 
-		posVector = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-		velVector = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		posVector = new Vec3(this.posX, this.posY, this.posZ);
+		velVector = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
 		if (mop != null)
 		{
-			velVector = Vec3.createVectorHelper(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
+			velVector = new Vec3(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
 		}
 
 		Entity entity = null;
 		List<?> entList = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
-				this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+				this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 		double distance = 0.0D;
 
 		for (Object obj : entList)
@@ -217,7 +214,7 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 			}
 
 			float amount = 0.3F;
-			AxisAlignedBB aaBB = collidableEnt.boundingBox.expand(amount, amount, amount);
+			AxisAlignedBB aaBB = collidableEnt.getEntityBoundingBox().expand(amount, amount, amount);
 			MovingObjectPosition objectInVector = aaBB.calculateIntercept(posVector, velVector);
 
 			if (objectInVector == null)

@@ -8,21 +8,15 @@
  */
 package boilerplate.common.utils;
 
-import java.util.Iterator;
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Surseance & decebaldecebal
@@ -43,7 +37,7 @@ public class PlayerUtils
 			d1 += 1.62D;
 		}
 		double d2 = player.prevPosZ + ((player.posZ - player.prevPosZ) * f);
-		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+		Vec3 vec3 = new Vec3(d0, d1, d2);
 		float f3 = MathHelper.cos((-f2 * 0.017453292F) - (float) Math.PI);
 		float f4 = MathHelper.sin((-f2 * 0.017453292F) - (float) Math.PI);
 		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -52,32 +46,32 @@ public class PlayerUtils
 		float f8 = f3 * f5;
 		double d3 = range;
 		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-		return world.func_147447_a(vec3, vec31, par3, !par3, par3);
+		return world.rayTraceBlocks(vec3, vec31, par3, !par3, par3);
 	}
 
 	public static Entity getPointedEntity(World world, Entity entityplayer, double range)
 	{
 		Entity pointedEntity = null;
 		double d = range;
-		Vec3 vec3d = Vec3.createVectorHelper(entityplayer.posX, entityplayer.posY + entityplayer.getEyeHeight(), entityplayer.posZ);
+		Vec3 vec3d = new Vec3(entityplayer.posX, entityplayer.posY + entityplayer.getEyeHeight(), entityplayer.posZ);
 
 		Vec3 vec3d1 = entityplayer.getLookVec();
 		Vec3 vec3d2 = vec3d.addVector(vec3d1.xCoord * d, vec3d1.yCoord * d, vec3d1.zCoord * d);
 
 		float f1 = 1.1F;
 		List list = world.getEntitiesWithinAABBExcludingEntity(entityplayer,
-				entityplayer.boundingBox.addCoord(vec3d1.xCoord * d, vec3d1.yCoord * d, vec3d1.zCoord * d).expand(f1, f1, f1));
+				entityplayer.getEntityBoundingBox().addCoord(vec3d1.xCoord * d, vec3d1.yCoord * d, vec3d1.zCoord * d).expand(f1, f1, f1));
 
 		double d2 = 0.0D;
 		for (int i = 0; i < list.size(); i++)
 		{
 			Entity entity = (Entity) list.get(i);
-			if (((entity.canBeCollidedWith()) && (world.func_147447_a(
-					Vec3.createVectorHelper(entityplayer.posX, entityplayer.posY + entityplayer.getEyeHeight(), entityplayer.posZ),
-					Vec3.createVectorHelper(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ), false, true, false) == null)))
+			if (((entity.canBeCollidedWith()) && (world.rayTraceBlocks(
+					new Vec3(entityplayer.posX, entityplayer.posY + entityplayer.getEyeHeight(), entityplayer.posZ),
+					new Vec3(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ), false, true, false) == null)))
 			{
 				float f2 = Math.max(0.8F, entity.getCollisionBorderSize());
-				AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
+				AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expand(f2, f2, f2);
 				MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3d, vec3d2);
 
 				if (axisalignedbb.isVecInside(vec3d))
@@ -138,6 +132,7 @@ public class PlayerUtils
 		}
 	}
 
+	/* TODO: Chat stuff
 	@SuppressWarnings("all")
 	public static void sendChatToServer(String message)
 	{
@@ -147,4 +142,5 @@ public class PlayerUtils
 			players.get(t).addChatMessage(new ChatComponentText(message));
 		}
 	}
+	*/
 }
