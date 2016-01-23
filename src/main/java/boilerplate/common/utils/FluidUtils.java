@@ -49,18 +49,24 @@ public class FluidUtils
 	public static boolean fillFluidHandlerWithPlayerItem(World world, IFluidHandler handler, EntityPlayer player)
 	{
 		ItemStack equipped = player.getCurrentEquippedItem();
-		if(equipped==null)
+
+		if(equipped == null)
+		{
 			return false;
+		}
+
 		FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(equipped);
 		if(fluid != null)
 		{
 			if(handler.fill(null, fluid, false) == fluid.amount || player.capabilities.isCreativeMode)
 			{
 				if(world.isRemote)
+				{
 					return true;
+				}
 
 				ItemStack filledStack = FluidContainerRegistry.drainFluidContainer(equipped);
-				if (!player.capabilities.isCreativeMode)
+				if(!player.capabilities.isCreativeMode)
 				{
 					if(equipped.stackSize==1)
 					{
@@ -70,11 +76,16 @@ public class FluidUtils
 					else
 					{
 						equipped.stackSize -= 1;
-						if(filledStack!=null && !player.inventory.addItemStackToInventory(filledStack))
-							player.func_146097_a(filledStack, false, true);
+						if(filledStack != null && !player.inventory.addItemStackToInventory(filledStack))
+						{
+							player.dropItem(filledStack, false, true);
+						}
 					}
 					player.openContainer.detectAndSendChanges();
-					((EntityPlayerMP) player).sendContainerAndContentsToPlayer(player.openContainer, player.openContainer.getInventory());
+					if(player instanceof  EntityPlayerMP)
+					{
+						((EntityPlayerMP) player).updateCraftingInventory(player.openContainer, player.openContainer.getInventory());
+					}
 				}
 				handler.fill(null, fluid, true);
 				return true;
@@ -96,14 +107,19 @@ public class FluidUtils
 					equipped.stackSize -= 1;
 					container.drain(emptied, fill, true);
 					if(!player.inventory.addItemStackToInventory(emptied))
-						player.func_146097_a(emptied, false, true);
+					{
+						player.dropItem(emptied, false, true);
+					}
 				}
 				else
 				{
 					container.drain(equipped, fill, true);
 				}
 				player.openContainer.detectAndSendChanges();
-				((EntityPlayerMP) player).sendContainerAndContentsToPlayer(player.openContainer, player.openContainer.getInventory());
+				if(player instanceof EntityPlayerMP)
+				{
+					((EntityPlayerMP)player).updateCraftingInventory(player.openContainer, player.openContainer.getInventory());
+				}
 				return true;
 			}
 		}

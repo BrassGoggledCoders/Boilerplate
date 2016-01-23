@@ -8,8 +8,7 @@
  */
 package boilerplate.common.items;
 
-import java.util.List;
-
+import boilerplate.api.IEnergyItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import boilerplate.api.IEnergyItem;
+import java.util.List;
 
 /**
  * @author decebaldecebal
@@ -76,6 +75,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
 	{
+		/* TODO: RF STUFF
 		list.add("Energy: " + (this.getEnergyStored(stack) / 1000) + "k / " + (this.maxEnergy / 1000) + "k");
 		if ((this.maxSend > 0) && (this.maxReceive > 0))
 		{
@@ -88,7 +88,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 		else if (this.maxSend > 0)
 		{
 			list.add("Transfer(out): " + this.maxSend);
-		}
+		}*/
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 
 		stack.setTagCompound(tag);
 	}
-
+	/* TODO: RF Stuff
 	@Override
 	public int receiveEnergy(ItemStack itemStack, int maxReceive, boolean simulate)
 	{
@@ -178,7 +178,7 @@ public abstract class BaseElectricItem extends RootItem implements IEnergyItem
 	public double getDurabilityForDisplay(ItemStack stack)
 	{
 		return 1.0D - ((double) this.getEnergyStored(stack) / this.getMaxEnergyStored(stack));
-	}
+	}*/
 
 	@Override
 	public boolean showDurabilityBar(ItemStack stack)

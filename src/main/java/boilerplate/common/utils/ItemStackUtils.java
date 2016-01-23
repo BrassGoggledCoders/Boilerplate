@@ -8,8 +8,8 @@
  */
 package boilerplate.common.utils;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,10 +19,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -31,41 +32,31 @@ import java.util.UUID;
  */
 public class ItemStackUtils
 {
-	public static Material getBlockMaterial(final IBlockAccess world, final int x, final int y, final int z)
+	public static Material getBlockMaterial(final IBlockAccess world, final BlockPos blockPos)
 	{
-		if (world.getBlock(x, y, z) != null)
+		if (world.getBlockState(blockPos) != null)
 		{
-			return world.getBlock(x, y, z).getMaterial();
+			return world.getBlockState(blockPos).getBlock().getMaterial();
 		}
 
 		return Material.air;
 	}
 
-	public static ItemStack getDroppedItemStack(World world, EntityPlayer player, Block block, int x, int y, int z, int md)
+	public static List<ItemStack> getDroppedItemStacks(World world, EntityPlayer player, IBlockState block, BlockPos blockPos)
 	{
-		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
-		ItemStack drops = null;
-
-		if ((items != null) && (items.size() > 0))
-		{
-			for (int size = 0; size < items.size(); size++)
-			{
-				drops = items.get(size);
-			}
-		}
-
-		return drops;
+		return block.getBlock().getDrops(world, blockPos, block, EnchantmentHelper.getFortuneModifier(player));
 	}
 
 	public static boolean isSmeltable(ItemStack is)
 	{
-		return !((is != null) && (FurnaceRecipes.smelting().getSmeltingResult(is) == null));
+		return is != null && FurnaceRecipes.instance().getSmeltingResult(is) != null;
 	}
 
-	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
+	public static void spawnStackInWorld(World world, BlockPos blockPos, ItemStack stack)
 	{
-		world.setBlockToAir(x, y, z);
-		world.spawnEntityInWorld(new EntityItem(world, x + 0.5F, y + 0.5F, z + 0.5F, stack.copy()));
+		world.setBlockToAir(blockPos);
+		world.spawnEntityInWorld(new EntityItem(world, blockPos.getX() + 0.5F, blockPos.getY() + 0.5F,
+				blockPos.getZ() + 0.5F, stack.copy()));
 	}
 
 	public static void addModifier(ItemStack itemStack, String attribute, double amount, int mode)

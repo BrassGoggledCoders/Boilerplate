@@ -12,21 +12,17 @@
  */
 package boilerplate.common.entity;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -145,13 +141,14 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		this.timeTillDeath = 0;
 	}
 
+	/* TODO Set Position
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void setPositionAndRotation2(double dx, double dy, double dz, float frotY, float frotP, int i)
 	{
 		this.setPosition(dx, dy, dz);
 		this.setRotation(frotY, frotP);
-	}
+	}*/
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -252,10 +249,7 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 			}
 			else
 			{
-				this.xTile = mop.blockX;
-				this.yTile = mop.blockY;
-				this.zTile = mop.blockZ;
-				this.inTile = this.worldObj.getBlock(this.xTile, this.yTile, this.zTile);
+				this.inTile = this.worldObj.getBlockState(mop.getBlockPos()).getBlock();
 
 				this.onHitBlock(this.inTile, mop);
 			}
@@ -264,25 +258,8 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		this.posX += this.motionX * 3.0D;
 		this.posY += this.motionY * 3.0D;
 		this.posZ += this.motionZ * 3.0D;
-		float magnitude = MathHelper.sqrt_double((this.motionX * this.motionX) + (this.motionZ * this.motionZ));
+
 		this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180D) / 3.1415927410125732D);
-
-		for (this.rotationPitch = (float) ((Math.atan2(this.motionY, magnitude) * 180D) / 3.1415927410125732D); (this.rotationPitch
-				- this.prevRotationPitch) < -180F; this.prevRotationPitch -= 360F)
-		{
-		}
-
-		for (; (this.rotationPitch - this.prevRotationPitch) >= 180F; this.prevRotationPitch += 360F)
-		{
-		}
-
-		for (; (this.rotationYaw - this.prevRotationYaw) < -180F; this.prevRotationYaw -= 360F)
-		{
-		}
-
-		for (; (this.rotationYaw - this.prevRotationYaw) >= 180F; this.prevRotationYaw += 360F)
-		{
-		}
 
 		this.rotationPitch = this.prevRotationPitch + ((this.rotationPitch - this.prevRotationPitch) * 0.2F);
 		this.rotationYaw = this.prevRotationYaw + ((this.rotationYaw - this.prevRotationYaw) * 0.2F);
@@ -300,7 +277,7 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 
 		if (this.worldObj.isRemote)
 		{
-			this.worldObj.spawnParticle("explode", this.posX, this.posY, this.posZ, 0, 0, 0);
+			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX, this.posY, this.posZ, 0, 0, 0);
 		}
 	}
 
@@ -326,12 +303,13 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		return false;
 	}
 
+	/*TODO Shadows?
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize()
 	{
 		return 0.0F;
-	}
+	}*/
 
 	@Override
 	public boolean canAttackWithItem()

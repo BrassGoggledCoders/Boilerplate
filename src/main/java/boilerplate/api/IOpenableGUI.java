@@ -13,6 +13,7 @@
 package boilerplate.api;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -20,7 +21,7 @@ import net.minecraft.world.World;
  */
 public interface IOpenableGUI
 {
-	Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
+	Object getClientGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
 
-	Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
+	Object getServerGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
 }

@@ -10,14 +10,15 @@ package boilerplate.common.tileentities;
 
 import boilerplate.api.IOpenableGUI;
 import boilerplate.api.IUniversallyWrenchable;
-import boilerplate.common.tileentities.IOnSlotChanged;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 /**
@@ -26,7 +27,7 @@ import net.minecraft.world.World;
  * @author decebaldecebal
  *
  */
-public abstract class BaseTileWithInventory extends TileEntity implements ISidedInventory, IUniversallyWrenchable,
+public abstract class BaseTileWithInventory extends TileEntity implements IInventory, IUniversallyWrenchable,
 		IOpenableGUI, IOnSlotChanged
 {
 	public ItemStack[] inventory;
@@ -121,18 +122,9 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int par1)
+	public ItemStack removeStackFromSlot(int index)
 	{
-		if (this.inventory[par1] != null)
-		{
-			ItemStack var2 = this.inventory[par1];
-			this.inventory[par1] = null;
-			return var2;
-		}
-		else
-		{
-			return null;
-		}
+		return null;
 	}
 
 	@Override
@@ -155,8 +147,20 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this)
-				&& (player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D);
+		return (this.worldObj.getTileEntity(this.getPos()) == this)
+				&& (player.getDistanceSqToCenter(this.getPos()) <= 64.0D);
+	}
+
+	@Override
+	public void openInventory(EntityPlayer player)
+	{
+
+	}
+
+	@Override
+	public void closeInventory(EntityPlayer player)
+	{
+
 	}
 
 	@Override
@@ -166,43 +170,27 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int var1)
+	public int getField(int id)
 	{
-		return null;
+		return 0;
 	}
 
 	@Override
-	public boolean canInsertItem(int i, ItemStack itemstack, int j)
+	public void setField(int id, int value)
 	{
-		return false;
+
 	}
 
 	@Override
-	public boolean canExtractItem(int i, ItemStack itemstack, int j)
+	public int getFieldCount()
 	{
-		return false;
+		return 0;
 	}
 
 	@Override
-	public String getInventoryName()
+	public void clear()
 	{
-		return "";
-	}
 
-	@Override
-	public boolean hasCustomInventoryName()
-	{
-		return true;
-	}
-
-	@Override
-	public void openInventory()
-	{
-	}
-
-	@Override
-	public void closeInventory()
-	{
 	}
 
 	// TODO
@@ -248,10 +236,26 @@ public abstract class BaseTileWithInventory extends TileEntity implements ISided
 	}
 
 	@Override
-	public abstract Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
+	public abstract Object getClientGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
 
 	@Override
-	public abstract Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z);
+	public abstract Object getServerGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
 
+	@Override
+	public String getName()
+	{
+		return "";
+	}
 
+	@Override
+	public boolean hasCustomName()
+	{
+		return !this.getName().isEmpty();
+	}
+
+	@Override
+	public IChatComponent getDisplayName()
+	{
+		return null;
+	}
 }

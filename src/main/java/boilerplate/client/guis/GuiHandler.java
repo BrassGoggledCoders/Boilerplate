@@ -14,6 +14,7 @@ package boilerplate.client.guis;
 
 import boilerplate.api.IOpenableGUI;
 import boilerplate.common.IBoilerplateMod;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.Entity;
@@ -36,21 +37,23 @@ public class GuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z)
 	{
-		IOpenableGUI openableGUI = this.getOpenableGUI(id, player, world, x, y, z);
-		return openableGUI != null ? openableGUI.getServerGuiElement(id, player, world, x, y, z) : null;
+		BlockPos blockPos = new BlockPos(x, y, z);
+		IOpenableGUI openableGUI = this.getOpenableGUI(id, player, world, blockPos);
+		return openableGUI != null ? openableGUI.getServerGuiElement(id, player, world, blockPos) : null;
 	}
 
 	@Override
 	public Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z)
 	{
-		IOpenableGUI openableGUI = this.getOpenableGUI(id, player, world, x, y, z);
-		return openableGUI != null ? openableGUI.getClientGuiElement(id, player, world, x, y, z) : null;
+		BlockPos blockPos = new BlockPos(x, y, z);
+		IOpenableGUI openableGUI = this.getOpenableGUI(id, player, world, blockPos);
+		return openableGUI != null ? openableGUI.getClientGuiElement(id, player, world, blockPos) : null;
 	}
 
-	private IOpenableGUI getOpenableGUI(int id, EntityPlayer player, World world, int x, int y, int z)
+	private IOpenableGUI getOpenableGUI(int id, EntityPlayer player, World world, BlockPos blockPos)
 	{
 		Entity entity = world.getEntityByID(id);
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		TileEntity tileEntity = world.getTileEntity(blockPos);
 		ItemStack itemStack = player.getHeldItem();
 		return entity instanceof IOpenableGUI ? (IOpenableGUI)entity : tileEntity instanceof IOpenableGUI ?
 				(IOpenableGUI)tileEntity : (itemStack != null) && (itemStack.getItem() instanceof IOpenableGUI) ?

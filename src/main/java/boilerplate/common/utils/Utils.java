@@ -8,13 +8,14 @@
  */
 package boilerplate.common.utils;
 
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * @author Surseance
@@ -34,14 +35,14 @@ public class Utils
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, (world.rand.nextFloat() * 0.4F) + 0.8F);
 	}
 
-	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, int x, int y, int z)
+	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, BlockPos blockPos)
 	{
-		return !getBlockUnbreakable(world, x, y, z) && player.capabilities.allowEdit;
+		return !getBlockUnbreakable(world, blockPos) && player.capabilities.allowEdit;
 	}
 
-	public static boolean getBlockUnbreakable(World world, int x, int y, int z)
+	public static boolean getBlockUnbreakable(World world, BlockPos blockPos)
 	{
-		return world.getBlock(x, y, z).getBlockHardness(world, x, y, z) == -1;
+		return world.getBlockState(blockPos).getBlock().getBlockHardness(world, blockPos) == -1;
 	}
 
 	public static void spawnEntityAtCoords(World world, Entity entity, int x, int y, int z)

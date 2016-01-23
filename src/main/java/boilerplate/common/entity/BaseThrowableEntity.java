@@ -12,8 +12,6 @@
  */
 package boilerplate.common.entity;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,9 +21,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -67,49 +66,12 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 	public BaseThrowableEntity(World world, EntityLivingBase entity)
 	{
-		super(world);
-		this.thrower = entity;
-		this.setSize(0.25F, 0.25F);
-		this.setLocationAndAngles(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ, entity.rotationYaw, entity.rotationPitch);
-		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
-		this.posY -= 0.10000000149011612D;
-		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
-		this.setPosition(this.posX, this.posY, this.posZ);
-		float f = 0.4F;
-		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
-				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
-		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI)
-				* f;
-		this.motionY = -MathHelper.sin(((this.rotationPitch + this.func_70183_g()) / 180.0F) * (float) Math.PI) * f;
-		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.func_70182_d(), 1.0F);
-	}
-
-	public BaseThrowableEntity(World p_i1777_1_, EntityLivingBase p_i1777_2_, int addSpeed)
-	{
-		super(p_i1777_1_);
-		this.thrower = p_i1777_2_;
-		this.setSize(0.25F, 0.25F);
-		this.setLocationAndAngles(p_i1777_2_.posX, p_i1777_2_.posY + p_i1777_2_.getEyeHeight(), p_i1777_2_.posZ, p_i1777_2_.rotationYaw,
-				p_i1777_2_.rotationPitch);
-		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
-		this.posY -= 0.10000000149011612D;
-		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
-		this.setPosition(this.posX, this.posY, this.posZ);
-		float f = 0.4F + addSpeed;
-		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
-				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI) * f;
-		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI)
-				* f;
-		this.motionY = -MathHelper.sin(((this.rotationPitch + this.func_70183_g()) / 180.0F) * (float) Math.PI) * f;
-		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.func_70182_d(), 1.0F);
+		super(world, entity);
 	}
 
 	public BaseThrowableEntity(World p_i1778_1_, double p_i1778_2_, double p_i1778_4_, double p_i1778_6_)
 	{
-		super(p_i1778_1_);
-		this.ticksInGround = 0;
-		this.setSize(0.25F, 0.25F);
-		this.setPosition(p_i1778_2_, p_i1778_4_, p_i1778_6_);
+		super(p_i1778_1_, p_i1778_2_, p_i1778_4_, p_i1778_6_);
 	}
 
 	/* TODO What is this?
@@ -189,7 +151,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 		if (this.inGround)
 		{
-			if (this.worldObj.getBlock(this.xTile, this.yTile, this.zTile) == this.inTile)
+			if (this.worldObj.getBlockState(this.getPosition()).getBlock() == this.inTile)
 			{
 				++this.ticksInGround;
 
@@ -368,12 +330,14 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		}
 	}
 
+	/* TODO: Shadows
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize()
 	{
 		return 0.0F;
 	}
+	*/
 
 	@Override
 	public EntityLivingBase getThrower()

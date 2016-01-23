@@ -8,26 +8,21 @@
  */
 package boilerplate.client.renderers;
 
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-
-import boilerplate.client.ClientHelper;
-import org.lwjgl.opengl.GL11;
-
 /**
  * @author warlordjones
  *
  */
-public class RenderFloatingItem extends RenderItem
+
+//TODO: Render Item?
+public class RenderFloatingItem //extends RenderItem
 {
+	/*
 	public static void render(double dx, double dy, double dz, float rotX, float rotY, float rotZ, ItemStack stack)
 	{
 		EntityItem entItem = new EntityItem(ClientHelper.world(), 0D, 0D, 0D, stack);
 		// Without the below line, the item will spazz out
-		entItem.hoverStart = 0.0F;
 		RenderItem.renderInFrame = true;
+		entItem.hoverStart = 0.0F;
 		GL11.glTranslatef((float) dx, (float) dy, (float) dz);
 		GL11.glRotatef(rotX, 1, 0, 0);
 		GL11.glRotatef(rotY, 0, 1, 0);
@@ -52,4 +47,5 @@ public class RenderFloatingItem extends RenderItem
 		RenderManager.instance.renderEntityWithPosYaw(entItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 		RenderItem.renderInFrame = false;
 	}
+	*/
 }

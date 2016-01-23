@@ -1,24 +1,19 @@
 package boilerplate.client.guis;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
-import net.minecraft.util.StatCollector;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-
 import boilerplate.api.IToolTipSlot;
 import boilerplate.client.utils.GuiColors;
 import boilerplate.common.tileentities.BaseTileWithInventory;
 import com.google.common.collect.Lists;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseContainerGui extends GuiContainer
 {
@@ -49,8 +44,8 @@ public abstract class BaseContainerGui extends GuiContainer
 			{
 				if (slot.slotNumber < this.tile.getSizeInventory())
 				{
-					this.func_146283_a(Lists.newArrayList(StatCollector.translateToLocal(((IToolTipSlot) slot).getSlotTooltipUnloc())), mouseX - x,
-							mouseY - y);
+					this.drawHoveringText(Lists.newArrayList(StatCollector.translateToLocal((
+							(IToolTipSlot) slot).getSlotTooltipUnloc())), mouseX - x, mouseY - y);
 				}
 			}
 		}
@@ -90,6 +85,7 @@ public abstract class BaseContainerGui extends GuiContainer
 		this.drawHoveringText(lines, x - this.guiLeft, y - this.guiTop, this.fontRendererObj);
 	}
 
+	/* TODO: Fix GUI Fluid rendering
 	protected void drawFluid(Fluid fluid, int level, int x, int y, int width, int height)
 	{
 		if (fluid == null)
@@ -138,12 +134,12 @@ public abstract class BaseContainerGui extends GuiContainer
 
 	private void drawCutIcon(IIcon icon, int x, int y, int width, int height, int cut)
 	{
-		Tessellator tess = Tessellator.instance;
+		Tessellator tess = Tessellator.getInstance();
 		tess.startDrawingQuads();
 		tess.addVertexWithUV(x, y + height, this.zLevel, icon.getMinU(), icon.getInterpolatedV(height));
 		tess.addVertexWithUV(x + width, y + height, this.zLevel, icon.getInterpolatedU(width), icon.getInterpolatedV(height));
 		tess.addVertexWithUV(x + width, y + cut, this.zLevel, icon.getInterpolatedU(width), icon.getInterpolatedV(cut));
 		tess.addVertexWithUV(x, y + cut, this.zLevel, icon.getMinU(), icon.getInterpolatedV(cut));
 		tess.draw();
-	}
+	}*/
 }

@@ -8,17 +8,13 @@
  */
 package boilerplate.client.fx;
 
+import boilerplate.client.ClientHelper;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import boilerplate.client.ClientHelper;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Created by Surseance
@@ -87,7 +83,7 @@ public class FXRaygun extends EntityFX
 		this.prevYaw = this.rotYaw;
 		this.prevPitch = this.rotPitch;
 		this.particleMaxAge = age;
-		final EntityLivingBase renderentity = ClientHelper.viewEntity();
+		final Entity renderentity = ClientHelper.viewEntity();
 		int visibleDistance = 50;
 
 		if (!ClientHelper.settings().fancyGraphics)
@@ -189,6 +185,7 @@ public class FXRaygun extends EntityFX
 		this.rotationspeed = rotationspeed;
 	}
 
+	/* TODO Particle Rendering
 	@Override
 	public void renderParticle(final Tessellator tessellator, final float f, final float f1, final float f2, final float f3, final float f4,
 			final float f5)
@@ -301,5 +298,5 @@ public class FXRaygun extends EntityFX
 		GL11.glPopMatrix();
 		tessellator.startDrawingQuads();
 		this.prevSize = size;
-	}
+	} */
 }

@@ -17,6 +17,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -32,9 +33,9 @@ public class BaseSword extends BaseTool
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase living)
+	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, BlockPos blockPos, EntityLivingBase living)
 	{
-		if (block.getBlockHardness(world, x, y, z) != 0.0D)
+		if (block.getBlockHardness(world, blockPos) != 0.0D)
 		{
 			stack.damageItem(2, living);
 		}
@@ -45,7 +46,7 @@ public class BaseSword extends BaseTool
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
-		return EnumAction.block;
+		return EnumAction.BLOCK;
 	}
 
 	@Override
