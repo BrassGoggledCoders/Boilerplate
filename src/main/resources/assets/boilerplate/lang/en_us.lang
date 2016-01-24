@@ -1,9 +1,9 @@
 item.debuggerstick.name=Debugging Stick Of Doom
 
 #sided types
-boilerplate.blockSide.facing=Facing Side
-boilerplate.blockSide.opposite=Opposite Side
+xyz.brassgoggledcoders.boilerplate.blockSide.facing=Facing Side
+xyz.brassgoggledcoders.boilerplate.blockSide.opposite=Opposite Side
 
-boilerplate.sidetype.input=Input
-boilerplate.sidetype.output=Output
-boilerplate.sidetype.none=None
+xyz.brassgoggledcoders.boilerplate.sidetype.input=Input
+xyz.brassgoggledcoders.boilerplate.sidetype.output=Output
+xyz.brassgoggledcoders.boilerplate.sidetype.none=None
