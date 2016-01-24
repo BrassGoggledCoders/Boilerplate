@@ -34,7 +34,7 @@ project.ext {
 version = project.ext.mcVersion + "-6.2.0." + project.ext.buildNum
 
 group= "brassgoggledcoders"
-archivesBaseName = "xyz.brassgoggledcoders.boilerplate"
+archivesBaseName = "boilerplate"
 
 minecraft {
     version = "${project.ext.mcVersion}-${project.ext.forgeVersion}"
