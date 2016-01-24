@@ -101,10 +101,10 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 			SideType facing = sideConfig[mop.sideHit.ordinal()];
 			SideType opposite = sideConfig[mop.sideHit.getOpposite().ordinal()];
 			return new String[]{
-					StatCollector.translateToLocal("xyz.brassgoggledcoders.boilerplate.blockSide.facing")
-							+": "+StatCollector.translateToLocal("xyz.brassgoggledcoders.boilerplate.sidetype."+ facing.name().toLowerCase()),
-					StatCollector.translateToLocal("xyz.brassgoggledcoders.boilerplate.blockSide.opposite")
-							+": "+StatCollector.translateToLocal("xyz.brassgoggledcoders.boilerplate.sidetype."+ opposite.name().toLowerCase())
+					StatCollector.translateToLocal("boilerplate.blockSide.facing")
+							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ facing.name().toLowerCase()),
+					StatCollector.translateToLocal("boilerplate.blockSide.opposite")
+							+": "+StatCollector.translateToLocal("boilerplate.sidetype."+ opposite.name().toLowerCase())
 			};
 		}
 		return null;

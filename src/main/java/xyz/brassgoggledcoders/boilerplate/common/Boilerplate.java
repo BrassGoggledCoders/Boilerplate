@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = Boilerplate.MODID, name = Boilerplate.NAME, version = Boilerplate.VERSION, dependencies = Boilerplate.DEPENDENCIES)
 public class Boilerplate
 {
-	public final static String MODID = "xyz/brassgoggledcoders/boilerplate";
+	public final static String MODID = "boilerplate";
 	public final static String NAME = "Boilerplate";
 	public final static String VERSION = "@VERSION@";
 	public final static String DEPENDENCIES = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;" +
