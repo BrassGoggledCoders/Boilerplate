@@ -8,8 +8,9 @@
  */
 package xyz.brassgoggledcoders.boilerplate.common.utils;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.BlockRailBase.EnumRailDirection;
+import net.minecraft.block.state.IBlockState;
 
 /**
  * @author SkySom
@@ -17,8 +18,22 @@ import net.minecraft.block.BlockRailBase;
  */
 public class BlockUtils
 {
-	public static boolean isRailBlock(Block block)
+	public static boolean isRailBlock(IBlockState blockState)
 	{
-		return block instanceof BlockRailBase;
+		boolean isRailBlock;
+		isRailBlock = blockState.getBlock() instanceof BlockRailBase;
+		isRailBlock &= getRailDirection(blockState) != null;
+		return isRailBlock;
+	}
+
+	public static EnumRailDirection getRailDirection(IBlockState blockState)
+	{
+		EnumRailDirection railDirection = null;
+		if(blockState instanceof BlockRailBase)
+		{
+			BlockRailBase blockRailBase = (BlockRailBase)blockState.getBlock();
+			railDirection = (EnumRailDirection)blockState.getValue(blockRailBase.getShapeProperty());
+		}
+		return railDirection;
 	}
 }

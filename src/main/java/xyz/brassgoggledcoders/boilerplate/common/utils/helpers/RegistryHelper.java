@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class RegistryHelper
 {
-	public static void registerItem(Item item, String modid)
+	public static void registerItem(Item item)
 	{
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
