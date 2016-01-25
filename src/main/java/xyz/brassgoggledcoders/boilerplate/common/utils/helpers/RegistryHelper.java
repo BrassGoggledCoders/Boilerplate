@@ -8,6 +8,9 @@
  */
 package xyz.brassgoggledcoders.boilerplate.common.utils.helpers;
 
+import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import xyz.brassgoggledcoders.boilerplate.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.common.items.ItemBlockWithDesc;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -20,6 +23,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class RegistryHelper
 {
+	public static int entityCounter = -1;
+
 	public static void registerItem(Item item)
 	{
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
@@ -67,5 +72,10 @@ public class RegistryHelper
 		GameRegistry.registerItem(pickaxe, "ItemPickaxe" + name);
 		GameRegistry.registerItem(axe, "ItemAxe" + name);
 		GameRegistry.registerItem(hoe, "ItemHoe" + name);
+	}
+
+	public static void registerEntity(IBoilerplateMod mod, Class<? extends Entity> entityClass, String name)
+	{
+		EntityRegistry.registerModEntity(entityClass, name, ++entityCounter, mod.getInstance(), 64, 1, true);
 	}
 }
