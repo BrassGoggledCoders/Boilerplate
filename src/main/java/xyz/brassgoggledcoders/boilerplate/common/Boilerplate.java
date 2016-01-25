@@ -76,7 +76,7 @@ public class Boilerplate
 		if(debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
-			RegistryHelper.registerItem(ITEM_DEBUG_STICK, MODID);
+			RegistryHelper.registerItem(ITEM_DEBUG_STICK);
 			logger.info("The Debugging Stick of Doom is active!");
 		}
 
