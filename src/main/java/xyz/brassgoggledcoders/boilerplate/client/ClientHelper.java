@@ -16,6 +16,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
@@ -91,6 +92,11 @@ public class ClientHelper
 	public static EntityRenderer entityRenderer()
 	{
 		return mc().entityRenderer;
+	}
+
+	public static RenderManager renderManager()
+	{
+		return mc().getRenderManager();
 	}
 
 	public static ScaledResolution resolution()
