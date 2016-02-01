@@ -26,27 +26,31 @@ public class ClientEventsHandler
 			boolean hammer = entityPlayer.getCurrentEquippedItem() != null &&
 					Tools.isItemATool(entityPlayer.getCurrentEquippedItem());
 			MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
-			TileEntity tileEntity = entityPlayer.worldObj.getTileEntity(mop.getBlockPos());
-			if(tileEntity instanceof IBlockOverlayText)
+			if(mop.getBlockPos() != null)
 			{
-				IBlockOverlayText overlayBlock = (IBlockOverlayText) tileEntity;
-				String[] text = overlayBlock.getOverlayText(entityPlayer, mop, hammer);
-				if(text!=null && text.length>0)
+				TileEntity tileEntity = entityPlayer.worldObj.getTileEntity(mop.getBlockPos());
+				if(tileEntity instanceof IBlockOverlayText)
 				{
-					FontRenderer font = ClientHelper.fontRenderer();
-					int col = 0xffffff;
-					int i = 0;
-					for(String s : text)
+					IBlockOverlayText overlayBlock = (IBlockOverlayText) tileEntity;
+					String[] text = overlayBlock.getOverlayText(entityPlayer, mop, hammer);
+					if(text != null && text.length > 0)
 					{
-						if(s != null)
+						FontRenderer font = ClientHelper.fontRenderer();
+						int col = 0xffffff;
+						int i = 0;
+						for(String s : text)
 						{
-							font.drawString(s, event.resolution.getScaledWidth() / 2 + 8, event.resolution.getScaledHeight()
-									/ 2+8+(i++) * font.FONT_HEIGHT, col, true);
+							if(s != null)
+							{
+								font.drawString(s, event.resolution.getScaledWidth() / 2 + 8, event.resolution.getScaledHeight()
+										/ 2+8+(i++) * font.FONT_HEIGHT, col, true);
+							}
 						}
-					}
 
+					}
 				}
 			}
+
 		}
 	}
 }
