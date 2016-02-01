@@ -29,7 +29,7 @@ public class BlockUtils
 	public static EnumRailDirection getRailDirection(IBlockState blockState)
 	{
 		EnumRailDirection railDirection = null;
-		if(blockState instanceof BlockRailBase)
+		if(blockState.getBlock() instanceof BlockRailBase)
 		{
 			BlockRailBase blockRailBase = (BlockRailBase)blockState.getBlock();
 			railDirection = (EnumRailDirection)blockState.getValue(blockRailBase.getShapeProperty());
