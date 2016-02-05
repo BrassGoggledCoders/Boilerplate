@@ -1,3 +1,4 @@
+
 package thaumcraft.api.crafting;
 
 import net.minecraft.world.World;

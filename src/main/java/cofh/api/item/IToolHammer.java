@@ -1,3 +1,4 @@
+
 package cofh.api.item;
 
 import net.minecraft.entity.EntityLivingBase;

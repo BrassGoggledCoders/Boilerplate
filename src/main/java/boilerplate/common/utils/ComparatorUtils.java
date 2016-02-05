@@ -1,3 +1,4 @@
+
 package boilerplate.common.utils;
 
 import cofh.api.energy.IEnergyHandler;

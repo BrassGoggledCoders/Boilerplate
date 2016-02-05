@@ -1,3 +1,4 @@
+
 package boilerplate.common.baseclasses.items;
 
 import net.minecraft.item.ItemStack;

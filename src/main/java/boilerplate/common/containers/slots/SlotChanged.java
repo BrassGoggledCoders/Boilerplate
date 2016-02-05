@@ -1,3 +1,4 @@
+
 package boilerplate.common.containers.slots;
 
 import boilerplate.common.tiles.IOnSlotChanged;

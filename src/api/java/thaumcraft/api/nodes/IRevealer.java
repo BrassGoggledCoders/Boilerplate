@@ -1,3 +1,4 @@
+
 package thaumcraft.api.nodes;
 
 import net.minecraft.entity.EntityLivingBase;

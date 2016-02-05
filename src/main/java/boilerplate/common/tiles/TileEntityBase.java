@@ -1,3 +1,4 @@
+
 package boilerplate.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;

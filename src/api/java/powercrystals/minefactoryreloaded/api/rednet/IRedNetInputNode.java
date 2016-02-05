@@ -1,3 +1,4 @@
+
 package powercrystals.minefactoryreloaded.api.rednet;
 
 import powercrystals.minefactoryreloaded.api.rednet.connectivity.IRedNetConnection;

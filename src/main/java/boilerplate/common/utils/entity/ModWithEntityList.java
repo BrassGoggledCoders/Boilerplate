@@ -1,3 +1,4 @@
+
 package boilerplate.common.utils.entity;
 
 import net.minecraftforge.common.config.ConfigCategory;

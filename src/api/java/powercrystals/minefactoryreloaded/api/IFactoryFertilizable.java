@@ -1,3 +1,4 @@
+
 package powercrystals.minefactoryreloaded.api;
 
 import java.util.Random;

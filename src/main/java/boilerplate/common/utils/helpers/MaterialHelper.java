@@ -1,3 +1,4 @@
+
 package boilerplate.common.utils.helpers;
 
 import net.minecraft.block.material.Material;

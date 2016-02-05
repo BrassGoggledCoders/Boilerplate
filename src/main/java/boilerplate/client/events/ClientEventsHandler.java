@@ -1,3 +1,4 @@
+
 package boilerplate.client.events;
 
 import boilerplate.api.IBlockOverlayText;
