@@ -1,20 +1,23 @@
 
 package boilerplate.common.utils.helpers;
 
+import java.util.ArrayList;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+import net.minecraftforge.common.config.Configuration;
+
 import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.baseclasses.items.ItemBlockWithDesc;
 import boilerplate.common.baseclasses.items.ItemBlockWithDescAndMeta;
 import boilerplate.common.utils.entity.KeyValue;
 import boilerplate.common.utils.entity.ModWithEntityList;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.config.Configuration;
-
-import java.util.ArrayList;
 
 /**
  * @author warlordjones
@@ -84,9 +87,9 @@ public class RegistryHelper
 
 	public static ModWithEntityList getFromEntityArrayList(String modid)
 	{
-		for(ModWithEntityList modWithEntityList: entityArrayList)
+		for (ModWithEntityList modWithEntityList : entityArrayList)
 		{
-			if(modWithEntityList.getModName().equals(modid))
+			if (modWithEntityList.getModName().equals(modid))
 			{
 				return modWithEntityList;
 			}
@@ -97,20 +100,20 @@ public class RegistryHelper
 
 	public static void registerEntity(IBoilerplateMod mod, Class<? extends Entity> entityClass, String name)
 	{
-		int entityID = getEntityID(mod.getModID(), name);
+		int entityID = getEntityID(mod.getModInfo().getID(), name);
 
 		EntityRegistry.registerModEntity(entityClass, name, entityID, mod, 64, 1, true);
 	}
 
 	private static int getEntityID(String modid, String entityName)
 	{
-		for(ModWithEntityList modWithEntityList: entityArrayList)
+		for (ModWithEntityList modWithEntityList : entityArrayList)
 		{
-			if(modWithEntityList.getModName().equals(modid))
+			if (modWithEntityList.getModName().equals(modid))
 			{
-				for(KeyValue<String, Integer> entityNameAndID: modWithEntityList.getEntityList())
+				for (KeyValue<String, Integer> entityNameAndID : modWithEntityList.getEntityList())
 				{
-					if(entityNameAndID.getKey().equals(entityName))
+					if (entityNameAndID.getKey().equals(entityName))
 					{
 						return entityNameAndID.getValue();
 					}

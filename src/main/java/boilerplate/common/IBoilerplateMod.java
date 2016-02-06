@@ -1,12 +1,16 @@
 
 package boilerplate.common;
 
+import net.minecraft.creativetab.CreativeTabs;
+
 /**
  * @author SkySom
  */
 public interface IBoilerplateMod
 {
-	String getModID();
+	IModInfo getModInfo();
 
 	Object getInstance();
+
+	CreativeTabs getCreativeTab();
 }
