@@ -11,20 +11,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import boilerplate.api.IEnergyItem;
+import boilerplate.common.IBoilerplateMod;
 
 /**
  * @author decebaldecebal
  *
  */
-public abstract class BaseElectricItem extends RootItem implements IEnergyItem
+public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 {
 	protected int maxEnergy;
 	protected short maxReceive;
 	protected short maxSend;
 
-	public BaseElectricItem(int maxEnergy, int maxReceive, int maxSend)
+	public BaseElectricItem(int maxEnergy, int maxReceive, int maxSend, IBoilerplateMod mod)
 	{
-		super();
+		super(mod);
 		this.maxEnergy = maxEnergy * 1000;
 		this.maxReceive = (short) maxReceive;
 		this.maxSend = (short) maxSend;

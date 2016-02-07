@@ -7,15 +7,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import boilerplate.common.IBoilerplateMod;
+
 /**
  * @author Surseance
  *
  */
 public class BaseHoe extends BaseTool
 {
-	public BaseHoe(ToolMaterial mat, String prefix)
+	public BaseHoe(ToolMaterial mat, IBoilerplateMod mod)
 	{
-		super(1F, mat, prefix);
+		super(1F, mat, mod);
 		this.setMaxDamage(mat.getMaxUses());
 		this.setHarvestLevel("hoe", mat.getHarvestLevel());
 	}

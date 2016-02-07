@@ -9,11 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import boilerplate.common.IBoilerplateMod;
+
 /**
  * @author warlordjones
  *
  */
-public abstract class BaseFirearm extends RootItem
+public abstract class BaseFirearm extends BaseItem
 {
 	protected int damage;
 	protected short reloadTime;
@@ -25,9 +27,9 @@ public abstract class BaseFirearm extends RootItem
 	protected String fireSound;
 	protected String reloadSound;
 
-	public BaseFirearm(int damage, int reloadTime, Item ammo, Item ammo2, String fireSound, String reloadSound)
+	public BaseFirearm(int damage, int reloadTime, Item ammo, Item ammo2, String fireSound, String reloadSound, IBoilerplateMod mod)
 	{
-		super();
+		super(mod);
 		this.damage = damage;
 		this.reloadTime = (short) reloadTime;
 		this.twoAmmo = ammo2 != null;

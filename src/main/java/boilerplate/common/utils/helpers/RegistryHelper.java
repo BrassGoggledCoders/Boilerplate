@@ -14,8 +14,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.config.Configuration;
 
 import boilerplate.common.IBoilerplateMod;
-import boilerplate.common.baseclasses.items.ItemBlockWithDesc;
-import boilerplate.common.baseclasses.items.ItemBlockWithDescAndMeta;
+import boilerplate.common.baseclasses.items.ItemBlockDesc;
+import boilerplate.common.baseclasses.items.ItemBlockDescMeta;
 import boilerplate.common.utils.entity.KeyValue;
 import boilerplate.common.utils.entity.ModWithEntityList;
 
@@ -32,7 +32,7 @@ public class RegistryHelper
 
 	public static void registerBlockWithDesc(Block block, String name)
 	{
-		GameRegistry.registerBlock(block, ItemBlockWithDesc.class, name);
+		GameRegistry.registerBlock(block, ItemBlockDesc.class, name);
 	}
 
 	public static void registerContainerBlock(Block block, Class<? extends TileEntity> tile, String name)
@@ -44,14 +44,14 @@ public class RegistryHelper
 
 	public static void registerContainerBlockWithDesc(Block block, Class<? extends TileEntity> tile, String name)
 	{
-		GameRegistry.registerBlock(block, ItemBlockWithDesc.class, name);
+		GameRegistry.registerBlock(block, ItemBlockDesc.class, name);
 		String id = "TE" + name.substring(5);
 		GameRegistry.registerTileEntity(tile, id);
 	}
 
 	public static void registerContainerBlockWithDescAndMeta(Block block, Class<? extends TileEntity> tile, String name)
 	{
-		GameRegistry.registerBlock(block, ItemBlockWithDescAndMeta.class, name);
+		GameRegistry.registerBlock(block, ItemBlockDescMeta.class, name);
 		String id = "TE" + name.substring(5);
 		GameRegistry.registerTileEntity(tile, id);
 	}

@@ -4,29 +4,33 @@ package boilerplate.common.baseclasses.items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+
+import boilerplate.common.IBoilerplateMod;
 
 /**
  * Created by Skylar on 9/2/2015.
  */
-public class BaseSteamItem extends RootItem implements IFluidContainerItem
+public class BaseSteamItem extends BaseItem implements IFluidContainerItem
 {
 	private IIcon fullIcon;
 	public int maxSteam;
 
-	public BaseSteamItem(int maxSteam)
+	public BaseSteamItem(int maxSteam, IBoilerplateMod mod)
 	{
+		super(mod);
 		this.maxSteam = maxSteam;
 	}
 
-	//Returns True if can the amount is consumed
+	// Returns True if can the amount is consumed
 	protected boolean consumeSteamFromCanister(ItemStack container, int amount)
 	{
 		boolean canConsume = false;
-		if(container != null && container.getItem() instanceof IFluidContainerItem)
+		if (container != null && container.getItem() instanceof IFluidContainerItem)
 		{
-			IFluidContainerItem iFluidContainerItem = (IFluidContainerItem)container.getItem();
+			IFluidContainerItem iFluidContainerItem = (IFluidContainerItem) container.getItem();
 			if (iFluidContainerItem.getFluid(container).amount > amount)
 			{
 				iFluidContainerItem.drain(container, amount, true);
