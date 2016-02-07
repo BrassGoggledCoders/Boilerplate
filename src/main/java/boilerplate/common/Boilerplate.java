@@ -1,10 +1,6 @@
 
 package boilerplate.common;
 
-import boilerplate.client.events.ClientEventsHandler;
-import boilerplate.common.baseclasses.items.ItemDebuggerStick;
-import boilerplate.common.utils.ModLogger;
-import boilerplate.common.utils.helpers.RegistryHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -15,22 +11,23 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
+
 import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+
+import boilerplate.client.events.ClientEventsHandler;
+import boilerplate.common.baseclasses.items.ItemDebuggerStick;
+import boilerplate.common.utils.ModLogger;
+import boilerplate.common.utils.helpers.RegistryHelper;
 
 /**
  * @author Surseance
  *
  */
-@Mod(modid = Boilerplate.MODID, name = Boilerplate.NAME, version = Boilerplate.VERSION, dependencies = Boilerplate.DEPENDENCIES)
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;after:MineFactoryReloaded")
 public class Boilerplate
 {
-	public final static String MODID = "boilerplate";
-	public final static String NAME = "Boilerplate";
-	public final static String VERSION = "@VERSION@";
-	public final static String DEPENDENCIES = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;" +
-			"after:MineFactoryReloaded";
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
 	 *
@@ -62,7 +59,7 @@ public class Boilerplate
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		logger = new ModLogger(Boilerplate.MODID);
+		logger = new ModLogger(ModInfo.ID);
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		// TODO: particles config option on client only
@@ -70,10 +67,10 @@ public class Boilerplate
 		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
 		debuggerStick = config.get("debugging", "activateDebuggingStickOfDoom", false, "True to enable").getBoolean();
 
-		if(debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
+		if (debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
-			RegistryHelper.registerItem(ITEM_DEBUG_STICK, MODID);
+			RegistryHelper.registerItem(ITEM_DEBUG_STICK, ModInfo.ID);
 			logger.info("The Debugging Stick of Doom is active!");
 		}
 
@@ -84,7 +81,7 @@ public class Boilerplate
 	public void init(FMLInitializationEvent event)
 	{
 		FMLCommonHandler.instance().bus().register(new ForgeEventHandler());
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 		{
 			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		}
