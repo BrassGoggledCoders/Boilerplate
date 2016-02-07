@@ -25,6 +25,7 @@ public class BlockCustomLog extends BlockLog
 	public BlockCustomLog(String type, IBoilerplateMod mod)
 	{
 		super();
+		this.mod = mod;
 		this.type = type;
 		this.setCreativeTab(mod.getCreativeTab());
 	}
