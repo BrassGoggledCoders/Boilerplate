@@ -1,5 +1,5 @@
 
-package boilerplate.common.baseclasses.items;
+package boilerplate.common.baseclasses.items.electric;
 
 import java.util.List;
 
@@ -11,25 +11,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import boilerplate.api.IEnergyItem;
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.baseclasses.items.tools.BaseTool;
 
-/**
- * @author decebaldecebal
- *
- */
-public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
+public class ItemElectricTool extends BaseTool implements IEnergyItem
 {
-	protected int maxEnergy;
-	protected short maxReceive;
-	protected short maxSend;
+	protected int maxEnergy = 0;
+	protected short maxReceive = 0;
+	protected int energyPerBlock = 0;
 
-	public BaseElectricItem(int maxEnergy, int maxReceive, int maxSend, IBoilerplateMod mod)
+	protected ItemElectricTool(float damage, ToolMaterial toolMat, int maxEnergy, int maxReceive)
 	{
-		super(mod);
+		super(damage, toolMat);
 		this.maxEnergy = maxEnergy * 1000;
 		this.maxReceive = (short) maxReceive;
-		this.maxSend = (short) maxSend;
 		this.setMaxStackSize(1);
+		this.setNoRepair();
 	}
 
 	@SuppressWarnings("all")
@@ -71,18 +67,7 @@ public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
 	{
 		list.add("Energy: " + (this.getEnergyStored(stack) / 1000) + "k / " + (this.maxEnergy / 1000) + "k");
-		if ((this.maxSend > 0) && (this.maxReceive > 0))
-		{
-			list.add("Transfer(in/out): " + this.maxReceive + " / " + this.maxSend);
-		}
-		else if (this.maxReceive > 0)
-		{
-			list.add("Transfer(in): " + this.maxReceive);
-		}
-		else if (this.maxSend > 0)
-		{
-			list.add("Transfer(out): " + this.maxSend);
-		}
+		list.add("Transfer(in): " + this.maxReceive);
 	}
 
 	@Override
@@ -100,14 +85,10 @@ public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 		NBTTagCompound tag = stack.getTagCompound();
 
 		if (energy < 0)
-		{
 			energy = 0;
-		}
 
 		if (energy > this.maxEnergy)
-		{
 			energy = this.maxEnergy;
-		}
 
 		tag.setInteger("energy", energy);
 
@@ -121,9 +102,7 @@ public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 		received = Math.min(received, this.maxReceive);
 
 		if (!simulate)
-		{
 			this.setEnergy(itemStack, this.getEnergyStored(itemStack) + received);
-		}
 
 		return received;
 	}
@@ -131,29 +110,24 @@ public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 	@Override
 	public int extractEnergy(ItemStack itemStack, int maxExtract, boolean simulate)
 	{
-		int extracted = Math.min(this.getEnergyStored(itemStack), maxExtract);
-		extracted = Math.min(extracted, this.maxSend);
-
-		if (!simulate)
-		{
-			this.setEnergy(itemStack, this.getEnergyStored(itemStack) - extracted);
-		}
-
-		return extracted;
+		return 0;
 	}
 
 	@Override
-	public int getEnergyStored(ItemStack itemStack)
+	public int getEnergyStored(ItemStack stack)
 	{
-		if (itemStack.hasTagCompound())
+		return getOrCreateTagCompound(stack).getInteger("energy");
+	}
+
+	public static NBTTagCompound getOrCreateTagCompound(ItemStack is)
+	{
+		if (!is.hasTagCompound())
 		{
-			return itemStack.getTagCompound().getInteger("energy");
+			is.setTagCompound(new NBTTagCompound());
+			is.getTagCompound().setInteger("energy", 0);
 		}
-		else
-		{
-			this.setEnergy(itemStack, 0);
-		}
-		return 0;
+
+		return is.getTagCompound();
 	}
 
 	@Override
@@ -165,7 +139,7 @@ public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 	@Override
 	public short getMaxSend()
 	{
-		return this.maxSend;
+		return 0;
 	}
 
 	@Override
@@ -178,5 +152,17 @@ public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
 	public boolean showDurabilityBar(ItemStack stack)
 	{
 		return true;
+	}
+
+	@Override
+	public int getItemEnchantability()
+	{
+		return 0;
+	}
+
+	@Override
+	public boolean isBookEnchantable(ItemStack itemstack1, ItemStack itemstack2)
+	{
+		return false;
 	}
 }

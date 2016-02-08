@@ -13,8 +13,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.client.ClientHelper;
-import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.utils.StringUtils;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -22,20 +22,26 @@ import boilerplate.common.utils.StringUtils;
  */
 public class BaseItem extends Item
 {
-	IBoilerplateMod mod;
+	String texturePath = "";
 
-	public BaseItem(IBoilerplateMod mod)
+	public BaseItem()
+	{
+		this("");
+	}
+
+	public BaseItem(String texturePath)
 	{
 		super();
-		this.setCreativeTab(mod.getCreativeTab());
-		this.mod = mod;
+		this.texturePath = texturePath;
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(mod.getModInfo().getPrefix() + this.getUnlocalizedName().substring(5));
+		this.itemIcon = par1IconRegister
+				.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + texturePath + this.getUnlocalizedName().substring(5));
 	}
 
 	@SuppressWarnings("all")

@@ -8,17 +8,15 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import boilerplate.common.IBoilerplateMod;
-
 /**
  * @author Surseance
  *
  */
 public class BaseSword extends BaseTool
 {
-	public BaseSword(ToolMaterial mat, IBoilerplateMod mod)
+	public BaseSword(ToolMaterial mat)
 	{
-		super(4.0F, mat, mod);
+		super(4.0F, mat);
 		this.setHarvestLevel("sword", mat.getHarvestLevel());
 	}
 

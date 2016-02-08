@@ -9,7 +9,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author Surseance
@@ -17,21 +17,19 @@ import boilerplate.common.IBoilerplateMod;
  */
 public class BaseBlock extends Block
 {
-	IBoilerplateMod mod;
 
-	public BaseBlock(Material mat, IBoilerplateMod mod)
+	public BaseBlock(Material mat)
 	{
 		super(mat);
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 		this.setHardness(1F);
-		this.mod = mod;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		this.blockIcon = ir.registerIcon(mod.getModInfo().getPrefix() + this.getUnlocalizedName().substring(5));
+		this.blockIcon = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + this.getUnlocalizedName().substring(5));
 	}
 
 	/**

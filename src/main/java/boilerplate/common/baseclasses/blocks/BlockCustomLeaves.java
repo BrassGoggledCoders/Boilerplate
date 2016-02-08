@@ -8,7 +8,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -17,21 +17,19 @@ import boilerplate.common.IBoilerplateMod;
 public class BlockCustomLeaves extends BlockLeaves
 {
 	String type;
-	IBoilerplateMod mod;
 
-	public BlockCustomLeaves(String type, IBoilerplateMod mod)
+	public BlockCustomLeaves(String type)
 	{
 		super();
 		this.type = type;
-		this.mod = mod;
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(final IIconRegister ir)
 	{
-		this.blockIcon = ir.registerIcon(mod.getModInfo().getPrefix() + "block" + this.type + "Leaves");
+		this.blockIcon = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "block" + this.type + "Leaves");
 	}
 
 	@Override

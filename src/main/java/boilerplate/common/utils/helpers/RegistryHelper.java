@@ -13,9 +13,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraftforge.common.config.Configuration;
 
-import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.baseclasses.items.ItemBlockDesc;
 import boilerplate.common.baseclasses.items.ItemBlockDescMeta;
+import boilerplate.common.utils.Utils;
 import boilerplate.common.utils.entity.KeyValue;
 import boilerplate.common.utils.entity.ModWithEntityList;
 
@@ -98,11 +98,11 @@ public class RegistryHelper
 		return null;
 	}
 
-	public static void registerEntity(IBoilerplateMod mod, Class<? extends Entity> entityClass, String name)
+	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		int entityID = getEntityID(mod.getModInfo().getID(), name);
+		int entityID = getEntityID(Utils.getCurrentExtendingMod().getID(), name);
 
-		EntityRegistry.registerModEntity(entityClass, name, entityID, mod, 64, 1, true);
+		EntityRegistry.registerModEntity(entityClass, name, entityID, Utils.getCurrentExtendingMod(), 64, 1, true);
 	}
 
 	private static int getEntityID(String modid, String entityName)

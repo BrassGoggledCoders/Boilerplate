@@ -8,9 +8,19 @@ import net.minecraft.creativetab.CreativeTabs;
  */
 public interface IBoilerplateMod
 {
-	IModInfo getModInfo();
-
 	Object getInstance();
 
 	CreativeTabs getCreativeTab();
+
+	String getID();
+
+	String getName();
+
+	String getVersion();
+
+	String getPrefix();
+
+	String getClientProxyPath();
+
+	String getCommonProxyPath();
 }

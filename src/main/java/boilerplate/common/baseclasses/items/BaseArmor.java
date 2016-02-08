@@ -15,6 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.client.ClientHelper;
 import boilerplate.common.utils.StringUtils;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author Surseance
@@ -23,29 +24,28 @@ import boilerplate.common.utils.StringUtils;
 public class BaseArmor extends ItemArmor
 {
 	String textureName;
-	String prefix;
 
-	public BaseArmor(ArmorMaterial mat, int type, String textureName, String prefix)
+	public BaseArmor(ArmorMaterial mat, int type, String textureName)
 	{
 		super(mat, 0, type);
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 		this.setMaxStackSize(1);
 		this.textureName = textureName;
-		this.prefix = prefix;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack is, Entity entity, int slot, String stuff)
 	{
-		return slot == 2 ? this.prefix + "textures/models/armor/" + this.textureName + "_2.png"
-				: this.prefix + "textures/models/armor/" + this.textureName + "_1.png";
+		return slot == 2 ? Utils.getCurrentExtendingMod().getPrefix() + "textures/models/armor/" + this.textureName + "_2.png"
+				: Utils.getCurrentExtendingMod().getPrefix() + "textures/models/armor/" + this.textureName + "_1.png";
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(this.prefix + "armor/" + this.getUnlocalizedName().substring(5));
+		this.itemIcon = par1IconRegister.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "armor/" + this.getUnlocalizedName().substring(5));
 	}
 
 	@SuppressWarnings("all")

@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -24,12 +24,12 @@ public class BlockCustomWall extends BlockWall
 	Block block;
 	int metadata;
 
-	public BlockCustomWall(Block block, int meta, IBoilerplateMod mod)
+	public BlockCustomWall(Block block, int meta)
 	{
 		super(block);
 		this.block = block;
 		this.metadata = meta;
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 	}
 
 	@Override

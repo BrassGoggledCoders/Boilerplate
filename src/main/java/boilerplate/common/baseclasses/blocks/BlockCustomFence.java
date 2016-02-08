@@ -4,7 +4,7 @@ package boilerplate.common.baseclasses.blocks;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -12,9 +12,9 @@ import boilerplate.common.IBoilerplateMod;
  */
 public class BlockCustomFence extends BlockFence
 {
-	public BlockCustomFence(String type, Material mat, IBoilerplateMod mod)
+	public BlockCustomFence(String type, Material mat)
 	{
-		super(mod.getModInfo().getPrefix() + type, mat);
-		this.setCreativeTab(mod.getCreativeTab());
+		super(Utils.getCurrentExtendingMod().getPrefix() + type, mat);
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 	}
 }

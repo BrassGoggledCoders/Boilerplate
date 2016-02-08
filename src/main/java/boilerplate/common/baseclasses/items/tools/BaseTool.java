@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.baseclasses.items.BaseItem;
 import boilerplate.common.utils.ItemStackUtils;
+import boilerplate.common.utils.Utils;
 import boilerplate.common.utils.helpers.MaterialHelper;
 import com.google.common.collect.Multimap;
 
@@ -36,12 +36,9 @@ public abstract class BaseTool extends BaseItem
 	public float damageVsEntity;
 	protected ToolMaterial toolMaterial;
 
-	IBoilerplateMod mod;
-
-	protected BaseTool(float damage, ToolMaterial toolMat, IBoilerplateMod mod)
+	protected BaseTool(float damage, ToolMaterial toolMat)
 	{
-		super(mod);
-		this.mod = mod;
+		super();
 		this.toolMaterial = toolMat;
 		this.setMaxStackSize(1);
 		this.efficiencyOnProperMaterial = toolMat.getEfficiencyOnProperMaterial();
@@ -62,7 +59,7 @@ public abstract class BaseTool extends BaseItem
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(mod.getModInfo().getPrefix() + "tools/" + this.getUnlocalizedName().substring(5));
+		this.itemIcon = par1IconRegister.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "tools/" + this.getUnlocalizedName().substring(5));
 	}
 
 	@Override

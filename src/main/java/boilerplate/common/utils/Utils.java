@@ -9,6 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
+
+import boilerplate.common.IBoilerplateMod;
+
 /**
  * @author Surseance
  *
@@ -74,5 +79,17 @@ public class Utils
 			start += array.length;
 		}
 		return mergedArray;
+	}
+
+	public static IBoilerplateMod getCurrentExtendingMod()
+	{
+		Object activeMod = Loader.instance().activeModContainer().getMod();
+		if (activeMod instanceof IBoilerplateMod)
+			return (IBoilerplateMod) activeMod;
+		else
+		{
+			FMLLog.bigWarning("Mods using Boilerplate Lib baseclasses must have their main class extend IBoilerplateMod!", "");
+			return null;
+		}
 	}
 }

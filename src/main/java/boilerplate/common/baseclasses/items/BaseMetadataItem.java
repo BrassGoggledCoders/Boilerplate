@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -25,19 +25,19 @@ public class BaseMetadataItem extends BaseItem
 	String path;
 	String type;
 
-	public BaseMetadataItem(IBoilerplateMod mod, String[] subNames)
+	public BaseMetadataItem(String[] subNames)
 	{
-		this(mod, "", "", subNames);
+		this("", "", subNames);
 	}
 
-	public BaseMetadataItem(IBoilerplateMod mod, String type, String[] subNames)
+	public BaseMetadataItem(String type, String[] subNames)
 	{
-		this(mod, "", type, subNames);
+		this("", type, subNames);
 	}
 
-	public BaseMetadataItem(IBoilerplateMod mod, String path, String type, String[] subNames)
+	public BaseMetadataItem(String path, String type, String[] subNames)
 	{
-		super(mod);
+		super();
 		this.itemIcon = new IIcon[subNames.length];
 		this.subNames = subNames;
 		this.path = path;
@@ -67,9 +67,9 @@ public class BaseMetadataItem extends BaseItem
 		for (int i = 0; i < this.itemIcon.length; i++)
 		{
 			if (subNames[i] != null)
-				this.itemIcon[i] = ir.registerIcon(mod.getModInfo().getPrefix() + path + "item" + type + subNames[i]);
+				this.itemIcon[i] = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + path + "item" + type + subNames[i]);
 			else
-				this.itemIcon[i] = ir.registerIcon(mod.getModInfo().getPrefix() + path + "item" + type);
+				this.itemIcon[i] = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + path + "item" + type);
 		}
 	}
 

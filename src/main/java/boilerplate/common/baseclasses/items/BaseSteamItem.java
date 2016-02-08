@@ -8,8 +8,6 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
-import boilerplate.common.IBoilerplateMod;
-
 /**
  * Created by Skylar on 9/2/2015.
  */
@@ -18,9 +16,9 @@ public class BaseSteamItem extends BaseItem implements IFluidContainerItem
 	private IIcon fullIcon;
 	public int maxSteam;
 
-	public BaseSteamItem(int maxSteam, IBoilerplateMod mod)
+	public BaseSteamItem(int maxSteam)
 	{
-		super(mod);
+		super();
 		this.maxSteam = maxSteam;
 	}
 

@@ -4,7 +4,7 @@ package boilerplate.common.baseclasses.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -12,17 +12,17 @@ import boilerplate.common.IBoilerplateMod;
  */
 public class BlockCustomStairs extends BlockStairs
 {
-	public BlockCustomStairs(Block block, IBoilerplateMod mod)
+	public BlockCustomStairs(Block block)
 	{
 		super(block, 0);
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 
-	public BlockCustomStairs(Block block, int metadata, IBoilerplateMod mod)
+	public BlockCustomStairs(Block block, int metadata)
 	{
 		super(block, metadata);
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 }

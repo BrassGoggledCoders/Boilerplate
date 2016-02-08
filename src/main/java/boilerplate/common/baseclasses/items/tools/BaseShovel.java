@@ -1,8 +1,6 @@
 
 package boilerplate.common.baseclasses.items.tools;
 
-import boilerplate.common.IBoilerplateMod;
-
 /**
  * @author Surseance
  *
@@ -10,9 +8,9 @@ import boilerplate.common.IBoilerplateMod;
 public class BaseShovel extends BaseTool
 {
 
-	public BaseShovel(ToolMaterial mat, IBoilerplateMod mod)
+	public BaseShovel(ToolMaterial mat)
 	{
-		super(1.0F, mat, mod);
+		super(1.0F, mat);
 		this.setHarvestLevel("shovel", mat.getHarvestLevel());
 	}
 }

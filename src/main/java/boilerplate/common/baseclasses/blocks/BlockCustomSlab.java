@@ -6,7 +6,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.IIcon;
 
-import boilerplate.common.IBoilerplateMod;
+import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -16,22 +16,20 @@ public class BlockCustomSlab extends BlockSlab
 {
 	String type;
 	Block block;
-	IBoilerplateMod mod;
 
-	public BlockCustomSlab(String type, Block block, Material mat, IBoilerplateMod mod)
+	public BlockCustomSlab(String type, Block block, Material mat)
 	{
 		super(false, mat);
 		this.type = type;
 		this.block = block;
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
 		this.useNeighborBrightness = true;
-		this.mod = mod;
 	}
 
 	@Override
 	public String func_150002_b(int p_150002_1_)
 	{
-		return mod.getModInfo().getPrefix() + this.type;
+		return Utils.getCurrentExtendingMod().getPrefix() + this.type;
 	}
 
 	@Override
