@@ -3,19 +3,14 @@ package boilerplate.common.baseclasses.items.electric;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import boilerplate.api.IEnergyItem;
 import boilerplate.client.utils.GuiColors;
-import boilerplate.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -26,14 +21,6 @@ public class BaseElectricStorageItem extends BaseElectricItem
 	public BaseElectricStorageItem(int maxEnergy, int maxReceive, int maxSend)
 	{
 		super(maxEnergy, maxReceive, maxSend);
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + this.getUnlocalizedName().substring(5));
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

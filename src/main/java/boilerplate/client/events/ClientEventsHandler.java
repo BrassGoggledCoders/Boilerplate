@@ -2,7 +2,7 @@
 package boilerplate.client.events;
 
 import boilerplate.api.IBlockOverlayText;
-import boilerplate.common.utils.Tools;
+import boilerplate.common.utils.ToolUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -24,7 +24,7 @@ public class ClientEventsHandler
 		{
 			EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
 			boolean hammer = entityPlayer.getCurrentEquippedItem() != null &&
-					Tools.isItemATool(entityPlayer.getCurrentEquippedItem());
+					ToolUtils.isItemATool(entityPlayer.getCurrentEquippedItem());
 			MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
 			TileEntity tileEntity = entityPlayer.worldObj.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
 			if(tileEntity instanceof IBlockOverlayText)

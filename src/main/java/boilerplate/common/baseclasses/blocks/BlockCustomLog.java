@@ -8,6 +8,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.utils.Utils;
 
 /**
@@ -20,12 +21,14 @@ public class BlockCustomLog extends BlockLog
 	private IIcon iconTop;
 
 	String type;
+	IBoilerplateMod mod;
 
 	public BlockCustomLog(String type)
 	{
 		super();
+		this.mod = Utils.getCurrentMod();
 		this.type = type;
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
+		this.setCreativeTab(mod.getCreativeTab());
 	}
 
 	@Override
@@ -46,7 +49,7 @@ public class BlockCustomLog extends BlockLog
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(final IIconRegister ir)
 	{
-		this.blockIcon = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "block" + this.type + "LogSide");
-		this.iconTop = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "block" + this.type + "LogTop");
+		this.blockIcon = ir.registerIcon(mod.getPrefix() + "block" + this.type + "LogSide");
+		this.iconTop = ir.registerIcon(mod.getPrefix() + "block" + this.type + "LogTop");
 	}
 }

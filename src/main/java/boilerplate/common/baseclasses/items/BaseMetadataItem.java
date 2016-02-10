@@ -12,6 +12,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import boilerplate.common.IBoilerplateMod;
 import boilerplate.common.utils.Utils;
 
 /**
@@ -24,6 +25,7 @@ public class BaseMetadataItem extends BaseItem
 	String[] subNames;
 	String path;
 	String type;
+	IBoilerplateMod mod;
 
 	public BaseMetadataItem(String[] subNames)
 	{
@@ -43,6 +45,7 @@ public class BaseMetadataItem extends BaseItem
 		this.path = path;
 		this.type = type;
 		this.setHasSubtypes(true);
+		this.mod = Utils.getCurrentMod();
 	}
 
 	@Override
@@ -67,9 +70,9 @@ public class BaseMetadataItem extends BaseItem
 		for (int i = 0; i < this.itemIcon.length; i++)
 		{
 			if (subNames[i] != null)
-				this.itemIcon[i] = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + path + "item" + type + subNames[i]);
+				this.itemIcon[i] = ir.registerIcon(mod.getPrefix() + path + "item" + type + subNames[i]);
 			else
-				this.itemIcon[i] = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + path + "item" + type);
+				this.itemIcon[i] = ir.registerIcon(mod.getPrefix() + path + "item" + type);
 		}
 	}
 

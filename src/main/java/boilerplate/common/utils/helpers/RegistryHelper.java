@@ -4,6 +4,7 @@ package boilerplate.common.utils.helpers;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -13,6 +14,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraftforge.common.config.Configuration;
 
+import boilerplate.common.baseclasses.blocks.BaseBlock;
+import boilerplate.common.baseclasses.items.BaseItem;
 import boilerplate.common.baseclasses.items.ItemBlockDesc;
 import boilerplate.common.baseclasses.items.ItemBlockDescMeta;
 import boilerplate.common.utils.Utils;
@@ -25,9 +28,23 @@ import boilerplate.common.utils.entity.ModWithEntityList;
  */
 public class RegistryHelper
 {
-	public static void registerItem(Item item, String modid)
+	public static void registerAndCreateBasicItem(Item itemField)
 	{
-		GameRegistry.registerItem(item, item.getUnlocalizedName(), modid);
+		itemField = new BaseItem();
+		registerItem(itemField);
+	}
+
+	public static void registerAndCreateBasicBlock(Block blockField, Material mat, String name)
+	{
+		blockField = new BaseBlock(mat);
+		GameRegistry.registerBlock(blockField, name);
+	}
+
+	public static void registerItem(Item item)
+	{
+		// TODO: in 1.8, convert to using uppercase registry names, as is
+		// standard for blocks.
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
 
 	public static void registerBlockWithDesc(Block block, String name)
@@ -44,16 +61,14 @@ public class RegistryHelper
 
 	public static void registerContainerBlockWithDesc(Block block, Class<? extends TileEntity> tile, String name)
 	{
-		GameRegistry.registerBlock(block, ItemBlockDesc.class, name);
-		String id = "TE" + name.substring(5);
-		GameRegistry.registerTileEntity(tile, id);
+		registerBlockWithDesc(block, name);
+		GameRegistry.registerTileEntity(tile, "TE" + name.substring(5));
 	}
 
 	public static void registerContainerBlockWithDescAndMeta(Block block, Class<? extends TileEntity> tile, String name)
 	{
 		GameRegistry.registerBlock(block, ItemBlockDescMeta.class, name);
-		String id = "TE" + name.substring(5);
-		GameRegistry.registerTileEntity(tile, id);
+		GameRegistry.registerTileEntity(tile, "TE" + name.substring(5));
 	}
 
 	public static void registerArmorSet(Item helm, Item chestplate, Item legs, Item boots, String name, String modid)
@@ -100,9 +115,9 @@ public class RegistryHelper
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		int entityID = getEntityID(Utils.getCurrentExtendingMod().getID(), name);
+		int entityID = getEntityID(Utils.getCurrentMod().getID(), name);
 
-		EntityRegistry.registerModEntity(entityClass, name, entityID, Utils.getCurrentExtendingMod(), 64, 1, true);
+		EntityRegistry.registerModEntity(entityClass, name, entityID, Utils.getCurrentMod(), 64, 1, true);
 	}
 
 	private static int getEntityID(String modid, String entityName)

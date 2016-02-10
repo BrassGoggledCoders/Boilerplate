@@ -22,14 +22,14 @@ public class BlockCustomSlab extends BlockSlab
 		super(false, mat);
 		this.type = type;
 		this.block = block;
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 
 	@Override
 	public String func_150002_b(int p_150002_1_)
 	{
-		return Utils.getCurrentExtendingMod().getPrefix() + this.type;
+		return Utils.getCurrentMod().getPrefix() + this.type;
 	}
 
 	@Override

@@ -2,7 +2,7 @@
 package boilerplate.common.blocks;
 
 import boilerplate.common.tiles.TileEntitySided;
-import boilerplate.common.utils.Tools;
+import boilerplate.common.utils.ToolUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -39,7 +39,7 @@ public abstract class SidedBlock extends BlockContainer
 			if(!world.isRemote)
 			{
 				TileEntitySided tileEntitySided = (TileEntitySided) te;
-				if(Tools.isItemATool(player.getCurrentEquippedItem()))
+				if(ToolUtils.isItemATool(player.getCurrentEquippedItem()))
 				{
 					if(player.isSneaking())
 					{

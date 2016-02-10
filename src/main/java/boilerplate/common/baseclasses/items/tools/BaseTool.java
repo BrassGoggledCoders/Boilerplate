@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,7 +19,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.common.baseclasses.items.BaseItem;
 import boilerplate.common.utils.ItemStackUtils;
-import boilerplate.common.utils.Utils;
 import boilerplate.common.utils.helpers.MaterialHelper;
 import com.google.common.collect.Multimap;
 
@@ -38,7 +36,7 @@ public abstract class BaseTool extends BaseItem
 
 	protected BaseTool(float damage, ToolMaterial toolMat)
 	{
-		super();
+		super("tools/");
 		this.toolMaterial = toolMat;
 		this.setMaxStackSize(1);
 		this.efficiencyOnProperMaterial = toolMat.getEfficiencyOnProperMaterial();
@@ -53,13 +51,6 @@ public abstract class BaseTool extends BaseItem
 	public void getSubItems(Item item, CreativeTabs tab, List l)
 	{
 		l.add(new ItemStack(item, 1));
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "tools/" + this.getUnlocalizedName().substring(5));
 	}
 
 	@Override

@@ -81,7 +81,7 @@ public class Utils
 		return mergedArray;
 	}
 
-	public static IBoilerplateMod getCurrentExtendingMod()
+	public static IBoilerplateMod getCurrentMod()
 	{
 		Object activeMod = Loader.instance().activeModContainer().getMod();
 		if (activeMod instanceof IBoilerplateMod)

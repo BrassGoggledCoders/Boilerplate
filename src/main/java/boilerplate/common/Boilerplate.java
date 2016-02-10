@@ -1,6 +1,8 @@
 
 package boilerplate.common;
 
+import net.minecraft.creativetab.CreativeTabs;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -26,7 +28,7 @@ import boilerplate.common.utils.helpers.RegistryHelper;
  *
  */
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;after:MineFactoryReloaded")
-public class Boilerplate
+public class Boilerplate implements IBoilerplateMod
 {
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
@@ -70,7 +72,7 @@ public class Boilerplate
 		if (debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
-			RegistryHelper.registerItem(ITEM_DEBUG_STICK, ModInfo.ID);
+			RegistryHelper.registerItem(ITEM_DEBUG_STICK);
 			logger.info("The Debugging Stick of Doom is active!");
 		}
 
@@ -97,5 +99,54 @@ public class Boilerplate
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
+	}
+
+	@Override
+	public Object getInstance()
+	{
+		return instance;
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab()
+	{
+		return CreativeTabs.tabMisc;
+	}
+
+	@Override
+	public String getID()
+	{
+		return ModInfo.ID;
+	}
+
+	@Override
+	public String getName()
+	{
+		return ModInfo.NAME;
+	}
+
+	@Override
+	public String getVersion()
+	{
+		return ModInfo.VERSION;
+	}
+
+	@Override
+	public String getPrefix()
+	{
+		return ModInfo.NAME + ":";
+	}
+
+	@Override
+	public String getClientProxyPath()
+	{
+		// TODO
+		return "boilerplate.client.ClientProxy";
+	}
+
+	@Override
+	public String getCommonProxyPath()
+	{
+		return "boilerplate.common.CommonProxy";
 	}
 }

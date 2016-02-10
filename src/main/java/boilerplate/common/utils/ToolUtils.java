@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * @author SkySom
  */
-public class Tools
+public class ToolUtils
 {
 	public static boolean toolsSetup = false;
 	public static HashMap<String, Class> toolClasses;

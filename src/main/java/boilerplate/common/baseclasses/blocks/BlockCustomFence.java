@@ -14,7 +14,7 @@ public class BlockCustomFence extends BlockFence
 {
 	public BlockCustomFence(String type, Material mat)
 	{
-		super(Utils.getCurrentExtendingMod().getPrefix() + type, mat);
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
+		super(Utils.getCurrentMod().getPrefix() + type, mat);
+		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
 	}
 }

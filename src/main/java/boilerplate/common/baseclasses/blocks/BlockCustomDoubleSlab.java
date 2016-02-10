@@ -37,7 +37,7 @@ public class BlockCustomDoubleSlab extends BlockSlab
 	@Override
 	public String func_150002_b(int p_150002_1_)
 	{
-		return Utils.getCurrentExtendingMod().getPrefix() + this.type;
+		return Utils.getCurrentMod().getPrefix() + this.type;
 	}
 
 	@Override

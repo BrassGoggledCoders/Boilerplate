@@ -29,7 +29,7 @@ public class BlockCustomWall extends BlockWall
 		super(block);
 		this.block = block;
 		this.metadata = meta;
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
 	}
 
 	@Override

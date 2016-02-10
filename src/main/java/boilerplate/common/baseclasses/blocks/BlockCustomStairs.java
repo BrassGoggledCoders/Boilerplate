@@ -15,14 +15,14 @@ public class BlockCustomStairs extends BlockStairs
 	public BlockCustomStairs(Block block)
 	{
 		super(block, 0);
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 
 	public BlockCustomStairs(Block block, int metadata)
 	{
 		super(block, metadata);
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
+		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 }

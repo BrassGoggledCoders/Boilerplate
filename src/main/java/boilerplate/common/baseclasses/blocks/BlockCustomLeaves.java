@@ -2,11 +2,7 @@
 package boilerplate.common.baseclasses.blocks;
 
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.common.utils.Utils;
 
@@ -22,14 +18,7 @@ public class BlockCustomLeaves extends BlockLeaves
 	{
 		super();
 		this.type = type;
-		this.setCreativeTab(Utils.getCurrentExtendingMod().getCreativeTab());
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(final IIconRegister ir)
-	{
-		this.blockIcon = ir.registerIcon(Utils.getCurrentExtendingMod().getPrefix() + "block" + this.type + "Leaves");
+		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
 	}
 
 	@Override
