@@ -1,14 +1,7 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.utils;
 
 import net.minecraftforge.classloading.FMLForgePlugin;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -58,7 +51,7 @@ public class ModLogger implements ILogger
 	@Override
 	public void devWarning(String message)
 	{
-		if(this.isDev)
+		if (this.isDev)
 		{
 			this.warning(message);
 		}
@@ -67,7 +60,7 @@ public class ModLogger implements ILogger
 	@Override
 	public void devInfo(String message)
 	{
-		if(this.isDev)
+		if (this.isDev)
 		{
 			this.info(message);
 		}
@@ -76,7 +69,7 @@ public class ModLogger implements ILogger
 	@Override
 	public void devFatal(String message)
 	{
-		if(this.isDev)
+		if (this.isDev)
 		{
 			this.info(message);
 		}
@@ -85,7 +78,7 @@ public class ModLogger implements ILogger
 	@Override
 	public void devError(String message)
 	{
-		if(this.isDev)
+		if (this.isDev)
 		{
 			this.error(message);
 		}

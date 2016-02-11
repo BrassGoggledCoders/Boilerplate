@@ -1,17 +1,10 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.entity;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -89,13 +82,11 @@ public class EntityMinedBlock extends Entity
 		}
 	}
 
-	/* TODO: Bounding Box
-	@Override
-	public AxisAlignedBB getBoundingBox()
-	{
-		return null;
-	}
-	*/
+	/*
+	 * TODO: Bounding Box
+	 * 
+	 * @Override public AxisAlignedBB getBoundingBox() { return null; }
+	 */
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tagCompound)
@@ -123,14 +114,13 @@ public class EntityMinedBlock extends Entity
 		this.scale = tagCompound.getFloat("Scale");
 	}
 
-	/* TODO: 1.8 Shadow
-	@SideOnly(Side.CLIENT)
-	@Override
-	public float getShadowSize()
-	{
-		return 0.0F;
-	}
- 	*/
+	/*
+	 * TODO: 1.8 Shadow
+	 * 
+	 * @SideOnly(Side.CLIENT)
+	 * 
+	 * @Override public float getShadowSize() { return 0.0F; }
+	 */
 	@SideOnly(Side.CLIENT)
 	public World getWorldObj()
 	{

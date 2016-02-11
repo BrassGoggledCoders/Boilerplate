@@ -3,9 +3,13 @@ package xyz.brassgoggledcoders.boilerplate.common.utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.*;
+
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.IFluidHandler;
 
 public class FluidUtils
 {
@@ -50,25 +54,25 @@ public class FluidUtils
 	{
 		ItemStack equipped = player.getCurrentEquippedItem();
 
-		if(equipped == null)
+		if (equipped == null)
 		{
 			return false;
 		}
 
 		FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(equipped);
-		if(fluid != null)
+		if (fluid != null)
 		{
-			if(handler.fill(null, fluid, false) == fluid.amount || player.capabilities.isCreativeMode)
+			if (handler.fill(null, fluid, false) == fluid.amount || player.capabilities.isCreativeMode)
 			{
-				if(world.isRemote)
+				if (world.isRemote)
 				{
 					return true;
 				}
 
 				ItemStack filledStack = FluidContainerRegistry.drainFluidContainer(equipped);
-				if(!player.capabilities.isCreativeMode)
+				if (!player.capabilities.isCreativeMode)
 				{
-					if(equipped.stackSize==1)
+					if (equipped.stackSize == 1)
 					{
 						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 						player.inventory.addItemStackToInventory(filledStack);
@@ -76,13 +80,13 @@ public class FluidUtils
 					else
 					{
 						equipped.stackSize -= 1;
-						if(filledStack != null && !player.inventory.addItemStackToInventory(filledStack))
+						if (filledStack != null && !player.inventory.addItemStackToInventory(filledStack))
 						{
 							player.dropItem(filledStack, false, true);
 						}
 					}
 					player.openContainer.detectAndSendChanges();
-					if(player instanceof  EntityPlayerMP)
+					if (player instanceof EntityPlayerMP)
 					{
 						((EntityPlayerMP) player).updateCraftingInventory(player.openContainer, player.openContainer.getInventory());
 					}
@@ -91,22 +95,22 @@ public class FluidUtils
 				return true;
 			}
 		}
-		else if(equipped.getItem() instanceof IFluidContainerItem)
+		else if (equipped.getItem() instanceof IFluidContainerItem)
 		{
-			IFluidContainerItem container = (IFluidContainerItem)equipped.getItem();
+			IFluidContainerItem container = (IFluidContainerItem) equipped.getItem();
 			fluid = container.getFluid(equipped);
-			if(handler.fill(null, fluid, false)>0)
+			if (handler.fill(null, fluid, false) > 0)
 			{
-				if(world.isRemote)
+				if (world.isRemote)
 					return true;
 
 				int fill = handler.fill(null, fluid, true);
-				if(equipped.stackSize > 1)
+				if (equipped.stackSize > 1)
 				{
 					ItemStack emptied = ItemStackUtils.copyStackWithAmount(equipped, 1);
 					equipped.stackSize -= 1;
 					container.drain(emptied, fill, true);
-					if(!player.inventory.addItemStackToInventory(emptied))
+					if (!player.inventory.addItemStackToInventory(emptied))
 					{
 						player.dropItem(emptied, false, true);
 					}
@@ -116,9 +120,9 @@ public class FluidUtils
 					container.drain(equipped, fill, true);
 				}
 				player.openContainer.detectAndSendChanges();
-				if(player instanceof EntityPlayerMP)
+				if (player instanceof EntityPlayerMP)
 				{
-					((EntityPlayerMP)player).updateCraftingInventory(player.openContainer, player.openContainer.getInventory());
+					((EntityPlayerMP) player).updateCraftingInventory(player.openContainer, player.openContainer.getInventory());
 				}
 				return true;
 			}

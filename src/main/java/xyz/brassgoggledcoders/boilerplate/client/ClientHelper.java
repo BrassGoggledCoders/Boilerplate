@@ -1,11 +1,3 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.client;
 
 import net.minecraft.client.Minecraft;
@@ -22,7 +14,9 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MovingObjectPosition;
+
 import net.minecraftforge.fml.client.FMLClientHandler;
+
 import org.lwjgl.input.Keyboard;
 
 /**

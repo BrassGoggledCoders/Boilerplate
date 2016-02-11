@@ -1,12 +1,6 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.utils;
+
+import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -15,7 +9,10 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Loader;
+
+import xyz.brassgoggledcoders.boilerplate.common.IBoilerplateMod;
 
 /**
  * @author Surseance
@@ -82,5 +79,17 @@ public class Utils
 			start += array.length;
 		}
 		return mergedArray;
+	}
+
+	public static IBoilerplateMod getCurrentMod()
+	{
+		Object activeMod = Loader.instance().activeModContainer().getMod();
+		if (activeMod instanceof IBoilerplateMod)
+			return (IBoilerplateMod) activeMod;
+		else
+		{
+			FMLLog.bigWarning("Mods using Boilerplate Lib baseclasses must have their main class extend IBoilerplateMod!", "");
+			return null;
+		}
 	}
 }

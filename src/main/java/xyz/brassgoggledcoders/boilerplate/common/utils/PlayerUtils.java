@@ -1,27 +1,20 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.utils;
+
+import java.util.Iterator;
+import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import java.util.Iterator;
-import java.util.List;
-
-/**
- * @author Surseance & decebaldecebal
- *
- */
 public class PlayerUtils
 {
 	// DOES NOT get entities
@@ -66,9 +59,9 @@ public class PlayerUtils
 		for (int i = 0; i < list.size(); i++)
 		{
 			Entity entity = (Entity) list.get(i);
-			if (((entity.canBeCollidedWith()) && (world.rayTraceBlocks(
-					new Vec3(entityplayer.posX, entityplayer.posY + entityplayer.getEyeHeight(), entityplayer.posZ),
-					new Vec3(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ), false, true, false) == null)))
+			if (((entity.canBeCollidedWith())
+					&& (world.rayTraceBlocks(new Vec3(entityplayer.posX, entityplayer.posY + entityplayer.getEyeHeight(), entityplayer.posZ),
+							new Vec3(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ), false, true, false) == null)))
 			{
 				float f2 = Math.max(0.8F, entity.getCollisionBorderSize());
 				AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expand(f2, f2, f2);
@@ -132,15 +125,13 @@ public class PlayerUtils
 		}
 	}
 
-	/* TODO: Chat stuff
-	@SuppressWarnings("all")
-	public static void sendChatToServer(String message)
-	{
-		List<EntityPlayerMP> players = MinecraftServer.getServer().worldServers[0].playerEntities;
-		for (int t = 0; t < players.size(); t++)
-		{
-			players.get(t).addChatMessage(new ChatComponentText(message));
-		}
-	}
-	*/
+	/*
+	 * TODO: Chat stuff
+	 * 
+	 * @SuppressWarnings("all") public static void sendChatToServer(String
+	 * message) { List<EntityPlayerMP> players =
+	 * MinecraftServer.getServer().worldServers[0].playerEntities; for (int t =
+	 * 0; t < players.size(); t++) { players.get(t).addChatMessage(new
+	 * ChatComponentText(message)); } }
+	 */
 }

@@ -1,28 +1,21 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
- *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.entity;
+
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -141,14 +134,15 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		this.timeTillDeath = 0;
 	}
 
-	/* TODO Set Position
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void setPositionAndRotation2(double dx, double dy, double dz, float frotY, float frotP, int i)
-	{
-		this.setPosition(dx, dy, dz);
-		this.setRotation(frotY, frotP);
-	}*/
+	/*
+	 * TODO Set Position
+	 * 
+	 * @Override
+	 * 
+	 * @SideOnly(Side.CLIENT) public void setPositionAndRotation2(double dx,
+	 * double dy, double dz, float frotY, float frotP, int i) {
+	 * this.setPosition(dx, dy, dz); this.setRotation(frotY, frotP); }
+	 */
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -303,13 +297,13 @@ public abstract class BaseShootableEntity extends Entity implements IProjectile
 		return false;
 	}
 
-	/*TODO Shadows?
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float getShadowSize()
-	{
-		return 0.0F;
-	}*/
+	/*
+	 * TODO Shadows?
+	 * 
+	 * @Override
+	 * 
+	 * @SideOnly(Side.CLIENT) public float getShadowSize() { return 0.0F; }
+	 */
 
 	@Override
 	public boolean canAttackWithItem()

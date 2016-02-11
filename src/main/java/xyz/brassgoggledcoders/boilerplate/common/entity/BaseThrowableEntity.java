@@ -1,16 +1,6 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
- *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.entity;
+
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -19,12 +9,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -74,19 +67,13 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		super(p_i1778_1_, p_i1778_2_, p_i1778_4_, p_i1778_6_);
 	}
 
-	/* TODO What is this?
-	@Override
-	protected float func_70182_d()
-	{
-		return 1.5F;
-	}
-
-	@Override
-	protected float func_70183_g()
-	{
-		return 0.0F;
-	}
-	*/
+	/*
+	 * TODO What is this?
+	 * 
+	 * @Override protected float func_70182_d() { return 1.5F; }
+	 * 
+	 * @Override protected float func_70183_g() { return 0.0F; }
+	 */
 
 	/**
 	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
@@ -183,8 +170,7 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 		if (movingobjectposition != null)
 		{
-			vec31 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord,
-					movingobjectposition.hitVec.zCoord);
+			vec31 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 		}
 
 		if (!this.worldObj.isRemote)
@@ -226,8 +212,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 
 		if (movingobjectposition != null)
 		{
-			if ((movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) && (this.worldObj
-					.getBlockState(movingobjectposition.getBlockPos()).getBlock() == Blocks.portal))
+			if ((movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+					&& (this.worldObj.getBlockState(movingobjectposition.getBlockPos()).getBlock() == Blocks.portal))
 			{
 				this.inPortal = true;
 			}
@@ -274,9 +260,8 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 			for (int i = 0; i < 4; ++i)
 			{
 				float f4 = 0.25F;
-				this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - (this.motionX * f4),
-						this.posY - (this.motionY * f4), this.posZ - (this.motionZ * f4), this.motionX, this.motionY,
-						this.motionZ);
+				this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - (this.motionX * f4), this.posY - (this.motionY * f4),
+						this.posZ - (this.motionZ * f4), this.motionX, this.motionY, this.motionZ);
 			}
 
 			f2 = 0.8F;
@@ -330,14 +315,13 @@ public abstract class BaseThrowableEntity extends EntityThrowable
 		}
 	}
 
-	/* TODO: Shadows
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float getShadowSize()
-	{
-		return 0.0F;
-	}
-	*/
+	/*
+	 * TODO: Shadows
+	 * 
+	 * @Override
+	 * 
+	 * @SideOnly(Side.CLIENT) public float getShadowSize() { return 0.0F; }
+	 */
 
 	@Override
 	public EntityLivingBase getThrower()

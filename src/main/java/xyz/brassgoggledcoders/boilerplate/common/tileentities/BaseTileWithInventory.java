@@ -1,15 +1,5 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.tileentities;
 
-import xyz.brassgoggledcoders.boilerplate.api.IOpenableGUI;
-import xyz.brassgoggledcoders.boilerplate.api.IUniversallyWrenchable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -21,14 +11,16 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
+import xyz.brassgoggledcoders.boilerplate.api.IOpenableGUI;
+import xyz.brassgoggledcoders.boilerplate.api.IUniversallyWrenchable;
+
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
  *
  * @author decebaldecebal
  *
  */
-public abstract class BaseTileWithInventory extends TileEntity implements IInventory, IUniversallyWrenchable,
-		IOpenableGUI, IOnSlotChanged
+public abstract class BaseTileWithInventory extends TileEntity implements IInventory, IUniversallyWrenchable, IOpenableGUI, IOnSlotChanged
 {
 	public ItemStack[] inventory;
 
@@ -147,8 +139,7 @@ public abstract class BaseTileWithInventory extends TileEntity implements IInven
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return (this.worldObj.getTileEntity(this.getPos()) == this)
-				&& (player.getDistanceSqToCenter(this.getPos()) <= 64.0D);
+		return (this.worldObj.getTileEntity(this.getPos()) == this) && (player.getDistanceSqToCenter(this.getPos()) <= 64.0D);
 	}
 
 	@Override

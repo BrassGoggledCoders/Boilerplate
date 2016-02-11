@@ -1,12 +1,7 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.utils;
+
+import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,9 +17,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.UUID;
 
 /**
  * @author warlordjones & decebaldecebal
@@ -55,8 +47,7 @@ public class ItemStackUtils
 	public static void spawnStackInWorld(World world, BlockPos blockPos, ItemStack stack)
 	{
 		world.setBlockToAir(blockPos);
-		world.spawnEntityInWorld(new EntityItem(world, blockPos.getX() + 0.5F, blockPos.getY() + 0.5F,
-				blockPos.getZ() + 0.5F, stack.copy()));
+		world.spawnEntityInWorld(new EntityItem(world, blockPos.getX() + 0.5F, blockPos.getY() + 0.5F, blockPos.getZ() + 0.5F, stack.copy()));
 	}
 
 	public static void addModifier(ItemStack itemStack, String attribute, double amount, int mode)
@@ -93,10 +84,10 @@ public class ItemStackUtils
 
 	public static ItemStack copyStackWithAmount(ItemStack stack, int amount)
 	{
-		if(stack==null)
+		if (stack == null)
 			return null;
 		ItemStack s2 = stack.copy();
-		s2.stackSize=amount;
+		s2.stackSize = amount;
 		return s2;
 	}
 

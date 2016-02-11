@@ -1,15 +1,17 @@
 package xyz.brassgoggledcoders.boilerplate.client.events;
 
-import xyz.brassgoggledcoders.boilerplate.api.IBlockOverlayText;
-import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
-import xyz.brassgoggledcoders.boilerplate.common.items.Tools;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
+
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import xyz.brassgoggledcoders.boilerplate.api.IBlockOverlayText;
+import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
+import xyz.brassgoggledcoders.boilerplate.common.items.Tools;
 
 /**
  * @author SkySom

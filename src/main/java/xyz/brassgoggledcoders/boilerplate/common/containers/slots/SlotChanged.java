@@ -1,8 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.common.containers.slots;
 
-import xyz.brassgoggledcoders.boilerplate.common.tileentities.IOnSlotChanged;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+
+import xyz.brassgoggledcoders.boilerplate.common.tileentities.IOnSlotChanged;
 
 /**
  * Created by Skylar on 8/31/2015.
@@ -16,7 +17,7 @@ public class SlotChanged extends Slot
 		super(iInventory, slotIndex, posX, posY);
 		if (iInventory instanceof IOnSlotChanged)
 		{
-			iOnSlotChanged = (IOnSlotChanged)iInventory;
+			iOnSlotChanged = (IOnSlotChanged) iInventory;
 		}
 	}
 

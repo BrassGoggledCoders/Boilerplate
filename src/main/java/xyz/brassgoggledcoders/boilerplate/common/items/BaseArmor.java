@@ -1,28 +1,20 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
- *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.items;
 
-import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
-import xyz.brassgoggledcoders.boilerplate.common.utils.StringUtils;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
+import xyz.brassgoggledcoders.boilerplate.common.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.common.utils.StringUtils;
+import xyz.brassgoggledcoders.boilerplate.common.utils.Utils;
 
 /**
  * @author Surseance
@@ -31,23 +23,32 @@ import java.util.List;
 public class BaseArmor extends ItemArmor
 {
 	String textureName;
-	String prefix;
+	IBoilerplateMod mod;
 
-	public BaseArmor(ArmorMaterial mat, int type, String textureName, String prefix)
+	public BaseArmor(ArmorMaterial mat, int type, String textureName)
 	{
 		super(mat, 0, type);
+		this.mod = Utils.getCurrentMod();
+		this.setCreativeTab(mod.getCreativeTab());
 		this.setMaxStackSize(1);
 		this.textureName = textureName;
-		this.prefix = prefix;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack is, Entity entity, int slot, String stuff)
 	{
-		return slot == 2 ? this.prefix + "textures/models/armor/" + this.textureName + "_2.png"
-				: this.prefix + "textures/models/armor/" + this.textureName + "_1.png";
+		return slot == 2 ? mod.getPrefix() + "textures/models/armor/" + this.textureName + "_2.png"
+				: mod.getPrefix() + "textures/models/armor/" + this.textureName + "_1.png";
 	}
+
+	// @SideOnly(Side.CLIENT)
+	// @Override
+	// public void registerIcons(IIconRegister par1IconRegister)
+	// {
+	// this.itemIcon = par1IconRegister.registerIcon(mod.getPrefix() + "armor/"
+	// + this.getUnlocalizedName().substring(5));
+	// }
 
 	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)

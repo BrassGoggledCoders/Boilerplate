@@ -2,29 +2,31 @@ package xyz.brassgoggledcoders.boilerplate.common.items;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
 /**
  * @author Skylar on 9/2/2015.
  */
-public class BaseSteamItem extends RootItem implements IFluidContainerItem
+public class BaseSteamItem extends BaseItem implements IFluidContainerItem
 {
-	//TODO: Render Stuff
+	// TODO: Render Stuff
 	public int maxSteam;
 
 	public BaseSteamItem(int maxSteam)
 	{
+		super();
 		this.maxSteam = maxSteam;
 	}
 
-	//Returns True if can the amount is consumed
+	// Returns True if can the amount is consumed
 	protected boolean consumeSteamFromCanister(ItemStack container, int amount)
 	{
 		boolean canConsume = false;
-		if(container != null && container.getItem() instanceof IFluidContainerItem)
+		if (container != null && container.getItem() instanceof IFluidContainerItem)
 		{
-			IFluidContainerItem iFluidContainerItem = (IFluidContainerItem)container.getItem();
+			IFluidContainerItem iFluidContainerItem = (IFluidContainerItem) container.getItem();
 			if (iFluidContainerItem.getFluid(container).amount > amount)
 			{
 				iFluidContainerItem.drain(container, amount, true);

@@ -1,39 +1,27 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common;
 
-import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
-import xyz.brassgoggledcoders.boilerplate.common.items.ItemDebuggerStick;
-import xyz.brassgoggledcoders.boilerplate.common.utils.ModLogger;
-import xyz.brassgoggledcoders.boilerplate.common.utils.helpers.RegistryHelper;
+import net.minecraft.creativetab.CreativeTabs;
+
 import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-/**
- * @author Surseance
- *
- */
-@Mod(modid = Boilerplate.MODID, name = Boilerplate.NAME, version = Boilerplate.VERSION, dependencies = Boilerplate.DEPENDENCIES)
-public class Boilerplate
+import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
+import xyz.brassgoggledcoders.boilerplate.common.items.ItemDebuggerStick;
+import xyz.brassgoggledcoders.boilerplate.common.utils.ModLogger;
+import xyz.brassgoggledcoders.boilerplate.common.utils.helpers.RegistryHelper;
+
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;after:MineFactoryReloaded")
+public class Boilerplate implements IBoilerplateMod
 {
-	public final static String MODID = "boilerplate";
-	public final static String NAME = "Boilerplate";
-	public final static String VERSION = "@VERSION@";
-	public final static String DEPENDENCIES = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;" +
-			"after:MineFactoryReloaded";
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
 	 *
@@ -65,15 +53,13 @@ public class Boilerplate
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		logger = new ModLogger(Boilerplate.MODID);
+		logger = new ModLogger(ModInfo.ID);
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		// TODO: particles config option on client only
-		trailParticles = config.get("general", "numberOfParticlesInDonorTrails", 0, "0 to disable").getInt();
 		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
 		debuggerStick = config.get("debugging", "activateDebuggingStickOfDoom", false, "True to enable").getBoolean();
 
-		if(debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
+		if (debuggerStick || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
 			RegistryHelper.registerItem(ITEM_DEBUG_STICK);
@@ -87,7 +73,11 @@ public class Boilerplate
 	public void init(FMLInitializationEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
-		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+		{
+			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		}
+
 		proxy.registerRenderHandlers();
 	}
 
@@ -100,5 +90,54 @@ public class Boilerplate
 	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
+	}
+
+	@Override
+	public Object getInstance()
+	{
+		return instance;
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab()
+	{
+		return CreativeTabs.tabMisc;
+	}
+
+	@Override
+	public String getID()
+	{
+		return ModInfo.ID;
+	}
+
+	@Override
+	public String getName()
+	{
+		return ModInfo.NAME;
+	}
+
+	@Override
+	public String getVersion()
+	{
+		return ModInfo.VERSION;
+	}
+
+	@Override
+	public String getPrefix()
+	{
+		return ModInfo.NAME + ":";
+	}
+
+	@Override
+	public String getClientProxyPath()
+	{
+		// TODO
+		return "boilerplate.client.ClientProxy";
+	}
+
+	@Override
+	public String getCommonProxyPath()
+	{
+		return "boilerplate.common.CommonProxy";
 	}
 }

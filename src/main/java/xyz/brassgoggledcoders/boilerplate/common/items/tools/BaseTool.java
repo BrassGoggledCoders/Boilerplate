@@ -1,20 +1,7 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the Steamcraft 2 Mod for Minecraft.
- *
- * Steamcraft 2 is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- * Steamcraft 2 is based on the original Steamcraft Mod created by Proloe.
- * Steamcraft (c) Proloe 2011
- * (http://www.minecraftforum.net/topic/251532-181-steamcraft-source-code-releasedmlv054wip/)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.items.tools;
 
-import xyz.brassgoggledcoders.boilerplate.common.items.RootItem;
-import xyz.brassgoggledcoders.boilerplate.common.utils.ItemStackUtils;
-import xyz.brassgoggledcoders.boilerplate.common.utils.helpers.MaterialHelper;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,29 +13,30 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import xyz.brassgoggledcoders.boilerplate.common.items.BaseItem;
+import xyz.brassgoggledcoders.boilerplate.common.utils.ItemStackUtils;
+import xyz.brassgoggledcoders.boilerplate.common.utils.helpers.MaterialHelper;
 
 /**
  * @author Surseance
  *
  */
-public abstract class BaseTool extends RootItem
+public abstract class BaseTool extends BaseItem
 {
-	//TODO: Rendering stuff
-	String prefix;
+	// TODO: Rendering stuff
 
 	public static final int steamForRepair = 20;
 	public float efficiencyOnProperMaterial = 4.0F;
 	public float damageVsEntity;
 	protected ToolMaterial toolMaterial;
 
-	protected BaseTool(float damage, ToolMaterial toolMat, String prefix)
+	protected BaseTool(float damage, ToolMaterial toolMat)
 	{
-		super();
-		this.prefix = prefix;
+		super("tools/");
 		this.toolMaterial = toolMat;
 		this.setMaxStackSize(1);
 		this.efficiencyOnProperMaterial = toolMat.getEfficiencyOnProperMaterial();
@@ -143,14 +131,15 @@ public abstract class BaseTool extends RootItem
 		ItemStackUtils.addModifier(itemStack, SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), damage, 0);
 	}
 
-	/* TODO: What this do
-	@SuppressWarnings("all")
-	@Override
-	public Multimap getAttributeModifiers(ItemStack stack)
-	{
-		Multimap multimap = super.getAttributeModifiers(stack);
-		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-				new AttributeModifier(field_111210_e, "Tool modifier", this.damageVsEntity, 0));
-		return multimap;
-	}*/
+	/*
+	 * TODO: What this do
+	 * 
+	 * @SuppressWarnings("all")
+	 * 
+	 * @Override public Multimap getAttributeModifiers(ItemStack stack) {
+	 * Multimap multimap = super.getAttributeModifiers(stack);
+	 * multimap.put(SharedMonsterAttributes.attackDamage.
+	 * getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e,
+	 * "Tool modifier", this.damageVsEntity, 0)); return multimap; }
+	 */
 }

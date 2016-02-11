@@ -1,20 +1,13 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.client.fx;
 
-import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 
 /**
  * Created by Surseance
@@ -185,118 +178,76 @@ public class FXRaygun extends EntityFX
 		this.rotationspeed = rotationspeed;
 	}
 
-	/* TODO Particle Rendering
-	@Override
-	public void renderParticle(final Tessellator tessellator, final float f, final float f1, final float f2, final float f3, final float f4,
-			final float f5)
-	{
-		tessellator.draw();
-		GL11.glPushMatrix();
-		final float var9 = 1.0F;
-		final float slide = this.worldObj.getWorldTime();
-		final float rot = ((this.worldObj.provider.getWorldTime() % (360 / this.rotationspeed)) * this.rotationspeed) + (this.rotationspeed * f);
-		float size = 0.5F;
-
-		if (this.pulse)
-		{
-			size = Math.min(this.particleAge / 4.0F, 1.0F);
-			size = this.prevSize + ((size - this.prevSize) * f);
-		}
-
-		float op = 0.4F;
-
-		if ((this.pulse) && ((this.particleMaxAge - this.particleAge) <= 4))
-		{
-			op = 0.4F - ((4 - (this.particleMaxAge - this.particleAge)) * 0.1F);
-		}
-
-		switch (this.type)
-		{
-		default:
-			// In case I make another type of beam, I can change the beam
-			// texture here
-			break;
-		case 1:
-			// and here...
-			break;
-		case 2:
-			ClientHelper.textureManager().bindTexture(rayTex);
-		}
-
-		GL11.glTexParameterf(3553, 10242, 10497.0F);
-		GL11.glTexParameterf(3553, 10243, 10497.0F);
-		GL11.glDisable(2884);
-		float var11 = slide + f;
-
-		if (this.reverse)
-		{
-			var11 *= -1.0F; // why name your variables "var11"? That is so
-			// un-helpful
-		}
-
-		final float var12 = (-var11 * 0.2F) - MathHelper.floor_float(-var11 * 0.1F);
-		GL11.glEnable(3042);
-		GL11.glBlendFunc(770, 1);
-		GL11.glDepthMask(false);
-		double prex = this.player.prevPosX;
-		double prey = this.player.prevPosY + this.offset;
-		double prez = this.player.prevPosZ;
-		double px = this.player.posX;
-		double py = this.player.posY + this.offset;
-		double pz = this.player.posZ;
-		prex -= MathHelper.cos((this.player.prevRotationYaw / 180.0F) * 3.141593F) * 0.066F;
-		prey -= 0.06D;
-		prez -= MathHelper.sin((this.player.prevRotationYaw / 180.0F) * 3.141593F) * 0.04F;
-		Vec3 vec3d = this.player.getLook(1.0F);
-		prex += vec3d.xCoord * 0.3D;
-		prey += vec3d.yCoord * 0.3D;
-		prez += vec3d.zCoord * 0.3D;
-		px -= MathHelper.cos((this.player.rotationYaw / 180.0F) * 3.141593F) * 0.066F;
-		py -= 0.06D;
-		pz -= MathHelper.sin((this.player.rotationYaw / 180.0F) * 3.141593F) * 0.04F;
-		vec3d = this.player.getLook(1.0F);
-		px += vec3d.xCoord * 0.3D;
-		py += vec3d.yCoord * 0.3D;
-		pz += vec3d.zCoord * 0.3D;
-		final float xx = (float) ((prex + ((px - prex) * f)) - EntityFX.interpPosX);
-		final float yy = (float) ((prey + ((py - prey) * f)) - EntityFX.interpPosY);
-		final float zz = (float) ((prez + ((pz - prez) * f)) - EntityFX.interpPosZ);
-		GL11.glTranslated(xx, yy, zz);
-		final float ry = this.prevYaw + ((this.rotYaw - this.prevYaw) * f);
-		final float rp = this.prevPitch + ((this.rotPitch - this.prevPitch) * f);
-		GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(180.0F + ry, 0.0F, 0.0F, -1.0F);
-		GL11.glRotatef(rp, 1.0F, 0.0F, 0.0F);
-		final double var44 = -0.15D * size;
-		final double var17 = 0.15D * size;
-		final double var44b = -0.15D * size * this.endMod;
-		final double var17b = 0.15D * size * this.endMod;
-		GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
-
-		for (int t = 0; t < 5; t++)
-		{
-			final double var29 = this.length * size * var9;
-			final double var31 = 0.0D;
-			final double var33 = 1.0D;
-			final double var35 = -1.0F + var12 + (t / 3.0F);
-			final double var37 = (this.length * size * var9) + var35;
-			GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
-			tessellator.startDrawingQuads();
-			tessellator.setBrightness(200);
-			tessellator.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, op);
-			tessellator.addVertexWithUV(var44b, var29, 0.0D, var33, var37);
-			tessellator.addVertexWithUV(var44, 0.0D, 0.0D, var33, var35);
-			tessellator.addVertexWithUV(var17, 0.0D, 0.0D, var31, var35);
-			tessellator.addVertexWithUV(var17b, var29, 0.0D, var31, var37);
-			tessellator.draw();
-		}
-
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDepthMask(true);
-		GL11.glDisable(3042);
-		GL11.glEnable(2884);
-		GL11.glPopMatrix();
-		tessellator.startDrawingQuads();
-		this.prevSize = size;
-	} */
+	/*
+	 * TODO Particle Rendering
+	 * 
+	 * @Override public void renderParticle(final Tessellator tessellator, final
+	 * float f, final float f1, final float f2, final float f3, final float f4,
+	 * final float f5) { tessellator.draw(); GL11.glPushMatrix(); final float
+	 * var9 = 1.0F; final float slide = this.worldObj.getWorldTime(); final
+	 * float rot = ((this.worldObj.provider.getWorldTime() % (360 /
+	 * this.rotationspeed)) * this.rotationspeed) + (this.rotationspeed * f);
+	 * float size = 0.5F;
+	 * 
+	 * if (this.pulse) { size = Math.min(this.particleAge / 4.0F, 1.0F); size =
+	 * this.prevSize + ((size - this.prevSize) * f); }
+	 * 
+	 * float op = 0.4F;
+	 * 
+	 * if ((this.pulse) && ((this.particleMaxAge - this.particleAge) <= 4)) { op
+	 * = 0.4F - ((4 - (this.particleMaxAge - this.particleAge)) * 0.1F); }
+	 * 
+	 * switch (this.type) { default: // In case I make another type of beam, I
+	 * can change the beam // texture here break; case 1: // and here... break;
+	 * case 2: ClientHelper.textureManager().bindTexture(rayTex); }
+	 * 
+	 * GL11.glTexParameterf(3553, 10242, 10497.0F); GL11.glTexParameterf(3553,
+	 * 10243, 10497.0F); GL11.glDisable(2884); float var11 = slide + f;
+	 * 
+	 * if (this.reverse) { var11 *= -1.0F; // why name your variables "var11"?
+	 * That is so // un-helpful }
+	 * 
+	 * final float var12 = (-var11 * 0.2F) - MathHelper.floor_float(-var11 *
+	 * 0.1F); GL11.glEnable(3042); GL11.glBlendFunc(770, 1);
+	 * GL11.glDepthMask(false); double prex = this.player.prevPosX; double prey
+	 * = this.player.prevPosY + this.offset; double prez = this.player.prevPosZ;
+	 * double px = this.player.posX; double py = this.player.posY + this.offset;
+	 * double pz = this.player.posZ; prex -=
+	 * MathHelper.cos((this.player.prevRotationYaw / 180.0F) * 3.141593F) *
+	 * 0.066F; prey -= 0.06D; prez -=
+	 * MathHelper.sin((this.player.prevRotationYaw / 180.0F) * 3.141593F) *
+	 * 0.04F; Vec3 vec3d = this.player.getLook(1.0F); prex += vec3d.xCoord *
+	 * 0.3D; prey += vec3d.yCoord * 0.3D; prez += vec3d.zCoord * 0.3D; px -=
+	 * MathHelper.cos((this.player.rotationYaw / 180.0F) * 3.141593F) * 0.066F;
+	 * py -= 0.06D; pz -= MathHelper.sin((this.player.rotationYaw / 180.0F) *
+	 * 3.141593F) * 0.04F; vec3d = this.player.getLook(1.0F); px += vec3d.xCoord
+	 * * 0.3D; py += vec3d.yCoord * 0.3D; pz += vec3d.zCoord * 0.3D; final float
+	 * xx = (float) ((prex + ((px - prex) * f)) - EntityFX.interpPosX); final
+	 * float yy = (float) ((prey + ((py - prey) * f)) - EntityFX.interpPosY);
+	 * final float zz = (float) ((prez + ((pz - prez) * f)) -
+	 * EntityFX.interpPosZ); GL11.glTranslated(xx, yy, zz); final float ry =
+	 * this.prevYaw + ((this.rotYaw - this.prevYaw) * f); final float rp =
+	 * this.prevPitch + ((this.rotPitch - this.prevPitch) * f);
+	 * GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F); GL11.glRotatef(180.0F + ry,
+	 * 0.0F, 0.0F, -1.0F); GL11.glRotatef(rp, 1.0F, 0.0F, 0.0F); final double
+	 * var44 = -0.15D * size; final double var17 = 0.15D * size; final double
+	 * var44b = -0.15D * size * this.endMod; final double var17b = 0.15D * size
+	 * * this.endMod; GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
+	 * 
+	 * for (int t = 0; t < 5; t++) { final double var29 = this.length * size *
+	 * var9; final double var31 = 0.0D; final double var33 = 1.0D; final double
+	 * var35 = -1.0F + var12 + (t / 3.0F); final double var37 = (this.length *
+	 * size * var9) + var35; GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
+	 * tessellator.startDrawingQuads(); tessellator.setBrightness(200);
+	 * tessellator.setColorRGBA_F(this.particleRed, this.particleGreen,
+	 * this.particleBlue, op); tessellator.addVertexWithUV(var44b, var29, 0.0D,
+	 * var33, var37); tessellator.addVertexWithUV(var44, 0.0D, 0.0D, var33,
+	 * var35); tessellator.addVertexWithUV(var17, 0.0D, 0.0D, var31, var35);
+	 * tessellator.addVertexWithUV(var17b, var29, 0.0D, var31, var37);
+	 * tessellator.draw(); }
+	 * 
+	 * GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F); GL11.glDepthMask(true);
+	 * GL11.glDisable(3042); GL11.glEnable(2884); GL11.glPopMatrix();
+	 * tessellator.startDrawingQuads(); this.prevSize = size; }
+	 */
 }

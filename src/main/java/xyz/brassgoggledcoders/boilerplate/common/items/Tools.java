@@ -1,10 +1,11 @@
 package xyz.brassgoggledcoders.boilerplate.common.items;
 
-import xyz.brassgoggledcoders.boilerplate.common.utils.ItemStackUtils;
-import net.minecraft.item.ItemStack;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+
+import xyz.brassgoggledcoders.boilerplate.common.utils.ItemStackUtils;
 
 /**
  * @author SkySom

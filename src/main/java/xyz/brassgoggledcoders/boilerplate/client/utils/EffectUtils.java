@@ -1,23 +1,16 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.client.utils;
 
-import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
+import java.util.Random;
+
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 
-import java.util.Random;
+import org.lwjgl.opengl.GL11;
+import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 
 /**
  * @author Surseance
@@ -30,7 +23,7 @@ public class EffectUtils
 
 	public static EntityFlameFX.Factory getFlameFactory()
 	{
-		if(flameFactory == null)
+		if (flameFactory == null)
 		{
 			flameFactory = new EntityFlameFX.Factory();
 		}
@@ -40,7 +33,7 @@ public class EffectUtils
 
 	public static EntitySmokeFX.Factory getSmokeFactory()
 	{
-		if(smokeFactory == null)
+		if (smokeFactory == null)
 		{
 			smokeFactory = new EntitySmokeFX.Factory();
 		}
@@ -89,8 +82,8 @@ public class EffectUtils
 				dx = blockPos.getX() - offset;
 			}
 
-			if ((dx < blockPos.getX()) || (dx > (blockPos.getX() + 1)) || (dy < 0.0D) ||
-					(dy > (blockPos.getY() + 1)) || (dz < blockPos.getZ()) || (dz > (blockPos.getZ() + 1)))
+			if ((dx < blockPos.getX()) || (dx > (blockPos.getX() + 1)) || (dy < 0.0D) || (dy > (blockPos.getY() + 1)) || (dz < blockPos.getZ())
+					|| (dz > (blockPos.getZ() + 1)))
 			{
 				world.spawnParticle(particleType, dx, dy, dz, -1.0D, 1.0D, -1.0D);
 			}
@@ -151,7 +144,6 @@ public class EffectUtils
 			particle = getEntitySmokeFX(world, dx, dy, dz, velX, velY, velZ);
 		}
 
-
 		final double distX = ClientHelper.viewEntity().posX - particle.posX;
 		final double distY = ClientHelper.viewEntity().posY - particle.posY;
 		final double distZ = ClientHelper.viewEntity().posZ - particle.posZ;
@@ -169,12 +161,12 @@ public class EffectUtils
 
 	public static EntityFlameFX getEntityFlameFX(World worldIn, double xPos, double yPos, double zPox, double xVec, double yVec, double zVec)
 	{
-		return (EntityFlameFX)getFlameFactory().getEntityFX(0, worldIn, xPos, yPos, zPox, xVec, yVec, zVec);
+		return (EntityFlameFX) getFlameFactory().getEntityFX(0, worldIn, xPos, yPos, zPox, xVec, yVec, zVec);
 	}
 
 	public static EntitySmokeFX getEntitySmokeFX(World worldIn, double xPos, double yPos, double zPox, double xVec, double yVec, double zVec)
 	{
-		return (EntitySmokeFX)getSmokeFactory().getEntityFX(0, worldIn, xPos, yPos, zPox, xVec, yVec, zVec);
+		return (EntitySmokeFX) getSmokeFactory().getEntityFX(0, worldIn, xPos, yPos, zPox, xVec, yVec, zVec);
 	}
 
 	public static void setGLColorFromInt(int color)

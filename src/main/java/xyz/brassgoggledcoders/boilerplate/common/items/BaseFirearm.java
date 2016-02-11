@@ -1,16 +1,7 @@
-/**
- * This class was created by BrassGoggledCoders modding team.
- * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
- * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
- * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
- */
 package xyz.brassgoggledcoders.boilerplate.common.items;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,14 +11,14 @@ import net.minecraft.world.World;
  * @author warlordjones
  *
  */
-public abstract class BaseFirearm extends RootItem
+public abstract class BaseFirearm extends BaseItem
 {
 	protected int damage;
 	protected short reloadTime;
 	protected boolean twoAmmo;
 
-	protected Item ammo;
-	protected Item ammo2;
+	// protected Item ammo;
+	// protected Item ammo2;
 
 	protected String fireSound;
 	protected String reloadSound;
@@ -39,8 +30,8 @@ public abstract class BaseFirearm extends RootItem
 		this.reloadTime = (short) reloadTime;
 		this.twoAmmo = ammo2 != null;
 
-		this.ammo = ammo;
-		this.ammo2 = ammo2;
+		// this.ammo = ammo;
+		// this.ammo2 = ammo2;
 
 		this.fireSound = fireSound;
 		this.reloadSound = reloadSound;
@@ -83,23 +74,26 @@ public abstract class BaseFirearm extends RootItem
 	 */
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		NBTTagCompound tag = stack.getTagCompound();
-
-		if ((tag.getShort("reloadTime") == 0) && player.inventory.hasItem(Items.gunpowder) && player.inventory.hasItem(this.ammo))
-		{
-			if (this.twoAmmo)
-			{
-				if (player.inventory.hasItem(this.ammo2))
-				{
-					this.shotBullet(stack, world, player);
-				}
-				player.inventory.consumeInventoryItem(this.ammo2);
-			}
-			else
-			{
-				this.shotBullet(stack, world, player);
-			}
-		}
+		// NBTTagCompound tag = stack.getTagCompound();
+		//
+		// if ((tag.getShort("reloadTime") == 0) &&
+		// player.inventory.hasItem(Items.gunpowder) &&
+		// player.inventory.hasItem(this.ammo))
+		// {
+		// if (this.twoAmmo)
+		// {
+		// // if (player.inventory.hasItem(this.ammo2))
+		// // {
+		// // this.shotBullet(stack, world, player);
+		// // }
+		// // player.inventory.consumeInventoryItem(this.ammo2);
+		// }
+		// else
+		// {
+		// this.shotBullet(stack, world, player);
+		// }
+		// }
+		// return stack;
 		return stack;
 	}
 
