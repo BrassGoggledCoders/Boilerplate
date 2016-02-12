@@ -184,43 +184,6 @@ public abstract class BaseTileWithInventory extends TileEntity implements IInven
 
 	}
 
-	// TODO
-	@Override
-	public boolean wrenchCanSetFacing(EntityPlayer entityPlayer, int side)
-	{
-		return false;
-	}
-
-	@Override
-	public short getFacing()
-	{
-		return 0;
-	}
-
-	@Override
-	public void setFacing(short facing)
-	{
-
-	}
-
-	@Override
-	public boolean wrenchCanRemove(EntityPlayer entityPlayer)
-	{
-		return true;
-	}
-
-	@Override
-	public float getWrenchDropRate()
-	{
-		return 1;
-	}
-
-	@Override
-	public ItemStack getWrenchDrop(EntityPlayer entityPlayer)
-	{
-		return new ItemStack(this.getBlockType());
-	}
-
 	@Override
 	public void onSlotChanged(Slot slot)
 	{
