@@ -12,6 +12,7 @@ Developers & Credits:
 _Coders:_
 * warlordjones: leader(ish), author of the mod Steampunkery (which was merged into SC2), programmer; speciality: fancy, items/vanity system and breaking things
 * decebaldecebal: programmer; speciality: complicated tile entities, power systems, GUIs, cleanup
+* SkySom: Programmer; Speciality: Jack of all trades
 
 _Ex-Coders:_
 * Surseance: ex-leader(ish), programmer; speciality: uhhh...
@@ -36,10 +37,9 @@ Skype: arona.jones <br/>
 
 Want to support us?
 
-Simply using the adfly links to download the mod supports the team in creating more awesome features. Want to support more directly?
-
 http://www.patreon.com/BrassGoggledCoders
 
 Interested in alpha builds?
 ==========================
-We are currently testing Travis CI. Seems to be working :P Just need to figure out git tags…Hmm Tags an stuff
+(1.7.10) http://jenkins.k-4u.nl/view/BrassGoggledCoders/job/Boilerplate/
+(1.8.9) http://jenkins.k-4u.nl/view/BrassGoggledCoders/job/Boilerplate-1.8.9/
