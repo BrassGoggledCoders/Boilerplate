@@ -38,12 +38,15 @@ archivesBaseName = "boilerplate"
 
 minecraft {
     version = "${project.ext.mcVersion}-${project.ext.forgeVersion}"
-    println version
+
     runDir = "eclipse/"
     mappings = "snapshot_20160113"
 
     replace "@VERSION@", project.version
-    replaceIn "Boilerplate.java"
+    replaceIn "ModInfo.java"
+
+    replace "@VERSION@", project.version
+    replaceIn "BoilerplateLib.java"
 }
 
 processResources
@@ -76,8 +79,17 @@ task deobfJar(type: Jar) {
     }
 }
 
+task libJar(type: Jar) {
+    from(sourceSets.main.output) {
+        exclude("xyz/brassgoggledcoders/boilerplate/mod/**")
+    }
+
+    classifier = "lib"
+}
+
 artifacts {
     archives deobfJar
+    archives libJar
 }
 
 idea {
@@ -114,7 +126,7 @@ task("uploadJars", dependsOn: "reobf") {
                             }
                             licenses {
                                 license {
-                                    name 'MMPL'
+                                    name 'MIT'
                                     url 'https://github.com/BrassGoggledCoders/Boilerplate/blob/master/LICENSE'
                                     distribution 'repo'
                                 }
@@ -123,6 +135,11 @@ task("uploadJars", dependsOn: "reobf") {
                                 developer {
                                     id 'warlordjones'
                                     name 'warlordjones'
+                                    roles { role 'developer' }
+                                }
+                                developer {
+                                    id 'SkySom'
+                                    name 'SkySom'
                                     roles { role 'developer' }
                                 }
                             }
