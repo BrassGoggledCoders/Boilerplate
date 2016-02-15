@@ -1,24 +1,18 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils.helpers;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
-
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBlockDesc;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.entity.KeyValue;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.entity.ModWithEntityList;
 
 /**
  * @author warlordjones
@@ -87,59 +81,15 @@ public class RegistryHelper
 		GameRegistry.registerItem(hoe, "ItemHoe" + name);
 	}
 
-	private static ArrayList<ModWithEntityList> entityArrayList = new ArrayList<ModWithEntityList>();
-
-	public static void addToEntityArrayList(String modid, Configuration configuration)
-	{
-		addToEntityArrayList(new ModWithEntityList(modid, configuration));
-	}
-
-	public static void addToEntityArrayList(ModWithEntityList modWithEntityList)
-	{
-		entityArrayList.add(modWithEntityList);
-	}
-
-	public static ModWithEntityList getFromEntityArrayList(String modid)
-	{
-		for (ModWithEntityList modWithEntityList : entityArrayList)
-		{
-			if (modWithEntityList.getModName().equals(modid))
-			{
-				return modWithEntityList;
-			}
-		}
-
-		return null;
-	}
+	private static int nextAvailableID = 0;
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		int entityID = getEntityID(Utils.getCurrentMod().getID(), name);
-
-		EntityRegistry.registerModEntity(entityClass, name, entityID, Utils.getCurrentMod(), 64, 1, true);
-	}
-
-	private static int getEntityID(String modid, String entityName)
-	{
-		for (ModWithEntityList modWithEntityList : entityArrayList)
+		if(Utils.getCurrentMod() != null)
 		{
-			if (modWithEntityList.getModName().equals(modid))
-			{
-				for (KeyValue<String, Integer> entityNameAndID : modWithEntityList.getEntityList())
-				{
-					if (entityNameAndID.getKey().equals(entityName))
-					{
-						return entityNameAndID.getValue();
-					}
-				}
-			}
-
-			return modWithEntityList.getNextAvailableID();
+			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID, Utils.getCurrentMod(), 64, 1, true);
+		} else {
+			BoilerplateLib.getInstance().logger.error("Failed to register entity " + name);
 		}
-		ArrayList<KeyValue<String, Integer>> newEntityArrayList = new ArrayList<KeyValue<String, Integer>>();
-		newEntityArrayList.add(new KeyValue<String, Integer>(entityName, 0));
-		ModWithEntityList newModWithEntityList = new ModWithEntityList(modid, newEntityArrayList, 0);
-		addToEntityArrayList(newModWithEntityList);
-		return getEntityID(modid, entityName);
 	}
 }

@@ -96,7 +96,7 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	@Override
 	public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool)
 	{
-		if (tool && BoilerplateLib.COLORBLIND)
+		if (tool && BoilerplateLib.getInstance().colorblind)
 		{
 			SideType facing = sideConfig[mop.sideHit.ordinal()];
 			SideType opposite = sideConfig[mop.sideHit.getOpposite().ordinal()];

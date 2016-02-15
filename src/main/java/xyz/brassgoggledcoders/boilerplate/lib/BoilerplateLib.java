@@ -10,25 +10,46 @@ import net.minecraftforge.fml.relauncher.Side;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
 public class BoilerplateLib
 {
 	public static String VERSION = "@VERSION@";
+	private static BoilerplateLib instance = null;
 
-	public static boolean COLORBLIND;
-	public static ModLogger LOGGER;
-	public static IBoilerplateMod MOD;
+	public boolean colorblind;
+	public ModLogger logger;
+	public IBoilerplateMod mod;
 
-	public BoilerplateLib(IBoilerplateMod mod)
+	public static BoilerplateLib getInstance()
+	{
+		if(instance == null)
+		{
+			IBoilerplateMod modInstance = Utils.getCurrentMod();
+			if(modInstance != null)
+			{
+				instance = new BoilerplateLib(modInstance);
+			}
+		}
+		return instance;
+	}
+
+	protected BoilerplateLib()
 	{
 
+	}
+
+	protected BoilerplateLib(IBoilerplateMod mod)
+	{
+		this.mod = mod;
+		this.logger = mod.getLogger();
 	}
 
 	public Configuration config(FMLPreInitializationEvent event)
 	{
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		COLORBLIND = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
+		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
 		config.save();
 		return config;
 	}
@@ -40,7 +61,7 @@ public class BoilerplateLib
 
 	public void init(FMLInitializationEvent event)
 	{
-		if (COLORBLIND && FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+		if (colorblind && FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 		{
 			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		}

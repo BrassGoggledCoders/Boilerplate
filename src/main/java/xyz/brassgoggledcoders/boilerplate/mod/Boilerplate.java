@@ -41,17 +41,15 @@ public class Boilerplate implements IBoilerplateMod
 
 	@Mod.Instance("boilerplate")
 	public static Boilerplate instance;
-	public static BoilerplateLib BOILERPLATE_LIB;
 
 	public static ModLogger logger;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		BOILERPLATE_LIB = new BoilerplateLib(this);
 		logger = new ModLogger(ModInfo.ID);
-		Configuration config = BOILERPLATE_LIB.config(event);
-		BOILERPLATE_LIB.preInit(event);
+		Configuration config = BoilerplateLib.getInstance().config(event);
+		BoilerplateLib.getInstance().preInit(event);
 		DEBUGGER_STICK = config.get("debugging", "activateDebuggingStickOfDoom", false, "True to enable").getBoolean();
 
 		if (DEBUGGER_STICK || !FMLForgePlugin.RUNTIME_DEOBF)
@@ -67,14 +65,14 @@ public class Boilerplate implements IBoilerplateMod
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		BOILERPLATE_LIB.init(event);
+		BoilerplateLib.getInstance().init(event);
 		proxy.registerRenderHandlers();
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		BOILERPLATE_LIB.postInit(event);
+		BoilerplateLib.getInstance().postInit(event);
 		logger.info("GNU Terry Prachett");
 	}
 

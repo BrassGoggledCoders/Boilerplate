@@ -1,18 +1,16 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
-
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
+
+import java.util.Random;
 
 /**
  * @author Surseance
@@ -55,7 +53,7 @@ public class Utils
 	/**
 	 * This method merges any number of arrays of any count.
 	 *
-	 * @param arrays
+	 * @param arrays multiple arrays of any type
 	 * @return merged array
 	 */
 	public static <T> T[] merge(T[]... arrays)
@@ -85,10 +83,11 @@ public class Utils
 	{
 		Object activeMod = Loader.instance().activeModContainer().getMod();
 		if (activeMod instanceof IBoilerplateMod)
-			return (IBoilerplateMod) activeMod;
-		else
 		{
-			FMLLog.bigWarning("Mods using Boilerplate Lib baseclasses must have their main class extend IBoilerplateMod!", "");
+			return (IBoilerplateMod) activeMod;
+		} else
+		{
+			FMLLog.bigWarning("Mods using Boilerplate Lib must have their mod class extend IBoilerplateMod!", "");
 			return null;
 		}
 	}
