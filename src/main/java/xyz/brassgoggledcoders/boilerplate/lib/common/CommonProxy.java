@@ -1,15 +1,17 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common;
 
-import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
 
 public class CommonProxy
 {
-	public void registerRenderHandlers()
+	public void initCompatibilityHandler(CompatibilityHandler compatibilityHandler, FMLInitializationEvent event)
 	{
+		compatibilityHandler.init(event);
 	}
 
 	public String translate(String text)
 	{
-		return StatCollector.translateToLocal("boilerplate." + text);
+		return "";
 	}
 }

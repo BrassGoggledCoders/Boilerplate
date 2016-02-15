@@ -66,7 +66,6 @@ public class Boilerplate implements IBoilerplateMod
 	public void init(FMLInitializationEvent event)
 	{
 		BoilerplateLib.getInstance().init(event);
-		proxy.registerRenderHandlers();
 	}
 
 	@Mod.EventHandler
