@@ -3,9 +3,8 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
 /**
  * @author Surseance
@@ -18,7 +17,7 @@ public class BaseBlock extends Block
 	public BaseBlock(Material mat)
 	{
 		super(mat);
-		this.mod = Utils.getCurrentMod();
+		this.mod = BoilerplateLib.getInstance().mod;
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setHardness(1F);
 	}

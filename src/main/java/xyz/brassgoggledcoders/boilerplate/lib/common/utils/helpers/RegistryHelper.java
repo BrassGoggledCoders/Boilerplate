@@ -12,7 +12,6 @@ import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBlockDesc;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
 /**
  * @author warlordjones
@@ -85,9 +84,10 @@ public class RegistryHelper
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		if(Utils.getCurrentMod() != null)
+		if(BoilerplateLib.getInstance().mod != null)
 		{
-			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID, Utils.getCurrentMod(), 64, 1, true);
+			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID, BoilerplateLib.getInstance().mod,
+					64, 1, true);
 		} else {
 			BoilerplateLib.getInstance().logger.error("Failed to register entity " + name);
 		}

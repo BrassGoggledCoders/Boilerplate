@@ -1,7 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,10 +9,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.tileentities.BaseTileWithInventory;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
+
+import java.util.Random;
 
 /**
  * @author decebaldecebal
@@ -28,7 +27,7 @@ public abstract class BaseContainerBlock extends BlockContainer
 	protected BaseContainerBlock(Material mat)
 	{
 		super(mat);
-		this.mod = Utils.getCurrentMod();
+		this.mod = BoilerplateLib.getInstance().mod;
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setHardness(5.0F);
 	}

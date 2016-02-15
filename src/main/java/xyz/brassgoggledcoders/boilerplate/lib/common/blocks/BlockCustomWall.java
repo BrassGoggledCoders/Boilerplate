@@ -1,18 +1,16 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
+import java.util.List;
 
 /**
  * @author warlordjones
@@ -28,7 +26,7 @@ public class BlockCustomWall extends BlockWall
 		super(block);
 		this.block = block;
 		// this.metadata = meta;
-		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
 	}
 
 	// @Override

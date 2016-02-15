@@ -1,15 +1,14 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
+import java.util.List;
 
 /**
  * @author warlordjones
@@ -23,7 +22,7 @@ public class BlockCustomLeaves extends BlockLeaves
 	{
 		super();
 		this.type = type;
-		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
 	}
 
 	// @Override

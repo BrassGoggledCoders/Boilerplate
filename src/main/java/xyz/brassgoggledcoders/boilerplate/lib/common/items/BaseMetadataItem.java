@@ -31,7 +31,7 @@ public class BaseMetadataItem extends BaseItem
 	// this.path = path;
 	// this.type = type;
 	// this.setHasSubtypes(true);
-	// this.mod = Utils.getCurrentMod();
+	// this.mod = BoilerplateLib.getInstance.getMod();
 	// }
 	//
 	// @Override

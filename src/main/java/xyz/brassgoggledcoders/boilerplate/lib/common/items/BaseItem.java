@@ -1,17 +1,16 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 
-import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.StringUtils;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
+
+import java.util.List;
 
 /**
  * @author warlordjones
@@ -30,7 +29,7 @@ public class BaseItem extends Item
 	public BaseItem(String texturePath)
 	{
 		super();
-		this.mod = Utils.getCurrentMod();
+		this.mod = BoilerplateLib.getInstance().mod;
 		this.texturePath = texturePath;
 		this.setCreativeTab(mod.getCreativeTab());
 	}

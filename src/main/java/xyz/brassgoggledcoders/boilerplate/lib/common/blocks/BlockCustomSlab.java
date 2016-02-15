@@ -6,8 +6,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.ItemStack;
-
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 
 /**
  * @author warlordjones
@@ -24,14 +23,14 @@ public class BlockCustomSlab extends BlockSlab
 		super(mat);
 		this.type = type;
 		this.block = block;
-		this.setCreativeTab(Utils.getCurrentMod().getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 
 	// @Override
 	// public String func_150002_b(int p_150002_1_)
 	// {
-	// return Utils.getCurrentMod().getPrefix() + this.type;
+	// return BoilerplateLib.getInstance.getMod().getPrefix() + this.type;
 	// }
 	//
 	// @Override
