@@ -13,6 +13,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.client.guis.GuiHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.common.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
@@ -25,6 +26,7 @@ public class BoilerplateLib
 	public ModLogger logger;
 	public IBoilerplateMod mod;
 	public GuiHandler guiHandler;
+	public PacketHandler packetHandler;
 	public CompatibilityHandler compatibilityHandler;
 
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.lib.client.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy")
@@ -54,6 +56,7 @@ public class BoilerplateLib
 		this.logger = mod.getLogger();
 		this.guiHandler = new GuiHandler(mod);
 		this.compatibilityHandler = new CompatibilityHandler(logger);
+		this.packetHandler = new PacketHandler(mod.getID());
 	}
 
 	public Configuration config(FMLPreInitializationEvent event)
