@@ -6,8 +6,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.relauncher.Side;
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 
 import java.util.Random;
@@ -90,5 +94,33 @@ public class Utils
 			FMLLog.bigWarning("Mods using Boilerplate Lib must have their mod class extend IBoilerplateMod!", "");
 			return null;
 		}
+	}
+
+	public static CommonProxy createProxy(String clientString, String serverString)
+	{
+		try
+		{
+			Class proxyClass;
+			Object proxyObject;
+			Side side = FMLCommonHandler.instance().getEffectiveSide();
+			String proxyString = (side == Side.CLIENT) ? clientString : serverString;
+			proxyClass = Class.forName(proxyString);
+			proxyObject = proxyClass.newInstance();
+			if(proxyObject instanceof CommonProxy)
+			{
+				return (CommonProxy)proxyObject;
+			}
+		} catch(ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		} catch(InstantiationException e)
+		{
+			e.printStackTrace();
+		} catch(IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
+		BoilerplateLib.getInstance().logger.error("Proxies did not initialize. Something's gonna break. ");
+		return null;
 	}
 }

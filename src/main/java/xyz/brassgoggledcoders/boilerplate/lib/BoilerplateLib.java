@@ -3,7 +3,6 @@ package xyz.brassgoggledcoders.boilerplate.lib;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -28,9 +27,7 @@ public class BoilerplateLib
 	public GuiHandler guiHandler;
 	public PacketHandler packetHandler;
 	public CompatibilityHandler compatibilityHandler;
-
-	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.lib.client.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy")
-	public static CommonProxy proxy;
+	public CommonProxy proxy;
 
 	public static BoilerplateLib getInstance()
 	{
@@ -71,6 +68,8 @@ public class BoilerplateLib
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		proxy = Utils.createProxy("xyz.brassgoggledcoders.boilerplate.lib.client.ClientProxy",
+				"xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy");
 		compatibilityHandler.preInit(event);
 	}
 

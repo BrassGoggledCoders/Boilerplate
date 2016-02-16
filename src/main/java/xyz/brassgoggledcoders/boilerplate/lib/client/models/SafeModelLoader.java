@@ -1,10 +1,10 @@
-package xyz.brassgoggledcoders.boilerplate.lib.client;
+package xyz.brassgoggledcoders.boilerplate.lib.client.models;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 
-public class ModelRegistry
+public class SafeModelLoader
 {
 	public static void loadBlockModel(Block block)
 	{
