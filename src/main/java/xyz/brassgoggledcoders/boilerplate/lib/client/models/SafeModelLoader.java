@@ -33,6 +33,6 @@ public class SafeModelLoader
 
 	public static void loadItemModel(Item item, int metadata, String override)
 	{
-		BoilerplateLib.proxy.loadItemModel(item, metadata, override);
+		BoilerplateLib.getInstance().proxy.loadItemModel(item, metadata, override);
 	}
 }
