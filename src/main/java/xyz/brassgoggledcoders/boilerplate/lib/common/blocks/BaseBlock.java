@@ -22,6 +22,13 @@ public class BaseBlock extends Block
 		this.setHardness(1F);
 	}
 
+	public BaseBlock(Material mat, String name)
+	{
+		this(mat);
+		this.setRegistryName(name);
+		this.setUnlocalizedName(name);
+	}
+
 	/*
 	 * TODO
 	 * 
