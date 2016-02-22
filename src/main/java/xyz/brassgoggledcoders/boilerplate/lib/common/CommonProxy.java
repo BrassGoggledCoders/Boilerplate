@@ -19,4 +19,14 @@ public class CommonProxy
 	public void loadItemModel(Item item, int metadata, String override)
 	{
 	}
+
+	public void addVariantName(Item item, String... variantNames)
+	{
+
+	}
+
+	public void registerItemModelVariant(Item item, int metadata, String itemModelName)
+	{
+
+	}
 }

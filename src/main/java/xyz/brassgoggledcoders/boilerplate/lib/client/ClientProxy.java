@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate.lib.client;
 
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
@@ -33,5 +34,25 @@ public class ClientProxy extends CommonProxy
 	{
 		ModelLoader.setCustomModelResourceLocation(item, metadata,
 				new ModelResourceLocation(BoilerplateLib.getInstance().mod.getPrefix() + override, "inventory"));
+	}
+
+	@Override
+	public void addVariantName(Item item, String... variantNames)
+	{
+		ModelResourceLocation[] modelResourceLocations = new ModelResourceLocation[variantNames.length];
+		for(int i = 0; i < modelResourceLocations.length; i++)
+		{
+			modelResourceLocations[i] = new ModelResourceLocation(BoilerplateLib.getInstance().mod.getPrefix() +
+					variantNames[i]);
+		}
+		ModelBakery.registerItemVariants(item, modelResourceLocations);
+	}
+
+	@Override
+	public void registerItemModelVariant(Item item, int metadata, String itemModelName)
+	{
+		ModelResourceLocation modelResourceLocation =
+				new ModelResourceLocation(BoilerplateLib.getInstance().mod.getPrefix() + itemModelName);
+		ClientHelper.getItemModelMesher().register(item, metadata, modelResourceLocation);
 	}
 }

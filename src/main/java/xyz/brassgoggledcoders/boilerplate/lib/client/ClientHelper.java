@@ -8,6 +8,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.settings.GameSettings;
@@ -96,5 +97,10 @@ public class ClientHelper
 	public static ScaledResolution resolution()
 	{
 		return new ScaledResolution(mc());
+	}
+
+	public static ItemModelMesher getItemModelMesher()
+	{
+		return mc().getRenderItem().getItemModelMesher();
 	}
 }

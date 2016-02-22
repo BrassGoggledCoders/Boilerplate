@@ -35,4 +35,14 @@ public class SafeModelLoader
 	{
 		BoilerplateLib.getInstance().proxy.loadItemModel(item, metadata, override);
 	}
+
+	public static void addVariantName(Item item, String... names)
+	{
+		BoilerplateLib.getInstance().proxy.addVariantName(item, names);
+	}
+
+	public static void registerItemModelVariant(Item item, int metadata, String itemModelName)
+	{
+		BoilerplateLib.getInstance().proxy.registerItemModelVariant(item, metadata, itemModelName);
+	}
 }
