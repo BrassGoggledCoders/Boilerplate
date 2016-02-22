@@ -33,9 +33,12 @@ public class RegistryHelper
 
 	public static void registerItem(Item item)
 	{
-		// TODO: in 1.8, convert to using uppercase registry names, as is
-		// standard for blocks.
-		GameRegistry.registerItem(item, item.getUnlocalizedName());
+		registerItem(item, item.getUnlocalizedName().substring(5));
+	}
+
+	public static void registerItem(Item item, String name)
+	{
+		GameRegistry.registerItem(item, name);
 	}
 
 	public static void registerBlockWithDesc(Block block, String name)
