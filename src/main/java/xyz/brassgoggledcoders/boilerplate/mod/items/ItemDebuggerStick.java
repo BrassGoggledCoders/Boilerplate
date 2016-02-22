@@ -3,11 +3,11 @@ package xyz.brassgoggledcoders.boilerplate.mod.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.mod.api.IDebuggable;
 
@@ -17,13 +17,11 @@ import java.util.LinkedHashMap;
 /**
  * @author SkySom
  */
-public class ItemDebuggerStick extends Item
+public class ItemDebuggerStick extends BaseItem
 {
-	// TODO: Figure out models
 	public ItemDebuggerStick()
 	{
-		super();
-		this.setUnlocalizedName("debuggerstick");
+		super("debuggerstick");
 		this.setCreativeTab(CreativeTabs.tabMisc);
 	}
 

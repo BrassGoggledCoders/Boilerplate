@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.mod.items.ItemDebuggerStick;
@@ -56,6 +57,7 @@ public class Boilerplate implements IBoilerplateMod
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
 			RegistryHelper.registerItem(ITEM_DEBUG_STICK);
+			SafeModelLoader.loadItemModel(ITEM_DEBUG_STICK);
 			logger.info("The Debugging Stick of Doom is active!");
 		}
 

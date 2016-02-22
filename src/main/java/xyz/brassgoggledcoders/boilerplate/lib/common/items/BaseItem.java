@@ -26,9 +26,16 @@ public class BaseItem extends Item
 		this("");
 	}
 
-	public BaseItem(String texturePath)
+	public BaseItem(String name)
+	{
+		this(name, "");
+	}
+
+	public BaseItem(String name, String texturePath)
 	{
 		super();
+		this.setUnlocalizedName(name);
+		this.setRegistryName(name);
 		this.mod = BoilerplateLib.getInstance().mod;
 		this.texturePath = texturePath;
 		this.setCreativeTab(mod.getCreativeTab());
