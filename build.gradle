@@ -31,7 +31,7 @@ project.ext {
     forgeVersion = "11.15.0.1698"
 }
 
-version = project.ext.mcVersion + "-7.0.0." + project.ext.buildNum
+version = project.ext.mcVersion + "-7.0.1." + project.ext.buildNum
 
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
