@@ -68,8 +68,8 @@ public class BoilerplateLib
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		proxy = Utils.createProxy("xyz.brassgoggledcoders.boilerplate.lib.client.ClientProxy",
-				"xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy");
+		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
+		proxy = Utils.createProxy(packageString + ".client.ClientProxy", packageString + ".common.CommonProxy");
 		compatibilityHandler.preInit(event);
 	}
 
