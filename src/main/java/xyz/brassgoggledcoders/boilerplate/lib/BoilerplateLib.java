@@ -68,8 +68,12 @@ public class BoilerplateLib
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		logger.info(mod.getName() + " has BoilerplateLib Version " + VERSION + " installed");
 		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
-		proxy = Utils.createProxy(packageString + ".client.ClientProxy", packageString + ".common.CommonProxy");
+		String clientProxy = packageString + ".client.ClientProxy";
+		String serverProxy = packageString + ".common.CommonProxy";
+
+		proxy = Utils.createProxy(clientProxy, serverProxy);
 		compatibilityHandler.preInit(event);
 	}
 
