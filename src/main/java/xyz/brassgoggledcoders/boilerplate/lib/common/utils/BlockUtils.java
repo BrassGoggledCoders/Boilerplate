@@ -11,6 +11,9 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.BlockRailBase.EnumRailDirection;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 
 /**
  * @author SkySom
@@ -35,5 +38,15 @@ public class BlockUtils
 			railDirection = (EnumRailDirection)blockState.getValue(blockRailBase.getShapeProperty());
 		}
 		return railDirection;
+	}
+
+	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, BlockPos blockPos)
+	{
+		return !getBlockUnbreakable(world, blockPos) && player.capabilities.allowEdit;
+	}
+
+	public static boolean getBlockUnbreakable(World world, BlockPos blockPos)
+	{
+		return world.getBlockState(blockPos).getBlock().getBlockHardness(world, blockPos) == -1;
 	}
 }

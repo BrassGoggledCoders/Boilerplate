@@ -67,4 +67,9 @@ public class BlockRegistry extends BaseRegistry<Block>
 	{
 		getInstance().entries.put(name, block);
 	}
+
+	public static Block getBlock(String name)
+	{
+		return getInstance().entries.get(name);
+	}
 }

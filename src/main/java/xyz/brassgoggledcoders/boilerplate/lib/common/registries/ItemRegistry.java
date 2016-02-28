@@ -24,10 +24,12 @@ public class ItemRegistry extends BaseRegistry<Item>
 	}
 
 	@Override
-	public void preInit()
+	public void initiateEntries()
 	{
-		initiateEntries();
-		super.preInit();
+		for(Map.Entry<String, Item> itemEntry : entries.entrySet())
+		{
+			GameRegistry.registerItem(itemEntry.getValue(), itemEntry.getKey());
+		}
 	}
 
 	public static void registerItem(Item item)
@@ -55,12 +57,9 @@ public class ItemRegistry extends BaseRegistry<Item>
 		registerItem(item, name);
 	}
 
-	@Override
-	public void initiateEntries()
+
+	public static Item getItem(String name)
 	{
-		for(Map.Entry<String, Item> itemEntry : entries.entrySet())
-		{
-			GameRegistry.registerItem(itemEntry.getValue(), itemEntry.getKey());
-		}
+		return getInstance().entries.get(name);
 	}
 }

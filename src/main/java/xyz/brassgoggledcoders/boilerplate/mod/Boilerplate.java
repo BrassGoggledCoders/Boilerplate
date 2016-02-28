@@ -2,12 +2,12 @@ package xyz.brassgoggledcoders.boilerplate.mod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.classloading.FMLForgePlugin;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
@@ -15,7 +15,6 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.mod.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.helpers.RegistryHelper;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class Boilerplate implements IBoilerplateMod

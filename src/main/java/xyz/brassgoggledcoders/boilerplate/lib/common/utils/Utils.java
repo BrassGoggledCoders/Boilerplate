@@ -34,16 +34,6 @@ public class Utils
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, (world.rand.nextFloat() * 0.4F) + 0.8F);
 	}
 
-	public static boolean canPlayerBreakBlock(World world, EntityPlayer player, BlockPos blockPos)
-	{
-		return !getBlockUnbreakable(world, blockPos) && player.capabilities.allowEdit;
-	}
-
-	public static boolean getBlockUnbreakable(World world, BlockPos blockPos)
-	{
-		return world.getBlockState(blockPos).getBlock().getBlockHardness(world, blockPos) == -1;
-	}
-
 	public static void spawnEntityAtCoords(World world, Entity entity, int x, int y, int z)
 	{
 		EntityLiving entityliving = (EntityLiving) entity;
@@ -120,7 +110,7 @@ public class Utils
 		{
 			e.printStackTrace();
 		}
-		BoilerplateLib.getInstance().getLogger().error("Proxies did not initialize. Something's gonna break. ");
+		BoilerplateLib.getLogger().error("Proxies did not initialize. Something's gonna break. ");
 		return null;
 	}
 }

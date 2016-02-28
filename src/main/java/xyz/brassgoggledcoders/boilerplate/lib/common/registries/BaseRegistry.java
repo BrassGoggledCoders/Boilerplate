@@ -18,16 +18,17 @@ public abstract class BaseRegistry<T extends Object>
 {
 	private LoadingStage loadingStage = LoadingStage.PREINIT;
 	protected HashMap<String, T> entries = new HashMap<String, T>();
+	protected BaseRegistry<T> instance;
 
 	public void preInit()
 	{
 		initiateEntries();
+		initiateModels();
 		setLoadingStage(LoadingStage.INIT);
 	}
 
 	public void init()
 	{
-		initiateModels();
 		initiateRecipes();
 		setLoadingStage(LoadingStage.POSTINIT);
 	}
@@ -41,14 +42,14 @@ public abstract class BaseRegistry<T extends Object>
 
 	public void initiateModels()
 	{
-		for(Map.Entry<String, T> itemEntry : entries.entrySet())
+		for(Map.Entry<String, T> entry : entries.entrySet())
 		{
-			if(itemEntry.getValue() instanceof IHasModel)
+			if(entry.getValue() instanceof IHasModel)
 			{
-				ResourceLocation[] locations = ((IHasModel) itemEntry.getValue()).getModelResourceLocations();
+				ResourceLocation[] locations = ((IHasModel) entry.getValue()).getModelResourceLocations();
 				for(int i = 0; i < locations.length; i++)
 				{
-					SafeModelLoader.loadItemModel(itemEntry.getValue(), i, locations[i]);
+					SafeModelLoader.loadItemModel(entry.getValue(), i, locations[i]);
 				}
 			}
 		}
@@ -89,6 +90,7 @@ public abstract class BaseRegistry<T extends Object>
 		List<BaseRegistry> registries = new ArrayList<BaseRegistry>();
 		registries.add(ItemRegistry.getInstance());
 		registries.add(BlockRegistry.getInstance());
+		registries.add(EntityRegistry.getInstance());
 		return registries;
 	}
 }
