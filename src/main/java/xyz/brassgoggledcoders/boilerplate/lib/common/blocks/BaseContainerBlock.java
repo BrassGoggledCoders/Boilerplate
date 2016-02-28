@@ -27,7 +27,7 @@ public abstract class BaseContainerBlock extends BlockContainer
 	protected BaseContainerBlock(Material mat)
 	{
 		super(mat);
-		this.mod = BoilerplateLib.getInstance().getMod();
+		this.mod = BoilerplateLib.getMod();
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setHardness(5.0F);
 	}

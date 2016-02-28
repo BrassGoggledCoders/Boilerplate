@@ -19,7 +19,6 @@ import java.util.List;
 public class BaseItem extends Item
 {
 	String texturePath = "";
-	IBoilerplateMod mod;
 
 	public BaseItem()
 	{
@@ -36,18 +35,9 @@ public class BaseItem extends Item
 		super();
 		this.setUnlocalizedName(name);
 		this.setRegistryName(name);
-		this.mod = BoilerplateLib.getInstance().getMod();
 		this.texturePath = texturePath;
-		this.setCreativeTab(mod.getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getMod().getCreativeTab());
 	}
-
-	// @SideOnly(Side.CLIENT)
-	// @Override
-	// public void registerIcons(IIconRegister par1IconRegister)
-	// {
-	// this.itemIcon = par1IconRegister.registerIcon(mod.getPrefix() +
-	// texturePath + this.getUnlocalizedName().substring(5));
-	// }
 
 	@SuppressWarnings("all")
 	@Override

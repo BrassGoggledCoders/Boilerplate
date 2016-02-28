@@ -12,11 +12,12 @@ import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.mod.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.helpers.RegistryHelper;
 
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:BuildCraft|Core; after:TConstruct; after:ForgeMultipart;after:MineFactoryReloaded")
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class Boilerplate implements IBoilerplateMod
 {
 	/**
@@ -49,19 +50,17 @@ public class Boilerplate implements IBoilerplateMod
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		logger = new ModLogger(ModInfo.ID);
-		Configuration config = BoilerplateLib.getInstance().config(event);
-		BoilerplateLib.getInstance().preInit(event);
-		DEBUGGER_STICK = config.get("debugging", "activateDebuggingStickOfDoom", false, "True to enable").getBoolean();
+		BoilerplateLib.getInstance().preInitStart(event);
+		DEBUGGER_STICK = BoilerplateLib.getConfig().get("debugging", "activateDebuggingStickOfDoom", false,
+				"True to enable").getBoolean();
 
 		if (DEBUGGER_STICK || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
-			RegistryHelper.registerItem(ITEM_DEBUG_STICK);
-			SafeModelLoader.loadItemModel(ITEM_DEBUG_STICK);
+			ItemRegistry.registerItem(ITEM_DEBUG_STICK);
 			logger.info("The Debugging Stick of Doom is active!");
 		}
-
-		config.save();
+		BoilerplateLib.getInstance().preInitEnd(event);
 	}
 
 	@Mod.EventHandler

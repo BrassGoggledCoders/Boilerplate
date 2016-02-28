@@ -13,6 +13,8 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.network.PacketHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.LoadingStage;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
@@ -28,6 +30,7 @@ public class BoilerplateLib
 	private PacketHandler packetHandler;
 	private CompatibilityHandler compatibilityHandler;
 	private CommonProxy proxy;
+	private Configuration config;
 
 	public static BoilerplateLib getInstance()
 	{
@@ -56,18 +59,14 @@ public class BoilerplateLib
 		this.packetHandler = new PacketHandler(mod.getID());
 	}
 
-	public Configuration config(FMLPreInitializationEvent event)
+	public void preInitStart(FMLPreInitializationEvent event)
 	{
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
 		getCompatibilityHandler().configureModCompat(config);
 		config.save();
-		return config;
-	}
 
-	public void preInit(FMLPreInitializationEvent event)
-	{
 		getLogger().info(getMod().getName() + " has BoilerplateLib Version " + VERSION + " installed");
 		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
 		String clientProxy = packageString + ".client.ClientProxy";
@@ -77,17 +76,24 @@ public class BoilerplateLib
 		getCompatibilityHandler().preInit(event);
 	}
 
+	public void preInitEnd(FMLPreInitializationEvent event)
+	{
+		config.save();
+		getProxy().registerEvents();
+		ItemRegistry.getInstance().initiateItems();
+		ItemRegistry.getInstance().initiateModels();
+	}
+
 	public void init(FMLInitializationEvent event)
 	{
-		if (colorblind && FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-		{
-			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
-		}
+		ItemRegistry.getInstance().setLoadingStage(LoadingStage.INIT);
 		getProxy().initCompatibilityHandler(getCompatibilityHandler(), event);
+		ItemRegistry.getInstance().initiateRecipes();
 	}
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		ItemRegistry.getInstance().setLoadingStage(LoadingStage.POSTINIT);
 		getCompatibilityHandler().postInit(event);
 	}
 
@@ -119,5 +125,10 @@ public class BoilerplateLib
 	public static CommonProxy getProxy()
 	{
 		return getInstance().proxy;
+	}
+
+	public static Configuration getConfig()
+	{
+		return getInstance().config;
 	}
 }

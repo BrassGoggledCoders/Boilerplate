@@ -19,26 +19,10 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBlockDesc;
  */
 public class RegistryHelper
 {
-	public static void registerAndCreateBasicItem(Item itemField)
-	{
-		itemField = new BaseItem();
-		registerItem(itemField);
-	}
-
 	public static void registerAndCreateBasicBlock(Block blockField, Material mat, String name)
 	{
 		blockField = new BaseBlock(mat);
 		GameRegistry.registerBlock(blockField, name);
-	}
-
-	public static void registerItem(Item item)
-	{
-		registerItem(item, item.getUnlocalizedName().substring(5));
-	}
-
-	public static void registerItem(Item item, String name)
-	{
-		GameRegistry.registerItem(item, name);
 	}
 
 	public static void registerBlockWithDesc(Block block, String name)
@@ -87,13 +71,11 @@ public class RegistryHelper
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		if(BoilerplateLib.getInstance().getMod() != null)
+		if(BoilerplateLib.getMod() != null)
 		{
-			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID,
-					BoilerplateLib.getInstance().getMod(),
-					64, 1, true);
+			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID, BoilerplateLib.getMod(),	64, 1, true);
 		} else {
-			BoilerplateLib.getInstance().getLogger().error("Failed to register entity " + name);
+			BoilerplateLib.getLogger().error("Failed to register entity " + name);
 		}
 	}
 }

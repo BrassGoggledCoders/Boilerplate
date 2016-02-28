@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.boilerplate.lib.client.models;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 
 public class SafeModelLoader
@@ -28,21 +29,31 @@ public class SafeModelLoader
 
 	public static void loadItemModel(Item item, int metadata)
 	{
-		loadItemModel(item, metadata, item.getUnlocalizedName().substring(5));
+		String name = item.getUnlocalizedName();
+		if(name.startsWith("item."))
+		{
+			name = name.substring(5);
+		}
+		loadItemModel(item, metadata, name);
 	}
 
 	public static void loadItemModel(Item item, int metadata, String override)
 	{
-		BoilerplateLib.getInstance().getProxy().loadItemModel(item, metadata, override);
+		loadItemModel(item, metadata, new ResourceLocation(BoilerplateLib.getMod().getPrefix() + override));
+	}
+
+	public static void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation)
+	{
+		BoilerplateLib.getProxy().loadItemModel(item, metadata, resourceLocation);
 	}
 
 	public static void addVariantName(Item item, String... names)
 	{
-		BoilerplateLib.getInstance().getProxy().addVariantName(item, names);
+		BoilerplateLib.getProxy().addVariantName(item, names);
 	}
 
 	public static void registerItemModelVariant(Item item, int metadata, String itemModelName)
 	{
-		BoilerplateLib.getInstance().getProxy().registerItemModelVariant(item, metadata, itemModelName);
+		BoilerplateLib.getProxy().registerItemModelVariant(item, metadata, itemModelName);
 	}
 }

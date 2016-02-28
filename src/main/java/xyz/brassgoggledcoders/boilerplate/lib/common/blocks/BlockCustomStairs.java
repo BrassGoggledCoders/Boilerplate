@@ -14,7 +14,7 @@ public class BlockCustomStairs extends BlockStairs
 	public BlockCustomStairs(Block block)
 	{
 		super(block.getDefaultState());
-		this.setCreativeTab(BoilerplateLib.getInstance().getMod().getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 }

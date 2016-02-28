@@ -3,10 +3,13 @@ package xyz.brassgoggledcoders.boilerplate.lib.client;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
 
@@ -33,7 +36,14 @@ public class ClientProxy extends CommonProxy
 	public void loadItemModel(Item item, int metadata, String override)
 	{
 		ModelLoader.setCustomModelResourceLocation(item, metadata,
-				new ModelResourceLocation(BoilerplateLib.getInstance().getMod().getPrefix() + override, "inventory"));
+				new ModelResourceLocation(BoilerplateLib.getMod().getPrefix() + override, "inventory"));
+	}
+
+	@Override
+	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation)
+	{
+		ModelLoader.setCustomModelResourceLocation(item, metadata,
+				new ModelResourceLocation(resourceLocation, "inventory"));
 	}
 
 	@Override
@@ -42,7 +52,7 @@ public class ClientProxy extends CommonProxy
 		ModelResourceLocation[] modelResourceLocations = new ModelResourceLocation[variantNames.length];
 		for(int i = 0; i < modelResourceLocations.length; i++)
 		{
-			modelResourceLocations[i] = new ModelResourceLocation(BoilerplateLib.getInstance().getMod().getPrefix() +
+			modelResourceLocations[i] = new ModelResourceLocation(BoilerplateLib.getMod().getPrefix() +
 					variantNames[i]);
 		}
 		ModelBakery.registerItemVariants(item, modelResourceLocations);
@@ -52,7 +62,16 @@ public class ClientProxy extends CommonProxy
 	public void registerItemModelVariant(Item item, int metadata, String itemModelName)
 	{
 		ModelResourceLocation modelResourceLocation =
-				new ModelResourceLocation(BoilerplateLib.getInstance().getMod().getPrefix() + itemModelName);
+				new ModelResourceLocation(BoilerplateLib.getMod().getPrefix() + itemModelName);
 		ClientHelper.getItemModelMesher().register(item, metadata, modelResourceLocation);
+	}
+
+	@Override
+	public void registerEvents()
+	{
+		if(BoilerplateLib.getInstance().colorblind)
+		{
+			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		}
 	}
 }
