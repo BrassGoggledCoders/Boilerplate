@@ -1,4 +1,3 @@
-
 package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 
 import net.minecraft.entity.player.EntityPlayer;

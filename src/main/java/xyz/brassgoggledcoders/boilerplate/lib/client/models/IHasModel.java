@@ -4,5 +4,5 @@ import net.minecraft.util.ResourceLocation;
 
 public interface IHasModel
 {
-	ResourceLocation[] getModelResourceLocations();
+	ResourceLocation[] getResourceLocations();
 }

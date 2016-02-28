@@ -74,7 +74,7 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 	}
 
 	@Override
-	public ResourceLocation[] getModelResourceLocations()
+	public ResourceLocation[] getResourceLocations()
 	{
 		return new ResourceLocation[]{new ResourceLocation(BoilerplateLib.getMod().getPrefix() + "debuggerstick")};
 	}
