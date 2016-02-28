@@ -47,6 +47,22 @@ public class SafeModelLoader
 		BoilerplateLib.getProxy().loadItemModel(item, metadata, resourceLocation);
 	}
 
+	public static void loadItemModel(Object object, int metadata, ResourceLocation resourceLocation)
+	{
+		Item item = null;
+		if(object instanceof Item)
+		{
+			item = (Item)object;
+		} else if(object instanceof Block) {
+			item = Item.getItemFromBlock((Block)object);
+		}
+
+		if(item != null)
+		{
+			BoilerplateLib.getProxy().loadItemModel(item, metadata, resourceLocation);
+		}
+	}
+
 	public static void addVariantName(Item item, String... names)
 	{
 		BoilerplateLib.getProxy().addVariantName(item, names);

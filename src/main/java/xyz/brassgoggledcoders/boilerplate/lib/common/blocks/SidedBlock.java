@@ -23,7 +23,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.tileentities.TileEntitySide
 /**
  * @author SkySom
  */
-public abstract class SidedBlock extends BlockContainer
+public abstract class SidedBlock extends BaseTEBlock
 {
 	protected SidedBlock(Material material)
 	{

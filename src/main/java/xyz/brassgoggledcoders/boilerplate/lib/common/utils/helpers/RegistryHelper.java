@@ -19,37 +19,6 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBlockDesc;
  */
 public class RegistryHelper
 {
-	public static void registerAndCreateBasicBlock(Block blockField, Material mat, String name)
-	{
-		blockField = new BaseBlock(mat);
-		GameRegistry.registerBlock(blockField, name);
-	}
-
-	public static void registerBlockWithDesc(Block block, String name)
-	{
-		GameRegistry.registerBlock(block, ItemBlockDesc.class, name);
-	}
-
-	public static void registerContainerBlock(Block block, Class<? extends TileEntity> tile, String name)
-	{
-		GameRegistry.registerBlock(block, name);
-		String id = "TE" + name.substring(5);
-		GameRegistry.registerTileEntity(tile, id);
-	}
-
-	public static void registerContainerBlockWithDesc(Block block, Class<? extends TileEntity> tile, String name)
-	{
-		registerBlockWithDesc(block, name);
-		GameRegistry.registerTileEntity(tile, "TE" + name.substring(5));
-	}
-
-	public static void registerContainerBlockWithDescAndMeta(Block block, Class<? extends TileEntity> tile, String name)
-	{
-		// TODO GameRegistry.registerBlock(block, ItemBlockDescMeta.class,
-		// name);
-		GameRegistry.registerTileEntity(tile, "TE" + name.substring(5));
-	}
-
 	public static void registerArmorSet(Item helm, Item chestplate, Item legs, Item boots, String name)
 	{
 		GameRegistry.registerItem(helm, "ItemHelmet" + name);

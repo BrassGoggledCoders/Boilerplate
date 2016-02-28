@@ -13,6 +13,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.network.PacketHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.BaseRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.LoadingStage;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
@@ -80,21 +81,28 @@ public class BoilerplateLib
 	{
 		config.save();
 		getProxy().registerEvents();
-		ItemRegistry.getInstance().initiateItems();
-		ItemRegistry.getInstance().initiateModels();
+		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
+		{
+			registry.preInit();
+		}
 	}
 
 	public void init(FMLInitializationEvent event)
 	{
-		ItemRegistry.getInstance().setLoadingStage(LoadingStage.INIT);
 		getProxy().initCompatibilityHandler(getCompatibilityHandler(), event);
-		ItemRegistry.getInstance().initiateRecipes();
+		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
+		{
+			registry.init();
+		}
 	}
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		ItemRegistry.getInstance().setLoadingStage(LoadingStage.POSTINIT);
 		getCompatibilityHandler().postInit(event);
+		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
+		{
+			registry.postInit();
+		}
 	}
 
 	public static ModLogger getLogger()

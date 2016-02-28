@@ -19,9 +19,9 @@ import java.util.Random;
  * @author decebaldecebal
  *
  */
-public abstract class BaseContainerBlock extends BlockContainer
+public abstract class BaseContainerBlock extends BaseTEBlock
 {
-	IBoilerplateMod mod;
+	protected IBoilerplateMod mod;
 	protected static boolean keepInventory = true;
 
 	protected BaseContainerBlock(Material mat)
@@ -31,14 +31,6 @@ public abstract class BaseContainerBlock extends BlockContainer
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setHardness(5.0F);
 	}
-
-	// @Override
-	// @SideOnly(Side.CLIENT)
-	// public void registerBlockIcons(IIconRegister ir)
-	// {
-	// this.blockIcon = ir.registerIcon(mod.getPrefix() +
-	// this.getUnlocalizedName().substring(5));
-	// }
 
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
