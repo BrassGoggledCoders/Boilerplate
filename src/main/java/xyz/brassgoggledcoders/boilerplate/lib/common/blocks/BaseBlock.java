@@ -17,7 +17,7 @@ public class BaseBlock extends Block
 	public BaseBlock(Material mat)
 	{
 		super(mat);
-		this.mod = BoilerplateLib.getInstance().mod;
+		this.mod = BoilerplateLib.getInstance().getMod();
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setHardness(1F);
 	}

@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy
 	public void loadItemModel(Item item, int metadata, String override)
 	{
 		ModelLoader.setCustomModelResourceLocation(item, metadata,
-				new ModelResourceLocation(BoilerplateLib.getInstance().mod.getPrefix() + override, "inventory"));
+				new ModelResourceLocation(BoilerplateLib.getInstance().getMod().getPrefix() + override, "inventory"));
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class ClientProxy extends CommonProxy
 		ModelResourceLocation[] modelResourceLocations = new ModelResourceLocation[variantNames.length];
 		for(int i = 0; i < modelResourceLocations.length; i++)
 		{
-			modelResourceLocations[i] = new ModelResourceLocation(BoilerplateLib.getInstance().mod.getPrefix() +
+			modelResourceLocations[i] = new ModelResourceLocation(BoilerplateLib.getInstance().getMod().getPrefix() +
 					variantNames[i]);
 		}
 		ModelBakery.registerItemVariants(item, modelResourceLocations);
@@ -52,7 +52,7 @@ public class ClientProxy extends CommonProxy
 	public void registerItemModelVariant(Item item, int metadata, String itemModelName)
 	{
 		ModelResourceLocation modelResourceLocation =
-				new ModelResourceLocation(BoilerplateLib.getInstance().mod.getPrefix() + itemModelName);
+				new ModelResourceLocation(BoilerplateLib.getInstance().getMod().getPrefix() + itemModelName);
 		ClientHelper.getItemModelMesher().register(item, metadata, modelResourceLocation);
 	}
 }

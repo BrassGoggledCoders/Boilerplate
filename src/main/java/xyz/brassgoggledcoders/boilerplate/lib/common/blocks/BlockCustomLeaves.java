@@ -22,7 +22,7 @@ public class BlockCustomLeaves extends BlockLeaves
 	{
 		super();
 		this.type = type;
-		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().getMod().getCreativeTab());
 	}
 
 	// @Override

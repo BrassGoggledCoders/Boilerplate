@@ -26,7 +26,7 @@ public class BlockCustomWall extends BlockWall
 		super(block);
 		this.block = block;
 		// this.metadata = meta;
-		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().getMod().getCreativeTab());
 	}
 
 	// @Override

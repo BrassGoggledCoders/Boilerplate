@@ -26,7 +26,7 @@ public class BaseArmor extends ItemArmor
 	public BaseArmor(ArmorMaterial mat, int type, String textureName)
 	{
 		super(mat, 0, type);
-		this.mod = BoilerplateLib.getInstance().mod;
+		this.mod = BoilerplateLib.getInstance().getMod();
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setMaxStackSize(1);
 		this.textureName = textureName;

@@ -16,6 +16,6 @@ public class BlockCustomDoor extends BlockDoor
 		super(Material.wood);
 		// TODO this.setBlockTextureName(BoilerplateLib.getInstance.getMod().getPrefix() +
 		// "block" + type + "Door");
-		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().getMod().getCreativeTab());
 	}
 }

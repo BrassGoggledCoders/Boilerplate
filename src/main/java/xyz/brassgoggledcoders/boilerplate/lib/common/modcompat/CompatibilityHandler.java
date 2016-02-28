@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ILogger;
 
@@ -17,30 +18,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ILogger;
  */
 public class CompatibilityHandler
 {
-	ILogger logger;
-
-	public CompatibilityHandler()
-	{
-		this(Boilerplate.logger);
-	}
-
-	public CompatibilityHandler(ILogger logger)
-	{
-		this.logger = logger;
-	}
-
 	private HashMap<String, ModCompat> modCompatEnabled = new HashMap<String, ModCompat>();
-
-	@Deprecated
-	public ArrayList<ModCompat> getModCompat()
-	{
-		ArrayList<ModCompat> arrayList = new ArrayList<ModCompat>();
-		for (Map.Entry<String, ModCompat> entry : modCompatEnabled.entrySet())
-		{
-			arrayList.add(entry.getValue());
-		}
-		return arrayList;
-	}
 
 	public HashMap<String, ModCompat> getModCompatEnabled()
 	{
@@ -59,11 +37,11 @@ public class CompatibilityHandler
 			if (!modCompat.areRequirementsMet() && modCompat.getIsActive())
 			{
 				modCompat.setIsActive(false);
-				logger.error("Requirements are not met for " + modCompat.getName() + ". Deactivating");
+				BoilerplateLib.getLogger().error("Requirements are not met for " + modCompat.getName() + ". Deactivating");
 			}
 			if (modCompat.getIsActive())
 			{
-				logger.info("Loading " + modCompat.getName() + " module");
+				BoilerplateLib.getLogger().info("Loading " + modCompat.getName() + " module");
 			}
 		}
 

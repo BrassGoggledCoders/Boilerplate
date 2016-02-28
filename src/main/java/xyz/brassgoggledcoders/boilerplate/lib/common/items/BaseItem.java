@@ -36,7 +36,7 @@ public class BaseItem extends Item
 		super();
 		this.setUnlocalizedName(name);
 		this.setRegistryName(name);
-		this.mod = BoilerplateLib.getInstance().mod;
+		this.mod = BoilerplateLib.getInstance().getMod();
 		this.texturePath = texturePath;
 		this.setCreativeTab(mod.getCreativeTab());
 	}

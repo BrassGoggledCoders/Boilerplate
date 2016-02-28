@@ -23,7 +23,7 @@ public class BlockCustomSlab extends BlockSlab
 		super(mat);
 		this.type = type;
 		this.block = block;
-		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().getMod().getCreativeTab());
 		this.useNeighborBrightness = true;
 	}
 

@@ -14,6 +14,6 @@ public class BlockCustomFence extends BlockFence
 	public BlockCustomFence(Material mat)
 	{
 		super(/* BoilerplateLib.getInstance.getMod().getPrefix() + type, */ mat);
-		this.setCreativeTab(BoilerplateLib.getInstance().mod.getCreativeTab());
+		this.setCreativeTab(BoilerplateLib.getInstance().getMod().getCreativeTab());
 	}
 }

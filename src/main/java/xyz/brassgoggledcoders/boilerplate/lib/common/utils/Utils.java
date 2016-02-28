@@ -120,7 +120,7 @@ public class Utils
 		{
 			e.printStackTrace();
 		}
-		BoilerplateLib.getInstance().logger.error("Proxies did not initialize. Something's gonna break. ");
+		BoilerplateLib.getInstance().getLogger().error("Proxies did not initialize. Something's gonna break. ");
 		return null;
 	}
 }

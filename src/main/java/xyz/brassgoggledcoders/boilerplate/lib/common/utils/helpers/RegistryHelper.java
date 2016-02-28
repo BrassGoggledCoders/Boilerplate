@@ -87,12 +87,13 @@ public class RegistryHelper
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		if(BoilerplateLib.getInstance().mod != null)
+		if(BoilerplateLib.getInstance().getMod() != null)
 		{
-			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID, BoilerplateLib.getInstance().mod,
+			EntityRegistry.registerModEntity(entityClass, name, ++nextAvailableID,
+					BoilerplateLib.getInstance().getMod(),
 					64, 1, true);
 		} else {
-			BoilerplateLib.getInstance().logger.error("Failed to register entity " + name);
+			BoilerplateLib.getInstance().getLogger().error("Failed to register entity " + name);
 		}
 	}
 }

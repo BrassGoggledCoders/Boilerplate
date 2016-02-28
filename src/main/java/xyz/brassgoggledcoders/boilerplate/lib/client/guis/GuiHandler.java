@@ -20,7 +20,7 @@ public class GuiHandler implements IGuiHandler
 {
 	public GuiHandler(IBoilerplateMod instance)
 	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance.getInstance(), this);
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, this);
 	}
 
 	@Override

@@ -22,12 +22,12 @@ public class BoilerplateLib
 	private static BoilerplateLib instance = null;
 
 	public boolean colorblind;
-	public ModLogger logger;
-	public IBoilerplateMod mod;
-	public GuiHandler guiHandler;
-	public PacketHandler packetHandler;
-	public CompatibilityHandler compatibilityHandler;
-	public CommonProxy proxy;
+	private ModLogger logger;
+	private IBoilerplateMod mod;
+	private GuiHandler guiHandler;
+	private PacketHandler packetHandler;
+	private CompatibilityHandler compatibilityHandler;
+	private CommonProxy proxy;
 
 	public static BoilerplateLib getInstance()
 	{
@@ -52,7 +52,7 @@ public class BoilerplateLib
 		this.mod = mod;
 		this.logger = mod.getLogger();
 		this.guiHandler = new GuiHandler(mod);
-		this.compatibilityHandler = new CompatibilityHandler(logger);
+		this.compatibilityHandler = new CompatibilityHandler();
 		this.packetHandler = new PacketHandler(mod.getID());
 	}
 
@@ -61,20 +61,20 @@ public class BoilerplateLib
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
-		compatibilityHandler.configureModCompat(config);
+		getCompatibilityHandler().configureModCompat(config);
 		config.save();
 		return config;
 	}
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		logger.info(mod.getName() + " has BoilerplateLib Version " + VERSION + " installed");
+		getLogger().info(getMod().getName() + " has BoilerplateLib Version " + VERSION + " installed");
 		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
 		String clientProxy = packageString + ".client.ClientProxy";
 		String serverProxy = packageString + ".common.CommonProxy";
 
 		proxy = Utils.createProxy(clientProxy, serverProxy);
-		compatibilityHandler.preInit(event);
+		getCompatibilityHandler().preInit(event);
 	}
 
 	public void init(FMLInitializationEvent event)
@@ -83,11 +83,41 @@ public class BoilerplateLib
 		{
 			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		}
-		proxy.initCompatibilityHandler(compatibilityHandler, event);
+		getProxy().initCompatibilityHandler(getCompatibilityHandler(), event);
 	}
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		compatibilityHandler.postInit(event);
+		getCompatibilityHandler().postInit(event);
+	}
+
+	public static ModLogger getLogger()
+	{
+		return getInstance().logger;
+	}
+
+	public static IBoilerplateMod getMod()
+	{
+		return getInstance().mod;
+	}
+
+	public static GuiHandler getGuiHandler()
+	{
+		return getInstance().guiHandler;
+	}
+
+	public static PacketHandler getPacketHandler()
+	{
+		return getInstance().packetHandler;
+	}
+
+	public static CompatibilityHandler getCompatibilityHandler()
+	{
+		return getInstance().compatibilityHandler;
+	}
+
+	public static CommonProxy getProxy()
+	{
+		return getInstance().proxy;
 	}
 }
