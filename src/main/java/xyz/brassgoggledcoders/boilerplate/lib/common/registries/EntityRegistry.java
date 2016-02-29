@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.world.biome.BiomeGenBase;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.entity.SpawnEgg;
 import xyz.brassgoggledcoders.boilerplate.lib.common.entity.SpawnInfo;
@@ -55,6 +54,11 @@ public class EntityRegistry extends BaseRegistry<Class<? extends Entity>>
 
 			}
 		}
+	}
+
+	public static void registerEntity(Class<? extends  Entity> entityClass)
+	{
+		registerEntity(entityClass, entityClass.getSimpleName().toLowerCase());
 	}
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
