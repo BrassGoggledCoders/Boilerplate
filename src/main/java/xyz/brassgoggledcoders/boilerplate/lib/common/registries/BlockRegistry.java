@@ -56,9 +56,9 @@ public class BlockRegistry extends BaseRegistry<Block>
 	public static void registerBlock(Block block)
 	{
 		String name = block.getUnlocalizedName();
-		if(name.startsWith("block."))
+		if(name.startsWith("tile."))
 		{
-			name = name.substring(6);
+			name = name.substring(5);
 		}
 		registerBlock(block, name);
 	}
