@@ -53,7 +53,7 @@ public class BlockRegistry extends BaseRegistry<Block>
 		getInstance().entries.put(name, block);
 	}
 
-	public static void regsterBlock(Block block)
+	public static void registerBlock(Block block)
 	{
 		String name = block.getUnlocalizedName();
 		if(name.startsWith("block."))
