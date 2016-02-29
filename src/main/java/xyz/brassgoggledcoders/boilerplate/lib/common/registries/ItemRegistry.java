@@ -44,7 +44,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 		{
 			if(entry.getValue() instanceof ISpecialRenderedItem)
 			{
-
+				BoilerplateLib.getProxy().registerISpecialRendererItem(entry.getValue());
 			}
 		}
 	}
