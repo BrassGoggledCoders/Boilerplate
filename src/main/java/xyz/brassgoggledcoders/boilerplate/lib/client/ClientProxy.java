@@ -8,6 +8,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
@@ -69,6 +70,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ISpecialRenderedItem specialRenderItem = (ISpecialRenderedItem)item;
 		ItemSpecialRenderer renderer = ((ISpecialRenderedItem) item).getSpecialRenderer();
+		ClientRegistry.bindTileEntitySpecialRenderer(renderer.getTileClass(), renderer);
 		int length = specialRenderItem.getResourceLocations().length;
 		ModelResourceLocation[] modelLocations = new ModelResourceLocation[length];
 
