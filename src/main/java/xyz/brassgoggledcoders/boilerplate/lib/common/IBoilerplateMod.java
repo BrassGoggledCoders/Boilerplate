@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.config.Configuration;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
 
 /**
@@ -21,6 +22,8 @@ public interface IBoilerplateMod
 	String getPrefix();
 
 	ModLogger getLogger();
+
+	Configuration getConfig();
 
 	String getClientProxyPath();
 

@@ -58,11 +58,18 @@ public class BoilerplateLib
 		this.guiHandler = new GuiHandler(mod);
 		this.compatibilityHandler = new CompatibilityHandler();
 		this.packetHandler = new PacketHandler(mod.getID());
+		if(mod.getConfig() != null)
+		{
+			this.config = mod.getConfig();
+		}
 	}
 
 	public void preInitStart(FMLPreInitializationEvent event)
 	{
-		config = new Configuration(event.getSuggestedConfigurationFile());
+		if(config == null)
+		{
+			config = new Configuration(event.getSuggestedConfigurationFile());
+		}
 		config.load();
 		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
 		getCompatibilityHandler().configureModCompat(config);
