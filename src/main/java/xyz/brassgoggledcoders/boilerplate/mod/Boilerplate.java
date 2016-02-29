@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.boilerplate.mod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.classloading.FMLForgePlugin;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -42,7 +43,6 @@ public class Boilerplate implements IBoilerplateMod
 
 	@Mod.Instance("boilerplate")
 	public static Boilerplate instance;
-
 	public static ModLogger logger;
 
 	@Mod.EventHandler
@@ -115,6 +115,12 @@ public class Boilerplate implements IBoilerplateMod
 	public ModLogger getLogger()
 	{
 		return logger;
+	}
+
+	@Override
+	public Configuration getConfig()
+	{
+		return null;
 	}
 
 	@Override
