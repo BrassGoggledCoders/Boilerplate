@@ -1,10 +1,8 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
-import net.minecraftforge.common.config.Property;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.IConfigListener;
-import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +33,11 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 	public static void addCategoryComment(String name, String comment)
 	{
 		BoilerplateLib.getConfig().addCustomCategoryComment(name, comment);
+	}
+
+	public static void addEntry(ConfigEntry entry)
+	{
+		addEntry(entry.getPropertyName(), entry);
 	}
 
 	public static void addEntry(String name, ConfigEntry entry)

@@ -17,5 +17,5 @@ public interface IEnergyItem extends IEnergyContainerItem
 	 *
 	 * @return the max send
 	 */
-	public short getMaxSend();
+	short getMaxSend();
 }

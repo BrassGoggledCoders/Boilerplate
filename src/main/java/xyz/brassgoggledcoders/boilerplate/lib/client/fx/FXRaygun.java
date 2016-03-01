@@ -122,7 +122,6 @@ public class FXRaygun extends EntityFX
 		for (this.rotPitch = (float) ((Math.atan2(yd, var7) * 180.0D) / 3.141592653589793D); (this.rotPitch
 				- this.prevPitch) < -180.0F; this.prevPitch -= 360.0F)
 		{
-			;
 		}
 		while ((this.rotPitch - this.prevPitch) >= 180.0F)
 		{

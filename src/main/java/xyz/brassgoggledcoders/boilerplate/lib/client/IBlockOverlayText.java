@@ -8,5 +8,5 @@ import net.minecraft.util.MovingObjectPosition;
  */
 public interface IBlockOverlayText
 {
-	public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool);
+	String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool);
 }

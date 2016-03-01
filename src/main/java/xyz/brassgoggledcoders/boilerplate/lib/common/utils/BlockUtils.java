@@ -35,7 +35,7 @@ public class BlockUtils
 		if(blockState.getBlock() instanceof BlockRailBase)
 		{
 			BlockRailBase blockRailBase = (BlockRailBase)blockState.getBlock();
-			railDirection = (EnumRailDirection)blockState.getValue(blockRailBase.getShapeProperty());
+			railDirection = blockState.getValue(blockRailBase.getShapeProperty());
 		}
 		return railDirection;
 	}
