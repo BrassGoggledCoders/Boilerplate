@@ -10,6 +10,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.Type;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ILogger;
 
@@ -91,7 +94,9 @@ public class CompatibilityHandler
 	{
 		for (ModCompat modCompat : getModCompatEnabled().values())
 		{
-			modCompat.setIsActive(configuration.get("ModCompat", modCompat.getName() + " Enabled", true).getBoolean(true));
+			ConfigRegistry.addEntry(modCompat.getName(),
+					new ConfigEntry("ModCompat", modCompat.getName() + " Enabled", Type.BOOLEAN, "true"));
+			modCompat.setIsActive(ConfigRegistry.getBoolean(modCompat.getName(), true));
 		}
 		return configuration;
 	}
