@@ -32,6 +32,11 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		}
 	}
 
+	public static void addCategoryComment(String name, String comment)
+	{
+		BoilerplateLib.getConfig().addCustomCategoryComment(name, comment);
+	}
+
 	public static void addEntry(String name, ConfigEntry entry)
 	{
 		getInstance().entries.put(name, entry);
@@ -42,8 +47,14 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 	public static void updateEntry(String name, String value)
 	{
 		ConfigEntry configEntry = getInstance().entries.get(name);
-		configEntry.setValue(value);
-		getInstance().alertTheListeners(name, configEntry);
+		if(configEntry != null)
+		{
+			configEntry.setValue(value);
+			getInstance().alertTheListeners(name, configEntry);
+		} else
+		{
+			BoilerplateLib.getLogger().error("Config Entry for " + name + " not found");
+		}
 	}
 
 	public static ConfigEntry getEntry(String name)
