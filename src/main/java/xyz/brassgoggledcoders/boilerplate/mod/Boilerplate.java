@@ -54,7 +54,7 @@ public class Boilerplate implements IBoilerplateMod
 		ConfigRegistry.addEntry("debugging", new ConfigEntry("debugging", "activateDebuggingStickOfDoom", Type.BOOLEAN,
 				"false", "True to enable"));
 
-		if (ConfigRegistry.getEntry("debugging").getBoolean(false) || !FMLForgePlugin.RUNTIME_DEOBF)
+		if (ConfigRegistry.getBoolean("debugging", false) || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
 			ItemRegistry.registerItem(ITEM_DEBUG_STICK);

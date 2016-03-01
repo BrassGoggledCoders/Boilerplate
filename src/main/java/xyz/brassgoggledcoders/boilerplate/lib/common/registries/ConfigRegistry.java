@@ -51,13 +51,46 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		return getInstance().entries.get(name);
 	}
 
-	public static boolean getBooleanValue(String name, boolean defaultValue)
+	public static boolean getBoolean(String name, boolean defaultValue)
 	{
 		boolean returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
 		if(configEntry != null)
 		{
-			returnValue = configEntry.toProperty(BoilerplateLib.getConfig()).getBoolean(defaultValue);
+			returnValue = configEntry.getBoolean(defaultValue);
+		}
+		return returnValue;
+	}
+
+	public static int getInt(String name, int defaultValue)
+	{
+		int returnValue = defaultValue;
+		ConfigEntry configEntry = getEntry(name);
+		if(configEntry != null)
+		{
+			returnValue = configEntry.getInt(defaultValue);
+		}
+		return returnValue;
+	}
+
+	public static double getDouble(String name, double defaultValue)
+	{
+		double returnValue = defaultValue;
+		ConfigEntry configEntry = getEntry(name);
+		if(configEntry != null)
+		{
+			returnValue = configEntry.getDouble(defaultValue);
+		}
+		return returnValue;
+	}
+
+	public static String getString(String name, String defaultValue)
+	{
+		String returnValue = defaultValue;
+		ConfigEntry configEntry = getEntry(name);
+		if(configEntry != null)
+		{
+			returnValue = configEntry.getString();
 		}
 		return returnValue;
 	}

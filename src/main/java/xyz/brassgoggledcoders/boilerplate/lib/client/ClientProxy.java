@@ -90,10 +90,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerEvents()
 	{
-		if(ConfigRegistry.getEntry("colorblind").getBoolean(false))
-		{
-			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
-		}
+		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		MinecraftForge.EVENT_BUS.register(ModelBakeHandler.getInstance());
 	}
 }

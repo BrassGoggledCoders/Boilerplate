@@ -88,6 +88,11 @@ public class ConfigEntry
 		}
 	}
 
+	public String getString()
+	{
+		return getValue();
+	}
+
 	public String getCategory()
 	{
 		return category;
