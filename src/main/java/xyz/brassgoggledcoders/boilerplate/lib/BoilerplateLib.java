@@ -11,9 +11,12 @@ import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.client.guis.GuiHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.Type;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.BaseRegistry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.LoadingStage;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
@@ -24,7 +27,6 @@ public class BoilerplateLib
 	public static String VERSION = "@VERSION@";
 	private static BoilerplateLib instance = null;
 
-	public boolean colorblind;
 	private ModLogger logger;
 	private IBoilerplateMod mod;
 	private GuiHandler guiHandler;
@@ -71,9 +73,9 @@ public class BoilerplateLib
 			config = new Configuration(event.getSuggestedConfigurationFile());
 		}
 		config.load();
-		colorblind = config.get("general", "colorblindSupport", false, "True to enable").getBoolean();
+		ConfigRegistry.addEntry("colorblind",new ConfigEntry("general", "colorblindSupport", Type.BOOLEAN, "false",
+				"True to enable"));
 		getCompatibilityHandler().configureModCompat(config);
-		config.save();
 
 		getLogger().info(getMod().getName() + " has BoilerplateLib Version " + VERSION + " installed");
 		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
@@ -86,7 +88,6 @@ public class BoilerplateLib
 
 	public void preInitEnd(FMLPreInitializationEvent event)
 	{
-		config.save();
 		getProxy().registerEvents();
 		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
 		{

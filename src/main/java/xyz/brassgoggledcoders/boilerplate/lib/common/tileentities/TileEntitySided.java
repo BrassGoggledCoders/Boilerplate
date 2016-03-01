@@ -6,6 +6,8 @@ import net.minecraft.util.MovingObjectPosition;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.IBlockOverlayText;
 import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.SideType;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 
 import java.util.Arrays;
@@ -96,14 +98,15 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	@Override
 	public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool)
 	{
-		if (tool && BoilerplateLib.getInstance().colorblind)
+		if (tool && ConfigRegistry.getEntry("colorblind").getBoolean(false))
 		{
 			SideType facing = sideConfig[mop.sideHit.ordinal()];
 			SideType opposite = sideConfig[mop.sideHit.getOpposite().ordinal()];
 			return new String[] {
-					Boilerplate.proxy.translate("blockSide.facing") + ": " + Boilerplate.proxy.translate("sidetype." + facing.name().toLowerCase()),
-					Boilerplate.proxy.translate("blockSide.opposite") + ": "
-							+ Boilerplate.proxy.translate("sidetype." + opposite.name().toLowerCase()) };
+					BoilerplateLib.getProxy().translate("blockSide.facing") + ": " +
+							BoilerplateLib.getProxy().translate("sidetype." + facing.name().toLowerCase()),
+					BoilerplateLib.getProxy().translate("blockSide.opposite") + ": "
+							+ BoilerplateLib.getProxy().translate("sidetype." + opposite.name().toLowerCase()) };
 		}
 		return null;
 	}

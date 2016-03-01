@@ -34,6 +34,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 		{
 			GameRegistry.registerItem(itemEntry.getValue(), itemEntry.getKey());
 		}
+		super.initiateEntries();
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedI
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 
 /**
  * @author Surseance
@@ -89,7 +90,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerEvents()
 	{
-		if(BoilerplateLib.getInstance().colorblind)
+		if(ConfigRegistry.getEntry("colorblind").getBoolean(false))
 		{
 			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		}

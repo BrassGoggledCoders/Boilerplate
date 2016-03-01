@@ -7,6 +7,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.IConfigListener;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.IHasRecipe;
 
 import java.util.ArrayList;
@@ -38,7 +40,16 @@ public abstract class BaseRegistry<T extends Object>
 		setLoadingStage(LoadingStage.DONE);
 	}
 
-	public abstract void initiateEntries();
+	public void initiateEntries()
+	{
+		for(Map.Entry<String, T> entry: entries.entrySet())
+		{
+			if(entry.getValue() instanceof IConfigListener)
+			{
+				ConfigRegistry.addListener((IConfigListener) entry.getValue());
+			}
+		}
+	}
 
 	public void initiateModels()
 	{
@@ -91,6 +102,7 @@ public abstract class BaseRegistry<T extends Object>
 		registries.add(ItemRegistry.getInstance());
 		registries.add(BlockRegistry.getInstance());
 		registries.add(EntityRegistry.getInstance());
+		registries.add(ConfigRegistry.getInstance());
 		return registries;
 	}
 }

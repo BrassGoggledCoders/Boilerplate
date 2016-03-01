@@ -54,6 +54,7 @@ public class EntityRegistry extends BaseRegistry<Class<? extends Entity>>
 
 			}
 		}
+		super.initiateEntries();
 	}
 
 	public static void registerEntity(Class<? extends  Entity> entityClass)

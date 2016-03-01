@@ -13,6 +13,9 @@ import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.config.Type;
+import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.mod.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
@@ -34,8 +37,6 @@ public class Boilerplate implements IBoilerplateMod
 	public static String[] devs = { "c2e83bd4-e8df-40d6-a639-58ba8b05401e", "5eed1615-0ec9-4f4b-a4c9-58454ad5b04f",
 			"27672103-b8c7-400d-8817-49de433336dd" };
 
-	public static boolean DEBUGGER_STICK;
-
 	public static ItemDebuggerStick ITEM_DEBUG_STICK;
 
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.lib.client.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy")
@@ -50,10 +51,10 @@ public class Boilerplate implements IBoilerplateMod
 	{
 		logger = new ModLogger(ModInfo.ID);
 		BoilerplateLib.getInstance().preInitStart(event);
-		DEBUGGER_STICK = BoilerplateLib.getConfig().get("debugging", "activateDebuggingStickOfDoom", false,
-				"True to enable").getBoolean();
+		ConfigRegistry.addEntry("debugging", new ConfigEntry("debugging", "activateDebuggingStickOfDoom", Type.BOOLEAN,
+				"false", "True to enable"));
 
-		if (DEBUGGER_STICK || !FMLForgePlugin.RUNTIME_DEOBF)
+		if (ConfigRegistry.getEntry("debugging").getBoolean(false) || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
 			ItemRegistry.registerItem(ITEM_DEBUG_STICK);

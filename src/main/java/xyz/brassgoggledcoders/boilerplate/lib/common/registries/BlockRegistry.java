@@ -45,6 +45,7 @@ public class BlockRegistry extends BaseRegistry<Block>
 				GameRegistry.registerTileEntity(((IHasTileEntity) entry.getValue()).getTileEntityClass(), entry.getKey());
 			}
 		}
+		super.initiateEntries();
 	}
 
 	public static void registerAndCreateBasicBlock(Material mat, String name)
