@@ -5,6 +5,5 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
 
 public interface ISpecialRenderedItem extends IHasModel {
-	@SideOnly(Side.CLIENT)
-	ItemSpecialRenderer getSpecialRenderer();
+	String getSpecialRendererPath();
 }

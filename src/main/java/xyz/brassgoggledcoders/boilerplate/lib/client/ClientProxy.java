@@ -14,6 +14,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ModelBakeHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
+import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
@@ -70,7 +71,7 @@ public class ClientProxy extends CommonProxy
 	public void registerISpecialRendererItem(Item item)
 	{
 		ISpecialRenderedItem specialRenderItem = (ISpecialRenderedItem)item;
-		ItemSpecialRenderer renderer = ((ISpecialRenderedItem) item).getSpecialRenderer();
+		ItemSpecialRenderer renderer = ItemSpecialRenderStore.getItemSpecialRenderer(((ISpecialRenderedItem)item));
 		ClientRegistry.bindTileEntitySpecialRenderer(renderer.getTileClass(), renderer);
 		int length = specialRenderItem.getResourceLocations().length;
 		ModelResourceLocation[] modelLocations = new ModelResourceLocation[length];

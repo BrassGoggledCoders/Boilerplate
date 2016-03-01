@@ -88,18 +88,25 @@ public class Utils
 
 	public static CommonProxy createProxy(String clientString, String serverString)
 	{
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		String proxyString = (side == Side.CLIENT) ? clientString : serverString;
+		Object proxyObject = createObjectInstance(proxyString);
+		if(proxyObject instanceof CommonProxy)
+		{
+			return (CommonProxy)proxyObject;
+		}
+		return null;
+	}
+
+	public static Object createObjectInstance(String path)
+	{
 		try
 		{
-			Class proxyClass;
-			Object proxyObject;
-			Side side = FMLCommonHandler.instance().getEffectiveSide();
-			String proxyString = (side == Side.CLIENT) ? clientString : serverString;
-			proxyClass = Class.forName(proxyString);
-			proxyObject = proxyClass.newInstance();
-			if(proxyObject instanceof CommonProxy)
-			{
-				return (CommonProxy)proxyObject;
-			}
+			Class classToGrab;
+			Object objectExpected;
+			classToGrab = Class.forName(path);
+			objectExpected = classToGrab.newInstance();
+			return objectExpected;
 		} catch(ClassNotFoundException e)
 		{
 			e.printStackTrace();
@@ -110,7 +117,7 @@ public class Utils
 		{
 			e.printStackTrace();
 		}
-		BoilerplateLib.getLogger().error("Proxies did not initialize. Something's gonna break. ");
+		BoilerplateLib.getLogger().error(path + " did not initialize. Something's gonna break.");
 		return null;
 	}
 }
