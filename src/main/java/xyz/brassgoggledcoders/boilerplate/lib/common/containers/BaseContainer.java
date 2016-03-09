@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
+package xyz.brassgoggledcoders.boilerplate.lib.common.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

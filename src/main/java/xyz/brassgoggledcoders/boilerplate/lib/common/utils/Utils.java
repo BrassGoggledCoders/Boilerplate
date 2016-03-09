@@ -2,8 +2,6 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -103,21 +101,29 @@ public class Utils
 		try
 		{
 			Class classToGrab;
-			Object objectExpected;
 			classToGrab = Class.forName(path);
-			objectExpected = classToGrab.newInstance();
-			return objectExpected;
+			return createObjectInstance(classToGrab);
 		} catch(ClassNotFoundException e)
 		{
 			e.printStackTrace();
-		} catch(InstantiationException e)
+		}
+		BoilerplateLib.getLogger().error(path + " did not initialize. Something's gonna break.");
+		return null;
+	}
+
+	public static Object createObjectInstance(Class clazz)
+	{
+		try
+		{
+			return clazz.newInstance();
+		}catch(InstantiationException e)
 		{
 			e.printStackTrace();
 		} catch(IllegalAccessException e)
 		{
 			e.printStackTrace();
 		}
-		BoilerplateLib.getLogger().error(path + " did not initialize. Something's gonna break.");
+		BoilerplateLib.getLogger().error(clazz.getName() + " did not initialize. Something's gonna break.");
 		return null;
 	}
 }
