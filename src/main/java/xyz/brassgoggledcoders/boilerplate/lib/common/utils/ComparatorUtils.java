@@ -1,7 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
+import cofh.api.energy.IEnergyHandler;
 import net.minecraft.util.EnumFacing;
-
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
@@ -10,16 +10,15 @@ import net.minecraftforge.fluids.IFluidHandler;
  */
 public class ComparatorUtils
 {
-	/*
-	 * TODO: Energy stuff public static int scaleStoredEnergyTo(int scale,
-	 * IEnergyHandler energyHandler) { return scaleStoredEnergyTo(scale,
-	 * energyHandler, null); }
-	 * 
-	 * public static int scaleStoredEnergyTo(int scale, IEnergyHandler
-	 * energyHandler, EnumFacing direction) { return scaleTo(scale,
-	 * energyHandler.getEnergyStored(direction),
-	 * energyHandler.getMaxEnergyStored(direction)); }
-	 */
+	public static int scaleStoredEnergyTo(int scale, IEnergyHandler energyHandler)
+	{
+		return scaleStoredEnergyTo(scale, energyHandler, null);
+	}
+
+	public static int scaleStoredEnergyTo(int scale, IEnergyHandler energyHandler, EnumFacing direction)
+	{
+		return scaleTo(scale, energyHandler.getEnergyStored(direction), energyHandler.getMaxEnergyStored(direction));
+	}
 
 	public static int scaleSingleFluidLevelTo(int scale, IFluidHandler fluidHandler)
 	{
