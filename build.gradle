@@ -89,8 +89,8 @@ task libJar(type: Jar) {
 }
 
 task apiJar(type: Jar) {
-    from(sourceSets.main.out) {
-        include("xyz/brassgoggledcoders/boilerplate/api")
+    from(sourceSets.main.output) {
+        include("xyz/brassgoggledcoders/boilerplate/api/**")
     }
 
     classifier = "api"
