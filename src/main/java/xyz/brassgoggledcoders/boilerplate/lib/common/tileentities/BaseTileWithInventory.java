@@ -10,9 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-
 import xyz.brassgoggledcoders.boilerplate.lib.client.guis.IOpenableGUI;
-import xyz.brassgoggledcoders.boilerplate.mod.api.IUniversallyWrenchable;
 
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
@@ -20,7 +18,7 @@ import xyz.brassgoggledcoders.boilerplate.mod.api.IUniversallyWrenchable;
  * @author decebaldecebal
  *
  */
-public abstract class BaseTileWithInventory extends TileEntity implements IInventory, IUniversallyWrenchable, IOpenableGUI, IOnSlotChanged
+public abstract class BaseTileWithInventory extends TileEntity implements IInventory, IOpenableGUI, IOnSlotChanged
 {
 	public ItemStack[] inventory;
 

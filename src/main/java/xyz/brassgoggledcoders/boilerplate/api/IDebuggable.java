@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.boilerplate.mod.api;
+package xyz.brassgoggledcoders.boilerplate.api;
 
 import java.util.LinkedHashMap;
 

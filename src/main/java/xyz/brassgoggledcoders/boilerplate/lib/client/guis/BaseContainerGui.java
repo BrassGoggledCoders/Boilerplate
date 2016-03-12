@@ -1,19 +1,17 @@
 package xyz.brassgoggledcoders.boilerplate.lib.client.guis;
 
-import java.util.ArrayList;
-
+import com.google.common.collect.Lists;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.StatCollector;
-
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-
-import com.google.common.collect.Lists;
 import xyz.brassgoggledcoders.boilerplate.lib.client.utils.GuiColors;
 import xyz.brassgoggledcoders.boilerplate.lib.common.tileentities.BaseTileWithInventory;
+
+import java.util.ArrayList;
 
 public abstract class BaseContainerGui extends GuiContainer
 {
@@ -24,7 +22,6 @@ public abstract class BaseContainerGui extends GuiContainer
 		super(p_i1072_1_);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{

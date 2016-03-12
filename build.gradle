@@ -82,14 +82,24 @@ task deobfJar(type: Jar) {
 task libJar(type: Jar) {
     from(sourceSets.main.output) {
         exclude("xyz/brassgoggledcoders/boilerplate/mod/**")
+        exclude("xyz/brassgoggledcoders/boilerplate/api/**")
     }
 
     classifier = "lib"
 }
 
+task apiJar(type: Jar) {
+    from(sourceSets.main.out) {
+        include("xyz/brassgoggledcoders/boilerplate/api")
+    }
+
+    classifier = "api"
+}
+
 artifacts {
     archives deobfJar
     archives libJar
+    archives apiJar
 }
 
 idea {

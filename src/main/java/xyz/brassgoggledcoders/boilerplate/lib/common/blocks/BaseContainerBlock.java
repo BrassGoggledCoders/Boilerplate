@@ -1,6 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;

@@ -3,6 +3,6 @@
  *
  */
 @API(apiVersion = "2", owner = "Boilerplate", provides = "Boilerplate|API")
-package xyz.brassgoggledcoders.boilerplate.mod.api;
+package xyz.brassgoggledcoders.boilerplate.api;
 
 import net.minecraftforge.fml.common.API;

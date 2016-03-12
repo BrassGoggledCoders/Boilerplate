@@ -10,10 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
-import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.IHasTileEntity;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
-import xyz.brassgoggledcoders.boilerplate.mod.api.IDebuggable;
+import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
