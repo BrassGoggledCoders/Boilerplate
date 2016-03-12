@@ -1,20 +1,15 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.modcompat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.Type;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
-import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ILogger;
+
+import java.util.HashMap;
 
 /**
  * @author SkySom
@@ -100,4 +95,19 @@ public class CompatibilityHandler
 		}
 		return configuration;
 	}
+
+	public ModCompat getModCompat(String name)
+	{
+		return modCompatEnabled.get(name);
+	}
+
+	public boolean isModCompatEnabled(String name)
+	{
+		if(getModCompat(name) != null)
+		{
+			return getModCompat(name).getIsActive();
+		}
+		return false;
+	}
+
 }
