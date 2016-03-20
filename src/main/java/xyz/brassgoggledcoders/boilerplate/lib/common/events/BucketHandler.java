@@ -1,17 +1,16 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.events;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class BucketHandler
 {
@@ -30,16 +29,16 @@ public final class BucketHandler
 	@SubscribeEvent
 	public void onBucketFill(FillBucketEvent event)
 	{
-		ItemStack result = this.fillModBucket(event.world, event.target);
+		ItemStack result = this.fillModBucket(event.getWorld(), event.getTarget());
+		if(result != null)
+		{
+			event.setFilledBucket(result);
+			event.setResult(Event.Result.ALLOW);
+		}
 
-		if (result == null)
-			return;
-
-		event.result = result;
-		event.setResult(Event.Result.ALLOW);
 	}
 
-	private ItemStack fillModBucket(World world, MovingObjectPosition pos)
+	private ItemStack fillModBucket(World world, RayTraceResult pos)
 	{
 		Block block = world.getBlockState(pos.getBlockPos()).getBlock();
 		Item bucket = this.bucketMap.get(block);
@@ -50,6 +49,8 @@ public final class BucketHandler
 			return new ItemStack(bucket);
 		}
 		else
+		{
 			return null;
+		}
 	}
 }

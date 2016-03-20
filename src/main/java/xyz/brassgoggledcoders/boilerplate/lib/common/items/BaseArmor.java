@@ -2,9 +2,10 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.I18n;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
@@ -23,9 +24,9 @@ public class BaseArmor extends ItemArmor
 	String textureName;
 	IBoilerplateMod mod;
 
-	public BaseArmor(ArmorMaterial mat, int type, String textureName)
+	public BaseArmor(ArmorMaterial mat, EntityEquipmentSlot slot, String textureName)
 	{
-		super(mat, 0, type);
+		super(mat, 0, slot);
 		this.mod = BoilerplateLib.getMod();
 		this.setCreativeTab(mod.getCreativeTab());
 		this.setMaxStackSize(1);
@@ -34,19 +35,12 @@ public class BaseArmor extends ItemArmor
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getArmorTexture(ItemStack is, Entity entity, int slot, String stuff)
+	public String getArmorTexture(ItemStack is, Entity entity, EntityEquipmentSlot slot, String stuff)
 	{
-		return slot == 2 ? mod.getPrefix() + "textures/models/armor/" + this.textureName + "_2.png"
+		//TODO: Figure this out for sure. SAR will use it for sure.
+		return slot.ordinal() == 2 ? mod.getPrefix() + "textures/models/armor/" + this.textureName + "_2.png"
 				: mod.getPrefix() + "textures/models/armor/" + this.textureName + "_1.png";
 	}
-
-	// @SideOnly(Side.CLIENT)
-	// @Override
-	// public void registerIcons(IIconRegister par1IconRegister)
-	// {
-	// this.itemIcon = par1IconRegister.registerIcon(mod.getPrefix() + "armor/"
-	// + this.getUnlocalizedName().substring(5));
-	// }
 
 	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)

@@ -3,10 +3,9 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.I18n;
+import net.minecraft.util.text.translation.I18n;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.ClientHelper;
-import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.StringUtils;
 
 import java.util.List;
