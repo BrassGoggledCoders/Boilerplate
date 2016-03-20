@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ItemStackUtils;
 
@@ -41,6 +42,15 @@ public class ToolUtils
 			}
 		}
 		return isTool;
+	}
+
+	public static boolean isPlayerHoldingATool(EntityPlayer player)
+	{
+		boolean hasTool = false;
+		for(ItemStack itemStack: player.getHeldEquipment()) {
+			hasTool |= hasTool || isItemATool(itemStack);
+		}
+		return hasTool;
 	}
 
 	public static void setupToolItems()

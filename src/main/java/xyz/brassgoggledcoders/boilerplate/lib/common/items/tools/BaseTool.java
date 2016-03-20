@@ -126,7 +126,7 @@ public abstract class BaseTool extends BaseItem
 
 	protected void changeToolDamage(ItemStack itemStack, double damage)
 	{
-		ItemStackUtils.addModifier(itemStack, SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), damage, 0);
+		ItemStackUtils.addModifier(itemStack, SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), damage, 0);
 	}
 
 	/*
