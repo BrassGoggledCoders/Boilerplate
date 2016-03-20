@@ -27,11 +27,11 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 project.ext {
     buildNum = System.getenv("BUILD_NUMBER")
-    mcVersion = "1.8.9"
-    forgeVersion = "11.15.0.1698"
+    mcVersion = "1.9"
+    forgeVersion = "12.16.0.1770-1.9"
 }
 
-version = project.ext.mcVersion + "-7.0.2." + project.ext.buildNum
+version = project.ext.mcVersion + "-8.0.0." + project.ext.buildNum
 
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
@@ -40,7 +40,7 @@ minecraft {
     version = "${project.ext.mcVersion}-${project.ext.forgeVersion}"
 
     runDir = "eclipse/"
-    mappings = "snapshot_20160113"
+    mappings = "snapshot_20160319"
 
     replace "@VERSION@", project.version
     replaceIn "ModInfo.java"
