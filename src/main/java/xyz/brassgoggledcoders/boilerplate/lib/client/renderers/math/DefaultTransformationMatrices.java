@@ -14,8 +14,10 @@ public class DefaultTransformationMatrices
 
 	public static TransformationMatrix getTransformMatrixForPerspective(TransformType cameraTransformsType) {
 		switch(cameraTransformsType) {
-			case FIRST_PERSON: return transformationMatrixFirstPerson;
-			case THIRD_PERSON: return transformationMatrixThirdPerson;
+			case FIRST_PERSON_LEFT_HAND: return transformationMatrixFirstPerson;
+			case FIRST_PERSON_RIGHT_HAND: return transformationMatrixFirstPerson;
+			case THIRD_PERSON_LEFT_HAND: return transformationMatrixThirdPerson;
+			case THIRD_PERSON_RIGHT_HAND: return transformationMatrixThirdPerson;
 			case GUI: return transformationMatrixGui;
 			case GROUND: return transformationMatrixGround;
 			default: return transformationMatrixDefault;

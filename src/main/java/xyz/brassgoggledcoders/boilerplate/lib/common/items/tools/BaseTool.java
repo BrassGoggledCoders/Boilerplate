@@ -27,8 +27,6 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.utils.helpers.MaterialHelpe
  */
 public abstract class BaseTool extends BaseItem
 {
-	// TODO: Rendering stuff
-
 	public static final int steamForRepair = 20;
 	public float efficiencyOnProperMaterial = 4.0F;
 	public float damageVsEntity;

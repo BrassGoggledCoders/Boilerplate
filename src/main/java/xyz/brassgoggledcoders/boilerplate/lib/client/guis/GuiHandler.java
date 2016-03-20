@@ -18,6 +18,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
  */
 public class GuiHandler implements IGuiHandler
 {
+
 	public GuiHandler(IBoilerplateMod instance)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, this);
@@ -41,11 +42,27 @@ public class GuiHandler implements IGuiHandler
 
 	private IOpenableGUI getOpenableGUI(int id, EntityPlayer player, World world, BlockPos blockPos)
 	{
+		IOpenableGUI openableGUI = null;
 		Entity entity = world.getEntityByID(id);
-		TileEntity tileEntity = world.getTileEntity(blockPos);
-		ItemStack itemStack = player.getHeldItem();
-		return entity instanceof IOpenableGUI ? (IOpenableGUI) entity
-				: tileEntity instanceof IOpenableGUI ? (IOpenableGUI) tileEntity
-						: (itemStack != null) && (itemStack.getItem() instanceof IOpenableGUI) ? (IOpenableGUI) itemStack.getItem() : null;
+		if(entity instanceof IOpenableGUI) {
+			openableGUI = (IOpenableGUI)entity;
+		} else {
+			TileEntity tileEntity = world.getTileEntity(blockPos);
+			if(tileEntity instanceof IOpenableGUI) {
+				openableGUI = (IOpenableGUI)tileEntity;
+			} else {
+				ItemStack heldItemMainhand =  player.getHeldItemMainhand();
+				if(heldItemMainhand != null && heldItemMainhand.getItem() instanceof IOpenableGUI) {
+					openableGUI = (IOpenableGUI)heldItemMainhand.getItem();
+				} else {
+					ItemStack heldItemOffhand = player.getHeldItemOffhand();
+					if(heldItemOffhand != null && heldItemOffhand.getItem() instanceof IOpenableGUI) {
+						openableGUI = (IOpenableGUI)heldItemOffhand.getItem();
+					}
+				}
+			}
+		}
+
+		return openableGUI;
 	}
 }
