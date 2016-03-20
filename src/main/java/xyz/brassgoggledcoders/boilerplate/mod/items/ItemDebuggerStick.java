@@ -5,8 +5,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
@@ -29,13 +29,13 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
+	public ItemStack onItemClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
 	{
-		MovingObjectPosition rayTrace = this.getMovingObjectPositionFromPlayer(world, entityPlayer, true);
+		RayTraceResult rayTrace = this.getMovingObjectPositionFromPlayer(world, entityPlayer, true);
 		IDebuggable debuggable = null;
 		if(rayTrace != null && rayTrace.typeOfHit != null)
 		{
-			if (rayTrace.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+			if (rayTrace.typeOfHit == RayTraceResult.Type.BLOCK)
 			{
 				TileEntity tileEntity = world.getTileEntity(rayTrace.getBlockPos());
 				{
@@ -45,7 +45,7 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 					}
 				}
 			}
-			else if (rayTrace.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
+			else if (rayTrace.typeOfHit == RayTraceResult.Type.ENTITY)
 			{
 				Entity entity = rayTrace.entityHit;
 				if (entity instanceof IDebuggable)

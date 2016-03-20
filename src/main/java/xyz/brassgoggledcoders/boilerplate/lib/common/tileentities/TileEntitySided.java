@@ -2,13 +2,11 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.tileentities;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.IBlockOverlayText;
 import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.SideType;
-import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
-import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 
 import java.util.Arrays;
 
@@ -81,7 +79,7 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	{
 		if (id == 0)
 		{
-			this.worldObj.markBlockForUpdate(this.getPos());
+			this.worldObj.notifyBlockOfStateChange(this.getPos(), worldObj.getBlockState(pos).getBlock());
 			return true;
 		}
 		return false;
@@ -91,17 +89,17 @@ public abstract class TileEntitySided extends TileEntityBase implements IBlockOv
 	{
 		if (!worldObj.isRemote)
 		{
-			this.worldObj.markBlockForUpdate(this.getPos());
+			this.worldObj.notifyBlockOfStateChange(this.getPos(), worldObj.getBlockState(pos).getBlock());
 		}
 	}
 
 	@Override
-	public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool)
+	public String[] getOverlayText(EntityPlayer player, RayTraceResult rayTrace, boolean tool)
 	{
 		if (tool && ConfigRegistry.getBoolean("colorblind", false))
 		{
-			SideType facing = sideConfig[mop.sideHit.ordinal()];
-			SideType opposite = sideConfig[mop.sideHit.getOpposite().ordinal()];
+			SideType facing = sideConfig[rayTrace.sideHit.ordinal()];
+			SideType opposite = sideConfig[rayTrace.sideHit.getOpposite().ordinal()];
 			return new String[] {
 					BoilerplateLib.getProxy().translate("blockSide.facing") + ": " +
 							BoilerplateLib.getProxy().translate("sidetype." + facing.name().toLowerCase()),

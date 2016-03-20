@@ -13,11 +13,9 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MovingObjectPosition;
-
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.client.FMLClientHandler;
-
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -26,7 +24,7 @@ import org.lwjgl.input.Keyboard;
  */
 public class ClientHelper
 {
-	public static String shiftForInfo = EnumChatFormatting.GRAY + "Hold " + EnumChatFormatting.GREEN + "SHIFT" + EnumChatFormatting.GRAY
+	public static String shiftForInfo = TextFormatting.GRAY + "Hold " + TextFormatting.GREEN + "SHIFT" + TextFormatting.GRAY
 			+ " for more info.";
 
 	public static boolean isShiftKeyDown()
@@ -69,7 +67,7 @@ public class ClientHelper
 		return mc().getTextureManager();
 	}
 
-	public static MovingObjectPosition mop()
+	public static RayTraceResult rayTrace()
 	{
 		return mc().objectMouseOver;
 	}

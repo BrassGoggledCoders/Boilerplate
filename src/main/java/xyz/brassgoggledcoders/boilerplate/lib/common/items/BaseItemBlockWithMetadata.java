@@ -14,7 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.I18n;
 
 import xyz.brassgoggledcoders.boilerplate.lib.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.StringUtils;
@@ -52,7 +52,7 @@ public class BaseItemBlockWithMetadata extends ItemBlock
 	{
 		if (stack.getItemDamage() > 0)
 		{
-			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
+			if (!I18n.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
 			{
 				if (ClientHelper.isShiftKeyDown())
 				{
@@ -66,7 +66,7 @@ public class BaseItemBlockWithMetadata extends ItemBlock
 		}
 		else
 		{
-			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + ".desc").contains("tile."))
+			if (!I18n.translateToLocal(this.block.getUnlocalizedName() + ".desc").contains("tile."))
 			{
 				if (ClientHelper.isShiftKeyDown())
 				{
@@ -85,11 +85,11 @@ public class BaseItemBlockWithMetadata extends ItemBlock
 		String[] wrappedDesc;
 		if (stack.getItemDamage() > 0)
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
 		else
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
 		}
 		for (String element : wrappedDesc)
 		{

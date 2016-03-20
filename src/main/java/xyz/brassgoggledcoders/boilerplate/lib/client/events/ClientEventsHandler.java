@@ -4,8 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MovingObjectPosition;
 
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -22,19 +22,22 @@ public class ClientEventsHandler
 	public void onRenderOverlayPost(RenderGameOverlayEvent.Post event)
 	{
 		//TODO: Try with Entities eventually
-		if(ClientHelper.mop() != null)
+		RayTraceResult rayTrace = ClientHelper.rayTrace();
+		if(rayTrace != null)
 		{
 			EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
-			boolean hammer = entityPlayer.getCurrentEquippedItem() != null &&
-					ToolUtils.isItemATool(entityPlayer.getCurrentEquippedItem());
-			MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
-			if(mop.getBlockPos() != null)
+			boolean hammer = (entityPlayer.getHeldItemMainhand() != null &&
+					ToolUtils.isItemATool(entityPlayer.getHeldItemMainhand())) ||
+					(entityPlayer.getHeldItemOffhand() != null &&
+					ToolUtils.isItemATool(entityPlayer.getHeldItemOffhand()));
+
+			if(rayTrace.getBlockPos() != null)
 			{
-				TileEntity tileEntity = entityPlayer.worldObj.getTileEntity(mop.getBlockPos());
+				TileEntity tileEntity = entityPlayer.worldObj.getTileEntity(rayTrace.getBlockPos());
 				if(tileEntity instanceof IBlockOverlayText)
 				{
 					IBlockOverlayText overlayBlock = (IBlockOverlayText) tileEntity;
-					String[] text = overlayBlock.getOverlayText(entityPlayer, mop, hammer);
+					String[] text = overlayBlock.getOverlayText(entityPlayer, rayTrace, hammer);
 					if(text != null && text.length > 0)
 					{
 						FontRenderer font = ClientHelper.fontRenderer();
@@ -48,11 +51,9 @@ public class ClientEventsHandler
 										/ 2+8+(i++) * font.FONT_HEIGHT, col, true);
 							}
 						}
-
 					}
 				}
 			}
-
 		}
 	}
 }

@@ -37,7 +37,7 @@ public class ItemBlockWithDescAndMeta //extends ItemBlockWithMetadata
 	{
 		if (stack.getItemDamage() > 0)
 		{
-			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
+			if (!I18n.translateToLocal(this.block.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("tile."))
 			{
 				if (ClientHelper.isShiftKeyDown())
 				{
@@ -51,7 +51,7 @@ public class ItemBlockWithDescAndMeta //extends ItemBlockWithMetadata
 		}
 		else
 		{
-			if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + ".desc").contains("tile."))
+			if (!I18n.translateToLocal(this.block.getUnlocalizedName() + ".desc").contains("tile."))
 			{
 				if (ClientHelper.isShiftKeyDown())
 				{
@@ -70,11 +70,11 @@ public class ItemBlockWithDescAndMeta //extends ItemBlockWithMetadata
 		String[] wrappedDesc;
 		if (stack.getItemDamage() > 0)
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
 		else
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
 		}
 		for (String element : wrappedDesc)
 		{

@@ -1,10 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate.lib.client;
 
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,7 +18,6 @@ import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRender
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
-import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 
 /**
  * @author Surseance
@@ -36,7 +35,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public String translate(String text)
 	{
-		return StatCollector.translateToLocal("boilerplate." + text);
+		return I18n.translateToLocal("boilerplate." + text);
 	}
 
 	@Override

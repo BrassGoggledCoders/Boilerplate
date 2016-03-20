@@ -13,8 +13,8 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 
+import net.minecraft.util.text.translation.I18n;
 import xyz.brassgoggledcoders.boilerplate.lib.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.StringUtils;
 
@@ -43,7 +43,7 @@ public class RootItem extends Item
 		{
 			if (stack.getItemDamage() > 0)
 			{
-				if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
+				if (!I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
 				{
 					if (ClientHelper.isShiftKeyDown())
 					{
@@ -57,7 +57,7 @@ public class RootItem extends Item
 			}
 			else
 			{
-				if (!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
+				if (!I18n.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
 				{
 					if (ClientHelper.isShiftKeyDown())
 					{
@@ -74,7 +74,7 @@ public class RootItem extends Item
 		{
 			if (stack.getItemDamage() > 0)
 			{
-				if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
+				if (!I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
 				{
 					this.getWrappedDesc(list, stack);
 					if (ClientHelper.isShiftKeyDown())
@@ -89,7 +89,7 @@ public class RootItem extends Item
 			}
 			else
 			{
-				if (!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
+				if (!I18n.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
 				{
 					this.getWrappedDesc(list, stack);
 				}
@@ -99,14 +99,14 @@ public class RootItem extends Item
 		{
 			if (stack.getItemDamage() > 0)
 			{
-				if (!StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
+				if (!I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc").contains("item."))
 				{
 					this.getWrappedDesc(list, stack);
 				}
 			}
 			else
 			{
-				if (!StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
+				if (!I18n.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
 				{
 					this.getWrappedDesc(list, stack);
 				}
@@ -119,11 +119,11 @@ public class RootItem extends Item
 		String[] wrappedDesc;
 		if (stack.getItemDamage() > 0)
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
 		else
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + ".desc"), 35);
 		}
 		for (String element : wrappedDesc)
 		{
@@ -136,11 +136,11 @@ public class RootItem extends Item
 		String[] wrappedDesc;
 		if (stack.getItemDamage() > 0)
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
 		}
 		else
 		{
-			wrappedDesc = StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName() + ".desc_alt"), 35);
+			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + ".desc_alt"), 35);
 		}
 		for (String element : wrappedDesc)
 		{

@@ -1,12 +1,12 @@
 package xyz.brassgoggledcoders.boilerplate.lib.client;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 
 /**
  * @author IE Team
  */
 public interface IBlockOverlayText
 {
-	String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean tool);
+	String[] getOverlayText(EntityPlayer player, RayTraceResult rayTraceResult, boolean tool);
 }

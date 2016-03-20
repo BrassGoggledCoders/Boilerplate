@@ -4,7 +4,7 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 

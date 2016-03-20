@@ -29,7 +29,7 @@ public class ItemBlockDescMeta // extends ItemBlockWithMetadata
 	// {
 	// if (stack.getItemDamage() > 0)
 	// {
-	// if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() + "."
+	// if (!I18n.translateToLocal(this.block.getUnlocalizedName() + "."
 	// + stack.getItemDamage() + ".desc").contains("tile."))
 	// {
 	// if (ClientHelper.isShiftKeyDown())
@@ -44,7 +44,7 @@ public class ItemBlockDescMeta // extends ItemBlockWithMetadata
 	// }
 	// else
 	// {
-	// if (!StatCollector.translateToLocal(this.block.getUnlocalizedName() +
+	// if (!I18n.translateToLocal(this.block.getUnlocalizedName() +
 	// ".desc").contains("tile."))
 	// {
 	// if (ClientHelper.isShiftKeyDown())
@@ -65,13 +65,13 @@ public class ItemBlockDescMeta // extends ItemBlockWithMetadata
 	// if (stack.getItemDamage() > 0)
 	// {
 	// wrappedDesc =
-	// StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName()
+	// StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName()
 	// + "." + stack.getItemDamage() + ".desc"), 35);
 	// }
 	// else
 	// {
 	// wrappedDesc =
-	// StringUtils.wrap(StatCollector.translateToLocal(this.getUnlocalizedName()
+	// StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName()
 	// + ".desc"), 35);
 	// }
 	// for (String element : wrappedDesc)

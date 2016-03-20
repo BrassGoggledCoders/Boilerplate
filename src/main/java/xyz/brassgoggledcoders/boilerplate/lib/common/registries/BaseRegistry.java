@@ -1,13 +1,11 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
-import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.IConfigListener;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.IHasRecipe;
 
@@ -16,10 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class BaseRegistry<T extends Object>
+public abstract class BaseRegistry<T>
 {
 	private LoadingStage loadingStage = LoadingStage.PREINIT;
-	protected HashMap<String, T> entries = new HashMap<String, T>();
+	HashMap<String, T> entries = new HashMap<String, T>();
 	protected BaseRegistry<T> instance;
 
 	public void preInit()

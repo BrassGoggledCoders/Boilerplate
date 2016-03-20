@@ -1,8 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
@@ -12,34 +11,19 @@ import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 
-import java.util.Random;
-
 /**
  * @author Surseance
  *
  */
 public class Utils
 {
-	public static final Random RANDOM = new Random();
-
-	public static int randInt(final int min, final int max)
+	public static void spawnEntityAtCoords(World world, EntityLiving entity, int x, int y, int z)
 	{
-		return RANDOM.nextInt((max - min) + 1) + min;
-	}
-
-	public static void playSFX(World world, int x, int y, int z, String sound)
-	{
-		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, (world.rand.nextFloat() * 0.4F) + 0.8F);
-	}
-
-	public static void spawnEntityAtCoords(World world, Entity entity, int x, int y, int z)
-	{
-		EntityLiving entityliving = (EntityLiving) entity;
 		entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-		entityliving.rotationYawHead = entityliving.rotationYaw;
-		entityliving.renderYawOffset = entityliving.rotationYaw;
+		entity.rotationYawHead = entity.rotationYaw;
+		entity.renderYawOffset = entity.rotationYaw;
 		world.spawnEntityInWorld(entity);
-		entityliving.playLivingSound();
+		entity.playLivingSound();
 	}
 
 	/**

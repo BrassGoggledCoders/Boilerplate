@@ -3,7 +3,7 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.tileentities;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -34,11 +34,11 @@ public abstract class TileEntityBase extends TileEntity
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		this.writeToNBT(nbttagcompound);
-		return new S35PacketUpdateTileEntity(this.getPos(), 3, nbttagcompound);
+		return new SPacketUpdateTileEntity(this.getPos(), 3, nbttagcompound);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
 		this.readFromNBT(pkt.getNbtCompound());
 	}

@@ -1,22 +1,19 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
-import java.util.List;
-import java.util.UUID;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 /**
  * @author warlordjones & decebaldecebal
@@ -26,17 +23,13 @@ public class ItemStackUtils
 {
 	public static Material getBlockMaterial(final IBlockAccess world, final BlockPos blockPos)
 	{
-		if (world.getBlockState(blockPos) != null)
+		IBlockState blockState = world.getBlockState(blockPos);
+		if (blockState != null)
 		{
-			return world.getBlockState(blockPos).getBlock().getMaterial();
+			return blockState.getBlock().getMaterial(blockState);
 		}
 
 		return Material.air;
-	}
-
-	public static List<ItemStack> getDroppedItemStacks(World world, EntityPlayer player, IBlockState block, BlockPos blockPos)
-	{
-		return block.getBlock().getDrops(world, blockPos, block, EnchantmentHelper.getFortuneModifier(player));
 	}
 
 	public static boolean isSmeltable(ItemStack is)

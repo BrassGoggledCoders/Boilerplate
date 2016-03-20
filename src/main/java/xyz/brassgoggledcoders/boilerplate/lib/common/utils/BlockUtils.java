@@ -12,7 +12,7 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.BlockRailBase.EnumRailDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -47,6 +47,7 @@ public class BlockUtils
 
 	public static boolean getBlockUnbreakable(World world, BlockPos blockPos)
 	{
-		return world.getBlockState(blockPos).getBlock().getBlockHardness(world, blockPos) == -1;
+		IBlockState blockState = world.getBlockState(blockPos);
+		return blockState != null && blockState.getBlock().getBlockHardness(blockState, world, blockPos) == -1;
 	}
 }
