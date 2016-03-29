@@ -41,8 +41,8 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation)
 	{
-		ModelLoader.setCustomModelResourceLocation(item, metadata,
-				new ModelResourceLocation(resourceLocation, "inventory"));
+		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
+		ModelLoader.setCustomModelResourceLocation(item, metadata, modelResourceLocation);
 	}
 
 	@Override

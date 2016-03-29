@@ -5,18 +5,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
-import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -32,12 +29,11 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 		this.setCreativeTab(CreativeTabs.tabMisc);
 	}
 
-	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand,
-			EnumFacing facing, float hitX, float hitY, float hitZ)
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
 	{
-		RayTraceResult rayTrace = this.getMovingObjectPositionFromPlayer(world, player, true);
-		IDebuggable debuggable = null;
+		RayTraceResult rayTrace = getMovingObjectPositionFromPlayer(world, player, true);
+
+		LinkedHashMap<String, String> debugStrings = new LinkedHashMap<String, String>();
 		if(rayTrace != null && rayTrace.typeOfHit != null)
 		{
 			if (rayTrace.typeOfHit == RayTraceResult.Type.BLOCK)
@@ -46,7 +42,9 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 				{
 					if (tileEntity instanceof IDebuggable)
 					{
-						debuggable = (IDebuggable)tileEntity;
+						debugStrings.putAll(((IDebuggable) tileEntity).getDebugStrings());
+					} else {
+						debugStrings.put("name", world.getBlockState(rayTrace.getBlockPos()).toString());
 					}
 				}
 			}
@@ -55,32 +53,29 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 				Entity entity = rayTrace.entityHit;
 				if (entity instanceof IDebuggable)
 				{
-					debuggable = (IDebuggable)entity;
+					debugStrings.putAll(((IDebuggable) entity).getDebugStrings());
+				} else {
+					debugStrings.put("name", entity.getName());
 				}
 			}
 		}
 
-		if (debuggable != null)
+		if(!debugStrings.isEmpty())
 		{
-			LinkedHashMap<String, String> debugStrings = debuggable.getDebugStrings();
-			if(debugStrings != null && !debugStrings.isEmpty())
+			Iterator<String> iterator = debugStrings.values().iterator();
+			while(iterator.hasNext())
 			{
-				Iterator<String> iterator = debugStrings.values().iterator();
-				while(iterator.hasNext())
-				{
-					Boilerplate.logger.info(iterator.next());
-				}
-				return EnumActionResult.SUCCESS;
+				Boilerplate.logger.info(iterator.next());
 			}
-
+			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
 		}
 
-		return EnumActionResult.PASS;
+		return ActionResult.newResult(EnumActionResult.PASS, itemStack);
 	}
 
 	@Override
-	public ResourceLocation[] getResourceLocations()
+	public String[] getResourceLocations()
 	{
-		return new ResourceLocation[]{new ResourceLocation(BoilerplateLib.getMod().getPrefix() + "debugger_stick")};
+		return new String[] {"debuggerstick"};
 	}
 }

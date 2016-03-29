@@ -47,7 +47,7 @@ public class ClientEventsHandler
 						{
 							if(s != null)
 							{
-								font.drawString(s, event.resolution.getScaledWidth() / 2 + 8, event.resolution.getScaledHeight()
+								font.drawString(s, event.getResolution().getScaledWidth() / 2 + 8, event.getResolution().getScaledHeight()
 										/ 2+8+(i++) * font.FONT_HEIGHT, col, true);
 							}
 						}

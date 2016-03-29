@@ -31,7 +31,7 @@ public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEnti
 		this.stacksBeingRendered = new HashMap<Long, ItemStack>();
 	}
 
-	public abstract Class<? extends T> getTileClass();
+	public abstract Class<? extends TileEntity> getTileClass();
 
 	public final void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, int destroyStage) {
 		renderItem(stacksBeingRendered.get(Thread.currentThread().getId()), partialTicks);

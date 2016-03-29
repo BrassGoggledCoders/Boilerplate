@@ -87,21 +87,4 @@ public class BaseItem extends Item
 			list.add(element.trim());
 		}
 	}
-
-	public void getWrappedDescAlt(List<String> list, ItemStack stack)
-	{
-		String[] wrappedDesc;
-		if (stack.getItemDamage() > 0)
-		{
-			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + "." + stack.getItemDamage() + ".desc"), 35);
-		}
-		else
-		{
-			wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + ".desc_alt"), 35);
-		}
-		for (String element : wrappedDesc)
-		{
-			list.add(element.trim());
-		}
-	}
 }

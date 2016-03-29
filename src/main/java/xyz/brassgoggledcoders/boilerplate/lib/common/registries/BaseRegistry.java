@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
@@ -55,7 +54,7 @@ public abstract class BaseRegistry<T>
 		{
 			if(entry.getValue() instanceof IHasModel)
 			{
-				ResourceLocation[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
+				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
 				for(int i = 0; i < locations.length; i++)
 				{
 					SafeModelLoader.loadItemModel(entry.getValue(), i, locations[i]);

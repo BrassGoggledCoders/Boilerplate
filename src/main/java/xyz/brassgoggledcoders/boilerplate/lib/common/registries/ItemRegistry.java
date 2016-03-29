@@ -3,6 +3,8 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
+import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
 
@@ -37,9 +39,20 @@ public class ItemRegistry extends BaseRegistry<Item>
 		super.initiateModels();
 		for(Map.Entry<String, Item> entry: entries.entrySet())
 		{
-			if(entry.getValue() instanceof ISpecialRenderedItem)
+			if(entry.getValue() instanceof IHasModel)
 			{
-				BoilerplateLib.getProxy().registerISpecialRendererItem(entry.getValue());
+				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
+				for(int i = 0; i < locations.length; i++)
+				{
+					SafeModelLoader.loadItemModel(entry.getValue(), i, locations[i]);
+				}
+				if(entry.getValue() instanceof ISpecialRenderedItem)
+				{
+					BoilerplateLib.getProxy().registerISpecialRendererItem(entry.getValue());
+				}
+			} else
+			{
+				SafeModelLoader.loadItemModel(entry.getValue());
 			}
 		}
 	}
