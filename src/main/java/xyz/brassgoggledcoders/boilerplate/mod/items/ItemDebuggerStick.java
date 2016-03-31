@@ -76,6 +76,6 @@ public class ItemDebuggerStick extends BaseItem implements IHasModel
 	@Override
 	public String[] getResourceLocations()
 	{
-		return new String[] {"debuggerstick"};
+		return new String[] {"debugger_stick"};
 	}
 }

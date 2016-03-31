@@ -1,13 +1,16 @@
 package xyz.brassgoggledcoders.boilerplate.lib.client.renderers;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -21,7 +24,7 @@ import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEntitySpecialRenderer<T>
-		implements IPerspectiveAwareModel
+		implements IPerspectiveAwareModel, IBakedModel
 {
 	private static final List<BakedQuad> EMPTY_LIST = new ArrayList<BakedQuad>();
 
@@ -46,6 +49,11 @@ public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEnti
 
 	public abstract TransformationMatrix getTransformMatrixForPerspective(ItemCameraTransforms.TransformType cameraTransformsType);
 
+	@Override
+	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
+	{
+		return EMPTY_LIST;
+	}
 
 	@Override
 	public boolean isAmbientOcclusion() {
@@ -70,5 +78,11 @@ public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEnti
 	@Override
 	public ItemCameraTransforms getItemCameraTransforms() {
 		return ItemCameraTransforms.DEFAULT;
+	}
+
+	@Override
+	public ItemOverrideList getOverrides()
+	{
+		return null;
 	}
 }
