@@ -13,11 +13,11 @@ import java.util.Arrays;
 /**
  * @author SkySom
  */
-public abstract class TileEntitySided extends TileEntityBase implements IBlockOverlayText
+public abstract class TileEntitySidedBase extends TileEntityBase implements IBlockOverlayText
 {
 	private SideType[] sideConfig;
 
-	public TileEntitySided()
+	public TileEntitySidedBase()
 	{
 		super();
 		sideConfig = new SideType[6];

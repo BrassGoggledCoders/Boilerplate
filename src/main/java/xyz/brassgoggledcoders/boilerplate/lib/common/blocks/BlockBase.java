@@ -10,11 +10,11 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
  * @author Surseance
  *
  */
-public class BaseBlock extends Block
+public class BlockBase extends Block
 {
 	IBoilerplateMod mod;
 
-	public BaseBlock(Material mat)
+	public BlockBase(Material mat)
 	{
 		super(mat);
 		this.mod = BoilerplateLib.getMod();
@@ -22,7 +22,7 @@ public class BaseBlock extends Block
 		this.setHardness(1F);
 	}
 
-	public BaseBlock(Material mat, String name)
+	public BlockBase(Material mat, String name)
 	{
 		this(mat);
 		this.setRegistryName(name);

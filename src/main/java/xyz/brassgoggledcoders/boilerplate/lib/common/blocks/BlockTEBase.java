@@ -6,9 +6,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public abstract class BaseTEBlock extends BaseBlock implements IHasTileEntity
+public abstract class BlockTEBase extends BlockBase implements IHasTileEntity
 {
-	public BaseTEBlock(Material material, String name)
+	public BlockTEBase(Material material, String name)
 	{
 		super(material, name);
 		this.isBlockContainer = true;

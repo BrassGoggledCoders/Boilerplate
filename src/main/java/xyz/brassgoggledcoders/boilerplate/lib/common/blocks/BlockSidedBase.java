@@ -8,7 +8,6 @@
  */
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,16 +17,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.ToolUtils;
-import xyz.brassgoggledcoders.boilerplate.lib.common.tileentities.TileEntitySided;
+import xyz.brassgoggledcoders.boilerplate.lib.common.tileentities.TileEntitySidedBase;
 
 /**
  * @author SkySom
  */
-public abstract class SidedBlock extends BaseTEBlock
+public abstract class BlockSidedBase extends BlockTEBase
 {
-	protected SidedBlock(Material material)
+	protected BlockSidedBase(Material material, String name)
 	{
-		super(material);
+		super(material, name);
 		setHardness(3.0F);
 		setResistance(15.0F);
 	}
@@ -36,11 +35,11 @@ public abstract class SidedBlock extends BaseTEBlock
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		TileEntity te = world.getTileEntity(pos);
-		if(te instanceof TileEntitySided)
+		if(te instanceof TileEntitySidedBase)
 		{
 			if(!world.isRemote)
 			{
-				TileEntitySided tileEntitySided = (TileEntitySided) te;
+				TileEntitySidedBase tileEntitySided = (TileEntitySidedBase) te;
 				if(ToolUtils.isItemATool(player.getCurrentEquippedItem()))
 				{
 					if(player.isSneaking())
