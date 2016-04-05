@@ -28,19 +28,4 @@ public class BaseBlock extends Block
 		this.setRegistryName(name);
 		this.setUnlocalizedName(name);
 	}
-
-	/*
-	 * TODO
-	 * 
-	 * @Override
-	 * 
-	 * @SideOnly(Side.CLIENT) public void registerBlockIcons(IIconRegister ir) {
-	 * this.blockIcon = ir.registerIcon(mod.getPrefix() +
-	 * this.getUnlocalizedName().substring(5)); }
-	 * 
-	 * @Override
-	 * 
-	 * @SideOnly(Side.CLIENT) public IIcon getIcon(int p_149691_1_, int
-	 * p_149691_2_) { return this.blockIcon; }
-	 */
 }
