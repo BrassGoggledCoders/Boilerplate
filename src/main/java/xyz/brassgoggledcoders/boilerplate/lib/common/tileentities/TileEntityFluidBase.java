@@ -18,23 +18,23 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 	@Override
 	public int fill(EnumFacing from, FluidStack resource, boolean doFill)
 	{
-		return tank.fill(resource, doFill);
+		return getTank().fill(resource, doFill);
 	}
 
 	@Override
 	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
 	{
-		if (resource == null || !resource.isFluidEqual(tank.getFluid()))
+		if (resource == null || !resource.isFluidEqual(getTank().getFluid()))
 		{
 			return null;
 		}
-		return tank.drain(resource.amount, doDrain);
+		return getTank().drain(resource.amount, doDrain);
 	}
 
 	@Override
 	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain)
 	{
-		return tank.drain(maxDrain, doDrain);
+		return getTank().drain(maxDrain, doDrain);
 	}
 
 	@Override
@@ -52,24 +52,29 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 	@Override
 	public FluidTankInfo[] getTankInfo(EnumFacing from)
 	{
-		return new FluidTankInfo[] { tank.getInfo() };
+		return new FluidTankInfo[] { getTank().getInfo() };
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTagCompound)
 	{
 		super.readFromNBT(nbtTagCompound);
-		if(tank == null)
+		if(getTank() == null)
 		{
 			tank = new FluidTank(getCapacity());
 		}
-		tank.readFromNBT(nbtTagCompound);
+		getTank().readFromNBT(nbtTagCompound);
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbtTagCompound)
 	{
 		super.writeToNBT(nbtTagCompound);
-		tank.writeToNBT(nbtTagCompound);
+		getTank().writeToNBT(nbtTagCompound);
+	}
+
+	public FluidTank getTank()
+	{
+		return tank;
 	}
 }
