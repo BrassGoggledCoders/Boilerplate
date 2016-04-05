@@ -2,15 +2,11 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
-import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseTEBlock;
+import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.IHasItemBlock;
 import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.IHasTileEntity;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class BlockRegistry extends BaseRegistry<Block>
@@ -50,7 +46,7 @@ public class BlockRegistry extends BaseRegistry<Block>
 
 	public static void registerAndCreateBasicBlock(Material mat, String name)
 	{
-		Block block = new BaseBlock(mat);
+		Block block = new BlockBase(mat);
 		getInstance().entries.put(name, block);
 	}
 

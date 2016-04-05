@@ -1,6 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -9,17 +8,17 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
-public abstract class BaseTEBlock extends Block implements IHasTileEntity, ITileEntityProvider
+public abstract class BlockTEBase extends BlockBase implements IHasTileEntity, ITileEntityProvider
 {
-	public BaseTEBlock(Material material)
+	public BlockTEBase(Material material, String name)
 	{
-		super(material, material.getMaterialMapColor());
+		super(material, name);
 		this.isBlockContainer = true;
 	}
 
 	public int getRenderType()
 	{
-		return -1;
+		return 3;
 	}
 
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
