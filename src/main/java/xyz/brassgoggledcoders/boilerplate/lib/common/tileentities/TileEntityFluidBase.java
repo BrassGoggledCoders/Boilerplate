@@ -25,9 +25,9 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 
 	public abstract int getTransferRate();
 
-	private boolean pullFluidFrom(EnumFacing enumFacing)
+	public boolean pullFluidFrom(EnumFacing enumFacing)
 	{
-		IFluidHandler fluidHandler = this.getFluidHandlerForTransfer(EnumFacing.UP);
+		IFluidHandler fluidHandler = this.getFluidHandlerForTransfer(enumFacing);
 		boolean dirty = false;
 		if(getTank().getFluidAmount() < getTank().getCapacity())
 		{
@@ -38,7 +38,7 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 					FluidStack canPull = getTank().getFluid().copy();
 					canPull.amount = getTank().getCapacity() - getTank().getFluidAmount();
 					canPull.amount = Math.min(canPull.amount, getTransferRate());
-					FluidStack drained = fluidHandler.drain(EnumFacing.DOWN, canPull, true);
+					FluidStack drained = fluidHandler.drain(enumFacing.getOpposite(), canPull, true);
 					if(drained != null && drained.amount > 0)
 					{
 						getTank().fill(drained, true);
@@ -46,17 +46,17 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 					}
 				} else
 				{
-					FluidTankInfo[] infos = fluidHandler.getTankInfo(EnumFacing.DOWN);
+					FluidTankInfo[] infos = fluidHandler.getTankInfo(enumFacing.getOpposite());
 					if(infos != null)
 					{
 						for (FluidTankInfo info : infos) {
 							if(info.fluid != null && info.fluid.amount > 0)
 							{
-								if(canFill(EnumFacing.UP, info.fluid.getFluid()))
+								if(canFill(enumFacing, info.fluid.getFluid()))
 								{
 									FluidStack canPull = info.fluid.copy();
 									canPull.amount = Math.min(getTransferRate(), canPull.amount);
-									FluidStack drained = fluidHandler.drain(EnumFacing.DOWN, canPull, true);
+									FluidStack drained = fluidHandler.drain(enumFacing.getOpposite(), canPull, true);
 									if(drained != null && drained.amount > 0)
 									{
 										getTank().fill(drained, true);
@@ -70,6 +70,26 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 			}
 		}
 
+		return dirty;
+	}
+
+	public boolean pushFluidTo(EnumFacing facing)
+	{
+		IFluidHandler fluidHandler = this.getFluidHandlerForTransfer(facing);
+		boolean dirty = false;
+		if(getTank().getFluidAmount() > 0) {
+			if(fluidHandler != null) {
+				if(fluidHandler.canFill(facing.getOpposite(), getTank().getFluid().getFluid())) {
+					FluidStack push = getTank().getFluid().copy();
+					push.amount = Math.min(push.amount, getTransferRate());
+					int filled = fluidHandler.fill(facing.getOpposite(), push, true);
+					if(filled > 0) {
+						getTank().drain(filled, true);
+						dirty = true;
+					}
+				}
+			}
+		}
 		return dirty;
 	}
 
