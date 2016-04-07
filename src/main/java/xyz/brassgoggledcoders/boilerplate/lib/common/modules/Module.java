@@ -1,13 +1,11 @@
-package xyz.brassgoggledcoders.boilerplate.lib.common.modcompat;
+package xyz.brassgoggledcoders.boilerplate.lib.common.modules;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 
-/**
- * @author SkySom
- */
-public abstract class ModCompat
+public abstract class Module
 {
 	boolean isActive = true;
 
@@ -48,8 +46,13 @@ public abstract class ModCompat
 		this.isActive = isActive;
 	}
 
-	public Boolean getIsActive()
+	public boolean getIsActive()
 	{
 		return isActive;
+	}
+
+	public boolean isOtherModuleActive(String name)
+	{
+		return BoilerplateLib.getModuleHandler().isModuleEnabled(name);
 	}
 }

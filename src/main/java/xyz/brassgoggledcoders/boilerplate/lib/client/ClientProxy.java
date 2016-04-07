@@ -17,8 +17,7 @@ import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedI
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
-import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
+import xyz.brassgoggledcoders.boilerplate.lib.common.modules.ModuleHandler;
 
 /**
  * @author Surseance
@@ -27,10 +26,10 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 public class ClientProxy extends CommonProxy
 {
 	@Override
-	public void initCompatibilityHandler(CompatibilityHandler compatibilityHandler, FMLInitializationEvent event)
+	public void initModuleHandler(ModuleHandler moduleHandler, FMLInitializationEvent event)
 	{
-		compatibilityHandler.clientInit(event);
-		super.initCompatibilityHandler(compatibilityHandler, event);
+		moduleHandler.clientInit(event);
+		super.initModuleHandler(moduleHandler, event);
 	}
 
 	@Override

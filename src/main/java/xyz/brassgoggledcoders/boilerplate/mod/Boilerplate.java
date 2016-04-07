@@ -2,23 +2,20 @@ package xyz.brassgoggledcoders.boilerplate.mod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.classloading.FMLForgePlugin;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.Type;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
-import xyz.brassgoggledcoders.boilerplate.mod.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
+import xyz.brassgoggledcoders.boilerplate.mod.items.ItemDebuggerStick;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class Boilerplate implements IBoilerplateMod
@@ -49,8 +46,8 @@ public class Boilerplate implements IBoilerplateMod
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		logger = new ModLogger(ModInfo.ID);
 		BoilerplateLib.getInstance().preInitStart(event);
+		logger = BoilerplateLib.getLogger();
 		ConfigRegistry.addEntry("debugging", new ConfigEntry("debugging", "activateDebuggingStickOfDoom", Type.BOOLEAN,
 				"false", "True to enable"));
 
@@ -110,30 +107,5 @@ public class Boilerplate implements IBoilerplateMod
 	public String getPrefix()
 	{
 		return ModInfo.NAME + ":";
-	}
-
-	@Override
-	public ModLogger getLogger()
-	{
-		return logger;
-	}
-
-	@Override
-	public Configuration getConfig()
-	{
-		return null;
-	}
-
-	@Override
-	public String getClientProxyPath()
-	{
-		// TODO
-		return "boilerplate.lib.client.ClientProxy";
-	}
-
-	@Override
-	public String getCommonProxyPath()
-	{
-		return "boilerplate.lib.common.CommonProxy";
 	}
 }

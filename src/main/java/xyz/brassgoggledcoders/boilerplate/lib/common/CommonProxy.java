@@ -3,16 +3,13 @@ package xyz.brassgoggledcoders.boilerplate.lib.common;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
-import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
-
-import javax.annotation.Resource;
+import xyz.brassgoggledcoders.boilerplate.lib.common.modules.ModuleHandler;
 
 public class CommonProxy
 {
-	public void initCompatibilityHandler(CompatibilityHandler compatibilityHandler, FMLInitializationEvent event)
+	public void initModuleHandler(ModuleHandler moduleHandler, FMLInitializationEvent event)
 	{
-		compatibilityHandler.init(event);
+		moduleHandler.init(event);
 	}
 
 	public String translate(String text)
