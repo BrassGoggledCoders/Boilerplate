@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.IFluidContainerItem;
 /**
  * @author Skylar on 9/2/2015.
  */
-public class BaseSteamItem extends BaseItem implements IFluidContainerItem
+public class BaseSteamItem extends ItemBase implements IFluidContainerItem
 {
 	// TODO: Render Stuff
 	public int maxSteam;

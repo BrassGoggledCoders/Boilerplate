@@ -14,7 +14,7 @@ import net.minecraft.world.World;
  * @author decebaldecebal
  *
  */
-public abstract class BaseElectricItem extends BaseItem implements IEnergyItem
+public abstract class BaseElectricItem extends ItemBase implements IEnergyItem
 {
 	protected int maxEnergy;
 	protected short maxReceive;

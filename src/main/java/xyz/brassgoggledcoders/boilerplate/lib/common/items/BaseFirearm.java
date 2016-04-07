@@ -11,7 +11,7 @@ import net.minecraft.world.World;
  * @author warlordjones
  *
  */
-public abstract class BaseFirearm extends BaseItem
+public abstract class BaseFirearm extends ItemBase
 {
 	protected int damage;
 	protected short reloadTime;

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.ClientHelper;
-import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.StringUtils;
 
 import java.util.List;
@@ -15,26 +15,31 @@ import java.util.List;
  * @author warlordjones
  *
  */
-public class BaseItem extends Item
+public class ItemBase extends Item implements IHasModel
 {
 	String texturePath = "";
+	String name;
 
-	public BaseItem()
+	public ItemBase()
 	{
 		this("");
 	}
 
-	public BaseItem(String name)
+	public ItemBase(String name)
 	{
 		this(name, "");
 	}
 
-	public BaseItem(String name, String texturePath)
+	public ItemBase(String name, String texturePath)
 	{
 		super();
+		this.name = name;
 		this.setUnlocalizedName(name);
 		this.setRegistryName(name);
-		this.texturePath = texturePath;
+		if(!texturePath.isEmpty() && !texturePath.endsWith("/") && !texturePath.endsWith("\\"))
+		{
+			this.texturePath = texturePath + "/";
+		}
 		this.setCreativeTab(BoilerplateLib.getMod().getCreativeTab());
 	}
 
@@ -104,5 +109,11 @@ public class BaseItem extends Item
 		{
 			list.add(element.trim());
 		}
+	}
+
+	@Override
+	public String[] getResourceLocations()
+	{
+		return new String[] {texturePath + name};
 	}
 }

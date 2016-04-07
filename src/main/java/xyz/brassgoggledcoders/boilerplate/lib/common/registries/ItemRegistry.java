@@ -1,16 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
-import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
-import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
+import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBase;
 
 import java.util.Map;
 
@@ -71,7 +65,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 
 	public static void registerAndCreateBasicItem(String name)
 	{
-		Item item = new BaseItem(name);
+		Item item = new ItemBase(name);
 		registerItem(item, name);
 	}
 

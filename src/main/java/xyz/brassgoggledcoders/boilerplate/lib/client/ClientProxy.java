@@ -77,7 +77,8 @@ public class ClientProxy extends CommonProxy
 
 		for(int i = 0; i < length; i++)
 		{
-			modelLocations[i] = new ModelResourceLocation(specialRenderItem.getResourceLocations()[i], "inventory");
+			modelLocations[i] = new ModelResourceLocation(BoilerplateLib.getMod().getPrefix() +
+					specialRenderItem.getResourceLocations()[i], "inventory");
 		}
 
 		for(int i = 0; i < length; i++)
