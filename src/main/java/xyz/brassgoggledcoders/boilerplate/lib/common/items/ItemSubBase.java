@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ItemSubBase extends ItemBase
 {
-	List<String> metaNames;
+	protected List<String> metaNames;
 
 	public ItemSubBase(String name, List<String> metaNames)
 	{
@@ -44,6 +44,20 @@ public class ItemSubBase extends ItemBase
 		{
 			list.add(new ItemStack(item, 1, meta));
 		}
+	}
+
+	public int getMetaFromName(String name)
+	{
+		if(metaNames.contains(name))
+		{
+			return metaNames.indexOf(name);
+		}
+		return 0;
+	}
+
+	public String getNameFromMeta(int meta)
+	{
+		return metaNames.get(meta);
 	}
 
 	public int getMaxMeta()

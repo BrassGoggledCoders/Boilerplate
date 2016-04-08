@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class ItemBase extends Item implements IHasModel
 {
-	String texturePath = "";
-	String name;
+	protected String texturePath = "";
+	protected String name;
 
 	public ItemBase()
 	{
