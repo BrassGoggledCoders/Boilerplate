@@ -46,6 +46,11 @@ public class ItemSubBase extends ItemBase
 		}
 	}
 
+	public String getNameFromStack(ItemStack stack)
+	{
+		return getNameFromMeta(stack.getItemDamage());
+	}
+
 	public int getMetaFromName(String name)
 	{
 		if(metaNames.contains(name))
@@ -77,6 +82,12 @@ public class ItemSubBase extends ItemBase
 	public ItemStack getStackByName(String name)
 	{
 		return getStackByName(name, 1);
+	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+		return false;
 	}
 
 	@Override
