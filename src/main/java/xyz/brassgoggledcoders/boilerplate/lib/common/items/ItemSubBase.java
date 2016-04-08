@@ -96,7 +96,7 @@ public class ItemSubBase extends ItemBase
 		String[] locations = new String[getMaxMeta()];
 		for(int i = 0; i < getMaxMeta(); i++)
 		{
-			locations[i] = texturePath + metaNames.get(i) + "_" + name;
+			locations[i] = texturePath + name + "_" + metaNames.get(i);
 		}
 		return locations;
 	}
