@@ -3,55 +3,40 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
 
-import java.security.InvalidParameterException;
 import java.util.List;
 
 public class ItemSubBase extends ItemBase
 {
-	protected List<String> metaNames;
+	public List<String> metaNames;
 
 	public ItemSubBase(String name, List<String> metaNames)
 	{
-		this(name, "", metaNames);
+		this("", name, metaNames);
 	}
 
-	public ItemSubBase(String name, String textureBase, List<String> metaNames)
+	public ItemSubBase(String texturePath, String name, List<String> metaNames)
 	{
-		super(name, textureBase);
+		super(texturePath, name);
 		this.metaNames = metaNames;
-		setMaxDamage(metaNames.size());
-		setHasSubtypes(true);
+		this.setHasSubtypes(true);
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemStack)
+	public String getUnlocalizedName(ItemStack itemstack)
 	{
-		int meta = itemStack.getItemDamage();
-		if(meta < 0 || meta >= getMaxMeta())
-		{
-			meta = 0;
-		}
-
-		return super.getUnlocalizedName() + "." + metaNames.get(meta);
+		return getUnlocalizedName() + "." + getMetaName(itemstack.getItemDamage());
 	}
 
-	@Override
-	public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
+	public String getMetaName(int meta)
 	{
-		for(int meta = 0; meta < getMaxMeta(); ++meta)
-		{
-			list.add(new ItemStack(item, 1, meta));
-		}
+		return metaNames.get(meta);
 	}
 
-	public String getNameFromStack(ItemStack stack)
-	{
-		return getNameFromMeta(stack.getItemDamage());
-	}
-
-	public int getMetaFromName(String name)
+	public int getMeta(String name)
 	{
 		if(metaNames.contains(name))
 		{
@@ -60,23 +45,14 @@ public class ItemSubBase extends ItemBase
 		return 0;
 	}
 
-	public String getNameFromMeta(int meta)
-	{
-		return metaNames.get(meta);
-	}
-
-	public int getMaxMeta()
+	public int getNumberOfSubItems()
 	{
 		return metaNames.size();
 	}
 
-	public ItemStack getStackByName(String name, int count)
+	public ItemStack getStackByName(String metaName, int count)
 	{
-		if(metaNames.contains(name))
-		{
-			return new ItemStack(ItemRegistry.getItem(this.getUnlocalizedName()), count, metaNames.indexOf(name));
-		}
-		throw new InvalidParameterException(name + " could not be found.");
+		return new ItemStack(ItemRegistry.getItem(this.getUnlocalizedName()), count, getMeta(metaName));
 	}
 
 	public ItemStack getStackByName(String name)
@@ -85,19 +61,25 @@ public class ItemSubBase extends ItemBase
 	}
 
 	@Override
-	public boolean showDurabilityBar(ItemStack stack)
+	public String[] getResourceLocations()
 	{
-		return false;
+		int numberOfSubItems = getNumberOfSubItems();
+		String[] locations = new String[getNumberOfSubItems()];
+		for(int i = 0; i < numberOfSubItems; i++)
+		{
+			locations[i] = texturePath + name + "_" + getMetaName(i);
+		}
+		return locations;
 	}
 
 	@Override
-	public String[] getResourceLocations()
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list)
 	{
-		String[] locations = new String[getMaxMeta()];
-		for(int i = 0; i < getMaxMeta(); i++)
+		for (int i = 0; i < getNumberOfSubItems(); i++)
 		{
-			locations[i] = texturePath + name + "_" + metaNames.get(i);
+			ItemStack stack = new ItemStack(item, 1, i);
+			list.add(stack);
 		}
-		return locations;
 	}
 }
