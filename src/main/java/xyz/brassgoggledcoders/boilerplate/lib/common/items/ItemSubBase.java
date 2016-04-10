@@ -36,6 +36,11 @@ public class ItemSubBase extends ItemBase
 		return metaNames.get(meta);
 	}
 
+	public String getMetaName(ItemStack stack)
+	{
+		return metaNames.get(stack.getItemDamage());
+	}
+
 	public int getMeta(String name)
 	{
 		if(metaNames.contains(name))
