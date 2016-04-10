@@ -14,9 +14,9 @@ public class BaseSteamItem extends ItemBase implements IFluidContainerItem
 	// TODO: Render Stuff
 	public int maxSteam;
 
-	public BaseSteamItem(int maxSteam)
+	public BaseSteamItem(String texturePath, String name, int maxSteam)
 	{
-		super();
+		super(texturePath, name);
 		this.maxSteam = maxSteam;
 	}
 

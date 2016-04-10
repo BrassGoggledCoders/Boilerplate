@@ -1,15 +1,14 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
 import xyz.brassgoggledcoders.boilerplate.lib.client.utils.GuiColors;
+
+import java.util.List;
 
 /**
  * @author warlordjones
@@ -17,14 +16,13 @@ import xyz.brassgoggledcoders.boilerplate.lib.client.utils.GuiColors;
  */
 public class BaseElectricStorageItem extends BaseElectricItem
 {
-	public BaseElectricStorageItem(int maxEnergy, int maxReceive, int maxSend)
+	public BaseElectricStorageItem(String texturePath, String name, int maxEnergy, int maxReceive, int maxSend)
 	{
-		super(maxEnergy, maxReceive, maxSend);
+		super(texturePath, name, maxEnergy, maxReceive, maxSend);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
+	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List<String> list, boolean flag)
 	{
 		super.addInformation(stack, entityplayer, list, flag);
 		if (this.maxSend > 0)

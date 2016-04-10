@@ -23,9 +23,10 @@ public abstract class BaseFirearm extends ItemBase
 	protected String fireSound;
 	protected String reloadSound;
 
-	public BaseFirearm(int damage, int reloadTime, Item ammo, Item ammo2, String fireSound, String reloadSound)
+	public BaseFirearm(String texturePath, String name, int damage, int reloadTime, Item ammo, Item ammo2,
+			String fireSound, String reloadSound)
 	{
-		super();
+		super(texturePath, name);
 		this.damage = damage;
 		this.reloadTime = (short) reloadTime;
 		this.twoAmmo = ammo2 != null;

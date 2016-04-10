@@ -1,14 +1,14 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.items;
 
-import java.util.List;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 /**
  * @author decebaldecebal
@@ -20,9 +20,13 @@ public abstract class BaseElectricItem extends ItemBase implements IEnergyItem
 	protected short maxReceive;
 	protected short maxSend;
 
-	public BaseElectricItem(int maxEnergy, int maxReceive, int maxSend)
+	public BaseElectricItem(String name, int maxEnergy, int maxReceive, int maxSend)
 	{
-		super();
+		this("", name, maxEnergy, maxReceive, maxSend);
+	}
+	public BaseElectricItem(String texturePath, String name, int maxEnergy, int maxReceive, int maxSend)
+	{
+		super(texturePath, name);
 		this.maxEnergy = maxEnergy * 1000;
 		this.maxReceive = (short) maxReceive;
 		this.maxSend = (short) maxSend;
@@ -31,7 +35,7 @@ public abstract class BaseElectricItem extends ItemBase implements IEnergyItem
 
 	@SuppressWarnings("all")
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list)
+	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list)
 	{
 		list.add(this.getUnchargedItem(item));
 		list.add(this.getChargedItem(item));
@@ -65,7 +69,7 @@ public abstract class BaseElectricItem extends ItemBase implements IEnergyItem
 
 	@SuppressWarnings("all")
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List list, boolean flag)
+	public void addInformation(ItemStack stack, EntityPlayer entityplayer, List<String> list, boolean flag)
 	{
 		list.add("Energy: " + (this.getEnergyStored(stack) / 1000) + "k / " + (this.maxEnergy / 1000) + "k");
 		if ((this.maxSend > 0) && (this.maxReceive > 0))
