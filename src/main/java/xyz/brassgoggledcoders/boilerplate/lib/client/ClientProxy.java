@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.boilerplate.lib.client;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -13,6 +14,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ModelBakeHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.client.manual.ClientTickHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderer;
@@ -92,6 +95,12 @@ public class ClientProxy extends CommonProxy
 	public void registerEvents()
 	{
 		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		MinecraftForge.EVENT_BUS.register(new ClientTickHandler()); //TODO
 		MinecraftForge.EVENT_BUS.register(ModelBakeHandler.getInstance());
+	}
+	
+	@Override
+	public void setLexiconStack(ItemStack stack) {
+		GuiLexicon.stackUsed = stack;
 	}
 }

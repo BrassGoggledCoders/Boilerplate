@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.lib.common.modules.ModuleHandler;
@@ -35,5 +36,9 @@ public class CommonProxy
 
 	public void registerEvents()
 	{
+	}
+
+	public void setLexiconStack(ItemStack stack)
+	{	
 	}
 }
