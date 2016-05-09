@@ -1,24 +1,18 @@
 package xyz.brassgoggledcoders.boilerplate.lib;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.client.guis.GuiHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.config.Type;
-import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.common.modules.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.BaseRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ConfigRegistry;
-import xyz.brassgoggledcoders.boilerplate.lib.common.registries.ItemRegistry;
-import xyz.brassgoggledcoders.boilerplate.lib.common.registries.LoadingStage;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
@@ -31,7 +25,7 @@ public class BoilerplateLib
 	private IBoilerplateMod mod;
 	private GuiHandler guiHandler;
 	private PacketHandler packetHandler;
-	private CompatibilityHandler compatibilityHandler;
+	private ModuleHandler moduleHandler;
 	private CommonProxy proxy;
 	private Configuration config;
 
@@ -56,26 +50,19 @@ public class BoilerplateLib
 	protected BoilerplateLib(IBoilerplateMod mod)
 	{
 		this.mod = mod;
-		this.logger = mod.getLogger();
+		this.logger = new ModLogger(mod.getID());
 		this.guiHandler = new GuiHandler(mod);
-		this.compatibilityHandler = new CompatibilityHandler();
+		this.moduleHandler = new ModuleHandler();
 		this.packetHandler = new PacketHandler(mod.getID());
-		if(mod.getConfig() != null)
-		{
-			this.config = mod.getConfig();
-		}
 	}
 
 	public void preInitStart(FMLPreInitializationEvent event)
 	{
-		if(config == null)
-		{
-			config = new Configuration(event.getSuggestedConfigurationFile());
-		}
+		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		ConfigRegistry.addEntry("colorblind",new ConfigEntry("general", "colorblindSupport", Type.BOOLEAN, "false",
 				"True to enable"));
-		getCompatibilityHandler().configureModCompat(config);
+		getModuleHandler().configureModCompat(config);
 
 		getLogger().info(getMod().getName() + " has BoilerplateLib Version " + VERSION + " installed");
 		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
@@ -83,7 +70,7 @@ public class BoilerplateLib
 		String serverProxy = packageString + ".common.CommonProxy";
 
 		proxy = Utils.createProxy(clientProxy, serverProxy);
-		getCompatibilityHandler().preInit(event);
+		getModuleHandler().preInit(event);
 	}
 
 	public void preInitEnd(FMLPreInitializationEvent event)
@@ -97,7 +84,7 @@ public class BoilerplateLib
 
 	public void init(FMLInitializationEvent event)
 	{
-		getProxy().initCompatibilityHandler(getCompatibilityHandler(), event);
+		getProxy().initModuleHandler(getModuleHandler(), event);
 		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
 		{
 			registry.init();
@@ -106,7 +93,7 @@ public class BoilerplateLib
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		getCompatibilityHandler().postInit(event);
+		getModuleHandler().postInit(event);
 		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
 		{
 			registry.postInit();
@@ -133,9 +120,9 @@ public class BoilerplateLib
 		return getInstance().packetHandler;
 	}
 
-	public static CompatibilityHandler getCompatibilityHandler()
+	public static ModuleHandler getModuleHandler()
 	{
-		return getInstance().compatibilityHandler;
+		return getInstance().moduleHandler;
 	}
 
 	public static CommonProxy getProxy()

@@ -11,8 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
-import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
-import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
+import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBase;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 
 import java.util.Iterator;
@@ -21,11 +20,11 @@ import java.util.LinkedHashMap;
 /**
  * @author SkySom
  */
-public class ItemDebuggerStick extends BaseItem implements IHasModel
+public class ItemDebuggerStick extends ItemBase
 {
 	public ItemDebuggerStick()
 	{
-		super("debuggerstick");
+		super("debugger_stick");
 		this.setCreativeTab(CreativeTabs.tabMisc);
 	}
 

@@ -1,12 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.recipes;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * @author warlordjones

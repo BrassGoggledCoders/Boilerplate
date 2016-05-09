@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.boilerplate.lib.client;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -13,11 +14,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.lib.client.events.ModelBakeHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.client.manual.ClientTickHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.lib.common.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHandler;
+import xyz.brassgoggledcoders.boilerplate.lib.common.modules.ModuleHandler;
 
 /**
  * @author Surseance
@@ -26,10 +29,10 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.modcompat.CompatibilityHand
 public class ClientProxy extends CommonProxy
 {
 	@Override
-	public void initCompatibilityHandler(CompatibilityHandler compatibilityHandler, FMLInitializationEvent event)
+	public void initModuleHandler(ModuleHandler moduleHandler, FMLInitializationEvent event)
 	{
-		compatibilityHandler.clientInit(event);
-		super.initCompatibilityHandler(compatibilityHandler, event);
+		moduleHandler.clientInit(event);
+		super.initModuleHandler(moduleHandler, event);
 	}
 
 	@Override
@@ -77,7 +80,8 @@ public class ClientProxy extends CommonProxy
 
 		for(int i = 0; i < length; i++)
 		{
-			modelLocations[i] = new ModelResourceLocation(specialRenderItem.getResourceLocations()[i], "inventory");
+			modelLocations[i] = new ModelResourceLocation(BoilerplateLib.getMod().getPrefix() +
+					specialRenderItem.getResourceLocations()[i], "inventory");
 		}
 
 		for(int i = 0; i < length; i++)
@@ -91,6 +95,12 @@ public class ClientProxy extends CommonProxy
 	public void registerEvents()
 	{
 		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+		MinecraftForge.EVENT_BUS.register(new ClientTickHandler()); //TODO
 		MinecraftForge.EVENT_BUS.register(ModelBakeHandler.getInstance());
+	}
+	
+	@Override
+	public void setLexiconStack(ItemStack stack) {
+		GuiLexicon.stackUsed = stack;
 	}
 }

@@ -1,12 +1,13 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.registries;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
-import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseItem;
+import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBase;
 
 import java.util.Map;
 
@@ -28,7 +29,8 @@ public class ItemRegistry extends BaseRegistry<Item>
 	{
 		for(Map.Entry<String, Item> itemEntry : entries.entrySet())
 		{
-			GameRegistry.registerItem(itemEntry.getValue(), itemEntry.getKey());
+			ResourceLocation name = new ResourceLocation(BoilerplateLib.getMod().getPrefix() + itemEntry.getKey());
+			GameRegistry.register(itemEntry.getValue(), name);
 		}
 		super.initiateEntries();
 	}
@@ -78,7 +80,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 
 	public static void registerAndCreateBasicItem(String name)
 	{
-		Item item = new BaseItem(name);
+		Item item = new ItemBase(name);
 		registerItem(item, name);
 	}
 

@@ -1,8 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
 public interface IHasItemBlock
 {
-	Class<? extends ItemBlock> getItemBlockClass();
+	ItemBlock getItemBlockClass(Block block);
 }

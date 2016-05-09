@@ -8,8 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.lib.common.tileentities.BaseTileWithInventory;
 
 import java.util.Random;
@@ -18,16 +16,13 @@ import java.util.Random;
  * @author decebaldecebal
  *
  */
-public abstract class BaseContainerBlock extends BaseTEBlock
+public abstract class BaseContainerBlock extends BlockTEBase
 {
-	protected IBoilerplateMod mod;
 	protected static boolean keepInventory = true;
 
-	protected BaseContainerBlock(Material mat)
+	protected BaseContainerBlock(Material mat, String name)
 	{
-		super(mat);
-		this.mod = BoilerplateLib.getMod();
-		this.setCreativeTab(mod.getCreativeTab());
+		super(mat, name);
 		this.setHardness(5.0F);
 	}
 
