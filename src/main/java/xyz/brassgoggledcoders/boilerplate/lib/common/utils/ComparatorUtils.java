@@ -1,9 +1,12 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
 import cofh.api.energy.IEnergyHandler;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.items.IItemHandler;
 
 /**
  * @author SkySom
@@ -34,6 +37,29 @@ public class ComparatorUtils
 			{
 				return scaleTo(scale, fluidStack.amount, fluidHandler.getTankInfo(direction)[0].capacity);
 			}
+		}
+		return 0;
+	}
+
+	public static int scaleIItemHandlerLevelTo(int scale, IItemHandler itemHandler)
+	{
+		if(itemHandler != null)
+		{
+			int numItemStacks = 0;
+			float redstoneLevel = 0.0F;
+
+			for (int slotNum = 0; slotNum < itemHandler.getSlots(); ++slotNum)
+			{
+				ItemStack itemstack = itemHandler.getStackInSlot(slotNum);
+
+				if (itemstack != null)
+				{
+					redstoneLevel += (float)itemstack.stackSize / (float) itemstack.getMaxStackSize();
+					++numItemStacks;
+				}
+			}
+			redstoneLevel = redstoneLevel / (float)itemHandler.getSlots();
+			return MathHelper.floor_float(redstoneLevel * (float)scale) + (numItemStacks > 0 ? 1 : 0);
 		}
 		return 0;
 	}
