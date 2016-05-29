@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.tileentities.BaseTileWithInventory;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 /**
@@ -27,7 +28,7 @@ public abstract class BaseContainerBlock extends BlockTEBase
 	}
 
 	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
+	public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state)
 	{
 		if (!keepInventory)
 		{

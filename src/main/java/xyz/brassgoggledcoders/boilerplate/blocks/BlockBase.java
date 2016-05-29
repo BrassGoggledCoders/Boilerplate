@@ -1,29 +1,27 @@
-
 package xyz.brassgoggledcoders.boilerplate.blocks;
 
-import com.sun.javafx.beans.annotations.NonNull;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.IModAware;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author Surseance
  *
  */
-public class BlockBase extends Block
+public class BlockBase extends Block implements IModAware
 {
 	IBoilerplateMod mod;
 
 	public BlockBase(Material mat)
 	{
 		super(mat);
-		this.mod = BoilerplateLib.getMod();
-		this.setCreativeTab(mod.getCreativeTab());
 		this.setHardness(1F);
 	}
 
@@ -35,7 +33,7 @@ public class BlockBase extends Block
 	}
 
 	@Override
-	public void breakBlock(@NonNull World world, BlockPos pos, IBlockState state)
+	public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state)
 	{
 		world.updateComparatorOutputLevel(pos, this);
 
@@ -57,5 +55,17 @@ public class BlockBase extends Block
 	protected void updateState(IBlockAccess world, BlockPos pos, IBlockState state)
 	{
 
+	}
+
+	@Override
+	public IBoilerplateMod getMod()
+	{
+		return this.mod;
+	}
+
+	@Override
+	public void setMod(IBoilerplateMod mod)
+	{
+		this.mod = mod;
 	}
 }

@@ -3,7 +3,6 @@ package xyz.brassgoggledcoders.boilerplate.tileentities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.RayTraceResult;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.blocks.SideType;
 import xyz.brassgoggledcoders.boilerplate.client.IBlockOverlayText;
 
@@ -103,10 +102,10 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 			SideType facing = sideConfig[rayTrace.sideHit.ordinal()];
 			SideType opposite = sideConfig[rayTrace.sideHit.getOpposite().ordinal()];
 			return new String[] {
-					BoilerplateLib.getProxy().translate("blockSide.facing") + ": " +
-							BoilerplateLib.getProxy().translate("sidetype." + facing.name().toLowerCase()),
-					BoilerplateLib.getProxy().translate("blockSide.opposite") + ": "
-							+ BoilerplateLib.getProxy().translate("sidetype." + opposite.name().toLowerCase()) };
+					mod.getProxy().translate("blockSide.facing") + ": " +
+							mod.getProxy().translate("sidetype." + facing.name().toLowerCase()),
+					mod.getProxy().translate("blockSide.opposite") + ": "
+							+ mod.getProxy().translate("sidetype." + opposite.name().toLowerCase()) };
 		}
 		return null;
 	}
