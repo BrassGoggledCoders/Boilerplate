@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.CommonProxy;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
 /**

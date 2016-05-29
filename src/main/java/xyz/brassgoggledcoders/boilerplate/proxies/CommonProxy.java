@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.boilerplate;
+package xyz.brassgoggledcoders.boilerplate.proxies;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

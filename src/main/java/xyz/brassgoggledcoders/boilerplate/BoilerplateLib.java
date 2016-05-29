@@ -9,6 +9,7 @@ import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
 import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.BaseRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;

@@ -1,17 +1,18 @@
-package xyz.brassgoggledcoders.boilerplate.client;
+package xyz.brassgoggledcoders.boilerplate.proxies;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.client.events.ModelBakeHandler;
 import xyz.brassgoggledcoders.boilerplate.client.manual.ClientTickHandler;
@@ -19,7 +20,6 @@ import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
-import xyz.brassgoggledcoders.boilerplate.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 
 /**

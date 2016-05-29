@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
@@ -33,7 +34,7 @@ public class Boilerplate implements IBoilerplateMod
 
 	public static ItemDebuggerStick ITEM_DEBUG_STICK;
 
-	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.lib.client.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.CommonProxy")
+	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
 	@Mod.Instance("boilerplate")
