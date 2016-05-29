@@ -14,7 +14,6 @@ import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 import xyz.brassgoggledcoders.boilerplate.lib.common.items.ItemBase;
 import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 /**
@@ -25,12 +24,13 @@ public class ItemDebuggerStick extends ItemBase
 	public ItemDebuggerStick()
 	{
 		super("debugger_stick");
-		this.setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(CreativeTabs.MISC);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
 	{
-		RayTraceResult rayTrace = getMovingObjectPositionFromPlayer(world, player, true);
+		RayTraceResult rayTrace = rayTrace(world, player, true);
 
 		LinkedHashMap<String, String> debugStrings = new LinkedHashMap<String, String>();
 		if(rayTrace != null && rayTrace.typeOfHit != null)
@@ -61,10 +61,9 @@ public class ItemDebuggerStick extends ItemBase
 
 		if(!debugStrings.isEmpty())
 		{
-			Iterator<String> iterator = debugStrings.values().iterator();
-			while(iterator.hasNext())
+			for(String debugString : debugStrings.values())
 			{
-				Boilerplate.logger.info(iterator.next());
+				Boilerplate.logger.info(debugString);
 			}
 			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
 		}

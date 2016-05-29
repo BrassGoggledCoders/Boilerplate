@@ -1,8 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.utils;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
@@ -17,44 +14,6 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
  */
 public class Utils
 {
-	public static void spawnEntityAtCoords(World world, EntityLiving entity, int x, int y, int z)
-	{
-		entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-		entity.rotationYawHead = entity.rotationYaw;
-		entity.renderYawOffset = entity.rotationYaw;
-		world.spawnEntityInWorld(entity);
-		entity.playLivingSound();
-	}
-
-	/**
-	 * This method merges any number of arrays of any count.
-	 *
-	 * @param arrays multiple arrays of any type
-	 * @return merged array
-	 */
-	public static <T> T[] merge(T[]... arrays)
-	{
-		// Count the number of arrays passed for merging and the total size of
-		// resulting array
-		int arrCount = 0;
-		int count = 0;
-		for (T[] array : arrays)
-		{
-			arrCount++;
-			count += array.length;
-		}
-
-		// Create new array and copy all array contents
-		T[] mergedArray = (T[]) java.lang.reflect.Array.newInstance(arrays[0][0].getClass(), count);
-		int start = 0;
-		for (T[] array : arrays)
-		{
-			System.arraycopy(array, 0, mergedArray, start, array.length);
-			start += array.length;
-		}
-		return mergedArray;
-	}
-
 	public static IBoilerplateMod getCurrentMod()
 	{
 		Object activeMod = Loader.instance().activeModContainer().getMod();
@@ -100,10 +59,7 @@ public class Utils
 		try
 		{
 			return clazz.newInstance();
-		}catch(InstantiationException e)
-		{
-			e.printStackTrace();
-		} catch(IllegalAccessException e)
+		}catch(InstantiationException | IllegalAccessException e)
 		{
 			e.printStackTrace();
 		}

@@ -64,7 +64,7 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 	}
 
 	@Override
-	public void writeToNBTCustom(NBTTagCompound nbtTagCompound)
+	public NBTTagCompound writeToNBTCustom(NBTTagCompound nbtTagCompound)
 	{
 		int[] array = new int[6];
 		for (int i = 0; i < this.sideConfig.length; i++)
@@ -72,6 +72,7 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 			array[i] = this.sideConfig[i].ordinal();
 		}
 		nbtTagCompound.setIntArray("sideConfig", array);
+		return nbtTagCompound;
 	}
 
 	@Override

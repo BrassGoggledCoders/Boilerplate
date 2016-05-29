@@ -1,7 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.entity;
 
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 
 public class SpawnInfo
 {
@@ -9,9 +9,9 @@ public class SpawnInfo
 	public int minimum;
 	public int maximum;
 	public EnumCreatureType creatureType;
-	public BiomeGenBase[] spawnBiomes;
+	public Biome[] spawnBiomes;
 
-	public SpawnInfo(int weightedProb, int min, int max, EnumCreatureType typeOfCreature, BiomeGenBase... biomes)
+	public SpawnInfo(int weightedProb, int min, int max, EnumCreatureType typeOfCreature, Biome... biomes)
 	{
 		this.weighted = weightedProb;
 		this.minimum = min;

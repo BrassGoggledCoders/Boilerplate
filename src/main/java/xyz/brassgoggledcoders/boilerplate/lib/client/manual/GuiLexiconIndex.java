@@ -10,15 +10,6 @@
  */
 package xyz.brassgoggledcoders.boilerplate.lib.client.manual;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
-import org.lwjgl.input.Mouse;
-
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
@@ -26,6 +17,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
+import org.lwjgl.input.Mouse;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonBack;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonInvisible;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonPage;
@@ -33,6 +27,11 @@ import xyz.brassgoggledcoders.boilerplate.lib.common.manual.BotaniaAPI;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.ILexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.LexiconCategory;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.LexiconEntry;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class GuiLexiconIndex extends GuiLexicon implements IParented {
 
@@ -230,7 +229,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 
 			net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
 			GlStateManager.enableRescaleNormal();
-			ItemStack paper = new ItemStack(Items.paper, currentEntry.pages.size());
+			ItemStack paper = new ItemStack(Items.PAPER, currentEntry.pages.size());
 
 			mc.getRenderItem().renderItemAndEffectIntoGUI(paper, 14, -28);
 			mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, paper, 14, -28, "");

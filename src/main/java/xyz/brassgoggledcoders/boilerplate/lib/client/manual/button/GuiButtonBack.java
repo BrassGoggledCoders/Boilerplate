@@ -10,14 +10,14 @@
  */
 package xyz.brassgoggledcoders.boilerplate.lib.client.manual.button;
 
-import java.util.Collections;
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.translation.I18n;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper;
+
+import java.util.Collections;
+import java.util.List;
 
 public class GuiButtonBack extends GuiButtonLexicon {
 

@@ -82,7 +82,7 @@ public class Boilerplate implements IBoilerplateMod
 	@Override
 	public CreativeTabs getCreativeTab()
 	{
-		return CreativeTabs.tabMisc;
+		return CreativeTabs.MISC;
 	}
 
 	@Override

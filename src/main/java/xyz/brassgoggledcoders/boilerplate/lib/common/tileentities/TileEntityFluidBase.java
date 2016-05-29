@@ -145,10 +145,11 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbtTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound)
 	{
-		super.writeToNBT(nbtTagCompound);
-		getTank().writeToNBT(nbtTagCompound);
+		nbtTagCompound = super.writeToNBT(nbtTagCompound);
+		nbtTagCompound = getTank().writeToNBT(nbtTagCompound);
+		return nbtTagCompound;
 	}
 
 	public FluidTank getTank()

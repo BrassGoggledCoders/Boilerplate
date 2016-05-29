@@ -12,6 +12,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.lib.client.guis.IOpenableGUI;
 
+import javax.annotation.Nonnull;
+
 /**
  * Basic machine class.Every machine that has an inventory should extend this.
  *
@@ -48,24 +50,26 @@ public abstract class BaseTileWithInventory extends TileEntity implements IInven
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tag)
+	@Nonnull
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound)
 	{
-		super.writeToNBT(tag);
+		nbtTagCompound = super.writeToNBT(nbtTagCompound);
 
-		NBTTagList nbttaglist = new NBTTagList();
+		NBTTagList inventoryTaglist = new NBTTagList();
 
 		for (int i = 0; i < this.inventory.length; ++i)
 		{
 			if (this.inventory[i] != null)
 			{
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				this.inventory[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
+				NBTTagCompound inventorySlot = new NBTTagCompound();
+				inventorySlot.setByte("Slot", (byte) i);
+				this.inventory[i].writeToNBT(inventorySlot);
+				inventoryTaglist.appendTag(inventorySlot);
 			}
 		}
 
-		tag.setTag("Items", nbttaglist);
+		nbtTagCompound.setTag("Items", inventoryTaglist);
+		return nbtTagCompound;
 	}
 
 	@Override

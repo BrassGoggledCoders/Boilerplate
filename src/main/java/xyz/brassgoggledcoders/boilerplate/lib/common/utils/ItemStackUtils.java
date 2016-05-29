@@ -24,17 +24,12 @@ public class ItemStackUtils
 	public static Material getBlockMaterial(final IBlockAccess world, final BlockPos blockPos)
 	{
 		IBlockState blockState = world.getBlockState(blockPos);
-		if (blockState != null)
-		{
-			return blockState.getBlock().getMaterial(blockState);
-		}
-
-		return Material.air;
+		return blockState.getMaterial();
 	}
 
-	public static boolean isSmeltable(ItemStack is)
+	public static boolean isSmeltable(ItemStack itemStack)
 	{
-		return is != null && FurnaceRecipes.instance().getSmeltingResult(is) != null;
+		return itemStack != null && FurnaceRecipes.instance().getSmeltingResult(itemStack) != null;
 	}
 
 	public static void spawnStackInWorld(World world, BlockPos blockPos, ItemStack stack)
@@ -57,7 +52,10 @@ public class ItemStackUtils
 		list.appendTag(attributes);
 
 		NBTTagCompound attributeModifierTag = itemStack.getTagCompound();
-		attributeModifierTag.setTag("AttributeModifiers", list);
+		if(attributeModifierTag != null)
+		{
+			attributeModifierTag.setTag("AttributeModifiers", list);
+		}
 
 		itemStack.setTagCompound(attributeModifierTag);
 	}
@@ -66,7 +64,7 @@ public class ItemStackUtils
 	{
 		for (int i = 0; i < inventory.getSizeInventory(); i++)
 		{
-			if ((inventory.getStackInSlot(i) != null) && (item == inventory.getStackInSlot(i).getItem()))
+			if (doItemsMatch(inventory.getItemStack(), item))
 			{
 				return i;
 			}
@@ -92,6 +90,11 @@ public class ItemStackUtils
 	public static boolean isItemInstanceOf(ItemStack itemStack, Class itemClass)
 	{
 		return isItemNonNull(itemStack) && itemClass != null && itemClass.isInstance(itemStack.getItem());
+	}
+
+	public static boolean doItemsMatch(ItemStack itemStack, Item item)
+	{
+		return isItemNonNull(itemStack) && itemStack.getItem() == item;
 	}
 
 }

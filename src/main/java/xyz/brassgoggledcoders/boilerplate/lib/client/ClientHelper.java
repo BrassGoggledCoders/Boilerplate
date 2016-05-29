@@ -6,7 +6,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -55,11 +54,6 @@ public class ClientHelper
 	public static Entity viewEntity()
 	{
 		return mc().getRenderViewEntity();
-	}
-
-	public static EffectRenderer effectRenderer()
-	{
-		return mc().effectRenderer;
 	}
 
 	public static TextureManager textureManager()

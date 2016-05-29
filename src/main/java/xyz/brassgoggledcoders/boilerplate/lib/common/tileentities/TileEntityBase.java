@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.tileentities;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
@@ -21,16 +20,17 @@ public abstract class TileEntityBase extends TileEntity
 	public abstract void readFromNBTCustom(NBTTagCompound nbtTagCompound);
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbtTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound)
 	{
-		super.writeToNBT(nbtTagCompound);
-		this.writeToNBTCustom(nbtTagCompound);
+		nbtTagCompound = super.writeToNBT(nbtTagCompound);
+		nbtTagCompound = this.writeToNBTCustom(nbtTagCompound);
+		return nbtTagCompound;
 	}
 
-	public abstract void writeToNBTCustom(NBTTagCompound nbtTagCompound);
+	public abstract NBTTagCompound writeToNBTCustom(NBTTagCompound nbtTagCompound);
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		this.writeToNBT(nbttagcompound);

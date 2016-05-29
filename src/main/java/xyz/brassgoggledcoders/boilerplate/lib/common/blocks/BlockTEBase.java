@@ -1,6 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -8,7 +7,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
 
-public abstract class BlockTEBase extends BlockBase implements IHasTileEntity, ITileEntityProvider
+import javax.annotation.Nonnull;
+
+public abstract class BlockTEBase extends BlockBase implements IHasTileEntity
 {
 	public BlockTEBase(Material material, String name)
 	{
@@ -24,21 +25,18 @@ public abstract class BlockTEBase extends BlockBase implements IHasTileEntity, I
 	}
 
 	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
+	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param)
 	{
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity != null && tileentity.receiveClientEvent(eventID, eventParam);
+		super.eventReceived(state, world, pos, id, param);
+		TileEntity tileentity = world.getTileEntity(pos);
+		return tileentity != null && tileentity.receiveClientEvent(id, param);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
+	@Nonnull
+	public TileEntity createTileEntity(World world, IBlockState state)
 	{
 		Object tileEntity = Utils.createObjectInstance(getTileEntityClass());
-		if(tileEntity instanceof TileEntity)
-		{
-			return (TileEntity)tileEntity;
-		}
-		return null;
+		return (TileEntity)tileEntity;
 	}
 }

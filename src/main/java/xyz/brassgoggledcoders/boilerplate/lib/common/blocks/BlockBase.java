@@ -1,10 +1,12 @@
 
 package xyz.brassgoggledcoders.boilerplate.lib.common.blocks;
 
+import com.sun.javafx.beans.annotations.NonNull;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
@@ -33,11 +35,11 @@ public class BlockBase extends Block
 	}
 
 	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	public void breakBlock(@NonNull World world, BlockPos pos, IBlockState state)
 	{
-		worldIn.updateComparatorOutputLevel(pos, this);
+		world.updateComparatorOutputLevel(pos, this);
 
-		super.breakBlock(worldIn, pos, state);
+		super.breakBlock(world, pos, state);
 	}
 
 	@Override
@@ -47,12 +49,12 @@ public class BlockBase extends Block
 	}
 
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighborPos)
 	{
-		this.updateState(worldIn, pos, state);
+		this.updateState(world, pos, world.getBlockState(neighborPos));
 	}
 
-	protected void updateState(World worldIn, BlockPos pos, IBlockState state)
+	protected void updateState(IBlockAccess world, BlockPos pos, IBlockState state)
 	{
 
 	}
