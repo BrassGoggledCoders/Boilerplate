@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 
 public class GuiButtonBackWithShift extends GuiButtonBack {
 
@@ -24,7 +24,7 @@ public class GuiButtonBackWithShift extends GuiButtonBack {
 
 	@Override
 	public List<String> getTooltip() {
-		return Arrays.asList(I18n.translateToLocal("botaniamisc.back"), TextFormatting.GRAY + I18n.translateToLocal("botaniamisc.clickToIndex"));
+		return Arrays.asList(I18n.format("botaniamisc.back"), TextFormatting.GRAY + I18n.format("botaniamisc.clickToIndex"));
 	}
 
 }

@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -41,7 +41,7 @@ public abstract class BaseContainerGui extends GuiContainer
 			{
 				if (slot.slotNumber < this.tile.getSizeInventory())
 				{
-					this.drawHoveringText(Lists.newArrayList(I18n.translateToLocal(((IToolTipSlot) slot).getSlotTooltipUnloc())), mouseX - x,
+					this.drawHoveringText(Lists.newArrayList(I18n.format(((IToolTipSlot) slot).getSlotTooltipUnloc())), mouseX - x,
 							mouseY - y);
 				}
 			}

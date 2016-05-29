@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
@@ -79,13 +79,13 @@ public class PageRecipe extends LexiconPage {
 
 			if(tooltipEntry) {
 				xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper.renderTooltipOrange(mx, my + tooltipY, Collections.singletonList(
-						TextFormatting.GRAY + I18n.translateToLocal("botaniamisc.clickToRecipe")));
+						TextFormatting.GRAY + I18n.format("botaniamisc.clickToRecipe")));
 				tooltipY += 18;
 			}
 
 			if(tooltipContainerStack != null)
 				xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(
-						TextFormatting.AQUA + I18n.translateToLocal("botaniamisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
+						TextFormatting.AQUA + I18n.format("botaniamisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
 		}
 
 		tooltipStack = tooltipContainerStack = null;

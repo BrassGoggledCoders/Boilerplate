@@ -3,28 +3,24 @@
  */
 package xyz.brassgoggledcoders.boilerplate.lib.client.manual;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
-import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonAchievement;
-import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonCategory;
-import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonHistory;
-import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonInvisible;
-import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.GuiButtonOptions;
+import net.minecraft.util.text.TextFormatting;
+import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.lib.client.manual.button.*;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.BotaniaAPI;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.LexiconCategory;
-import xyz.brassgoggledcoders.boilerplate.lib.common.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class GuiLexicon extends GuiScreen {
 
@@ -35,7 +31,7 @@ public class GuiLexicon extends GuiScreen {
 
 	private static final String TAG_TYPE = "type";
 
-	public static final ResourceLocation texture = new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/manual.png");
+	public static final ResourceLocation texture = new ResourceLocation(BoilerplateLib.getMod().getPrefix() + "textures/gui/manual/manual.png");
 
 	public float lastTime = 0F;
 	public float partialTicks = 0F;
@@ -124,7 +120,7 @@ public class GuiLexicon extends GuiScreen {
 		boolean unicode = fontRendererObj.getUnicodeFlag();
 		fontRendererObj.drawString(title, left + 18, top + 13, color);
 		fontRendererObj.setUnicodeFlag(true);
-		//fontRendererObj.drawString(String.format(StatCollector.translateToLocal("botaniamisc.edition"), ItemLexicon.getEdition()), left + 24, top + 22, color);
+		//fontRendererObj.drawString(String.format(StatCollector.format("botaniamisc.edition"), ItemLexicon.getEdition()), left + 24, top + 22, color);
 
 		String s = TextFormatting.BOLD + categoryHighlight;
 		fontRendererObj.drawString(s, left + guiWidth / 2 - fontRendererObj.getStringWidth(s) / 2, top + 36, 0);
@@ -196,9 +192,9 @@ public class GuiLexicon extends GuiScreen {
 			GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i);
 			LexiconCategory category = i_ >= categoryList.size() ? null : categoryList.get(i_);
 			if(category != null)
-				button.displayString = I18n.translateToLocal(category.getUnlocalizedName());
+				button.displayString = I18n.format(category.getUnlocalizedName());
 			else {
-				button.displayString = I18n.translateToLocal("botaniamisc.lexiconIndex");
+				button.displayString = I18n.format("botaniamisc.lexiconIndex");
 				break;
 			}
 		}
@@ -209,7 +205,7 @@ public class GuiLexicon extends GuiScreen {
 		buttonList.removeAll(remove);
 
 		if(isMainPage())
-			buttonList.add(new GuiButtonHistory(2000, left + 138, top + guiHeight - 24, I18n.translateToLocal("botaniamisc.history"), this));
+			buttonList.add(new GuiButtonHistory(2000, left + 138, top + guiHeight - 24, I18n.format("botaniamisc.history"), this));
 	}
 
 	boolean closeScreenOnInvKey() {

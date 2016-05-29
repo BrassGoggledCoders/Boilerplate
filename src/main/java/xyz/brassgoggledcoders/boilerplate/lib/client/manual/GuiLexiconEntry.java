@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.Minecraft;
@@ -62,9 +62,9 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 			return;
 		}
 
-		title = I18n.translateToLocal(entry.getUnlocalizedName());
+		title = I18n.format(entry.getUnlocalizedName());
 		if(entry instanceof IAddonEntry)
-			subtitle = I18n.translateToLocal(((IAddonEntry) entry).getSubtitle());
+			subtitle = I18n.format(((IAddonEntry) entry).getSubtitle());
 		else subtitle = null;
 	}
 

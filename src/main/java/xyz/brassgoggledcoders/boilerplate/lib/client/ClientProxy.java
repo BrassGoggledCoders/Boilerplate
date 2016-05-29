@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,7 +38,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public String translate(String text)
 	{
-		return I18n.translateToLocal("boilerplate." + text);
+		return I18n.format("boilerplate." + text);
 	}
 
 	@Override

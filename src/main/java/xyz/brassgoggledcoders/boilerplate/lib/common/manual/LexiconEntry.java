@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -107,7 +107,7 @@ public class LexiconEntry implements Comparable<LexiconEntry> {
 	}
 
 	public final String getNameForSorting() {
-		return (priority ? 0 : 1) + I18n.translateToLocal(getUnlocalizedName());
+		return (priority ? 0 : 1) + I18n.format(getUnlocalizedName());
 	}
 
 	public List<ItemStack> getDisplayedRecipes() {

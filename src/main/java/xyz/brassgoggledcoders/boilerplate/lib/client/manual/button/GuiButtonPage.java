@@ -14,7 +14,7 @@ import java.util.Collections;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper;
 
@@ -39,7 +39,7 @@ public class GuiButtonPage extends GuiButtonLexicon {
 
 			if(k == 2)
 				RenderHelper.renderTooltip(par2, par3, Collections.singletonList(
-						I18n.translateToLocal(right ? "botaniamisc.nextPage" : "botaniamisc.prevPage")));
+						I18n.format(right ? "botaniamisc.nextPage" : "botaniamisc.prevPage")));
 		}
 	}
 

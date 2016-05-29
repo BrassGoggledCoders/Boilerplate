@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.lib.BoilerplateLib;
@@ -47,7 +47,7 @@ public class BaseArmor extends ItemArmor
 	@Override
 	public void addInformation(ItemStack parO1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
 	{
-		if (!I18n.translateToLocal(this.getUnlocalizedName() + ".desc").contains("item."))
+		if (!I18n.format(this.getUnlocalizedName() + ".desc").contains("item."))
 		{
 			if (ClientHelper.isShiftKeyDown())
 			{
@@ -63,7 +63,7 @@ public class BaseArmor extends ItemArmor
 	@SuppressWarnings("all")
 	public void getWrappedDesc(List list)
 	{
-		String[] wrappedDesc = StringUtils.wrap(I18n.translateToLocal(this.getUnlocalizedName() + ".desc"), 30);
+		String[] wrappedDesc = StringUtils.wrap(I18n.format(this.getUnlocalizedName() + ".desc"), 30);
 		for (String element : wrappedDesc)
 		{
 			list.add(element.trim());

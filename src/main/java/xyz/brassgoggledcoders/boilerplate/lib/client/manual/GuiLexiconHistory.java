@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.ILexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.LexiconEntry;
 
@@ -24,7 +24,7 @@ public class GuiLexiconHistory extends GuiLexiconIndex {
 
 	public GuiLexiconHistory() {
 		super(null);
-		title = I18n.translateToLocal("botaniamisc.historyLong");
+		title = I18n.format("botaniamisc.historyLong");
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class GuiLexiconHistory extends GuiLexiconIndex {
 		ILexicon lex = (ILexicon) stackUsed.getItem();
 		for(int i = history.size() - 1; i >= 0; i--) {
 			LexiconEntry entry = history.get(i);
-			if(I18n.translateToLocal(entry.getUnlocalizedName()).toLowerCase().contains(searchField.getText().toLowerCase().trim()))
+			if(I18n.format(entry.getUnlocalizedName()).toLowerCase().contains(searchField.getText().toLowerCase().trim()))
 				entriesToDisplay.add(entry);
 		}
 	}

@@ -16,7 +16,7 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper;
 
@@ -36,7 +36,7 @@ public class GuiButtonAchievement extends GuiButtonLexicon {
 		drawTexturedModalRect(xPosition, yPosition, k == 2 ? 109 : 98, 191, 11, 11);
 
 		List<String> tooltip = new ArrayList<>();
-		tooltip.add(TextFormatting.YELLOW + I18n.translateToLocal("botaniamisc.achievements"));
+		tooltip.add(TextFormatting.YELLOW + I18n.format("botaniamisc.achievements"));
 
 		int tooltipY = (tooltip.size() - 1) * 10;
 		if(k == 2)

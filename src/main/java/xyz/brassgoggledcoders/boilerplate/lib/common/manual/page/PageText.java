@@ -13,7 +13,7 @@ package xyz.brassgoggledcoders.boilerplate.lib.common.manual.page;
 import com.google.common.base.Joiner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.lib.common.manual.IGuiLexiconEntry;
@@ -51,7 +51,7 @@ public class PageText extends LexiconPage {
 		FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
 		boolean unicode = font.getUnicodeFlag();
 		font.setUnicodeFlag(true);
-		String text = I18n.translateToLocal(unlocalizedText).replaceAll("&", "\u00a7");
+		String text = I18n.format(unlocalizedText).replaceAll("&", "\u00a7");
 		String[] textEntries = text.split("<br>");
 
 		List<List<String>> lines = new ArrayList<>();

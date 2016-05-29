@@ -12,10 +12,11 @@ package xyz.brassgoggledcoders.boilerplate.lib.client.manual.button;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper;
 
+import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class GuiButtonBack extends GuiButtonLexicon {
 	}
 
 	@Override
-	public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
+	public void drawButton(@Nonnull Minecraft minecraft, int par2, int par3) {
 		if(enabled) {
 			hovered = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
 			int k = getHoverState(hovered);
 
-			par1Minecraft.renderEngine.bindTexture(GuiLexicon.texture);
+			minecraft.renderEngine.bindTexture(GuiLexicon.texture);
 			GlStateManager.color(1F, 1F, 1F, 1F);
 			drawTexturedModalRect(xPosition, yPosition, 36, k == 2 ? 180 : 189, 18, 9);
 
@@ -43,7 +44,7 @@ public class GuiButtonBack extends GuiButtonLexicon {
 	}
 
 	public List<String> getTooltip() {
-		return Collections.singletonList(I18n.translateToLocal("botaniamisc.back"));
+		return Collections.singletonList(I18n.format("botaniamisc.back"));
 	}
 
 }

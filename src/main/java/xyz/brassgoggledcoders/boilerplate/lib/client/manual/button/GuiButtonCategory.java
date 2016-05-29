@@ -10,7 +10,7 @@
  */
 package xyz.brassgoggledcoders.boilerplate.lib.client.manual.button;
 
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -67,7 +67,7 @@ public class GuiButtonCategory extends GuiButtonLexicon {
 		GlStateManager.popMatrix();
 
 		if(inside)
-			gui.categoryHighlight = I18n.translateToLocal(getTooltipText());
+			gui.categoryHighlight = I18n.format(getTooltipText());
 	}
 
 	String getTooltipText() {
