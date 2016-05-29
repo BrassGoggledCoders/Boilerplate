@@ -73,18 +73,18 @@ public class PageRecipe extends LexiconPage {
 				first = false;
 			}
 
-			xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper.renderTooltip(mx, my, parsedTooltip);
+			xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper.renderTooltip(mx, my, parsedTooltip);
 
 			int tooltipY = 8 + tooltipData.size() * 11;
 
 			if(tooltipEntry) {
-				xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper.renderTooltipOrange(mx, my + tooltipY, Collections.singletonList(
+				xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper.renderTooltipOrange(mx, my + tooltipY, Collections.singletonList(
 						TextFormatting.GRAY + I18n.format("botaniamisc.clickToRecipe")));
 				tooltipY += 18;
 			}
 
 			if(tooltipContainerStack != null)
-				xyz.brassgoggledcoders.boilerplate.lib.client.manual.RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(
+				xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(
 						TextFormatting.AQUA + I18n.format("botaniamisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
 		}
 

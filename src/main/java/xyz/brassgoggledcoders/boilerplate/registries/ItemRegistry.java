@@ -4,9 +4,9 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.lib.client.models.IHasModel;
-import xyz.brassgoggledcoders.boilerplate.lib.client.models.SafeModelLoader;
-import xyz.brassgoggledcoders.boilerplate.lib.client.renderers.ISpecialRenderedItem;
+import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
+import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
+import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
 import java.util.Map;

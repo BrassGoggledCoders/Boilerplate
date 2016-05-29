@@ -4,8 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.RayTraceResult;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.lib.client.IBlockOverlayText;
 import xyz.brassgoggledcoders.boilerplate.blocks.SideType;
+import xyz.brassgoggledcoders.boilerplate.client.IBlockOverlayText;
 import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 
 import java.util.Arrays;
