@@ -4,9 +4,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
-import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 
 /**
  * @author Surseance
@@ -50,7 +49,13 @@ public class Utils
 		{
 			e.printStackTrace();
 		}
-		BoilerplateLib.getLogger().error(path + " did not initialize. Something's gonna break.");
+
+		IBoilerplateMod mod = getCurrentMod();
+		if(mod != null)
+		{
+			mod.getLogger().error(path + " did not initialize. Something's gonna break.");
+		}
+
 		return null;
 	}
 
@@ -63,7 +68,12 @@ public class Utils
 		{
 			e.printStackTrace();
 		}
-		BoilerplateLib.getLogger().error(clazz.getName() + " did not initialize. Something's gonna break.");
+
+		IBoilerplateMod mod = getCurrentMod();
+		if(mod != null)
+		{
+			mod.getLogger().error(clazz.getName() + " did not initialize. Something's gonna break.");
+		}
 		return null;
 	}
 }

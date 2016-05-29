@@ -3,51 +3,51 @@ package xyz.brassgoggledcoders.boilerplate.client.models;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
 public class SafeModelLoader
 {
-	public static void loadBlockModel(Block block)
+	public static void loadBlockModel(IBoilerplateMod mod, Block block)
 	{
-		loadBlockModel(block, 0);
+		loadBlockModel(mod, block, 0);
 	}
 
-	public static void loadBlockModel(Block block, int metadata)
+	public static void loadBlockModel(IBoilerplateMod mod, Block block, int metadata)
 	{
-		loadBlockModel(block, metadata, block.getUnlocalizedName().substring(5));
+		loadBlockModel(mod, block, metadata, block.getUnlocalizedName().substring(5));
 	}
 
-	public static void loadBlockModel(Block block, int metadata, String override)
+	public static void loadBlockModel(IBoilerplateMod mod, Block block, int metadata, String override)
 	{
-		loadItemModel(Item.getItemFromBlock(block), metadata, override);
+		loadItemModel(mod, Item.getItemFromBlock(block), metadata, override);
 	}
 
-	public static void loadItemModel(Item item)
+	public static void loadItemModel(IBoilerplateMod mod, Item item)
 	{
-		loadItemModel(item, 0);
+		loadItemModel(mod, item, 0);
 	}
 
-	public static void loadItemModel(Item item, int metadata)
+	public static void loadItemModel(IBoilerplateMod mod, Item item, int metadata)
 	{
 		String name = item.getUnlocalizedName();
 		if(name.startsWith("item."))
 		{
 			name = name.substring(5);
 		}
-		loadItemModel(item, metadata, name);
+		loadItemModel(mod, item, metadata, name);
 	}
 
-	public static void loadItemModel(Item item, int metadata, String override)
+	public static void loadItemModel(IBoilerplateMod mod, Item item, int metadata, String override)
 	{
-		loadItemModel(item, metadata, new ResourceLocation(BoilerplateLib.getMod().getPrefix() + override));
+		loadItemModel(mod, item, metadata, new ResourceLocation(mod.getPrefix() + override));
 	}
 
-	public static void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation)
+	public static void loadItemModel(IBoilerplateMod mod, Item item, int metadata, ResourceLocation resourceLocation)
 	{
-		BoilerplateLib.getProxy().loadItemModel(item, metadata, resourceLocation);
+		mod.getProxy().loadItemModel(item, metadata, resourceLocation);
 	}
 
-	public static void loadItemModel(Object object, int metadata, String location)
+	public static void loadItemModel(IBoilerplateMod mod, Object object, int metadata, String location)
 	{
 		Item item = null;
 		if(object instanceof Item)
@@ -59,18 +59,8 @@ public class SafeModelLoader
 
 		if(item != null)
 		{
-			ResourceLocation resourceLocation = new ResourceLocation(BoilerplateLib.getMod().getPrefix() + location);
-			BoilerplateLib.getProxy().loadItemModel(item, metadata, resourceLocation);
+			ResourceLocation resourceLocation = new ResourceLocation(mod.getPrefix() + location);
+			mod.getProxy().loadItemModel(item, metadata, resourceLocation);
 		}
-	}
-
-	public static void addVariantName(Item item, String... names)
-	{
-		BoilerplateLib.getProxy().addVariantName(item, names);
-	}
-
-	public static void registerItemModelVariant(Item item, int metadata, String itemModelName)
-	{
-		BoilerplateLib.getProxy().registerItemModelVariant(item, metadata, itemModelName);
 	}
 }

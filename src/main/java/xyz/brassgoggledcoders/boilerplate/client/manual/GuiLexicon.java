@@ -12,10 +12,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.client.manual.button.*;
 import xyz.brassgoggledcoders.boilerplate.manual.BotaniaAPI;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconCategory;
+import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +31,7 @@ public class GuiLexicon extends GuiScreen {
 
 	private static final String TAG_TYPE = "type";
 
-	public static final ResourceLocation texture = new ResourceLocation(BoilerplateLib.getMod().getPrefix() + "textures/gui/manual/manual.png");
+	public static final ResourceLocation texture = new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/manual.png");
 
 	public float lastTime = 0F;
 	public float partialTicks = 0F;

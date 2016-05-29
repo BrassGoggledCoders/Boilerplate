@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate.items;
 
 import net.minecraft.item.Item;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
@@ -27,7 +26,6 @@ public class ItemBase extends Item implements IHasModel, IModAware
 			this.texturePath += "/";
 		}
 		this.setUnlocalizedName(name);
-		this.setCreativeTab(BoilerplateLib.getMod().getCreativeTab());
 	}
 
 	@Override
