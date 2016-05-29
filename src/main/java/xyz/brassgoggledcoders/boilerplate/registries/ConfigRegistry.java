@@ -1,25 +1,23 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import net.minecraftforge.common.config.Configuration;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 {
-	private static ConfigRegistry instance;
-
 	private List<IConfigListener> listeners = new ArrayList<IConfigListener>();
+	private Configuration configuration;
 
-	public static ConfigRegistry getInstance()
+	public ConfigRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder, File suggestConfigFile)
 	{
-		if(instance == null)
-		{
-			instance = new ConfigRegistry();
-		}
-		return instance;
+		super(mod, registryHolder);
+		configuration = new Configuration(suggestConfigFile);
 	}
 
 	public void alertTheListeners(String name, ConfigEntry configEntry)
@@ -30,42 +28,42 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		}
 	}
 
-	public static void addCategoryComment(String name, String comment)
+	public void addCategoryComment(String name, String comment)
 	{
-		BoilerplateLib.getConfig().addCustomCategoryComment(name, comment);
+		configuration.addCustomCategoryComment(name, comment);
 	}
 
-	public static void addEntry(ConfigEntry entry)
+	public void addEntry(ConfigEntry entry)
 	{
 		addEntry(entry.getPropertyName(), entry);
 	}
 
-	public static void addEntry(String name, ConfigEntry entry)
+	public void addEntry(String name, ConfigEntry entry)
 	{
-		getInstance().entries.put(name, entry);
-		entry.toProperty(BoilerplateLib.getConfig());
-		BoilerplateLib.getConfig().save();
+		this.entries.put(name, entry);
+		entry.toProperty(configuration);
+		configuration.save();
 	}
 
-	public static void updateEntry(String name, String value)
+	public void updateEntry(String name, String value)
 	{
-		ConfigEntry configEntry = getInstance().entries.get(name);
+		ConfigEntry configEntry = this.entries.get(name);
 		if(configEntry != null)
 		{
 			configEntry.setValue(value);
-			getInstance().alertTheListeners(name, configEntry);
+			this.alertTheListeners(name, configEntry);
 		} else
 		{
-			BoilerplateLib.getLogger().error("Config Entry for " + name + " not found");
+			mod.getLogger().error("Config Entry for " + name + " not found");
 		}
 	}
 
-	public static ConfigEntry getEntry(String name)
+	public ConfigEntry getEntry(String name)
 	{
-		return getInstance().entries.get(name);
+		return this.entries.get(name);
 	}
 
-	public static boolean getBoolean(String name, boolean defaultValue)
+	public boolean getBoolean(String name, boolean defaultValue)
 	{
 		boolean returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
@@ -76,7 +74,7 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		return returnValue;
 	}
 
-	public static int getInt(String name, int defaultValue)
+	public int getInt(String name, int defaultValue)
 	{
 		int returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
@@ -87,7 +85,7 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		return returnValue;
 	}
 
-	public static double getDouble(String name, double defaultValue)
+	public double getDouble(String name, double defaultValue)
 	{
 		double returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
@@ -98,7 +96,7 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		return returnValue;
 	}
 
-	public static String getString(String name, String defaultValue)
+	public String getString(String name, String defaultValue)
 	{
 		String returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
@@ -109,8 +107,8 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		return returnValue;
 	}
 
-	public static void addListener(IConfigListener listener)
+	public void addListener(IConfigListener listener)
 	{
-		getInstance().listeners.add(listener);
+		this.listeners.add(listener);
 	}
 }

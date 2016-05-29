@@ -9,14 +9,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
-import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
-import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
-import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
 import xyz.brassgoggledcoders.boilerplate.items.ItemDebuggerStick;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
+import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
+import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
-public class Boilerplate implements IBoilerplateMod
+public class Boilerplate extends BoilerplateModBase
 {
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
@@ -33,27 +32,30 @@ public class Boilerplate implements IBoilerplateMod
 			"27672103-b8c7-400d-8817-49de433336dd" };
 
 	public static ItemDebuggerStick ITEM_DEBUG_STICK;
+	public IRegistryHolder registryHolder;
 
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
-	@Mod.Instance("boilerplate")
+	@Mod.Instance(ModInfo.ID)
 	public static Boilerplate instance;
-	public static ModLogger logger;
 
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event)
+	public Boilerplate()
 	{
-		BoilerplateLib.getInstance().preInitStart(event);
-		logger = BoilerplateLib.getLogger();
-		ConfigRegistry.addEntry("debugging", new ConfigEntry("debugging", "activateDebuggingStickOfDoom", Type.BOOLEAN,
-				"false", "True to enable"));
+		super(ModInfo.ID, ModInfo.NAME, ModInfo.VERSION, CreativeTabs.MISC);
+	}
 
-		if (ConfigRegistry.getBoolean("debugging", false) || !FMLForgePlugin.RUNTIME_DEOBF)
+	@Override
+	public void modPreInit(FMLPreInitializationEvent event)
+	{
+		this.getRegistryHolder().getConfigRegistry().addEntry("debugging",
+				new ConfigEntry("debugging", "activateDebuggingStickOfDoom", Type.BOOLEAN, "false", "True to enable"));
+
+		if (this.getRegistryHolder().getConfigRegistry().getBoolean("debugging", false) || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
 			ItemRegistry.registerItem(ITEM_DEBUG_STICK);
-			logger.info("The Debugging Stick of Doom is active!");
+			this.getLogger().info("The Debugging Stick of Doom is active!");
 		}
 		BoilerplateLib.getInstance().preInitEnd(event);
 	}
@@ -68,7 +70,7 @@ public class Boilerplate implements IBoilerplateMod
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		BoilerplateLib.getInstance().postInit(event);
-		logger.info("GNU Terry Prachett");
+		this.getLogger().info("GNU Terry Prachett");
 	}
 
 	@Override
@@ -78,32 +80,14 @@ public class Boilerplate implements IBoilerplateMod
 	}
 
 	@Override
-	public CreativeTabs getCreativeTab()
+	public CommonProxy getProxy()
 	{
-		return CreativeTabs.MISC;
+		return proxy;
 	}
 
 	@Override
-	public String getID()
+	public IRegistryHolder getRegistryHolder()
 	{
-		return ModInfo.ID;
-	}
-
-	@Override
-	public String getName()
-	{
-		return ModInfo.NAME;
-	}
-
-	@Override
-	public String getVersion()
-	{
-		return ModInfo.VERSION;
-	}
-
-	@Override
-	public String getPrefix()
-	{
-		return ModInfo.NAME + ":";
+		return null;
 	}
 }

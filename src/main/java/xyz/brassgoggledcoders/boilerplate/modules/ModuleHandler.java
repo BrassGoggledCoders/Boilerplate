@@ -1,13 +1,13 @@
 package xyz.brassgoggledcoders.boilerplate.modules;
 
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
-import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
+import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 
 import java.util.HashMap;
 
@@ -16,21 +16,17 @@ import java.util.HashMap;
  */
 public class ModuleHandler
 {
-	private HashMap<String, Module> modulesEnabled = new HashMap<String, Module>();
+	private HashMap<String, Module> modules = new HashMap<String, Module>();
+	private IRegistryHolder registryHolder;
 
-	public HashMap<String, Module> getModulesEnabled()
+	public ModuleHandler(IBoilerplateMod mod)
 	{
-		return modulesEnabled;
-	}
-
-	public void addModule(Module module)
-	{
-		modulesEnabled.put(module.getName(), module);
+		this.registryHolder = mod.getRegistryHolder();
 	}
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		for (Module module : getModulesEnabled().values())
+		for (Module module : getModules().values())
 		{
 			if (!module.areRequirementsMet() && module.getIsActive())
 			{
@@ -43,7 +39,7 @@ public class ModuleHandler
 			}
 		}
 
-		for (Module module : getModulesEnabled().values())
+		for (Module module : getModules().values())
 		{
 			if (module.getIsActive())
 			{
@@ -54,7 +50,7 @@ public class ModuleHandler
 
 	public void init(FMLInitializationEvent event)
 	{
-		for (Module module : getModulesEnabled().values())
+		for (Module module : getModules().values())
 		{
 			if (module.getIsActive())
 			{
@@ -65,7 +61,7 @@ public class ModuleHandler
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		for (Module module : getModulesEnabled().values())
+		for (Module module : getModules().values())
 		{
 			if (module.getIsActive())
 			{
@@ -76,7 +72,7 @@ public class ModuleHandler
 
 	public void clientInit(FMLInitializationEvent event)
 	{
-		for (Module module : getModulesEnabled().values())
+		for (Module module : getModules().values())
 		{
 			if (module.getIsActive())
 			{
@@ -85,20 +81,29 @@ public class ModuleHandler
 		}
 	}
 
-	public Configuration configureModCompat(Configuration configuration)
+	public void configureModules()
 	{
-		for (Module module : getModulesEnabled().values())
+		for (Module module : getModules().values())
 		{
-			ConfigRegistry.addEntry(module.getName(),
+			this.registryHolder.getConfigRegistry().addEntry(module.getName(),
 					new ConfigEntry("Module", module.getName() + " Enabled", Type.BOOLEAN, "true"));
-			module.setIsActive(ConfigRegistry.getBoolean(module.getName(), true));
+			module.setIsActive(this.registryHolder.getConfigRegistry().getBoolean(module.getName(), true));
 		}
-		return configuration;
+	}
+
+	public HashMap<String, Module> getModules()
+	{
+		return modules;
+	}
+
+	public void addModule(Module module)
+	{
+		modules.put(module.getName(), module);
 	}
 
 	public Module getModule(String name)
 	{
-		return modulesEnabled.get(name);
+		return modules.get(name);
 	}
 
 	public boolean isModuleEnabled(String name)

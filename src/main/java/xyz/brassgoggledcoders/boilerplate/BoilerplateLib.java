@@ -51,34 +51,8 @@ public class BoilerplateLib
 		this.mod = mod;
 		this.logger = new ModLogger(mod.getID());
 		this.guiHandler = new GuiHandler(mod);
-		this.moduleHandler = new ModuleHandler();
+		this.moduleHandler = new ModuleHandler(mod);
 		this.packetHandler = new PacketHandler(mod.getID());
-	}
-
-	public void preInitStart(FMLPreInitializationEvent event)
-	{
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
-		ConfigRegistry.addEntry("colorblind",new ConfigEntry("general", "colorblindSupport", Type.BOOLEAN, "false",
-				"True to enable"));
-		getModuleHandler().configureModCompat(config);
-
-		getLogger().info(getMod().getName() + " has BoilerplateLib Version " + VERSION + " installed");
-		String packageString = this.getClass().getPackage().toString().replace("package", "").trim();
-		String clientProxy = packageString + ".client.ClientProxy";
-		String serverProxy = packageString + ".common.CommonProxy";
-
-		proxy = Utils.createProxy(clientProxy, serverProxy);
-		getModuleHandler().preInit(event);
-	}
-
-	public void preInitEnd(FMLPreInitializationEvent event)
-	{
-		getProxy().registerEvents();
-		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
-		{
-			registry.preInit();
-		}
 	}
 
 	public void init(FMLInitializationEvent event)

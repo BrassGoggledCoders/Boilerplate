@@ -1,6 +1,11 @@
 package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
+import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
+import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
+import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
+import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
 
 /**
  * @author SkySom
@@ -18,4 +23,14 @@ public interface IBoilerplateMod
 	String getVersion();
 
 	String getPrefix();
+
+	CommonProxy getProxy();
+
+	ModLogger getLogger();
+
+	GuiHandler getGuiHandler();
+
+	PacketHandler getPacketHandler();
+
+	IRegistryHolder getRegistryHolder();
 }
