@@ -11,7 +11,6 @@ import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
 import xyz.brassgoggledcoders.boilerplate.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
@@ -32,7 +31,6 @@ public class Boilerplate extends BoilerplateModBase
 			"27672103-b8c7-400d-8817-49de433336dd" };
 
 	public static ItemDebuggerStick ITEM_DEBUG_STICK;
-	public IRegistryHolder registryHolder;
 
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy")
 	public static CommonProxy proxy;
@@ -65,10 +63,9 @@ public class Boilerplate extends BoilerplateModBase
 
 	}
 
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event)
+	@Override
+	protected void modPostInit(FMLPostInitializationEvent event)
 	{
-		BoilerplateLib.getInstance().postInit(event);
 		this.getLogger().info("GNU Terry Prachett");
 	}
 
@@ -82,11 +79,5 @@ public class Boilerplate extends BoilerplateModBase
 	public CommonProxy getProxy()
 	{
 		return proxy;
-	}
-
-	@Override
-	public IRegistryHolder getRegistryHolder()
-	{
-		return null;
 	}
 }

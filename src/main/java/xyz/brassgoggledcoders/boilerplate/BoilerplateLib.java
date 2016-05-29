@@ -1,17 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
-import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
-import xyz.brassgoggledcoders.boilerplate.config.Type;
 import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.registries.BaseRegistry;
-import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
 import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
@@ -53,15 +46,6 @@ public class BoilerplateLib
 		this.guiHandler = new GuiHandler(mod);
 		this.moduleHandler = new ModuleHandler(mod);
 		this.packetHandler = new PacketHandler(mod.getID());
-	}
-
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		getModuleHandler().postInit(event);
-		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
-		{
-			registry.postInit();
-		}
 	}
 
 	public static ModLogger getLogger()
