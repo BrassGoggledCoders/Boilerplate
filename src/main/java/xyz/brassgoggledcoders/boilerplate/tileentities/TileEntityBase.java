@@ -4,12 +4,23 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.utils.Utils;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author SkySom
  */
 public abstract class TileEntityBase extends TileEntity
 {
+	protected IBoilerplateMod mod;
+
+	public TileEntityBase()
+	{
+		this.mod = Utils.getCurrentMod();
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTagCompound)
 	{
@@ -20,6 +31,7 @@ public abstract class TileEntityBase extends TileEntity
 	public abstract void readFromNBTCustom(NBTTagCompound nbtTagCompound);
 
 	@Override
+	@Nonnull
 	public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound)
 	{
 		nbtTagCompound = super.writeToNBT(nbtTagCompound);

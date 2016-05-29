@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
@@ -13,15 +14,9 @@ import java.util.Map;
 
 public class BlockRegistry extends BaseRegistry<Block>
 {
-	private static BlockRegistry instance;
-
-	public static BlockRegistry getInstance()
+	public BlockRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder)
 	{
-		if(instance == null)
-		{
-			instance = new BlockRegistry();
-		}
-		return instance;
+		super(mod, registryHolder);
 	}
 
 	@Override
@@ -45,13 +40,13 @@ public class BlockRegistry extends BaseRegistry<Block>
 		super.initiateEntries();
 	}
 
-	public static void registerAndCreateBasicBlock(Material mat, String name)
+	public void registerAndCreateBasicBlock(Material mat, String name)
 	{
 		Block block = new BlockBase(mat);
-		getInstance().entries.put(name, block);
+		this.entries.put(name, block);
 	}
 
-	public static void registerBlock(Block block)
+	public void registerBlock(Block block)
 	{
 		String name = block.getUnlocalizedName();
 		if(name.startsWith("tile."))
@@ -61,13 +56,13 @@ public class BlockRegistry extends BaseRegistry<Block>
 		registerBlock(block, name);
 	}
 
-	public static void registerBlock(Block block, String name)
+	public void registerBlock(Block block, String name)
 	{
-		getInstance().entries.put(name, block);
+		this.entries.put(name, block);
 	}
 
-	public static Block getBlock(String name)
+	public Block getBlock(String name)
 	{
-		return getInstance().entries.get(name);
+		return this.entries.get(name);
 	}
 }

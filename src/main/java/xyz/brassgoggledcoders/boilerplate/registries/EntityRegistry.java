@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.boilerplate.registries;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.entity.SpawnEgg;
 import xyz.brassgoggledcoders.boilerplate.entity.SpawnInfo;
 
@@ -17,13 +18,9 @@ public class EntityRegistry extends BaseRegistry<Class<? extends Entity>>
 	private HashMap<String, SpawnInfo> spawnInfos = new HashMap<String, SpawnInfo>();
 	private int nextAvailableID = 0;
 
-	public static EntityRegistry getInstance()
+	public EntityRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder)
 	{
-		if(instance == null)
-		{
-			instance = new EntityRegistry();
-		}
-		return instance;
+		super(mod, registryHolder);
 	}
 
 	@Override
@@ -57,28 +54,28 @@ public class EntityRegistry extends BaseRegistry<Class<? extends Entity>>
 		super.initiateEntries();
 	}
 
-	public static void registerEntity(Class<? extends  Entity> entityClass)
+	public void registerEntity(Class<? extends  Entity> entityClass)
 	{
 		registerEntity(entityClass, entityClass.getSimpleName().toLowerCase());
 	}
 
-	public static void registerEntity(Class<? extends Entity> entityClass, String name)
+	public void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
-		getInstance().entries.put(name, entityClass);
+		this.entries.put(name, entityClass);
 	}
 
-	public static void addSpawnEgg(String name, SpawnEgg spawnEgg)
+	public void addSpawnEgg(String name, SpawnEgg spawnEgg)
 	{
-		getInstance().spawnEggs.put(name, spawnEgg);
+		this.spawnEggs.put(name, spawnEgg);
 	}
 
-	public static void addSpawnInfo(String name, SpawnInfo spawnInfo)
+	public void addSpawnInfo(String name, SpawnInfo spawnInfo)
 	{
-		getInstance().spawnInfos.put(name, spawnInfo);
+		this.spawnInfos.put(name, spawnInfo);
 	}
 
-	public static Class<? extends Entity> getEntity(String name)
+	public Class<? extends Entity> getEntity(String name)
 	{
-		return getInstance().entries.get(name);
+		return this.entries.get(name);
 	}
 }

@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
@@ -13,15 +14,9 @@ import java.util.Map;
 
 public class ItemRegistry extends BaseRegistry<Item>
 {
-	private static ItemRegistry instance;
-
-	public static ItemRegistry getInstance()
+	public ItemRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder)
 	{
-		if(instance == null)
-		{
-			instance = new ItemRegistry();
-		}
-		return instance;
+		super(mod, registryHolder);
 	}
 
 	@Override
@@ -59,7 +54,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 		}
 	}
 
-	public static void registerItem(Item item)
+	public void registerItem(Item item)
 	{
 		String name = item.getUnlocalizedName();
 		if(name.startsWith("item."))
@@ -69,24 +64,24 @@ public class ItemRegistry extends BaseRegistry<Item>
 		registerItem(item, name);
 	}
 
-	public static void registerItem(Item item, String name)
+	public void registerItem(Item item, String name)
 	{
-		if(getInstance().getLoadingStage() != LoadingStage.PREINIT)
+		if(this.getLoadingStage() != LoadingStage.PREINIT)
 		{
 			BoilerplateLib.getLogger().devFatal("Item named " + name + " is being loaded too late");
 		}
-		getInstance().entries.put(name, item);
+		this.entries.put(name, item);
 	}
 
-	public static void registerAndCreateBasicItem(String name)
+	public void registerAndCreateBasicItem(String name)
 	{
 		Item item = new ItemBase(name);
 		registerItem(item, name);
 	}
 
 
-	public static Item getItem(String name)
+	public Item getItem(String name)
 	{
-		return getInstance().entries.get(name);
+		return this.entries.get(name);
 	}
 }
