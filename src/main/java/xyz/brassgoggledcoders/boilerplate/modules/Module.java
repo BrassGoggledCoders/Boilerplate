@@ -3,11 +3,11 @@ package xyz.brassgoggledcoders.boilerplate.modules;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 
 public abstract class Module
 {
-	boolean isActive = true;
+	private boolean isActive = true;
+	private ModuleHandler handler;
 
 	public abstract String getName();
 
@@ -53,6 +53,11 @@ public abstract class Module
 
 	public boolean isOtherModuleActive(String name)
 	{
-		return BoilerplateLib.getModuleHandler().isModuleEnabled(name);
+		return handler.isModuleEnabled(name);
+	}
+
+	public void setModuleHandler(ModuleHandler handler)
+	{
+		this.handler = handler;
 	}
 }

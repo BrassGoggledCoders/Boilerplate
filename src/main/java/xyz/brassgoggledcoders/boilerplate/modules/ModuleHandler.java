@@ -3,7 +3,6 @@ package xyz.brassgoggledcoders.boilerplate.modules;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
@@ -18,9 +17,11 @@ public class ModuleHandler
 {
 	private HashMap<String, Module> modules = new HashMap<String, Module>();
 	private IRegistryHolder registryHolder;
+	private IBoilerplateMod mod;
 
 	public ModuleHandler(IBoilerplateMod mod)
 	{
+		this.mod = mod;
 		this.registryHolder = mod.getRegistryHolder();
 	}
 
@@ -28,14 +29,15 @@ public class ModuleHandler
 	{
 		for (Module module : getModules().values())
 		{
+			module.setModuleHandler(this);
 			if (!module.areRequirementsMet() && module.getIsActive())
 			{
 				module.setIsActive(false);
-				BoilerplateLib.getLogger().error("Requirements are not met for " + module.getName() + ". Deactivating");
+				mod.getLogger().error("Requirements are not met for " + module.getName() + ". Deactivating");
 			}
 			if (module.getIsActive())
 			{
-				BoilerplateLib.getLogger().info("Loading " + module.getName() + " module");
+				mod.getLogger().info("Loading " + module.getName() + " module");
 			}
 		}
 
