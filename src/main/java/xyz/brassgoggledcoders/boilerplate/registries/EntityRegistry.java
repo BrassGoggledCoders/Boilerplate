@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.boilerplate.registries;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.entity.SpawnEgg;
 import xyz.brassgoggledcoders.boilerplate.entity.SpawnInfo;
@@ -30,7 +29,7 @@ public class EntityRegistry extends BaseRegistry<Class<? extends Entity>>
 		for(Map.Entry<String, Class<? extends Entity>> entry : entries.entrySet())
 		{
 			net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity(entry.getValue(), entry.getKey(),
-					++nextAvailableID, BoilerplateLib.getMod(),	64, 1, true);
+					++nextAvailableID, mod,	64, 1, true);
 
 			if(spawnEggs.containsKey(entry.getKey()))
 			{

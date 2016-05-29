@@ -3,7 +3,6 @@ package xyz.brassgoggledcoders.boilerplate.registries;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
@@ -24,7 +23,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 	{
 		for(Map.Entry<String, Item> itemEntry : entries.entrySet())
 		{
-			ResourceLocation name = new ResourceLocation(BoilerplateLib.getMod().getPrefix() + itemEntry.getKey());
+			ResourceLocation name = new ResourceLocation(mod.getPrefix() + itemEntry.getKey());
 			GameRegistry.register(itemEntry.getValue(), name);
 		}
 		super.initiateEntries();
@@ -36,6 +35,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 		super.initiateModels();
 		for(Map.Entry<String, Item> entry: entries.entrySet())
 		{
+			entry.getValue().setCreativeTab(mod.getCreativeTab());
 			if(entry.getValue() instanceof IHasModel)
 			{
 				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
@@ -45,7 +45,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 				}
 				if(entry.getValue() instanceof ISpecialRenderedItem)
 				{
-					BoilerplateLib.getProxy().registerISpecialRendererItem(entry.getValue());
+					mod.getProxy().registerISpecialRendererItem(entry.getValue());
 				}
 			} else
 			{
@@ -68,7 +68,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 	{
 		if(this.getLoadingStage() != LoadingStage.PREINIT)
 		{
-			BoilerplateLib.getLogger().devFatal("Item named " + name + " is being loaded too late");
+			mod.getLogger().devFatal("Item named " + name + " is being loaded too late");
 		}
 		this.entries.put(name, item);
 	}

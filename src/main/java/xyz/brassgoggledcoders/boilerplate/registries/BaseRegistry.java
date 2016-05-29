@@ -2,8 +2,8 @@ package xyz.brassgoggledcoders.boilerplate.registries;
 
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.IModAware;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
@@ -52,6 +52,10 @@ public abstract class BaseRegistry<T>
 			{
 				registryHolder.getConfigRegistry().addListener((IConfigListener) entry.getValue());
 			}
+			if(entry.getValue() instanceof IModAware)
+			{
+				((IModAware) entry.getValue()).setMod(this.mod);
+			}
 		}
 	}
 
@@ -93,7 +97,7 @@ public abstract class BaseRegistry<T>
 	{
 		if(stage.ordinal() < loadingStage.ordinal())
 		{
-			BoilerplateLib.getLogger().fatal("Stage should never be set to an earlier stage!");
+			this.mod.getLogger().fatal("Stage should never be set to an earlier stage!");
 		} else
 		{
 			this.loadingStage = stage;
