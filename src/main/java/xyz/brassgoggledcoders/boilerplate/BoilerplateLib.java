@@ -55,15 +55,6 @@ public class BoilerplateLib
 		this.packetHandler = new PacketHandler(mod.getID());
 	}
 
-	public void init(FMLInitializationEvent event)
-	{
-		getProxy().initModuleHandler(getModuleHandler(), event);
-		for(BaseRegistry registry: BaseRegistry.getAllRegistries())
-		{
-			registry.init();
-		}
-	}
-
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		getModuleHandler().postInit(event);

@@ -57,13 +57,12 @@ public class Boilerplate extends BoilerplateModBase
 			ItemRegistry.registerItem(ITEM_DEBUG_STICK);
 			this.getLogger().info("The Debugging Stick of Doom is active!");
 		}
-		BoilerplateLib.getInstance().preInitEnd(event);
 	}
 
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent event)
+	@Override
+	public void modInit(FMLInitializationEvent event)
 	{
-		BoilerplateLib.getInstance().init(event);
+
 	}
 
 	@Mod.EventHandler

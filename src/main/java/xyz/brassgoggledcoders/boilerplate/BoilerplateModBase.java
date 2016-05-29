@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
 import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
@@ -48,6 +49,18 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	}
 
 	public abstract void modPreInit(FMLPreInitializationEvent event);
+
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		getProxy().initModuleHandler(this.moduleHandler, event);
+		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
+		{
+			registry.init();
+		}
+	}
+
+	public abstract void modInit(FMLInitializationEvent event);
 
 	@Override
 	public CreativeTabs getCreativeTab()
