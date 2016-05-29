@@ -12,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
@@ -25,22 +25,17 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-project.ext {
-    buildNum = System.getenv("BUILD_NUMBER")
-    mcVersion = "1.9"
-    forgeVersion = "12.16.1.1887"
-}
-
-version = project.ext.mcVersion + "-8.0.0." + project.ext.buildNum
+version = "${minecraft_version}-${boilerplate_version}." + System.getenv("BUILD_NUMBER")
 
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
 
 minecraft {
-    version = "${project.ext.mcVersion}-${project.ext.forgeVersion}"
+    version = "${minecraft_version}-${forge_version}-${minecraft_version}"
 
-    runDir = "eclipse/"
-    mappings = "snapshot_20160319"
+    mappings = "${mappings_version}"
+    runDir = "run/"
+    useDepAts = true
 
     replace "@VERSION@", project.version
     replaceIn "ModInfo.java"
