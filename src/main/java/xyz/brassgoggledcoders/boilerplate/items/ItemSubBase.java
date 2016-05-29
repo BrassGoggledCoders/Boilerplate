@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class ItemSubBase extends ItemBase
@@ -57,7 +57,8 @@ public class ItemSubBase extends ItemBase
 
 	public ItemStack getStackByName(String metaName, int count)
 	{
-		return new ItemStack(ItemRegistry.getItem(this.getUnlocalizedName()), count, getMeta(metaName));
+		return new ItemStack(getMod().getRegistryHolder().getItemRegistry().getItem(
+				this.getUnlocalizedName()), count, getMeta(metaName));
 	}
 
 	public ItemStack getStackByName(String name)
@@ -79,7 +80,7 @@ public class ItemSubBase extends ItemBase
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list)
+	public void getSubItems(@Nonnull Item item, CreativeTabs tab, List<ItemStack> list)
 	{
 		for (int i = 0; i < getNumberOfSubItems(); i++)
 		{

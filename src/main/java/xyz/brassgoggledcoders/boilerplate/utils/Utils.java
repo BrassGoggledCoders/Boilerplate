@@ -22,7 +22,7 @@ public class Utils
 			return (IBoilerplateMod) activeMod;
 		} else
 		{
-			FMLLog.bigWarning("Mods using Boilerplate Lib must have their mod class extend IBoilerplateMod!", "");
+			FMLLog.bigWarning("Mods using Boilerplate must have their mod class extend IBoilerplateMod!", "");
 			return null;
 		}
 	}

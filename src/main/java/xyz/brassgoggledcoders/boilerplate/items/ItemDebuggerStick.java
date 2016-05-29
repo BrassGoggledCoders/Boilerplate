@@ -11,8 +11,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
-import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;
 
 /**
@@ -27,12 +27,13 @@ public class ItemDebuggerStick extends ItemBase
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+	@Nonnull
+	public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
 	{
 		RayTraceResult rayTrace = rayTrace(world, player, true);
 
 		LinkedHashMap<String, String> debugStrings = new LinkedHashMap<String, String>();
-		if(rayTrace != null && rayTrace.typeOfHit != null)
+		if(rayTrace.typeOfHit != null)
 		{
 			if (rayTrace.typeOfHit == RayTraceResult.Type.BLOCK)
 			{
@@ -62,7 +63,7 @@ public class ItemDebuggerStick extends ItemBase
 		{
 			for(String debugString : debugStrings.values())
 			{
-				Boilerplate.logger.info(debugString);
+				getMod().getLogger().info(debugString);
 			}
 			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
 		}

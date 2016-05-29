@@ -6,7 +6,6 @@ import net.minecraft.util.math.RayTraceResult;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateLib;
 import xyz.brassgoggledcoders.boilerplate.blocks.SideType;
 import xyz.brassgoggledcoders.boilerplate.client.IBlockOverlayText;
-import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 
 import java.util.Arrays;
 
@@ -16,12 +15,14 @@ import java.util.Arrays;
 public abstract class TileEntitySidedBase extends TileEntityBase implements IBlockOverlayText
 {
 	private SideType[] sideConfig;
+	private boolean isColorBlindActive;
 
 	public TileEntitySidedBase()
 	{
 		super();
 		sideConfig = new SideType[6];
 		Arrays.fill(sideConfig, SideType.NONE);
+		isColorBlindActive = mod.getRegistryHolder().getConfigRegistry().getBoolean("colorblind", false);
 	}
 
 	public void toggleSide(int side)
@@ -97,7 +98,7 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 	@Override
 	public String[] getOverlayText(EntityPlayer player, RayTraceResult rayTrace, boolean tool)
 	{
-		if (tool && ConfigRegistry.getBoolean("colorblind", false))
+		if (tool && isColorBlindActive)
 		{
 			SideType facing = sideConfig[rayTrace.sideHit.ordinal()];
 			SideType opposite = sideConfig[rayTrace.sideHit.getOpposite().ordinal()];

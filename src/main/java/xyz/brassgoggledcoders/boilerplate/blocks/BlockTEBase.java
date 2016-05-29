@@ -5,7 +5,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
 import javax.annotation.Nonnull;
 
@@ -24,6 +23,7 @@ public abstract class BlockTEBase extends BlockBase implements IHasTileEntity
 		worldIn.removeTileEntity(pos);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param)
 	{
@@ -34,9 +34,5 @@ public abstract class BlockTEBase extends BlockBase implements IHasTileEntity
 
 	@Override
 	@Nonnull
-	public TileEntity createTileEntity(World world, IBlockState state)
-	{
-		Object tileEntity = Utils.createObjectInstance(getTileEntityClass());
-		return (TileEntity)tileEntity;
-	}
+	public abstract TileEntity createTileEntity(@Nonnull World world,@Nonnull IBlockState state);
 }

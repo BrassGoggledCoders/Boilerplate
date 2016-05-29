@@ -11,7 +11,6 @@ import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
 import xyz.brassgoggledcoders.boilerplate.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
 public class Boilerplate extends BoilerplateModBase
@@ -52,7 +51,7 @@ public class Boilerplate extends BoilerplateModBase
 		if (this.getRegistryHolder().getConfigRegistry().getBoolean("debugging", false) || !FMLForgePlugin.RUNTIME_DEOBF)
 		{
 			ITEM_DEBUG_STICK = new ItemDebuggerStick();
-			ItemRegistry.registerItem(ITEM_DEBUG_STICK);
+			this.getRegistryHolder().getItemRegistry().registerItem(ITEM_DEBUG_STICK);
 			this.getLogger().info("The Debugging Stick of Doom is active!");
 		}
 	}
