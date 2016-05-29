@@ -41,6 +41,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.guiHandler = new GuiHandler(this);
 		this.moduleHandler = new ModuleHandler(this);
 		this.registryHolder = new RegistryHolder(this, event.getSuggestedConfigurationFile());
+		this.getProxy().setMod(this);
 
 		this.modPreInit(event);
 

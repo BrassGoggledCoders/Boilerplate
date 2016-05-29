@@ -4,10 +4,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 
 public class CommonProxy
 {
+	protected IBoilerplateMod mod;
+
 	public void initModuleHandler(ModuleHandler moduleHandler, FMLInitializationEvent event)
 	{
 		moduleHandler.init(event);
@@ -40,5 +43,10 @@ public class CommonProxy
 
 	public void setLexiconStack(ItemStack stack)
 	{	
+	}
+
+	public void setMod(IBoilerplateMod mod)
+	{
+		this.mod = mod;
 	}
 }
