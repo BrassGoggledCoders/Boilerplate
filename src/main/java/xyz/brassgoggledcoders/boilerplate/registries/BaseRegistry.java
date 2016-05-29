@@ -68,7 +68,7 @@ public abstract class BaseRegistry<T>
 				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
 				for(int i = 0; i < locations.length; i++)
 				{
-					SafeModelLoader.loadItemModel(entry.getValue(), i, locations[i]);
+					SafeModelLoader.loadItemModel(mod, entry.getValue(), i, locations[i]);
 				}
 			}
 		}

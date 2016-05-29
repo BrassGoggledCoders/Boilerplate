@@ -41,7 +41,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
 				for(int i = 0; i < locations.length; i++)
 				{
-					SafeModelLoader.loadItemModel(entry.getValue(), i, locations[i]);
+					SafeModelLoader.loadItemModel(mod, entry.getValue(), i, locations[i]);
 				}
 				if(entry.getValue() instanceof ISpecialRenderedItem)
 				{
@@ -49,7 +49,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 				}
 			} else
 			{
-				SafeModelLoader.loadItemModel(entry.getValue());
+				SafeModelLoader.loadItemModel(mod, entry.getValue());
 			}
 		}
 	}
