@@ -27,8 +27,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "${minecraft_version}-${boilerplate_version}." + System.getenv("bamboo_buildNumber")
 
-group= "brassgoggledcoders"
-archivesBaseName = "boilerplate"
+group= "xyz.brassgoggledcoders.boilerplate"
+archivesBaseName = "Boilerplate"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}-${minecraft_version}"
