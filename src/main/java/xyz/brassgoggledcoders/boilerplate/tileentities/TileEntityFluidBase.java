@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.*;
 import xyz.brassgoggledcoders.boilerplate.utils.Selectors;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public abstract class TileEntityFluidBase extends TileEntityBase implements IFluidHandler
@@ -145,6 +146,7 @@ public abstract class TileEntityFluidBase extends TileEntityBase implements IFlu
 	}
 
 	@Override
+	@Nonnull
 	public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound)
 	{
 		nbtTagCompound = super.writeToNBT(nbtTagCompound);
