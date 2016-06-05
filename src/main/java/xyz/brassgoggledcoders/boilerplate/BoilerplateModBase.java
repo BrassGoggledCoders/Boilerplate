@@ -12,8 +12,8 @@ import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.BaseRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.registries.RegistryHolder;
+import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
-import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
 public abstract class BoilerplateModBase implements IBoilerplateMod
 {
@@ -36,7 +36,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.creativeTab = creativeTab;
 		this.logger = new ModLogger(modid);
 		this.packetHandler = new PacketHandler(modid);
-		this.boilerplateProxy = Utils.createProxy("xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy",
+		this.boilerplateProxy = ClassLoading.createProxy("xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy",
 				"xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy");
 	}
 

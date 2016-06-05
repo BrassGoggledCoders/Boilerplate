@@ -1,6 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate.client.renderers;
 
-import xyz.brassgoggledcoders.boilerplate.utils.Utils;
+import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
 
 import java.util.HashMap;
 
@@ -27,7 +27,7 @@ public class ItemSpecialRenderStore
 	{
 		if(!renderersLoaded.containsKey(path))
 		{
-			Object renderer = Utils.createObjectInstance(path);
+			Object renderer = ClassLoading.createObjectInstance(path);
 			if(renderer instanceof ItemSpecialRenderer)
 			{
 				renderersLoaded.put(path, (ItemSpecialRenderer)renderer);
