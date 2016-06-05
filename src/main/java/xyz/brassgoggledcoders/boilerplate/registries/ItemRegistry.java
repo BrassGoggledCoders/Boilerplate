@@ -45,7 +45,7 @@ public class ItemRegistry extends BaseRegistry<Item>
 				}
 				if(entry.getValue() instanceof ISpecialRenderedItem)
 				{
-					mod.getProxy().registerISpecialRendererItem(entry.getValue());
+					mod.getBoilerplateProxy().registerISpecialRendererItem(entry.getValue());
 				}
 			} else
 			{

@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
 import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
+import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
@@ -24,7 +25,7 @@ public interface IBoilerplateMod
 
 	String getPrefix();
 
-	CommonProxy getProxy();
+	CommonProxy getBoilerplateProxy();
 
 	ModLogger getLogger();
 
@@ -33,4 +34,6 @@ public interface IBoilerplateMod
 	PacketHandler getPacketHandler();
 
 	IRegistryHolder getRegistryHolder();
+
+	ModuleHandler getModuleHandler();
 }

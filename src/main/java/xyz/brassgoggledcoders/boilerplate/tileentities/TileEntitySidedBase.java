@@ -102,10 +102,10 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 			SideType facing = sideConfig[rayTrace.sideHit.ordinal()];
 			SideType opposite = sideConfig[rayTrace.sideHit.getOpposite().ordinal()];
 			return new String[] {
-					mod.getProxy().translate("blockSide.facing") + ": " +
-							mod.getProxy().translate("sidetype." + facing.name().toLowerCase()),
-					mod.getProxy().translate("blockSide.opposite") + ": "
-							+ mod.getProxy().translate("sidetype." + opposite.name().toLowerCase()) };
+					mod.getBoilerplateProxy().translate("blockSide.facing") + ": " +
+							mod.getBoilerplateProxy().translate("sidetype." + facing.name().toLowerCase()),
+					mod.getBoilerplateProxy().translate("blockSide.opposite") + ": "
+							+ mod.getBoilerplateProxy().translate("sidetype." + opposite.name().toLowerCase()) };
 		}
 		return null;
 	}

@@ -8,22 +8,25 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
 import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
+import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.BaseRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.registries.RegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
+import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
 public abstract class BoilerplateModBase implements IBoilerplateMod
 {
 	private String modid;
 	private String name;
 	private String version;
-	private CreativeTabs creativeTab;
-	private ModLogger logger;
-	private GuiHandler guiHandler;
-	private PacketHandler packetHandler;
-	private ModuleHandler moduleHandler;
-	private IRegistryHolder registryHolder;
+	protected CreativeTabs creativeTab;
+	protected ModLogger logger;
+	protected GuiHandler guiHandler;
+	protected PacketHandler packetHandler;
+	protected ModuleHandler moduleHandler;
+	protected IRegistryHolder registryHolder;
+	protected CommonProxy boilerplateProxy;
 
 	public BoilerplateModBase(String modid, String name, String version, CreativeTabs creativeTab)
 	{
@@ -33,6 +36,8 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.creativeTab = creativeTab;
 		this.logger = new ModLogger(modid);
 		this.packetHandler = new PacketHandler(modid);
+		this.boilerplateProxy = Utils.createProxy("xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy",
+				"xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy");
 	}
 
 	@EventHandler
@@ -41,14 +46,14 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.guiHandler = new GuiHandler(this);
 		this.moduleHandler = new ModuleHandler(this);
 		this.registryHolder = new RegistryHolder(this, event.getSuggestedConfigurationFile());
-		this.getProxy().setMod(this);
+		this.getBoilerplateProxy().setMod(this);
 
 		this.modPreInit(event);
 
 		this.moduleHandler.configureModules();
 		this.moduleHandler.preInit(event);
 
-		this.getProxy().registerEvents();
+		this.getBoilerplateProxy().registerEvents();
 		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
 		{
 			registry.preInit();
@@ -61,7 +66,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	public void init(FMLInitializationEvent event)
 	{
 		this.modInit(event);
-		this.getProxy().initModuleHandler(this.moduleHandler, event);
+		this.getBoilerplateProxy().initModuleHandler(this.moduleHandler, event);
 		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
 		{
 			registry.init();
@@ -135,5 +140,17 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	public IRegistryHolder getRegistryHolder()
 	{
 		return registryHolder;
+	}
+
+	@Override
+	public ModuleHandler getModuleHandler()
+	{
+		return this.moduleHandler;
+	}
+
+	@Override
+	public CommonProxy getBoilerplateProxy()
+	{
+		return this.boilerplateProxy;
 	}
 }

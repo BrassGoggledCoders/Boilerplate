@@ -44,7 +44,7 @@ public class SafeModelLoader
 
 	public static void loadItemModel(IBoilerplateMod mod, Item item, int metadata, ResourceLocation resourceLocation)
 	{
-		mod.getProxy().loadItemModel(item, metadata, resourceLocation);
+		mod.getBoilerplateProxy().loadItemModel(item, metadata, resourceLocation);
 	}
 
 	public static void loadItemModel(IBoilerplateMod mod, Object object, int metadata, String location)
@@ -60,7 +60,7 @@ public class SafeModelLoader
 		if(item != null)
 		{
 			ResourceLocation resourceLocation = new ResourceLocation(mod.getPrefix() + location);
-			mod.getProxy().loadItemModel(item, metadata, resourceLocation);
+			mod.getBoilerplateProxy().loadItemModel(item, metadata, resourceLocation);
 		}
 	}
 }

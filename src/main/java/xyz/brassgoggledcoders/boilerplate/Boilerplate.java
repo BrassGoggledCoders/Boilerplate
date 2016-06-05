@@ -73,10 +73,4 @@ public class Boilerplate extends BoilerplateModBase
 	{
 		return instance;
 	}
-
-	@Override
-	public CommonProxy getProxy()
-	{
-		return proxy;
-	}
 }
