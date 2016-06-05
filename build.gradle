@@ -25,7 +25,7 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${minecraft_version}-${boilerplate_version}." + System.getenv("BUILD_NUMBER")
+version = "${minecraft_version}-${boilerplate_version}." + System.getenv("bamboo_buildNumber")
 
 group= "brassgoggledcoders"
 archivesBaseName = "boilerplate"
@@ -93,12 +93,12 @@ idea {
 
 task("uploadJars", dependsOn: "reobf") {
     description = "uploads JARs"
-    if (System.getenv("local_maven") != null) {
+    if (System.getenv("bamboo_local_maven") != null) {
         apply plugin: 'maven'
         uploadArchives {
             repositories {
                 mavenDeployer {
-                    repository(url: "file://" + System.getenv("local_maven"))
+                    repository(url: "file://" + System.getenv("bamboo_local_maven"))
                     pom {
                         groupId = project.group
                         version = project.version
