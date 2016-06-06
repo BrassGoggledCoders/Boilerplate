@@ -22,4 +22,13 @@ public class Utils
 			return null;
 		}
 	}
+
+	public static void attemptLogErrorToCurrentMod(String logString)
+	{
+		IBoilerplateMod mod = Utils.getCurrentMod();
+		if(mod != null)
+		{
+			mod.getLogger().error(logString);
+		}
+	}
 }

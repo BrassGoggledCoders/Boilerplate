@@ -10,7 +10,6 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.client.events.ModelBakeHandler;
@@ -19,7 +18,6 @@ import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
-import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
 
 /**
  * @author Surseance
@@ -27,13 +25,6 @@ import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
  */
 public class ClientProxy extends CommonProxy
 {
-	@Override
-	public void initModuleHandler(ModuleHandler moduleHandler, FMLInitializationEvent event)
-	{
-		moduleHandler.clientInit(event);
-		super.initModuleHandler(moduleHandler, event);
-	}
-
 	@Override
 	public String translate(String text)
 	{

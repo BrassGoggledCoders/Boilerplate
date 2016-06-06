@@ -1,12 +1,11 @@
 package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
-import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
+import xyz.brassgoggledcoders.boilerplate.module.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.BaseRegistry;
@@ -40,12 +39,11 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 				"xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy");
 	}
 
-	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		this.guiHandler = new GuiHandler(this);
-		this.moduleHandler = new ModuleHandler(this);
 		this.registryHolder = new RegistryHolder(this, event.getSuggestedConfigurationFile());
+		this.moduleHandler = new ModuleHandler(this, event.getAsmData());
 		this.getBoilerplateProxy().setMod(this);
 
 		this.modPreInit(event);
@@ -62,11 +60,10 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 
 	protected abstract void modPreInit(FMLPreInitializationEvent event);
 
-	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		this.modInit(event);
-		this.getBoilerplateProxy().initModuleHandler(this.moduleHandler, event);
+		this.moduleHandler.init(event);
 		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
 		{
 			registry.init();
@@ -75,7 +72,6 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 
 	protected abstract void modInit(FMLInitializationEvent event);
 
-	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		this.modPostInit(event);

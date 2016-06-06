@@ -2,7 +2,7 @@ package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
 import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
-import xyz.brassgoggledcoders.boilerplate.modules.ModuleHandler;
+import xyz.brassgoggledcoders.boilerplate.module.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
