@@ -31,9 +31,9 @@ public class ItemDebuggerStick extends ItemBase
 	public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
 	{
 		RayTraceResult rayTrace = rayTrace(world, player, true);
-
 		LinkedHashMap<String, String> debugStrings = new LinkedHashMap<String, String>();
-		if(rayTrace.typeOfHit != null)
+
+		if(rayTrace != null && rayTrace.typeOfHit != null)
 		{
 			if (rayTrace.typeOfHit == RayTraceResult.Type.BLOCK)
 			{
