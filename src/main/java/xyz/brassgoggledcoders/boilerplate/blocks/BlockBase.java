@@ -28,7 +28,6 @@ public class BlockBase extends Block implements IModAware
 	public BlockBase(Material mat, String name)
 	{
 		this(mat);
-		this.setRegistryName(name);
 		this.setUnlocalizedName(name);
 	}
 
