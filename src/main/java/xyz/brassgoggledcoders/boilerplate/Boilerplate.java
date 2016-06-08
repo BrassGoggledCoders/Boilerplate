@@ -10,9 +10,15 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = ModInfo.DEPENDENCIES)
+@Mod(modid=Boilerplate.ID, name=Boilerplate.NAME, version=Boilerplate.VERSION, dependencies=Boilerplate.DEPENDENCIES)
 public class Boilerplate extends BoilerplateModBase
 {
+	public final static String ID = "boilerplate";
+	public final static String NAME = "Boilerplate";
+	public final static String VERSION = "@VERSION@";
+	public final static String DEPENDENCIES = "after:BuildCraft|Core; after:TConstruct; "
+			+ "after:ForgeMultipart;after:MineFactoryReloaded";
+
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
 	 *
@@ -30,12 +36,12 @@ public class Boilerplate extends BoilerplateModBase
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy", serverSide = "xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
-	@Instance(ModInfo.ID)
+	@Instance(Boilerplate.ID)
 	public static Boilerplate instance;
 
 	public Boilerplate()
 	{
-		super(ModInfo.ID, ModInfo.NAME, ModInfo.VERSION, CreativeTabs.MISC);
+		super(Boilerplate.ID, Boilerplate.NAME, Boilerplate.VERSION, CreativeTabs.MISC);
 	}
 
 	@EventHandler

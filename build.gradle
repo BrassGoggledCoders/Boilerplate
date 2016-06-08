@@ -38,7 +38,7 @@ minecraft {
     useDepAts = true
 
     replace "@VERSION@", project.version
-    replaceIn "ModInfo.java"
+    replaceIn "Boilerplate.java"
 }
 
 compileJava {
