@@ -58,7 +58,10 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		}
 	}
 
-	protected abstract void modPreInit(FMLPreInitializationEvent event);
+	protected void modPreInit(FMLPreInitializationEvent event)
+	{
+
+	}
 
 	public void init(FMLInitializationEvent event)
 	{
@@ -70,7 +73,10 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		}
 	}
 
-	protected abstract void modInit(FMLInitializationEvent event);
+	protected void modInit(FMLInitializationEvent event)
+	{
+
+	}
 
 	public void postInit(FMLPostInitializationEvent event)
 	{
@@ -82,7 +88,10 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		}
 	}
 
-	protected abstract void modPostInit(FMLPostInitializationEvent event);
+	protected void modPostInit(FMLPostInitializationEvent event)
+	{
+
+	}
 
 	@Override
 	public CreativeTabs getCreativeTab()
