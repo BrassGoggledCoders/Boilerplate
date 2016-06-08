@@ -42,6 +42,13 @@ public abstract class TileEntityBase extends TileEntity
 	public abstract NBTTagCompound writeToNBTCustom(NBTTagCompound nbtTagCompound);
 
 	@Override
+	@Nonnull
+	public NBTTagCompound getUpdateTag()
+	{
+		return writeToNBT(new NBTTagCompound());
+	}
+
+	@Override
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
