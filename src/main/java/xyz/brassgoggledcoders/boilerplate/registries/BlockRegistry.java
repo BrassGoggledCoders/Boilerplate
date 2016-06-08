@@ -25,7 +25,7 @@ public class BlockRegistry extends BaseRegistry<Block>
 		{
 			entry.getValue().setCreativeTab(mod.getCreativeTab());
 			ResourceLocation blockName = entry.getValue().getRegistryName();
-			GameRegistry.register(entry.getValue(), blockName);
+			GameRegistry.register(entry.getValue(), new ResourceLocation(mod.getPrefix(),  entry.getValue().getUnlocalizedName()));
 			if(entry.getValue() instanceof IHasItemBlock)
 			{
 				GameRegistry.register(((IHasItemBlock)entry.getValue()).getItemBlockClass(entry.getValue()), blockName);
