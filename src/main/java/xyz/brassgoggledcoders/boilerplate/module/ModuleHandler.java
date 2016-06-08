@@ -12,6 +12,7 @@ import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
 
 import javax.annotation.Nonnull;
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
@@ -119,7 +120,15 @@ public class ModuleHandler
 		List<IModule> moduleList = ClassLoading.getInstances(asmDataTable, Module.class, IModule.class);
 		for(IModule module: moduleList)
 		{
-			moduleHashMap.put(module.getName(), module);
+			for (Annotation annotation : module.getClass().getDeclaredAnnotations()) {
+				if(annotation instanceof Module)
+				{
+					if(((Module)annotation).mod().equals(mod.getID()))
+					{
+						moduleHashMap.put(module.getName(), module);
+					}
+				}
+			}
 		}
 		return moduleHashMap;
 	}

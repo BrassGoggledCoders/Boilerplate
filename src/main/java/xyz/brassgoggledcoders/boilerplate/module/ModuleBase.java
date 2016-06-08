@@ -38,11 +38,6 @@ public abstract class ModuleBase implements IModule
 
 	}
 
-	public void clientInit(FMLInitializationEvent event)
-	{
-
-	}
-
 	@Override
 	public void setIsActive(Boolean isActive)
 	{
