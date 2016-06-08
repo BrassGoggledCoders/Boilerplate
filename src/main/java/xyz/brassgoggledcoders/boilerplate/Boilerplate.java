@@ -63,18 +63,6 @@ public class Boilerplate extends BoilerplateModBase
 	}
 
 	@Override
-	public void modPreInit(FMLPreInitializationEvent event)
-	{
-
-	}
-
-	@Override
-	public void modInit(FMLInitializationEvent event)
-	{
-
-	}
-
-	@Override
 	protected void modPostInit(FMLPostInitializationEvent event)
 	{
 		this.getLogger().info("GNU Terry Prachett");
