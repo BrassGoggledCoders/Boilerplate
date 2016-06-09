@@ -11,12 +11,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
+import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 
 /**
  * @author Surseance
  *
  */
-public class BlockBase extends Block implements IModAware, IHasItemBlock
+public class BlockBase extends Block implements IModAware, IHasItemBlock, IHasModel
 {
 	IBoilerplateMod mod;
 
@@ -72,5 +73,15 @@ public class BlockBase extends Block implements IModAware, IHasItemBlock
 	@Override
 	public ItemBlock getItemBlockClass(Block block) {
 		return new ItemBlock(block);
+	}
+
+	@Override
+	public String[] getResourceLocations() {
+		String name = this.getUnlocalizedName();
+		if(name.startsWith("tile."))
+		{
+			name = name.substring(5);
+		}
+		return new String[] { name };
 	}
 }
