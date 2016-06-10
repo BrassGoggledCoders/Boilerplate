@@ -12,7 +12,7 @@ package xyz.brassgoggledcoders.boilerplate.client.manual.button;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;;
+import net.minecraft.client.resources.I18n;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper;
 

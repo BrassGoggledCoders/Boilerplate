@@ -1,21 +1,23 @@
 package xyz.brassgoggledcoders.boilerplate.blocks;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
-
-import javax.annotation.Nonnull;
+import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 
 /**
  * @author Surseance
  *
  */
-public class BlockBase extends Block implements IModAware
+public class BlockBase extends Block implements IModAware, IHasItemBlock, IHasModel
 {
 	IBoilerplateMod mod;
 
@@ -28,7 +30,6 @@ public class BlockBase extends Block implements IModAware
 	public BlockBase(Material mat, String name)
 	{
 		this(mat);
-		this.setRegistryName(name);
 		this.setUnlocalizedName(name);
 	}
 
@@ -67,5 +68,20 @@ public class BlockBase extends Block implements IModAware
 	public void setMod(IBoilerplateMod mod)
 	{
 		this.mod = mod;
+	}
+
+	@Override
+	public ItemBlock getItemBlockClass(Block block) {
+		return new ItemBlock(block);
+	}
+
+	@Override
+	public String[] getResourceLocations() {
+		String name = this.getUnlocalizedName();
+		if(name.startsWith("tile."))
+		{
+			name = name.substring(5);
+		}
+		return new String[] { name };
 	}
 }
