@@ -51,6 +51,8 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.moduleHandler.configureModules();
 		this.moduleHandler.preInit(event);
 
+		this.afterModuleConstruct();
+
 		this.getBoilerplateProxy().registerEvents();
 		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
 		{
@@ -59,6 +61,11 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	}
 
 	protected void modPreInit(FMLPreInitializationEvent event)
+	{
+
+	}
+
+	protected void afterModuleConstruct()
 	{
 
 	}
