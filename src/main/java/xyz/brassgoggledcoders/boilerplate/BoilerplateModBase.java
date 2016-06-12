@@ -27,6 +27,8 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	protected IRegistryHolder registryHolder;
 	protected CommonProxy boilerplateProxy;
 
+	public boolean allHandlersCreated = false;
+
 	public BoilerplateModBase(String modid, String name, String version, CreativeTabs creativeTab)
 	{
 		this.modid = modid;
@@ -41,17 +43,11 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		this.guiHandler = new GuiHandler(this);
-		this.registryHolder = new RegistryHolder(this, event.getSuggestedConfigurationFile());
-		this.moduleHandler = new ModuleHandler(this, event.getAsmData());
 		this.getBoilerplateProxy().setMod(this);
 
+		this.createHandlers(event);
 		this.modPreInit(event);
-
-		this.moduleHandler.configureModules();
-		this.moduleHandler.preInit(event);
-
-		this.afterModuleConstruct();
+		this.afterModuleConstruct(event);
 
 		this.getBoilerplateProxy().registerEvents();
 		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
@@ -60,12 +56,27 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		}
 	}
 
+	public void createHandlers(FMLPreInitializationEvent event)
+	{
+		if(!allHandlersCreated)
+		{
+			this.guiHandler = new GuiHandler(this);
+			this.registryHolder = new RegistryHolder(this, event.getModConfigurationDirectory());
+
+			this.moduleHandler = new ModuleHandler(this, event.getAsmData());
+			this.moduleHandler.configureModules();
+			this.moduleHandler.preInit(event);
+
+			allHandlersCreated = true;
+		}
+	}
+
 	protected void modPreInit(FMLPreInitializationEvent event)
 	{
 
 	}
 
-	protected void afterModuleConstruct()
+	protected void afterModuleConstruct(FMLPreInitializationEvent event)
 	{
 
 	}
