@@ -35,23 +35,7 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 
 			if(folderExists)
 			{
-				File modConfigFile = new File(bgcFolderPath + File.separator + mod.getID() + ".cfg");
-				boolean fileExists = modConfigFile.exists();
-				if(!fileExists)
-				{
-					try
-					{
-						fileExists = modConfigFile.createNewFile();
-					}
-					catch(IOException e)
-					{
-						e.printStackTrace();
-					}
-				}
-				if(fileExists)
-				{
-					configurationFiles.put(mod.getID(), new Configuration(modConfigFile));
-				}
+				addNewConfigFile(this.mod.getID());
 			}
 		} else
 		{
@@ -67,9 +51,33 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		}
 	}
 
+	public boolean addNewConfigFile(String fileName)
+	{
+		File newConfig = new File(bgcFolder.getPath() + File.separator + fileName + ".cfg");
+		boolean exists = newConfig.exists();
+		if(!exists)
+		{
+			try
+			{
+				exists = newConfig.createNewFile();
+				configurationFiles.put(fileName, new Configuration(newConfig));
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return exists;
+	}
+
 	public void addCategoryComment(String name, String comment)
 	{
-		configurationFiles.get(this.mod.getID()).addCustomCategoryComment(name, comment);
+		addCategoryComment(name, comment, this.mod.getID());
+	}
+
+	public void addCategoryComment(String name, String comment, String configName)
+	{
+		configurationFiles.get(configName).addCustomCategoryComment(name, comment);
 	}
 
 	public void addEntry(ConfigEntry entry)
@@ -79,8 +87,13 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 
 	public void addEntry(String name, ConfigEntry entry)
 	{
+		addEntry(name, entry, this.mod.getID());
+	}
+
+	public void addEntry(String name, ConfigEntry entry, String configName)
+	{
 		this.entries.put(name, entry);
-		entry.toProperty(configurationFiles.get(this.mod.getID()));
+		entry.toProperty(configurationFiles.get(configName));
 		configurationFiles.get(this.mod.getID()).save();
 	}
 
