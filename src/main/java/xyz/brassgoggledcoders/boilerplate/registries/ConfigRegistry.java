@@ -60,12 +60,16 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 			try
 			{
 				exists = newConfig.createNewFile();
-				configurationFiles.put(fileName, new Configuration(newConfig));
 			}
 			catch(IOException e)
 			{
 				e.printStackTrace();
 			}
+		}
+
+		if(exists)
+		{
+			configurationFiles.put(fileName, new Configuration(newConfig));
 		}
 		return exists;
 	}
