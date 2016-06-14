@@ -1,14 +1,15 @@
 package xyz.brassgoggledcoders.boilerplate.blocks;
 
+import javax.annotation.Nonnull;
+
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-
-public abstract class BlockTEBase extends BlockBase implements IHasTileEntity
+public abstract class BlockTEBase extends BlockBase implements IHasTileEntity, ITileEntityProvider
 {
 	public BlockTEBase(Material material, String name)
 	{
@@ -31,8 +32,4 @@ public abstract class BlockTEBase extends BlockBase implements IHasTileEntity
 		TileEntity tileentity = world.getTileEntity(pos);
 		return tileentity != null && tileentity.receiveClientEvent(id, param);
 	}
-
-	@Override
-	@Nonnull
-	public abstract TileEntity createTileEntity(@Nonnull World world,@Nonnull IBlockState state);
 }

@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
@@ -8,8 +10,6 @@ import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
-
-import java.util.Map;
 
 public class BlockRegistry extends BaseRegistry<Block>
 {
@@ -28,12 +28,13 @@ public class BlockRegistry extends BaseRegistry<Block>
 			GameRegistry.register(entry.getValue(), blockName);
 			if(entry.getValue() instanceof IHasItemBlock)
 			{
-				GameRegistry.register(((IHasItemBlock)entry.getValue()).getItemBlockClass(entry.getValue()), blockName);
+				GameRegistry.register(((IHasItemBlock) entry.getValue()).getItemBlockClass(entry.getValue()),
+						blockName);
 			}
 
 			if(entry.getValue() instanceof IHasTileEntity)
 			{
-				GameRegistry.registerTileEntity(((IHasTileEntity)entry.getValue()).getTileEntityClass(),
+				GameRegistry.registerTileEntity(((IHasTileEntity) entry.getValue()).getTileEntityClass(),
 						mod.getPrefix() + entry.getKey());
 			}
 		}
