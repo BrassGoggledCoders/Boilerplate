@@ -1,6 +1,8 @@
 package xyz.brassgoggledcoders.boilerplate.tileentities;
 
+import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -192,10 +194,10 @@ public abstract class BaseTileWithInventory extends TileEntity implements IInven
 	}
 
 	@Override
-	public abstract Object getClientGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
+	public abstract Gui getClientGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
 
 	@Override
-	public abstract Object getServerGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
+	public abstract Container getServerGuiElement(int ID, EntityPlayer player, World world, BlockPos blockPos);
 
 	@Override
 	public String getName()
