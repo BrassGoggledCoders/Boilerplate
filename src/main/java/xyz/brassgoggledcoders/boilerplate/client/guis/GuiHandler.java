@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
 /**
  * @author Surseance
@@ -51,13 +52,9 @@ public class GuiHandler implements IGuiHandler
 			if(tileEntity instanceof IOpenableGUI) {
 				openableGUI = (IOpenableGUI)tileEntity;
 			} else {
-				ItemStack heldItemMainhand =  player.getHeldItemMainhand();
-				if(heldItemMainhand != null && heldItemMainhand.getItem() instanceof IOpenableGUI) {
-					openableGUI = (IOpenableGUI)heldItemMainhand.getItem();
-				} else {
-					ItemStack heldItemOffhand = player.getHeldItemOffhand();
-					if(heldItemOffhand != null && heldItemOffhand.getItem() instanceof IOpenableGUI) {
-						openableGUI = (IOpenableGUI)heldItemOffhand.getItem();
+				for(ItemStack itemStack: player.getHeldEquipment()) {
+					if(ItemStackUtils.isItemInstanceOf(itemStack, IOpenableGUI.class)) {
+						openableGUI = (IOpenableGUI)itemStack.getItem();
 					}
 				}
 			}
