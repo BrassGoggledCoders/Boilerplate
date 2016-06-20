@@ -1,6 +1,8 @@
 package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -9,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
+import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
 @Mod(modid = Boilerplate.ID, name = Boilerplate.NAME, version = Boilerplate.VERSION,
 		dependencies = Boilerplate.DEPENDENCIES)
@@ -36,6 +39,8 @@ public class Boilerplate extends BoilerplateModBase
 
 	@Instance(Boilerplate.ID)
 	public static Boilerplate instance;
+
+	public static CreativeTabs tabOres = new TabOres();
 
 	public Boilerplate()
 	{
@@ -80,5 +85,29 @@ public class Boilerplate extends BoilerplateModBase
 	public Object getInstance()
 	{
 		return instance;
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab()
+	{
+		return tabOres;
+	}
+
+	public static class TabOres extends BaseCreativeTab
+	{
+		public TabOres()
+		{
+			super("boilerplate");
+		}
+
+		@Override
+		public Item getTabIconItem()
+		{
+			if(ItemStackUtils.isItemNonNull(OreRequestRegistry.instance.created.get(0)))
+				return OreRequestRegistry.instance.created.get(0).getItem();
+			else
+				return Item.getItemFromBlock(Blocks.SPONGE);
+		}
+
 	}
 }

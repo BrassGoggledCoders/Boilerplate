@@ -1,3 +1,7 @@
+itemGroup.boilerplate=Ores and Metals
+
+tile.copper_ore.name=Copper Ore
+
 item.debugger_stick.name=Debugging Stick Of Doom
 
 #sided types

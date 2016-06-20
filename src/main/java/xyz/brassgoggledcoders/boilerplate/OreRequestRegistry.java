@@ -16,8 +16,7 @@ import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
 /**
  * TODO:
- * - Boilerplate creative tab that appears if request ores are loaded
- * - Models/Textures
+ * - Tab only appears when needed
  * - Automatic recipe registration
  * - Automatic generation registration
  * - Centralised jsons.
@@ -55,20 +54,21 @@ public class OreRequestRegistry
 
 		if(type == "ore")
 		{
-			Block oreBlock = new BlockBase(Material.ROCK, type + ore);
-			Boilerplate.instance.getRegistryHolder().getBlockRegistry().registerBlock(oreBlock, type + ore);
+			Block oreBlock = new BlockBase(Material.ROCK, toSnakeCase(ore, type));
+			Boilerplate.instance.getRegistryHolder().getBlockRegistry().registerBlock(oreBlock, toSnakeCase(ore, type));
 			this.created.add(new ItemStack(oreBlock));
 		}
 		else if(type == "block")
 		{
-			Block metalBlock = new BlockBase(Material.IRON, type + ore);
-			Boilerplate.instance.getRegistryHolder().getBlockRegistry().registerBlock(metalBlock, type + ore);
+			Block metalBlock = new BlockBase(Material.IRON, toSnakeCase(ore, type));
+			Boilerplate.instance.getRegistryHolder().getBlockRegistry().registerBlock(metalBlock,
+					toSnakeCase(ore, type));
 			this.created.add(new ItemStack(metalBlock));
 		}
 		else
 		{
-			Item metalItem = new ItemBase(type + ore);
-			Boilerplate.instance.getRegistryHolder().getItemRegistry().registerItem(metalItem, type + ore);
+			Item metalItem = new ItemBase(toSnakeCase(ore, type));
+			Boilerplate.instance.getRegistryHolder().getItemRegistry().registerItem(metalItem, toSnakeCase(ore, type));
 			this.created.add(new ItemStack(metalItem));
 		}
 	}
@@ -80,5 +80,10 @@ public class OreRequestRegistry
 			if(ItemStackUtils.isItemNonNull(stack))
 				OreDictionary.registerOre(stack.getUnlocalizedName(), stack);
 		}
+	}
+
+	private String toSnakeCase(String ore, String type)
+	{
+		return ore.toLowerCase() + "_" + type.toLowerCase();
 	}
 }
