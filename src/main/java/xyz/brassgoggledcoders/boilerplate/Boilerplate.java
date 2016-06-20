@@ -17,8 +17,7 @@ public class Boilerplate extends BoilerplateModBase
 	public final static String ID = "boilerplate";
 	public final static String NAME = "Boilerplate";
 	public final static String VERSION = "@VERSION@";
-	public final static String DEPENDENCIES =
-			"after:BuildCraft|Core; after:TConstruct; " + "after:ForgeMultipart;after:MineFactoryReloaded";
+	public final static String DEPENDENCIES = "";
 
 	/**
 	 * warlordjones - c2e83bd4-e8df-40d6-a639-58ba8b05401e
