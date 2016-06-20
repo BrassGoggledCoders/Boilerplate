@@ -47,6 +47,7 @@ public class Boilerplate extends BoilerplateModBase
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		super.preInit(event);
+		OreRequestRegistry.instance.addRequestsToOredict();
 	}
 
 	@EventHandler
@@ -62,9 +63,20 @@ public class Boilerplate extends BoilerplateModBase
 	}
 
 	@Override
+	protected void afterModuleConstruct(FMLPreInitializationEvent event)
+	{
+		OreRequestRegistry.instance.registerAllRequests();
+	}
+
+	@Override
+	protected void modPreInit(FMLPreInitializationEvent event)
+	{
+		this.getRegistryHolder().getConfigRegistry().addNewConfigFile("oreconfig");
+	}
+
+	@Override
 	protected void modPostInit(FMLPostInitializationEvent event)
 	{
-		OreRequestRegistry.instance.addRequestsToOredict();
 		this.getLogger().info("GNU Terry Prachett");
 	}
 

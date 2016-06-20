@@ -41,26 +41,21 @@ public class OreRequestRegistry
 			String ore = oreEntry[0];
 			String[] types = Arrays.copyOfRange(oreEntry, 1, oreEntry.length);
 
-			Boilerplate.instance.getRegistryHolder().getConfigRegistry()
-					.addEntry(new ConfigEntry("ores", oreEntry[0], Type.BOOLEAN, "false"));
+			Boilerplate.instance.getRegistryHolder().getConfigRegistry().addEntry("ores",
+					new ConfigEntry("ores", oreEntry[0], Type.BOOLEAN, "false"), "oreconfig");
 
 			for(String type : types)
-			{
-				if(Boilerplate.instance.getRegistryHolder().getConfigRegistry().getBoolean(ore, false))
-				{
-					createRequest(type, ore);
-				}
-				else
-				{
-					if(!(OreDictionary.doesOreNameExist(type + ore)))
-						createRequest(type, ore);
-				}
-			}
+				createRequest(type, ore);
 		}
+		Boilerplate.instance.getRegistryHolder().getConfigRegistry().addCategoryComment("ores",
+				"Disable registration of ore/metal block etc of given type?", "oreconfig");
 	}
 
 	private void createRequest(String type, String ore)
 	{
+		if(Boilerplate.instance.getRegistryHolder().getConfigRegistry().getBoolean(ore, false))
+			return;
+
 		if(type == "ore")
 		{
 			Block oreBlock = new BlockBase(Material.ROCK, type + ore);

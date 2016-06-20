@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
-import xyz.brassgoggledcoders.boilerplate.OreRequestRegistry;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
@@ -17,13 +16,6 @@ public class BlockRegistry extends BaseRegistry<Block>
 	public BlockRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder)
 	{
 		super(mod, registryHolder);
-	}
-
-	@Override
-	public void preInit()
-	{
-		OreRequestRegistry.instance.registerAllRequests();
-		super.preInit();
 	}
 
 	@Override
