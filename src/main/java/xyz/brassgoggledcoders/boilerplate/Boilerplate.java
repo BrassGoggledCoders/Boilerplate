@@ -63,15 +63,12 @@ public class Boilerplate extends BoilerplateModBase
 	}
 
 	@Override
-	protected void afterModuleConstruct(FMLPreInitializationEvent event)
-	{
-		OreRequestRegistry.instance.registerAllRequests();
-	}
-
-	@Override
 	protected void modPreInit(FMLPreInitializationEvent event)
 	{
-		this.getRegistryHolder().getConfigRegistry().addNewConfigFile("oreconfig");
+		this.getRegistryHolder().getConfigRegistry().addNewConfigFile("ores");
+		OreRequestRegistry.instance.registerAllRequests();
+		Boilerplate.instance.getRegistryHolder().getConfigRegistry().addCategoryComment("types",
+				"Disable registration of ore/metal block etc of given type?", "ores");
 	}
 
 	@Override

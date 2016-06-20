@@ -16,12 +16,11 @@ import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
 /**
  * TODO:
- * - !Fix ore dictionary!
- * - Use separate config file & make config stuff more descriptive
  * - Boilerplate creative tab that appears if request ores are loaded
  * - Models/Textures
  * - Automatic recipe registration
  * - Automatic generation registration
+ * - Centralised jsons.
  */
 public class OreRequestRegistry
 {
@@ -41,14 +40,12 @@ public class OreRequestRegistry
 			String ore = oreEntry[0];
 			String[] types = Arrays.copyOfRange(oreEntry, 1, oreEntry.length);
 
-			Boilerplate.instance.getRegistryHolder().getConfigRegistry().addEntry("ores",
-					new ConfigEntry("ores", oreEntry[0], Type.BOOLEAN, "false"), "oreconfig");
+			Boilerplate.instance.getRegistryHolder().getConfigRegistry().addEntry("types",
+					new ConfigEntry("types", oreEntry[0], Type.BOOLEAN, "false"), "ores");
 
 			for(String type : types)
 				createRequest(type, ore);
 		}
-		Boilerplate.instance.getRegistryHolder().getConfigRegistry().addCategoryComment("ores",
-				"Disable registration of ore/metal block etc of given type?", "oreconfig");
 	}
 
 	private void createRequest(String type, String ore)

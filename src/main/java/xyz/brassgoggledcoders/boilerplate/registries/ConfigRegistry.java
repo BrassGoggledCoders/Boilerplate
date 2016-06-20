@@ -1,16 +1,16 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import net.minecraftforge.common.config.Configuration;
-import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
-import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
-import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import net.minecraftforge.common.config.Configuration;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
 
 public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 {
@@ -37,7 +37,8 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 			{
 				addNewConfigFile(this.mod.getID());
 			}
-		} else
+		}
+		else
 		{
 			configurationFiles.put(mod.getID(), new Configuration(suggestConfigFile));
 		}
@@ -45,7 +46,7 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 
 	public void alertTheListeners(String name, ConfigEntry configEntry)
 	{
-		for(IConfigListener configListener: listeners)
+		for(IConfigListener configListener : listeners)
 		{
 			configListener.onConfigChange(name, configEntry);
 		}
@@ -98,7 +99,7 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 	{
 		this.entries.put(name, entry);
 		entry.toProperty(configurationFiles.get(configName));
-		configurationFiles.get(this.mod.getID()).save();
+		configurationFiles.get(configName).save();
 	}
 
 	public void updateEntry(String name, String value)
@@ -108,7 +109,8 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry>
 		{
 			configEntry.setValue(value);
 			this.alertTheListeners(name, configEntry);
-		} else
+		}
+		else
 		{
 			mod.getLogger().error("Config Entry for " + name + " not found");
 		}
