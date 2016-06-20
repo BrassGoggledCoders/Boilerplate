@@ -1,5 +1,8 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
@@ -8,9 +11,6 @@ import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
 import xyz.brassgoggledcoders.boilerplate.items.IHasRecipe;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class BaseRegistry<T>
 {
@@ -46,7 +46,7 @@ public abstract class BaseRegistry<T>
 
 	public void initiateEntries()
 	{
-		for(Map.Entry<String, T> entry: entries.entrySet())
+		for(Map.Entry<String, T> entry : entries.entrySet())
 		{
 			if(entry.getValue() instanceof IConfigListener)
 			{
@@ -80,7 +80,7 @@ public abstract class BaseRegistry<T>
 		{
 			if(entry.getValue() instanceof IHasRecipe)
 			{
-				for(IRecipe recipe: ((IHasRecipe) entry.getValue()).getRecipes())
+				for(IRecipe recipe : ((IHasRecipe) entry.getValue()).getRecipes())
 				{
 					GameRegistry.addRecipe(recipe);
 				}
@@ -98,7 +98,8 @@ public abstract class BaseRegistry<T>
 		if(stage.ordinal() < loadingStage.ordinal())
 		{
 			this.mod.getLogger().fatal("Stage should never be set to an earlier stage!");
-		} else
+		}
+		else
 		{
 			this.loadingStage = stage;
 		}

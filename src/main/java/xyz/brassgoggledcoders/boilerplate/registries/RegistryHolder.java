@@ -1,10 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
 public class RegistryHolder implements IRegistryHolder
 {

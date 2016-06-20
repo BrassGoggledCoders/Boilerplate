@@ -50,7 +50,8 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.afterModuleConstruct(event);
 
 		this.getBoilerplateProxy().registerEvents();
-		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
+
+		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
 		{
 			registry.preInit();
 		}
@@ -85,7 +86,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	{
 		this.modInit(event);
 		this.moduleHandler.init(event);
-		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
+		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
 		{
 			registry.init();
 		}
@@ -100,7 +101,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 	{
 		this.modPostInit(event);
 		moduleHandler.postInit(event);
-		for(BaseRegistry registry: this.getRegistryHolder().getAllRegistries())
+		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
 		{
 			registry.postInit();
 		}
