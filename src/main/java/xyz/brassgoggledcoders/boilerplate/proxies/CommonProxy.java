@@ -14,29 +14,26 @@ public class CommonProxy
 		return "";
 	}
 
+	public void registerBlockModels()
+	{}
+
 	public void loadItemModel(Item item, int metadata, ResourceLocation location)
-	{
-	}
+	{}
 
 	public void addVariantName(Item item, String... variantNames)
-	{
-	}
+	{}
 
 	public void registerItemModelVariant(Item item, int metadata, String itemModelName)
-	{
-	}
+	{}
 
 	public void registerISpecialRendererItem(Item item)
-	{
-	}
+	{}
 
 	public void registerEvents()
-	{
-	}
+	{}
 
 	public void setLexiconStack(ItemStack stack)
-	{	
-	}
+	{}
 
 	public void setMod(IBoilerplateMod mod)
 	{

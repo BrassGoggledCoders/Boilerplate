@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -11,7 +10,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
 @Mod(modid = Boilerplate.ID, name = Boilerplate.NAME, version = Boilerplate.VERSION,
 		dependencies = Boilerplate.DEPENDENCIES)
@@ -40,7 +38,7 @@ public class Boilerplate extends BoilerplateModBase
 	@Instance(Boilerplate.ID)
 	public static Boilerplate instance;
 
-	public static CreativeTabs tabOres = new TabOres();
+	public static CreativeTabs tabOres;
 
 	public Boilerplate()
 	{
@@ -51,7 +49,7 @@ public class Boilerplate extends BoilerplateModBase
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		super.preInit(event);
-		OreRequestRegistry.instance.addRequestsToOredict();
+		proxy.registerBlockModels();
 	}
 
 	@EventHandler
@@ -64,15 +62,6 @@ public class Boilerplate extends BoilerplateModBase
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		super.postInit(event);
-	}
-
-	@Override
-	protected void modPreInit(FMLPreInitializationEvent event)
-	{
-		this.getRegistryHolder().getConfigRegistry().addNewConfigFile("ores");
-		OreRequestRegistry.instance.registerAllRequests();
-		Boilerplate.instance.getRegistryHolder().getConfigRegistry().addCategoryComment("types",
-				"Disable registration of ore/metal block etc of given type?", "ores");
 	}
 
 	@Override
@@ -103,10 +92,7 @@ public class Boilerplate extends BoilerplateModBase
 		@Override
 		public Item getTabIconItem()
 		{
-			if(ItemStackUtils.isItemNonNull(OreRequestRegistry.instance.created.get(0)))
-				return OreRequestRegistry.instance.created.get(0).getItem();
-			else
-				return Item.getItemFromBlock(Blocks.SPONGE);
+			return Item.getItemFromBlock(MaterialsModule.metal_ore);
 		}
 
 	}

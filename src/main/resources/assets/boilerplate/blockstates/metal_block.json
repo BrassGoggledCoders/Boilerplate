@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+    	"type=copper": [{ "textures": { "all": "boilerplate:blocks/copper_block", "particle": "#all" } }],
+    	"type=zinc": [{ "textures": { "all": "boilerplate:blocks/zinc_block", "particle": "#all" } }],
+    	"type=brass": [{ "textures": { "all": "boilerplate:blocks/brass_block", "particle": "#all" } }],
+    	"type=steel": [{ "textures": { "all": "boilerplate:blocks/steel_block", "particle": "#all" } }]
+    }
+} 	
