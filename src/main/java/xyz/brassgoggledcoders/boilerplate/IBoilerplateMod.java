@@ -11,8 +11,7 @@ import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
 /**
  * @author SkySom
  */
-public interface IBoilerplateMod
-{
+public interface IBoilerplateMod {
 	Object getInstance();
 
 	CreativeTabs getCreativeTab();

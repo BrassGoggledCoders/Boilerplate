@@ -6,16 +6,14 @@ import java.util.List;
 
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
-public class RegistryHolder implements IRegistryHolder
-{
+public class RegistryHolder implements IRegistryHolder {
 	private List<BaseRegistry> registries;
 	private BlockRegistry blockRegistry;
 	private ItemRegistry itemRegistry;
 	private EntityRegistry entityRegistry;
 	private ConfigRegistry configRegistry;
 
-	public RegistryHolder(IBoilerplateMod mod, File config)
-	{
+	public RegistryHolder(IBoilerplateMod mod, File config) {
 		blockRegistry = new BlockRegistry(mod, this);
 		itemRegistry = new ItemRegistry(mod, this);
 		entityRegistry = new EntityRegistry(mod, this);
@@ -29,32 +27,27 @@ public class RegistryHolder implements IRegistryHolder
 	}
 
 	@Override
-	public List<BaseRegistry> getAllRegistries()
-	{
+	public List<BaseRegistry> getAllRegistries() {
 		return this.registries;
 	}
 
 	@Override
-	public BlockRegistry getBlockRegistry()
-	{
+	public BlockRegistry getBlockRegistry() {
 		return this.blockRegistry;
 	}
 
 	@Override
-	public ItemRegistry getItemRegistry()
-	{
+	public ItemRegistry getItemRegistry() {
 		return this.itemRegistry;
 	}
 
 	@Override
-	public EntityRegistry getEntityRegistry()
-	{
+	public EntityRegistry getEntityRegistry() {
 		return this.entityRegistry;
 	}
 
 	@Override
-	public ConfigRegistry getConfigRegistry()
-	{
+	public ConfigRegistry getConfigRegistry() {
 		return this.configRegistry;
 	}
 }

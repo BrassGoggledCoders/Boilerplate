@@ -1,15 +1,14 @@
 package xyz.brassgoggledcoders.boilerplate.client.events;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class ModelBakeHandler
-{
+public class ModelBakeHandler {
 	private static final ModelBakeHandler INSTANCE = new ModelBakeHandler();
 
 	public static ModelBakeHandler getInstance() {
@@ -30,10 +29,9 @@ public class ModelBakeHandler
 	@SuppressWarnings("unused")
 	public void onModelBakeEvent(ModelBakeEvent event) {
 		for(Map.Entry<ModelResourceLocation, ItemSpecialRenderer> entry : modelsToSwap.entrySet()) {
-			Object before = event.getModelRegistry().getObject(entry.getKey());
+			event.getModelRegistry().getObject(entry.getKey());
 			event.getModelRegistry().putObject(entry.getKey(), entry.getValue());
-			Object after = event.getModelRegistry().getObject(entry.getKey());
-			boolean test = true;
+			event.getModelRegistry().getObject(entry.getKey());
 		}
 	}
 }

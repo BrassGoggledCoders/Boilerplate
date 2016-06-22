@@ -8,25 +8,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class WorldGenRandomUnderground extends WorldGenerator
-{
-	private Block toGen;
-	private int metaToGen;
-
-	public WorldGenRandomUnderground(Block block)
-	{
+public class WorldGenRandomUnderground extends WorldGenerator {
+	public WorldGenRandomUnderground(Block block) {
 		this(block, 0);
 	}
 
-	public WorldGenRandomUnderground(Block block, int meta)
-	{
-		this.toGen = block;
-		this.metaToGen = meta;
-	}
+	public WorldGenRandomUnderground(Block block, int meta) {}
 
 	@Override
-	public boolean generate(World worldIn, Random rand, BlockPos position)
-	{
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		// for (int l = 0; l < 16; ++l)
 		// {
 		// int xPos = (x + random.nextInt(8)) - random.nextInt(8);

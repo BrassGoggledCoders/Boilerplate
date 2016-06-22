@@ -2,13 +2,13 @@
  * This class was created by <SoundLogic>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jul 4, 2014, 10:38:50 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.manual.page;
+
+import java.lang.reflect.Constructor;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -23,9 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.manual.IGuiLexiconEntry;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconPage;
 
-import java.lang.reflect.Constructor;
-
-public class PageEntity extends LexiconPage{
+public class PageEntity extends LexiconPage {
 
 	Entity dummyEntity;
 	int relativeMouseX, relativeMouseY;
@@ -35,11 +33,12 @@ public class PageEntity extends LexiconPage{
 
 	public PageEntity(String unlocalizedName, String entity, int size) {
 		super(unlocalizedName);
-		Class<?> EntityClass = (Class<?>) EntityList.NAME_TO_CLASS.get(entity);
+		Class<?> EntityClass = EntityList.NAME_TO_CLASS.get(entity);
 		this.size = size;
 		try {
 			entityConstructor = EntityClass.getConstructor(World.class);
-		} catch (Exception e) {
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -52,7 +51,8 @@ public class PageEntity extends LexiconPage{
 		int text_y = gui.getTop() + gui.getHeight() - 40;
 		int entity_scale = getEntityScale(size);
 		int entity_x = gui.getLeft() + gui.getWidth() / 2;
-		int entity_y = gui.getTop() + gui.getHeight() / 2 + MathHelper.floor_float(dummyEntity.height * entity_scale / 2);
+		int entity_y =
+				gui.getTop() + gui.getHeight() / 2 + MathHelper.floor_float(dummyEntity.height * entity_scale / 2);
 
 		renderEntity(gui, dummyEntity, entity_x, entity_y, entity_scale, dummyEntity.ticksExisted * 2);
 
@@ -88,8 +88,8 @@ public class PageEntity extends LexiconPage{
 		GlStateManager.rotate(rotation, 0.0F, 1.0F, 0.0F);
 		RenderHelper.enableStandardItemLighting();
 		Minecraft.getMinecraft().getRenderManager().playerViewY = 180.0F;
-		//TODO Figure out what to use instead of renderEntityWIthPosYaw
-		//Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+		// TODO Figure out what to use instead of renderEntityWIthPosYaw
+		// Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
 		GlStateManager.popMatrix();
 		RenderHelper.disableStandardItemLighting();
 		GlStateManager.disableRescaleNormal();
@@ -97,17 +97,19 @@ public class PageEntity extends LexiconPage{
 		GlStateManager.disableTexture2D();
 		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
-		if(relativeMouseX >= x - dummyEntity.width * scale / 2 - 10  && relativeMouseY >= y - dummyEntity.height * scale - 20 && relativeMouseX <= x + dummyEntity.width * scale / 2 + 10 && relativeMouseY <= y + 20)
+		if(relativeMouseX >= x - dummyEntity.width * scale / 2 - 10
+				&& relativeMouseY >= y - dummyEntity.height * scale - 20
+				&& relativeMouseX <= x + dummyEntity.width * scale / 2 + 10 && relativeMouseY <= y + 20)
 			tooltipEntity = true;
 	}
 
 	public void prepDummy() {
-		if(dummyEntity == null || dummyEntity.isDead) {
+		if(dummyEntity == null || dummyEntity.isDead)
 			try {
 				dummyEntity = (Entity) entityConstructor.newInstance(Minecraft.getMinecraft().theWorld);
-			} catch (Exception e) {
+			}
+			catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
 	}
 }

@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.utils;
 
+import java.util.UUID;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -13,33 +15,26 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 /**
  * @author warlordjones & decebaldecebal
- *
  */
-public class ItemStackUtils
-{
-	public static Material getBlockMaterial(final IBlockAccess world, final BlockPos blockPos)
-	{
+public class ItemStackUtils {
+	public static Material getBlockMaterial(final IBlockAccess world, final BlockPos blockPos) {
 		IBlockState blockState = world.getBlockState(blockPos);
 		return blockState.getMaterial();
 	}
 
-	public static boolean isSmeltable(ItemStack itemStack)
-	{
+	public static boolean isSmeltable(ItemStack itemStack) {
 		return itemStack != null && FurnaceRecipes.instance().getSmeltingResult(itemStack) != null;
 	}
 
-	public static void spawnStackInWorld(World world, BlockPos blockPos, ItemStack stack)
-	{
+	public static void spawnStackInWorld(World world, BlockPos blockPos, ItemStack stack) {
 		world.setBlockToAir(blockPos);
-		world.spawnEntityInWorld(new EntityItem(world, blockPos.getX() + 0.5F, blockPos.getY() + 0.5F, blockPos.getZ() + 0.5F, stack.copy()));
+		world.spawnEntityInWorld(new EntityItem(world, blockPos.getX() + 0.5F, blockPos.getY() + 0.5F,
+				blockPos.getZ() + 0.5F, stack.copy()));
 	}
 
-	public static void addModifier(ItemStack itemStack, String attribute, double amount, int mode)
-	{
+	public static void addModifier(ItemStack itemStack, String attribute, double amount, int mode) {
 		NBTTagList list = new NBTTagList();
 		NBTTagCompound attributes = new NBTTagCompound();
 		attributes.setString("Name", "Attribute");
@@ -53,47 +48,36 @@ public class ItemStackUtils
 
 		NBTTagCompound attributeModifierTag = itemStack.getTagCompound();
 		if(attributeModifierTag != null)
-		{
 			attributeModifierTag.setTag("AttributeModifiers", list);
-		}
 
 		itemStack.setTagCompound(attributeModifierTag);
 	}
 
-	public static int getStackPosition(InventoryPlayer inventory, Item item)
-	{
-		for (int i = 0; i < inventory.getSizeInventory(); i++)
-		{
-			if (doItemsMatch(inventory.getItemStack(), item))
-			{
+	public static int getStackPosition(InventoryPlayer inventory, Item item) {
+		for(int i = 0; i < inventory.getSizeInventory(); i++)
+			if(doItemsMatch(inventory.getItemStack(), item))
 				return i;
-			}
-		}
 
 		return -1;
 	}
 
-	public static ItemStack copyStackWithAmount(ItemStack stack, int amount)
-	{
-		if (stack == null)
+	public static ItemStack copyStackWithAmount(ItemStack stack, int amount) {
+		if(stack == null)
 			return null;
 		ItemStack s2 = stack.copy();
 		s2.stackSize = amount;
 		return s2;
 	}
 
-	public static boolean isItemNonNull(ItemStack itemStack)
-	{
+	public static boolean isItemNonNull(ItemStack itemStack) {
 		return itemStack != null && itemStack.getItem() != null;
 	}
 
-	public static boolean isItemInstanceOf(ItemStack itemStack, Class itemClass)
-	{
+	public static boolean isItemInstanceOf(ItemStack itemStack, Class itemClass) {
 		return isItemNonNull(itemStack) && itemClass != null && itemClass.isInstance(itemStack.getItem());
 	}
 
-	public static boolean doItemsMatch(ItemStack itemStack, Item item)
-	{
+	public static boolean doItemsMatch(ItemStack itemStack, Item item) {
 		return isItemNonNull(itemStack) && itemStack.getItem() == item;
 	}
 

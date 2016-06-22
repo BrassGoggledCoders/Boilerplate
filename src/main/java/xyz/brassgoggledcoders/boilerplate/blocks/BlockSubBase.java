@@ -8,7 +8,7 @@ public class BlockSubBase extends BlockBase {
 	public BlockSubBase(Material mat) {
 		super(mat);
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		return getMetaFromState(state);

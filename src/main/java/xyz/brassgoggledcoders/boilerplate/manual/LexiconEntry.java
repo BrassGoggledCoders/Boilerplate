@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 14, 2014, 6:17:06 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.manual;
@@ -14,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,7 +25,7 @@ public class LexiconEntry implements Comparable<LexiconEntry> {
 	public List<LexiconPage> pages = new ArrayList<>();
 	private boolean priority = false;
 	private ItemStack icon = null;
-	
+
 	private List<ItemStack> extraDisplayedRecipes = new ArrayList<>();
 
 	/**
@@ -118,27 +116,26 @@ public class LexiconEntry implements Comparable<LexiconEntry> {
 			if(l != null) {
 				ArrayList<ItemStack> itemsAddedThisPage = new ArrayList<>();
 
-				for(ItemStack s : l) {
+				for(ItemStack s : l)
 					addItem: {
-					for(ItemStack s1 : itemsAddedThisPage)
-						if(s1.getItem() == s.getItem())
-							break addItem;
-					for(ItemStack s1 : list)
-						if(s1.isItemEqual(s) && ItemStack.areItemStackTagsEqual(s1, s))
-							break addItem;
+						for(ItemStack s1 : itemsAddedThisPage)
+							if(s1.getItem() == s.getItem())
+								break addItem;
+						for(ItemStack s1 : list)
+							if(s1.isItemEqual(s) && ItemStack.areItemStackTagsEqual(s1, s))
+								break addItem;
 
-					itemsAddedThisPage.add(s);
-					list.add(s);
-				}
-				}
+						itemsAddedThisPage.add(s);
+						list.add(s);
+					}
 			}
 		}
-		
+
 		list.addAll(extraDisplayedRecipes);
 
 		return list;
 	}
-	
+
 	public void addExtraDisplayedRecipe(ItemStack stack) {
 		extraDisplayedRecipes.add(stack);
 	}

@@ -14,8 +14,7 @@ import xyz.brassgoggledcoders.boilerplate.registries.RegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
 
-public abstract class BoilerplateModBase implements IBoilerplateMod
-{
+public abstract class BoilerplateModBase implements IBoilerplateMod {
 	private String modid;
 	private String name;
 	private String version;
@@ -29,8 +28,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 
 	public boolean allHandlersCreated = false;
 
-	public BoilerplateModBase(String modid, String name, String version, CreativeTabs creativeTab)
-	{
+	public BoilerplateModBase(String modid, String name, String version, CreativeTabs creativeTab) {
 		this.modid = modid;
 		this.name = name;
 		this.version = version;
@@ -41,8 +39,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 				"xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy");
 	}
 
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		this.getBoilerplateProxy().setMod(this);
 
 		this.createHandlers(event);
@@ -52,15 +49,11 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		this.getBoilerplateProxy().registerEvents();
 
 		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
-		{
 			registry.preInit();
-		}
 	}
 
-	public void createHandlers(FMLPreInitializationEvent event)
-	{
-		if(!allHandlersCreated)
-		{
+	public void createHandlers(FMLPreInitializationEvent event) {
+		if(!allHandlersCreated) {
 			this.guiHandler = new GuiHandler(this);
 			this.registryHolder = new RegistryHolder(this, event.getModConfigurationDirectory());
 
@@ -72,109 +65,88 @@ public abstract class BoilerplateModBase implements IBoilerplateMod
 		}
 	}
 
-	protected void modPreInit(FMLPreInitializationEvent event)
-	{
+	protected void modPreInit(FMLPreInitializationEvent event) {
 
 	}
 
-	protected void afterModuleConstruct(FMLPreInitializationEvent event)
-	{
+	protected void afterModuleConstruct(FMLPreInitializationEvent event) {
 
 	}
 
-	public void init(FMLInitializationEvent event)
-	{
+	public void init(FMLInitializationEvent event) {
 		this.modInit(event);
 		this.moduleHandler.init(event);
 		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
-		{
 			registry.init();
-		}
 	}
 
-	protected void modInit(FMLInitializationEvent event)
-	{
+	protected void modInit(FMLInitializationEvent event) {
 
 	}
 
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		this.modPostInit(event);
 		moduleHandler.postInit(event);
 		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
-		{
 			registry.postInit();
-		}
 	}
 
-	protected void modPostInit(FMLPostInitializationEvent event)
-	{
+	protected void modPostInit(FMLPostInitializationEvent event) {
 
 	}
 
 	@Override
-	public CreativeTabs getCreativeTab()
-	{
+	public CreativeTabs getCreativeTab() {
 		return this.creativeTab;
 	}
 
 	@Override
-	public String getID()
-	{
+	public String getID() {
 		return this.modid;
 	}
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return this.name;
 	}
 
 	@Override
-	public String getVersion()
-	{
+	public String getVersion() {
 		return this.version;
 	}
 
 	@Override
-	public String getPrefix()
-	{
+	public String getPrefix() {
 		return this.getID() + ":";
 	}
 
 	@Override
-	public ModLogger getLogger()
-	{
+	public ModLogger getLogger() {
 		return this.logger;
 	}
 
 	@Override
-	public GuiHandler getGuiHandler()
-	{
+	public GuiHandler getGuiHandler() {
 		return this.guiHandler;
 	}
 
 	@Override
-	public PacketHandler getPacketHandler()
-	{
+	public PacketHandler getPacketHandler() {
 		return this.packetHandler;
 	}
 
 	@Override
-	public IRegistryHolder getRegistryHolder()
-	{
+	public IRegistryHolder getRegistryHolder() {
 		return registryHolder;
 	}
 
 	@Override
-	public ModuleHandler getModuleHandler()
-	{
+	public ModuleHandler getModuleHandler() {
 		return this.moduleHandler;
 	}
 
 	@Override
-	public CommonProxy getBoilerplateProxy()
-	{
+	public CommonProxy getBoilerplateProxy() {
 		return this.boilerplateProxy;
 	}
 }

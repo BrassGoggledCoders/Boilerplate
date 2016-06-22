@@ -2,21 +2,18 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Mar 2, 2015, 6:01:26 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual.button;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.TextFormatting;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper;
 

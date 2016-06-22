@@ -5,44 +5,36 @@ import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 
-public class ItemBase extends Item implements IHasModel, IModAware
-{
+public class ItemBase extends Item implements IHasModel, IModAware {
 	protected String texturePath;
 	protected String name;
 	protected IBoilerplateMod mod;
 
-	public ItemBase(String name)
-	{
+	public ItemBase(String name) {
 		this("", name);
 	}
 
-	public ItemBase(String texturePath, String name)
-	{
+	public ItemBase(String texturePath, String name) {
 		super();
 		this.name = name;
 		this.texturePath = texturePath;
 		if(!texturePath.isEmpty() && !texturePath.endsWith("/"))
-		{
 			this.texturePath += "/";
-		}
 		this.setUnlocalizedName(name);
 	}
 
 	@Override
-	public String[] getResourceLocations()
-	{
+	public String[] getResourceLocations() {
 		return new String[] {texturePath + name};
 	}
 
 	@Override
-	public IBoilerplateMod getMod()
-	{
+	public IBoilerplateMod getMod() {
 		return mod;
 	}
 
 	@Override
-	public void setMod(IBoilerplateMod mod)
-	{
+	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
 	}
 }

@@ -13,51 +13,44 @@ public class BaseTool extends ItemTool implements IHasModel, IModAware {
 	protected String texturePath;
 	protected String name;
 	protected IBoilerplateMod mod;
-	
-	public BaseTool(Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn, String texturePath, String name)
-	{
+
+	public BaseTool(Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn, String texturePath, String name) {
 		this(0.0F, 0.0F, materialIn, effectiveBlocksIn, texturePath, name);
 	}
-	
-	public BaseTool(Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn, String name)
-	{
+
+	public BaseTool(Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn, String name) {
 		this(0.0F, 0.0F, materialIn, effectiveBlocksIn, "", name);
 	}
 
-	public BaseTool(float attackDamageIn, float attackSpeedIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn, String name)
-	{
+	public BaseTool(float attackDamageIn, float attackSpeedIn, Item.ToolMaterial materialIn,
+			Set<Block> effectiveBlocksIn, String name) {
 		this(attackDamageIn, attackSpeedIn, materialIn, effectiveBlocksIn, "", name);
 	}
 
-	public BaseTool(float attackDamageIn, float attackSpeedIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn, String texturePath, String name)
-	{
+	public BaseTool(float attackDamageIn, float attackSpeedIn, Item.ToolMaterial materialIn,
+			Set<Block> effectiveBlocksIn, String texturePath, String name) {
 		super(attackDamageIn, attackSpeedIn, materialIn, effectiveBlocksIn);
 		this.setMaxDamage(materialIn.getMaxUses());
 		this.setMaxStackSize(1);
 		this.name = name;
 		this.texturePath = texturePath;
 		if(!texturePath.isEmpty() && !texturePath.endsWith("/"))
-		{
 			this.texturePath += "/";
-		}
 		this.setUnlocalizedName(name);
 	}
 
 	@Override
-	public String[] getResourceLocations()
-	{
+	public String[] getResourceLocations() {
 		return new String[] {texturePath + name};
 	}
 
 	@Override
-	public IBoilerplateMod getMod()
-	{
+	public IBoilerplateMod getMod() {
 		return mod;
 	}
 
 	@Override
-	public void setMod(IBoilerplateMod mod)
-	{
+	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
 	}
 }

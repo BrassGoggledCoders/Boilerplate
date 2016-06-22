@@ -5,8 +5,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
-public interface IModule
-{
+public interface IModule {
 	String getName();
 
 	boolean areDependenciesMet();

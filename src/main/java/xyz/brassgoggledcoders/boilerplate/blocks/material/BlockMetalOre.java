@@ -16,78 +16,66 @@ import xyz.brassgoggledcoders.boilerplate.blocks.BlockSubBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
 
-public class BlockMetalOre extends BlockSubBase
-{
+public class BlockMetalOre extends BlockSubBase {
 	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
 
-	public BlockMetalOre()
-	{
+	public BlockMetalOre() {
 		super(Material.ROCK);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setUnlocalizedName("metal_ore");
 	}
 
 	@Override
-	public ItemBlock getItemBlockClass(Block block)
-	{
+	public ItemBlock getItemBlockClass(Block block) {
 		return new ItemSubBlock(block, EnumBlockType.names());
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(type).getMeta();
 	}
 
 	@Override
-	public BlockStateContainer createBlockState()
-	{
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, type);
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(type, EnumBlockType.VALUES[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList)
-	{
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
 		for(EnumBlockType resourceType : EnumBlockType.VALUES)
 			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
 	}
 
-	public enum EnumBlockType implements IBlockType
-	{
+	public enum EnumBlockType implements IBlockType {
 		COPPER(0), ZINC(1);
 
 		public static final EnumBlockType[] VALUES = values();
 
 		private final int meta;
 
-		EnumBlockType(int meta)
-		{
+		EnumBlockType(int meta) {
 			this.meta = meta;
 		}
 
 		@Override
-		public int getMeta()
-		{
+		public int getMeta() {
 			return meta;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name().toLowerCase();
 		}
 
-		public static String[] names()
-		{
+		public static String[] names() {
 			ArrayList<String> names = new ArrayList<String>();
-			for(int i = 0; i < VALUES.length; i++)
-				names.add(VALUES[i].toString().toLowerCase());
+			for(EnumBlockType element : VALUES)
+				names.add(element.toString().toLowerCase());
 
 			return names.toArray(new String[0]);
 		}

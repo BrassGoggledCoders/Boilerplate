@@ -2,23 +2,22 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 14, 2014, 9:54:21 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual.button;
+
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.Nonnull;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper;
-
-import javax.annotation.Nonnull;
-import java.util.Collections;
-import java.util.List;
 
 public class GuiButtonBack extends GuiButtonLexicon {
 

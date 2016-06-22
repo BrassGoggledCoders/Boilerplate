@@ -22,8 +22,7 @@ import xyz.brassgoggledcoders.boilerplate.recipes.RecipeUtils;
 
 // TODO Ore Gen. Auto-deactivate if other ores are detected in the dict. Configurable.
 @Module(mod = Boilerplate.ID)
-public class MaterialsModule extends ModuleBase
-{
+public class MaterialsModule extends ModuleBase {
 	public static List<String> oreMetals = Arrays.asList(BlockMetalOre.EnumBlockType.names());
 	public static List<String> ourMetals = Arrays.asList(BlockMetal.EnumBlockType.names());
 	public static List<String> almostAllMetals =
@@ -35,14 +34,12 @@ public class MaterialsModule extends ModuleBase
 	public static Item ingot, nugget;
 
 	@Override
-	public boolean areDependenciesMet()
-	{
+	public boolean areDependenciesMet() {
 		return Loader.isModLoaded("steamagerevolution");
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent)
-	{
+	public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent) {
 		// this.getConfigRegistry().addNewConfigFile("materials");
 		// Boilerplate.instance.getRegistryHolder().getConfigRegistry().addCategoryComment("types",
 		// "Disable registration of ore/metal block etc of given type?", "materials");
@@ -59,20 +56,16 @@ public class MaterialsModule extends ModuleBase
 	}
 
 	@Override
-	public void init(FMLInitializationEvent event)
-	{
+	public void init(FMLInitializationEvent event) {
 		GameRegistry.addSmelting(new ItemStack(metal_ore, 1, 0), new ItemStack(ingot, 1, 0), 0.5F);
 		GameRegistry.addSmelting(new ItemStack(metal_ore, 1, 1), new ItemStack(ingot, 1, 1), 0.5F);
 
 		for(int i = 0; i < BlockMetal.EnumBlockType.values().length; i++)
-		{
 			RecipeUtils.addMetalRecipes(metal_block, ingot, nugget, i);
-		}
 	}
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Materials";
 	}
 }

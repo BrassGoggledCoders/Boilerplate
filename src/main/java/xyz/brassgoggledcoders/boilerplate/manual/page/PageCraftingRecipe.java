@@ -2,43 +2,43 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 19, 2014, 4:58:19 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.manual.page;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import org.lwjgl.opengl.GL11;
 import xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper;
 import xyz.brassgoggledcoders.boilerplate.manual.IGuiLexiconEntry;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconEntry;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconRecipeMappings;
 import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class PageCraftingRecipe extends PageRecipe {
 
-	private static final ResourceLocation craftingOverlay = new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/craftingOverlay.png");
+	private static final ResourceLocation craftingOverlay =
+			new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/craftingOverlay.png");
 
 	List<IRecipe> recipes;
 	int ticksElapsed = 0;
@@ -122,12 +122,13 @@ public class PageCraftingRecipe extends PageRecipe {
 	@SideOnly(Side.CLIENT)
 	public void renderCraftingRecipe(IGuiLexiconEntry gui, IRecipe recipe) {
 		if(recipe instanceof ShapedRecipes) {
-			ShapedRecipes shaped = (ShapedRecipes)recipe;
+			ShapedRecipes shaped = (ShapedRecipes) recipe;
 
 			for(int y = 0; y < shaped.recipeHeight; y++)
 				for(int x = 0; x < shaped.recipeWidth; x++)
 					renderItemAtGridPos(gui, 1 + x, 1 + y, shaped.recipeItems[y * shaped.recipeWidth + x], true);
-		} else if(recipe instanceof ShapedOreRecipe) {
+		}
+		else if(recipe instanceof ShapedOreRecipe) {
 			ShapedOreRecipe shaped = (ShapedOreRecipe) recipe;
 			int width = ReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4);
 			int height = ReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 5);
@@ -136,14 +137,17 @@ public class PageCraftingRecipe extends PageRecipe {
 				for(int x = 0; x < width; x++) {
 					Object input = shaped.getInput()[y * width + x];
 					if(input != null)
-						renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
+						renderItemAtGridPos(gui, 1 + x, 1 + y,
+								input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0),
+								true);
 				}
 
 			oreDictRecipe = true;
-		} else if(recipe instanceof ShapelessRecipes) {
+		}
+		else if(recipe instanceof ShapelessRecipes) {
 			ShapelessRecipes shapeless = (ShapelessRecipes) recipe;
 
-			drawGrid : {
+			drawGrid: {
 				for(int y = 0; y < 3; y++)
 					for(int x = 0; x < 3; x++) {
 						int index = y * 3 + x;
@@ -156,10 +160,11 @@ public class PageCraftingRecipe extends PageRecipe {
 			}
 
 			shapelessRecipe = true;
-		} else if(recipe instanceof ShapelessOreRecipe) {
+		}
+		else if(recipe instanceof ShapelessOreRecipe) {
 			ShapelessOreRecipe shapeless = (ShapelessOreRecipe) recipe;
 
-			drawGrid : {
+			drawGrid: {
 				for(int y = 0; y < 3; y++)
 					for(int x = 0; x < 3; x++) {
 						int index = y * 3 + x;
@@ -169,7 +174,9 @@ public class PageCraftingRecipe extends PageRecipe {
 
 						Object input = shapeless.getInput().get(index);
 						if(input != null)
-							renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
+							renderItemAtGridPos(gui, 1 + x, 1 + y,
+									input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0),
+									true);
 					}
 			}
 

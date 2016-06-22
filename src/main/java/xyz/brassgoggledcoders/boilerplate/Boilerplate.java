@@ -13,8 +13,7 @@ import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 
 @Mod(modid = Boilerplate.ID, name = Boilerplate.NAME, version = Boilerplate.VERSION,
 		dependencies = Boilerplate.DEPENDENCIES)
-public class Boilerplate extends BoilerplateModBase
-{
+public class Boilerplate extends BoilerplateModBase {
 	public final static String ID = "boilerplate";
 	public final static String NAME = "Boilerplate";
 	public final static String VERSION = "@VERSION@";
@@ -40,58 +39,51 @@ public class Boilerplate extends BoilerplateModBase
 
 	public static CreativeTabs tabOres;
 
-	public Boilerplate()
-	{
+	public Boilerplate() {
 		super(Boilerplate.ID, Boilerplate.NAME, Boilerplate.VERSION, CreativeTabs.MISC);
 	}
 
+	@Override
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
 		proxy.registerBlockModels();
 	}
 
+	@Override
 	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
+	public void init(FMLInitializationEvent event) {
 		super.init(event);
 	}
 
+	@Override
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
 	}
 
 	@Override
-	protected void modPostInit(FMLPostInitializationEvent event)
-	{
+	protected void modPostInit(FMLPostInitializationEvent event) {
 		this.getLogger().info("GNU Terry Prachett");
 	}
 
 	@Override
-	public Object getInstance()
-	{
+	public Object getInstance() {
 		return instance;
 	}
 
 	@Override
-	public CreativeTabs getCreativeTab()
-	{
+	public CreativeTabs getCreativeTab() {
 		return tabOres;
 	}
 
-	public static class TabOres extends BaseCreativeTab
-	{
-		public TabOres()
-		{
+	public static class TabOres extends BaseCreativeTab {
+		public TabOres() {
 			super("boilerplate");
 		}
 
 		@Override
-		public Item getTabIconItem()
-		{
+		public Item getTabIconItem() {
 			return Item.getItemFromBlock(MaterialsModule.metal_ore);
 		}
 

@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 16, 2014, 4:52:06 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual.button;
@@ -38,8 +36,8 @@ public class GuiButtonPage extends GuiButtonLexicon {
 			drawTexturedModalRect(xPosition, yPosition, k == 2 ? 18 : 0, right ? 180 : 190, 18, 10);
 
 			if(k == 2)
-				RenderHelper.renderTooltip(par2, par3, Collections.singletonList(
-						I18n.format(right ? "botaniamisc.nextPage" : "botaniamisc.prevPage")));
+				RenderHelper.renderTooltip(par2, par3, Collections
+						.singletonList(I18n.format(right ? "botaniamisc.nextPage" : "botaniamisc.prevPage")));
 		}
 	}
 

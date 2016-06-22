@@ -1,60 +1,47 @@
 package xyz.brassgoggledcoders.boilerplate.items;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author SkySom
  */
-public class ToolUtils
-{
+public class ToolUtils {
 	public static boolean toolsSetup = false;
 	public static HashMap<String, Class> toolClasses;
 
-	public static boolean isItemATool(ItemStack itemStack)
-	{
+	public static boolean isItemATool(ItemStack itemStack) {
 		boolean isTool = false;
-		if(ItemStackUtils.isItemNonNull(itemStack))
-		{
+		if(ItemStackUtils.isItemNonNull(itemStack)) {
 			if(itemStack.getItem().getToolClasses(itemStack).contains("IE_HAMMER"))
-			{
 				isTool = true;
-			}
 
-			if(!isTool)
-			{
+			if(!isTool) {
 				if(!toolsSetup)
-				{
 					setupToolItems();
-				}
 
 				for(Map.Entry<String, Class> entry : toolClasses.entrySet())
-				{
 					if(ItemStackUtils.isItemInstanceOf(itemStack, entry.getValue())) {
 						isTool = true;
 						break;
 					}
-				}
 			}
 		}
 		return isTool;
 	}
 
-	public static boolean isPlayerHoldingATool(EntityPlayer player)
-	{
+	public static boolean isPlayerHoldingATool(EntityPlayer player) {
 		boolean hasTool = false;
-		for(ItemStack itemStack: player.getHeldEquipment()) {
+		for(ItemStack itemStack : player.getHeldEquipment())
 			hasTool |= hasTool || isItemATool(itemStack);
-		}
 		return hasTool;
 	}
 
-	public static void setupToolItems()
-	{
+	public static void setupToolItems() {
 		HashMap<String, String> classStrings = new HashMap<String, String>();
 		classStrings.put("BC Wrench", "buildcraft.api.tools.IToolWrench");
 		classStrings.put("TE Hammer", "cofh.api.item.IToolHammer");
@@ -64,20 +51,14 @@ public class ToolUtils
 		toolClasses = new HashMap<String, Class>();
 
 		for(Map.Entry<String, String> entry : classStrings.entrySet())
-		{
-			try
-			{
+			try {
 				Class toolClass = Class.forName(entry.getValue());
 				if(toolClass != null)
-				{
 					toolClasses.put(entry.getKey(), toolClass);
-				}
 			}
-			catch(ClassNotFoundException e)
-			{
-				//This will happen whenever a mod isn't installed. Pretty normal.
+			catch(ClassNotFoundException e) {
+				// This will happen whenever a mod isn't installed. Pretty normal.
 			}
-		}
 
 		toolsSetup = true;
 	}

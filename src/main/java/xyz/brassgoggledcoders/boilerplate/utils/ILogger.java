@@ -3,8 +3,7 @@ package xyz.brassgoggledcoders.boilerplate.utils;
 /**
  * @author SkySom
  */
-public interface ILogger
-{
+public interface ILogger {
 	void warning(String message);
 
 	void info(String message);

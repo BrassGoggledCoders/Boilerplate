@@ -21,31 +21,43 @@ public class Vector {
 		this.z = vec.zCoord;
 	}
 
-	public void setX( double x) {this.x = x;}
+	public void setX(double x) {
+		this.x = x;
+	}
 
-	public void setY(double y) {this.y = y;}
+	public void setY(double y) {
+		this.y = y;
+	}
 
-	public void setZ(double z) {this.z = z;}
+	public void setZ(double z) {
+		this.z = z;
+	}
 
-	public  double getX() {return x;}
+	public double getX() {
+		return x;
+	}
 
-	public  double getY() {return y;}
+	public double getY() {
+		return y;
+	}
 
-	public  double getZ() {return z;}
+	public double getZ() {
+		return z;
+	}
 
 	/** returns a new vector gotten by adding v to this vector (this + v) */
 	public Vector add(Vector v) {
-		return new Vector(this.x+v.x, this.y+v.y, this.z+v.z);
+		return new Vector(this.x + v.x, this.y + v.y, this.z + v.z);
 	}
 
-	/** returns a new vector gotten by substracting vector v from this vector (this - v)*/
+	/** returns a new vector gotten by substracting vector v from this vector (this - v) */
 	public Vector substract(Vector v) {
-		return new Vector(this.x-v.x, this.y-v.y, this.z-v.z);
+		return new Vector(this.x - v.x, this.y - v.y, this.z - v.z);
 	}
 
-	/**scales  this vector */
+	/** scales this vector */
 	public Vector scale(double d) {
-		if(d!=1) {
+		if(d != 1) {
 			x = x * d;
 			y = y * d;
 			z = z * d;
@@ -53,9 +65,9 @@ public class Vector {
 		return this;
 	}
 
-	/** Returns a normalised vector normal to this vector in the xz plane*/
+	/** Returns a normalised vector normal to this vector in the xz plane */
 	public Vector getNormal() {
-		Vector normal = new Vector(1.0D/this.getX(), 0, -1.0/this.getZ());
+		Vector normal = new Vector(1.0D / this.getX(), 0, -1.0 / this.getZ());
 		normal.normalize();
 		return normal;
 	}
@@ -70,10 +82,9 @@ public class Vector {
 	/** Normalizes this vector */
 	public Vector normalize() {
 		double norm = norm();
-		if(norm==0) {
+		if(norm == 0)
 			return this;
-		}
-		this.scale(1.0D/norm());
+		this.scale(1.0D / norm());
 		return this;
 	}
 
@@ -84,14 +95,14 @@ public class Vector {
 
 	/** Calculates the dot product of a and b (a . b) */
 	public static double dotProduct(Vector a, Vector b) {
-		return a.getX()*b.getX() + a.getY()*b.getY() + a.getZ()*b.getZ();
+		return a.getX() * b.getX() + a.getY() * b.getY() + a.getZ() * b.getZ();
 	}
 
-	/** Calculates the cross product of a and b (a x b)*/
+	/** Calculates the cross product of a and b (a x b) */
 	public static Vector crossProduct(Vector a, Vector b) {
-		double vX = a.y*b.z - a.z*b.y;
-		double vY = a.z*b.x - a.x-b.z;
-		double vZ = a.x*b.y - a.y*-b.x;
+		double vX = a.y * b.z - a.z * b.y;
+		double vY = a.z * b.x - a.x - b.z;
+		double vZ = a.x * b.y - a.y * -b.x;
 		return new Vector(vX, vY, vZ);
 	}
 
@@ -100,9 +111,8 @@ public class Vector {
 		Vector copy = v.copy();
 		copy.normalize();
 		double norm = dotProduct(this, copy);
-		if(norm == 0) {
+		if(norm == 0)
 			return NULLVECTOR.copy();
-		}
 		copy.scale(norm);
 		return copy;
 	}

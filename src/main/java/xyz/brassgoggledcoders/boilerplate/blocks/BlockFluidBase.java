@@ -13,40 +13,32 @@ import net.minecraftforge.fluids.IFluidHandler;
 import xyz.brassgoggledcoders.boilerplate.utils.ComparatorUtils;
 import xyz.brassgoggledcoders.boilerplate.utils.FluidUtils;
 
-public abstract class BlockFluidBase extends BlockTEBase
-{
-	public BlockFluidBase(Material material, String name)
-	{
+public abstract class BlockFluidBase extends BlockTEBase {
+	public BlockFluidBase(Material material, String name) {
 		super(material, name);
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
+			ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		TileEntity tileEntity = world.getTileEntity(pos);
-		return tileEntity instanceof IFluidHandler && shouldInteractWithFluidContainers() &&
-				FluidUtils.fillFluidHandlerWithPlayerItem(world, (IFluidHandler)tileEntity, player, heldItem);
+		return tileEntity instanceof IFluidHandler && shouldInteractWithFluidContainers()
+				&& FluidUtils.fillFluidHandlerWithPlayerItem(world, (IFluidHandler) tileEntity, player, heldItem);
 	}
 
-	public boolean shouldInteractWithFluidContainers()
-	{
+	public boolean shouldInteractWithFluidContainers() {
 		return true;
 	}
 
 	@Override
-	public boolean hasComparatorInputOverride(IBlockState state)
-	{
+	public boolean hasComparatorInputOverride(IBlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
-	{
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
 		if(world.getTileEntity(pos) instanceof IFluidHandler)
-		{
-			return ComparatorUtils.scaleSingleFluidLevelTo(15, (IFluidHandler)world.getTileEntity(pos));
-		}
+			return ComparatorUtils.scaleSingleFluidLevelTo(15, (IFluidHandler) world.getTileEntity(pos));
 		return 0;
 	}
 }

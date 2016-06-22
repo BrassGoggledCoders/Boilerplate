@@ -2,8 +2,7 @@ package xyz.brassgoggledcoders.boilerplate.registries;
 
 import java.util.List;
 
-public interface IRegistryHolder
-{
+public interface IRegistryHolder {
 	List<BaseRegistry> getAllRegistries();
 
 	BlockRegistry getBlockRegistry();

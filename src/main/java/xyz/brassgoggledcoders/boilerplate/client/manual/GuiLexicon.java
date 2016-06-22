@@ -3,6 +3,11 @@
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -12,15 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import xyz.brassgoggledcoders.boilerplate.client.manual.button.*;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonAchievement;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonCategory;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonHistory;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonInvisible;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonOptions;
 import xyz.brassgoggledcoders.boilerplate.manual.BotaniaAPI;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconCategory;
 import xyz.brassgoggledcoders.boilerplate.utils.Utils;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 
 public class GuiLexicon extends GuiScreen {
 
@@ -31,7 +35,8 @@ public class GuiLexicon extends GuiScreen {
 
 	private static final String TAG_TYPE = "type";
 
-	public static final ResourceLocation texture = new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/manual.png");
+	public static final ResourceLocation texture =
+			new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/manual.png");
 
 	public float lastTime = 0F;
 	public float partialTicks = 0F;
@@ -72,7 +77,8 @@ public class GuiLexicon extends GuiScreen {
 				buttonList.add(new GuiButtonInvisible((GuiLexiconIndex) this, i, left + x, top + y, 110, 10, ""));
 			}
 			populateIndex();
-		} else if(isCategoryIndex()) {
+		}
+		else if(isCategoryIndex()) {
 			int categories = allCategories.size();
 			for(int i = 0; i < categories + 1; i++) {
 				LexiconCategory category = null;
@@ -82,7 +88,8 @@ public class GuiLexicon extends GuiScreen {
 				int y = i / perline;
 
 				int size = 22;
-				GuiButtonCategory button = new GuiButtonCategory(i, left + 18 + x * size, top + 50 + y * size, this, category);
+				GuiButtonCategory button =
+						new GuiButtonCategory(i, left + 18 + x * size, top + 50 + y * size, this, category);
 				buttonList.add(button);
 			}
 		}
@@ -120,7 +127,8 @@ public class GuiLexicon extends GuiScreen {
 		boolean unicode = fontRendererObj.getUnicodeFlag();
 		fontRendererObj.drawString(title, left + 18, top + 13, color);
 		fontRendererObj.setUnicodeFlag(true);
-		//fontRendererObj.drawString(String.format(StatCollector.format("botaniamisc.edition"), ItemLexicon.getEdition()), left + 24, top + 22, color);
+		// fontRendererObj.drawString(String.format(StatCollector.format("botaniamisc.edition"),
+		// ItemLexicon.getEdition()), left + 24, top + 22, color);
 
 		String s = TextFormatting.BOLD + categoryHighlight;
 		fontRendererObj.drawString(s, left + guiWidth / 2 - fontRendererObj.getStringWidth(s) / 2, top + 36, 0);
@@ -205,7 +213,8 @@ public class GuiLexicon extends GuiScreen {
 		buttonList.removeAll(remove);
 
 		if(isMainPage())
-			buttonList.add(new GuiButtonHistory(2000, left + 138, top + guiHeight - 24, I18n.format("botaniamisc.history"), this));
+			buttonList.add(new GuiButtonHistory(2000, left + 138, top + guiHeight - 24,
+					I18n.format("botaniamisc.history"), this));
 	}
 
 	boolean closeScreenOnInvKey() {
@@ -221,7 +230,8 @@ public class GuiLexicon extends GuiScreen {
 			if(isValidLexiconGui(lex))
 				return lex;
 			return null;
-		} catch (Exception e) {
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -243,7 +253,7 @@ public class GuiLexicon extends GuiScreen {
 		return new GuiLexicon();
 	}
 
-	public static boolean isValidLexiconGui(GuiLexicon gui)	{
+	public static boolean isValidLexiconGui(GuiLexicon gui) {
 		if(gui == null)
 			return false;
 		if(gui.isCategoryIndex() || gui.isChallenge())
@@ -262,4 +272,3 @@ public class GuiLexicon extends GuiScreen {
 		return entryGui.page < entryGui.entry.pages.size();
 	}
 }
-

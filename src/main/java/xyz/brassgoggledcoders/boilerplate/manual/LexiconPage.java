@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 14, 2014, 6:17:24 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.manual;
@@ -28,6 +26,7 @@ public abstract class LexiconPage {
 
 	/**
 	 * Does the rendering for this page.
+	 * 
 	 * @param gui The active GuiScreen
 	 * @param mx The mouse's relative X position.
 	 * @param my The mouse's relative Y position.

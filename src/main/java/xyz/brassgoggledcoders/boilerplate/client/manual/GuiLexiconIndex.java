@@ -2,36 +2,34 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 14, 2014, 6:46:59 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual;
-
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.client.resources.I18n;
-import org.lwjgl.input.Mouse;
-import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonBack;
-import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonInvisible;
-import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonPage;
-import xyz.brassgoggledcoders.boilerplate.manual.BotaniaAPI;
-import xyz.brassgoggledcoders.boilerplate.manual.ILexicon;
-import xyz.brassgoggledcoders.boilerplate.manual.LexiconCategory;
-import xyz.brassgoggledcoders.boilerplate.manual.LexiconEntry;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.lwjgl.input.Mouse;
+
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonBack;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonInvisible;
+import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonPage;
+import xyz.brassgoggledcoders.boilerplate.manual.BotaniaAPI;
+import xyz.brassgoggledcoders.boilerplate.manual.LexiconCategory;
+import xyz.brassgoggledcoders.boilerplate.manual.LexiconEntry;
 
 public class GuiLexiconIndex extends GuiLexicon implements IParented {
 
@@ -92,7 +90,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 	public void onInitGui() {
 		super.onInitGui();
 
-		if(!GuiLexicon.isValidLexiconGui(this))	{
+		if(!GuiLexicon.isValidLexiconGui(this)) {
 			currentOpenLexicon = new GuiLexicon();
 			mc.displayGuiScreen(currentOpenLexicon);
 			return;
@@ -118,29 +116,28 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 
 	void buildEntries() {
 		entriesToDisplay.clear();
-		ILexicon lex = (ILexicon) stackUsed.getItem();
-		for(LexiconEntry entry : category == null ? BotaniaAPI.getAllEntries() : category.entries) {
+		stackUsed.getItem();
+		for(LexiconEntry entry : category == null ? BotaniaAPI.getAllEntries() : category.entries)
 			if(entry.isVisible() && matchesSearch(entry))
 				entriesToDisplay.add(entry);
-		}
 		Collections.sort(entriesToDisplay);
 	}
-	
+
 	boolean matchesSearch(LexiconEntry e) {
 		String search = searchField.getText().trim();
 		if(search.isEmpty())
 			return true;
-		
+
 		search = search.toLowerCase();
 		if(I18n.format(e.getUnlocalizedName()).toLowerCase().contains(search))
 			return true;
-		
+
 		for(ItemStack stack : e.getDisplayedRecipes()) {
 			String stackName = stack.getDisplayName().toLowerCase().trim();
 			if(stackName.contains(search))
 				return true;
 		}
-				
+
 		return false;
 	}
 
@@ -150,17 +147,21 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 			GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - page * 12);
 			LexiconEntry entry = i >= entriesToDisplay.size() ? null : entriesToDisplay.get(i);
 			if(entry != null) {
-				button.displayString = (entry.isPriority() ? TextFormatting.ITALIC : "") + I18n.format(entry.getUnlocalizedName());
+				button.displayString =
+						(entry.isPriority() ? TextFormatting.ITALIC : "") + I18n.format(entry.getUnlocalizedName());
 				button.displayStack = entry.getIcon();
-				
-			} else button.displayString = "";
+
+			}
+			else
+				button.displayString = "";
 		}
 	}
 
 	public void setHoveredButton(GuiButtonInvisible b) {
 		if(b == null)
 			currentEntry = null;
-		else currentEntry = entriesToDisplay.get(b.id + page * 12);
+		else
+			currentEntry = entriesToDisplay.get(b.id + page * 12);
 		currentButton = b;
 	}
 
@@ -172,19 +173,22 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 			mc.renderEngine.bindTexture(texture);
 			GlStateManager.color(1F, 1F, 1F, 1F);
 			drawTexturedModalRect(left + 134, top + guiHeight - 26, 86, 180, 12, 12);
-			
+
 			if(entriesToDisplay.size() == 1) {
 				boolean unicode = mc.fontRendererObj.getUnicodeFlag();
 				mc.fontRendererObj.setUnicodeFlag(true);
 				String s = I18n.format("botaniamisc.enterToView");
-				mc.fontRendererObj.drawString(s, left + guiWidth / 2 - mc.fontRendererObj.getStringWidth(s) / 2, top + 30, 0x666666);
+				mc.fontRendererObj.drawString(s, left + guiWidth / 2 - mc.fontRendererObj.getStringWidth(s) / 2,
+						top + 30, 0x666666);
 				mc.fontRendererObj.setUnicodeFlag(unicode);
 			}
-		} else {
+		}
+		else {
 			boolean unicode = mc.fontRendererObj.getUnicodeFlag();
 			mc.fontRendererObj.setUnicodeFlag(true);
 			String s = I18n.format("botaniamisc.typeToSearch");
-			mc.fontRendererObj.drawString(s, left + 120 - mc.fontRendererObj.getStringWidth(s), top + guiHeight - 18, 0x666666);
+			mc.fontRendererObj.drawString(s, left + 120 - mc.fontRendererObj.getStringWidth(s), top + guiHeight - 18,
+					0x666666);
 			mc.fontRendererObj.setUnicodeFlag(unicode);
 		}
 
@@ -192,7 +196,8 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 		if(isShiftKeyDown()) {
 			if(currentButton != null)
 				infoTime = Math.min(animationTime, infoTime + timeDelta);
-		} else {
+		}
+		else {
 			infoTime = Math.max(0, infoTime - timeDelta);
 
 			if(currentButton != null && infoTime == 0) {
@@ -253,24 +258,24 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
-			switch(par1GuiButton.id) {
-			case 12 :
+		switch(par1GuiButton.id) {
+			case 12:
 				mc.displayGuiScreen(parent);
-				break;
-			case 13 :
+			break;
+			case 13:
 				page--;
 				updatePageButtons();
 				populateIndex();
-				break;
-			case 14 :
+			break;
+			case 14:
 				page++;
 				updatePageButtons();
 				populateIndex();
-				break;
-			default :
-					int index = par1GuiButton.id + page * 12;
-					openEntry(index);
-			}
+			break;
+			default:
+				int index = par1GuiButton.id + page * 12;
+				openEntry(index);
+		}
 	}
 
 	void openEntry(int index) {
@@ -301,7 +306,8 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 			if(swipe < 0.5) {
 				nextPage();
 				swiped = true;
-			} else if(swipe > 0.5) {
+			}
+			else if(swipe > 0.5) {
 				prevPage();
 				swiped = true;
 			}
@@ -315,14 +321,14 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 		searchField.mouseClicked(par1, par2, par3);
 		fx = par1;
 		switch(par3) {
-		case 1:
-			back();
+			case 1:
+				back();
 			break;
-		case 3:
-			nextPage();
+			case 3:
+				nextPage();
 			break;
-		case 4:
-			prevPage();
+			case 4:
+				prevPage();
 			break;
 		}
 	}
@@ -354,9 +360,9 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 			nextPage();
 		else if(par2 == 14 && searchField.getText().isEmpty()) // Backspace
 			back();
-		else if(par2 == 199) { // Home
+		else if(par2 == 199)
 			mc.displayGuiScreen(new GuiLexicon());
-		} else if(par2 == 28 && entriesToDisplay.size() == 1) // Enter
+		else if(par2 == 28 && entriesToDisplay.size() == 1) // Enter
 			openEntry(0);
 
 		super.keyTyped(par1, par2);
@@ -396,11 +402,12 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 		String categoryStr = cmp.getString(TAG_CATEGORY);
 		if(categoryStr.isEmpty())
 			category = null;
-		else for(LexiconCategory cat : BotaniaAPI.getAllCategories())
-			if(cat.getUnlocalizedName().equals(categoryStr)) {
-				category = cat;
-				break;
-			}
+		else
+			for(LexiconCategory cat : BotaniaAPI.getAllCategories())
+				if(cat.getUnlocalizedName().equals(categoryStr)) {
+					category = cat;
+					break;
+				}
 		page = cmp.getInteger(TAG_PAGE);
 		setTitle();
 	}
@@ -418,4 +425,3 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented {
 		return "category_" + (category == null ? "lexindex" : category.unlocalizedName);
 	}
 }
-

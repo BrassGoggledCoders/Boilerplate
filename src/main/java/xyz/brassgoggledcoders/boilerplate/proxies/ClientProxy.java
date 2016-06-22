@@ -29,92 +29,75 @@ import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
 /**
  * @author Surseance
  */
-public class ClientProxy extends CommonProxy
-{
+public class ClientProxy extends CommonProxy {
 	@Override
-	public void registerBlockModels()
-	{
-		if(Boilerplate.instance.getModuleHandler().isModuleEnabled("Materials"))
-		{
+	public void registerBlockModels() {
+		if(Boilerplate.instance.getModuleHandler().isModuleEnabled("Materials")) {
 			registerVariantsDefaulted(MaterialsModule.metal_ore, BlockMetalOre.EnumBlockType.class, "type");
 			registerVariantsDefaulted(MaterialsModule.metal_block, BlockMetal.EnumBlockType.class, "type");
 		}
 	}
 
 	@Override
-	public String translate(String text)
-	{
+	public String translate(String text) {
 		return I18n.format("boilerplate." + text);
 	}
 
 	@Override
-	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation)
-	{
+	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation) {
 		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, metadata, modelResourceLocation);
 	}
 
 	@Override
-	public void addVariantName(Item item, String... variantNames)
-	{
+	public void addVariantName(Item item, String... variantNames) {
 		ModelResourceLocation[] modelResourceLocations = new ModelResourceLocation[variantNames.length];
 		for(int i = 0; i < modelResourceLocations.length; i++)
-		{
 			modelResourceLocations[i] = new ModelResourceLocation(mod.getPrefix() + variantNames[i]);
-		}
 		ModelBakery.registerItemVariants(item, modelResourceLocations);
 	}
 
 	@Override
-	public void registerItemModelVariant(Item item, int metadata, String itemModelName)
-	{
+	public void registerItemModelVariant(Item item, int metadata, String itemModelName) {
 		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(mod.getPrefix() + itemModelName);
 		ClientHelper.getItemModelMesher().register(item, metadata, modelResourceLocation);
 	}
 
 	@Override
 	@SuppressWarnings({"unchecked", "deprecation"})
-	public void registerISpecialRendererItem(Item item)
-	{
+	public void registerISpecialRendererItem(Item item) {
 		ISpecialRenderedItem specialRenderItem = (ISpecialRenderedItem) item;
-		ItemSpecialRenderer renderer = ItemSpecialRenderStore.getItemSpecialRenderer(((ISpecialRenderedItem) item));
+		ItemSpecialRenderer renderer = ItemSpecialRenderStore.getItemSpecialRenderer((ISpecialRenderedItem) item);
 		ClientRegistry.bindTileEntitySpecialRenderer(renderer.getTileClass(), renderer);
 		int length = specialRenderItem.getResourceLocations().length;
 		ModelResourceLocation[] modelLocations = new ModelResourceLocation[length];
 
 		for(int i = 0; i < length; i++)
-		{
 			modelLocations[i] = new ModelResourceLocation(mod.getPrefix() + specialRenderItem.getResourceLocations()[i],
 					"inventory");
-		}
 
-		for(int i = 0; i < length; i++)
-		{
+		for(int i = 0; i < length; i++) {
 			ModelBakeHandler.getInstance().registerModelToSwap(modelLocations[i], renderer);
 			ForgeHooksClient.registerTESRItemStack(item, i, renderer.getTileClass());
 		}
 	}
 
 	@Override
-	public void registerEvents()
-	{
+	public void registerEvents() {
 		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 		MinecraftForge.EVENT_BUS.register(new ClientTickHandler()); // TODO
 		MinecraftForge.EVENT_BUS.register(ModelBakeHandler.getInstance());
 	}
 
 	@Override
-	public void setLexiconStack(ItemStack stack)
-	{
+	public void setLexiconStack(ItemStack stack) {
 		GuiLexicon.stackUsed = stack;
 	}
 
 	public static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(Block b, Class<T> enumclazz,
-			String variantHeader)
-	{
+			String variantHeader) {
 		Item item = Item.getItemFromBlock(b);
-		for(T e : enumclazz.getEnumConstants())
-		{
+		for(T e : enumclazz.getEnumConstants()) {
 			String baseName = ForgeRegistries.BLOCKS.getKey(b).toString();
 			String variantName = variantHeader + "=" + e.getName();
 			ModelLoader.setCustomModelResourceLocation(item, e.ordinal(),

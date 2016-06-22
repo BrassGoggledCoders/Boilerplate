@@ -1,10 +1,8 @@
 /**
  * This class was created by BrassGoggledCoders modding team.
  * This class is available as part of the BoilerCraft Mod for Minecraft.
- *
  * BoilerCraft is open-source and is distributed under the MMPL v1.0 License.
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
- *
  */
 package xyz.brassgoggledcoders.boilerplate.blocks;
 
@@ -23,10 +21,8 @@ import xyz.brassgoggledcoders.boilerplate.tileentities.TileEntitySidedBase;
 /**
  * @author SkySom
  */
-public abstract class BlockSidedBase extends BlockTEBase
-{
-	protected BlockSidedBase(Material material, String name)
-	{
+public abstract class BlockSidedBase extends BlockTEBase {
+	protected BlockSidedBase(Material material, String name) {
 		super(material, name);
 		setHardness(3.0F);
 		setResistance(15.0F);
@@ -34,20 +30,14 @@ public abstract class BlockSidedBase extends BlockTEBase
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if(!world.isRemote)
-		{
+			ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(!world.isRemote) {
 			TileEntity te = world.getTileEntity(pos);
-			if(te instanceof TileEntitySidedBase)
-			{
+			if(te instanceof TileEntitySidedBase) {
 				TileEntitySidedBase tileEntitySided = (TileEntitySidedBase) te;
-				if(ToolUtils.isItemATool(heldItem))
-				{
+				if(ToolUtils.isItemATool(heldItem)) {
 					if(player.isSneaking())
-					{
 						side = side.getOpposite();
-					}
 					tileEntitySided.toggleSide(side.ordinal());
 					return true;
 				}

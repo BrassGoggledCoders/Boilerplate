@@ -1,5 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.items;
 
+import java.util.LinkedHashMap;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,59 +16,43 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 
-import javax.annotation.Nonnull;
-import java.util.LinkedHashMap;
-
 /**
  * @author SkySom
  */
-public class ItemDebuggerStick extends ItemBase
-{
-	public ItemDebuggerStick()
-	{
+public class ItemDebuggerStick extends ItemBase {
+	public ItemDebuggerStick() {
 		super("debugger_stick");
 		this.setCreativeTab(CreativeTabs.MISC);
 	}
 
 	@Override
 	@Nonnull
-	public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack itemStack, World world, EntityPlayer player,
+			EnumHand hand) {
 		RayTraceResult rayTrace = rayTrace(world, player, true);
 		LinkedHashMap<String, String> debugStrings = new LinkedHashMap<String, String>();
 
 		if(rayTrace != null && rayTrace.typeOfHit != null)
-		{
-			if (rayTrace.typeOfHit == RayTraceResult.Type.BLOCK)
-			{
+			if(rayTrace.typeOfHit == RayTraceResult.Type.BLOCK) {
 				TileEntity tileEntity = world.getTileEntity(rayTrace.getBlockPos());
 				{
-					if (tileEntity instanceof IDebuggable)
-					{
+					if(tileEntity instanceof IDebuggable)
 						debugStrings.putAll(((IDebuggable) tileEntity).getDebugStrings());
-					} else {
+					else
 						debugStrings.put("name", world.getBlockState(rayTrace.getBlockPos()).toString());
-					}
 				}
 			}
-			else if (rayTrace.typeOfHit == RayTraceResult.Type.ENTITY)
-			{
+			else if(rayTrace.typeOfHit == RayTraceResult.Type.ENTITY) {
 				Entity entity = rayTrace.entityHit;
-				if (entity instanceof IDebuggable)
-				{
+				if(entity instanceof IDebuggable)
 					debugStrings.putAll(((IDebuggable) entity).getDebugStrings());
-				} else {
+				else
 					debugStrings.put("name", entity.getName());
-				}
 			}
-		}
 
-		if(!debugStrings.isEmpty())
-		{
+		if(!debugStrings.isEmpty()) {
 			for(String debugString : debugStrings.values())
-			{
 				getMod().getLogger().info(debugString);
-			}
 			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
 		}
 
@@ -72,8 +60,7 @@ public class ItemDebuggerStick extends ItemBase
 	}
 
 	@Override
-	public String[] getResourceLocations()
-	{
+	public String[] getResourceLocations() {
 		return new String[] {"debugger_stick"};
 	}
 }

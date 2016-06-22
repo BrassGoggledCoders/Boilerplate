@@ -8,20 +8,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class WorldGenBlockgroup extends WorldGenerator
-{
-	private final Block blockToGen;
-	private final int numberOfBlocks;
-
-	public WorldGenBlockgroup(Block block, int p_i2011_1_)
-	{
-		this.blockToGen = block;
-		this.numberOfBlocks = p_i2011_1_;
-	}
+public class WorldGenBlockgroup extends WorldGenerator {
+	public WorldGenBlockgroup(Block block, int p_i2011_1_) {}
 
 	@Override
-	public boolean generate(World worldIn, Random rand, BlockPos position)
-	{
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		return false;
 		// int l = random.nextInt(this.numberOfBlocks);
 		// byte b0 = 1;

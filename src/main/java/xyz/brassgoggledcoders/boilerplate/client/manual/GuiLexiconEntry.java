@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- *
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- *
  * File Created @ [Jan 14, 2014, 6:47:06 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual;
@@ -15,12 +13,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
-import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import xyz.brassgoggledcoders.boilerplate.client.manual.button.GuiButtonBackWithShift;
@@ -65,7 +63,8 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 		title = I18n.format(entry.getUnlocalizedName());
 		if(entry instanceof IAddonEntry)
 			subtitle = I18n.format(((IAddonEntry) entry).getSubtitle());
-		else subtitle = null;
+		else
+			subtitle = null;
 	}
 
 	@Override
@@ -76,7 +75,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 		buttonList.add(leftButton = new GuiButtonPage(1, left, top + guiHeight - 10, false));
 		buttonList.add(rightButton = new GuiButtonPage(2, left + guiWidth - 18, top + guiHeight - 10, true));
 
-		if(!GuiLexicon.isValidLexiconGui(this))	{
+		if(!GuiLexicon.isValidLexiconGui(this)) {
 			currentOpenLexicon = new GuiLexicon();
 			mc.displayGuiScreen(currentOpenLexicon);
 			return;
@@ -123,39 +122,40 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		LexiconPage currentPage = entry.pages.get(page);
 		LexiconPage newPage;
-		
-			switch(par1GuiButton.id) {
-			case 0 :
+
+		switch(par1GuiButton.id) {
+			case 0:
 				currentPage.onClosed(this);
 				mc.displayGuiScreen(GuiScreen.isShiftKeyDown() ? new GuiLexicon() : parent);
-				break;
-			case 1 :
+			break;
+			case 1:
 				currentPage.onClosed(this);
 				page--;
 				newPage = entry.pages.get(page);
 				newPage.onOpened(this);
-				break;
-			case 2 :
+			break;
+			case 2:
 				currentPage.onClosed(this);
 				page++;
 				newPage = entry.pages.get(page);
 				newPage.onOpened(this);
-				break;
-			case 3 :
+			break;
+			case 3:
 				Minecraft mc = Minecraft.getMinecraft();
 				String cmd = "/botania-share " + entry.getUnlocalizedName();
 
 				mc.ingameGUI.getChatGUI().addToSentMessages(cmd);
 				mc.thePlayer.sendChatMessage(cmd);
-				break;
-			case 4 :
+			break;
+			case 4:
 				try {
 					if(Desktop.isDesktopSupported())
 						Desktop.getDesktop().browse(new URI(entry.getWebLink()));
-				} catch(Exception e) {
+				}
+				catch(Exception e) {
 					e.printStackTrace();
 				}
-			}
+		}
 
 		updatePageButtons();
 		currentPage.onActionPerformed(this, par1GuiButton);
@@ -229,7 +229,8 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 			if(swipe < 0.5) {
 				nextPage();
 				swiped = true;
-			} else if(swipe > 0.5) {
+			}
+			else if(swipe > 0.5) {
 				prevPage();
 				swiped = true;
 			}
@@ -242,14 +243,14 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 
 		fx = par1;
 		switch(par3) {
-		case 1:
-			back();
+			case 1:
+				back();
 			break;
-		case 3:
-			nextPage();
+			case 3:
+				nextPage();
 			break;
-		case 4:
-			prevPage();
+			case 4:
+				prevPage();
 			break;
 		}
 	}
@@ -277,15 +278,15 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
 		if(par2 == 1) {
 			mc.displayGuiScreen(null);
 			mc.setIngameFocus();
-		} else if(par2 == 203 || par2 == 200 || par2 == 201) // Left, Up, Page Up
+		}
+		else if(par2 == 203 || par2 == 200 || par2 == 201) // Left, Up, Page Up
 			prevPage();
 		else if(par2 == 205 || par2 == 208 || par2 == 209) // Right, Down Page Down
 			nextPage();
 		if(par2 == 14) // Backspace
 			back();
-		else if(par2 == 199) { // Home
+		else if(par2 == 199)
 			mc.displayGuiScreen(new GuiLexicon());
-		}
 	}
 
 	void back() {

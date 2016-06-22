@@ -1,6 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.client.models;
 
-public interface IHasModel
-{
+public interface IHasModel {
 	String[] getResourceLocations();
 }

@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Mar 6, 2015, 1:14:05 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual.button;
@@ -15,8 +13,8 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.TextFormatting;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper;
 
@@ -37,8 +35,8 @@ public class GuiButtonOptions extends GuiButtonLexicon {
 
 		List<String> tooltip = new ArrayList<>();
 		for(int i = 0; i < 3; i++)
-			tooltip.add((i == 0 ? TextFormatting.RED : TextFormatting.GRAY) + I18n
-					.format("botaniamisc.lexiconOptions" + i));
+			tooltip.add((i == 0 ? TextFormatting.RED : TextFormatting.GRAY)
+					+ I18n.format("botaniamisc.lexiconOptions" + i));
 
 		int tooltipY = (tooltip.size() - 1) * 10;
 		if(k == 2)

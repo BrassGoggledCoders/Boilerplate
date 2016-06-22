@@ -1,6 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-public enum LoadingStage
-{
+public enum LoadingStage {
 	PREINIT, INIT, POSTINIT, DONE
 }

@@ -7,24 +7,20 @@ import net.minecraft.item.crafting.CraftingManager;
 
 /**
  * @author warlordjones
- *
  */
-public class CustomToolRecipes
-{
-	private static String[][] recipePatterns = new String[][] { { "XXX", " # ", " # " }, { "X", "#", "#" }, { "XX", "X#", " #" },
-			{ "XX", " #", " #" }, { "X", "X", "#" } };
+public class CustomToolRecipes {
+	private static String[][] recipePatterns = new String[][] {{"XXX", " # ", " # "}, {"X", "#", "#"},
+			{"XX", "X#", " #"}, {"XX", " #", " #"}, {"X", "X", "#"}};
 
 	public ItemStack input;
 	public ItemStack[] outputs;
 
-	public CustomToolRecipes(ItemStack input, ItemStack[] outputs)
-	{
+	public CustomToolRecipes(ItemStack input, ItemStack[] outputs) {
 		this.input = input;
 		this.outputs = outputs;
 	}
 
-	public void addRecipes(final CraftingManager manager)
-	{
+	public void addRecipes(final CraftingManager manager) {
 		manager.addRecipe(this.outputs[0], recipePatterns[0], '#', Items.STICK, 'X', this.input);
 		manager.addRecipe(this.outputs[1], recipePatterns[1], '#', Items.STICK, 'X', this.input);
 		manager.addRecipe(this.outputs[2], recipePatterns[2], '#', Items.STICK, 'X', this.input);

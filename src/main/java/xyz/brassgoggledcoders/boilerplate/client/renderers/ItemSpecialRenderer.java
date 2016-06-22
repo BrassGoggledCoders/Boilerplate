@@ -1,5 +1,15 @@
 package xyz.brassgoggledcoders.boilerplate.client.renderers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.vecmath.Matrix4f;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -12,20 +22,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.math.TransformationMatrix;
-
-import javax.vecmath.Matrix4f;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEntitySpecialRenderer<T>
-		implements IPerspectiveAwareModel, IBakedModel
-{
+		implements IPerspectiveAwareModel, IBakedModel {
 	private static final List<BakedQuad> EMPTY_LIST = new ArrayList<BakedQuad>();
 
 	private Map<Long, ItemStack> stacksBeingRendered;
@@ -36,6 +37,7 @@ public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEnti
 
 	public abstract Class<? extends TileEntity> getTileClass();
 
+	@Override
 	public final void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, int destroyStage) {
 		renderItem(stacksBeingRendered.get(Thread.currentThread().getId()), partialTicks);
 	}
@@ -43,15 +45,17 @@ public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEnti
 	public abstract void renderItem(ItemStack stack, float partialTicks);
 
 	@Override
-	public final Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
-		return new ImmutablePair<IBakedModel, Matrix4f>(this, getTransformMatrixForPerspective(cameraTransformType).toMatrix4f());
+	public final Pair<? extends IBakedModel, Matrix4f>
+			handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
+		return new ImmutablePair<IBakedModel, Matrix4f>(this,
+				getTransformMatrixForPerspective(cameraTransformType).toMatrix4f());
 	}
 
-	public abstract TransformationMatrix getTransformMatrixForPerspective(ItemCameraTransforms.TransformType cameraTransformsType);
+	public abstract TransformationMatrix
+			getTransformMatrixForPerspective(ItemCameraTransforms.TransformType cameraTransformsType);
 
 	@Override
-	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
-	{
+	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
 		return EMPTY_LIST;
 	}
 
@@ -81,8 +85,7 @@ public abstract class ItemSpecialRenderer<T extends TileEntity> extends TileEnti
 	}
 
 	@Override
-	public ItemOverrideList getOverrides()
-	{
+	public ItemOverrideList getOverrides() {
 		return null;
 	}
 }

@@ -2,19 +2,17 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Oct 18, 2014, 4:00:30 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual.button;
 
-import net.minecraft.client.resources.I18n;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconCategory;
@@ -22,7 +20,8 @@ import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
 public class GuiButtonCategory extends GuiButtonLexicon {
 
-	private static final ResourceLocation stencilResource = new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/categories/");
+	private static final ResourceLocation stencilResource =
+			new ResourceLocation(Utils.getCurrentMod().getPrefix() + "textures/gui/manual/categories/");
 
 	static boolean boundStencil = false;
 
@@ -45,13 +44,11 @@ public class GuiButtonCategory extends GuiButtonLexicon {
 		boolean inside = mx >= xPosition && my >= yPosition && mx < xPosition + width && my < yPosition + height;
 		if(inside)
 			ticksHovered = Math.min(time, ticksHovered + gui.timeDelta);
-		else ticksHovered = Math.max(0F, ticksHovered - gui.timeDelta);
+		else
+			ticksHovered = Math.max(0F, ticksHovered - gui.timeDelta);
 
-		if(resource == null) {
+		if(resource == null)
 			resource = category.getIcon();
-		}
-
-		float s = 1F / 32F;
 
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
@@ -59,7 +56,8 @@ public class GuiButtonCategory extends GuiButtonLexicon {
 		GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
 
-		if(!boundStencil) { // Allow for the texture manager to take care of the ResourceLocation before we use it directly with gl
+		if(!boundStencil) { // Allow for the texture manager to take care of the ResourceLocation before we use it
+							// directly with gl
 			mc.renderEngine.bindTexture(stencilResource);
 			boundStencil = true;
 		}

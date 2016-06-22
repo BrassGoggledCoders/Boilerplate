@@ -2,15 +2,17 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Jan 14, 2014, 6:45:33 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.manual.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.base.Joiner;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
@@ -18,9 +20,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.manual.IGuiLexiconEntry;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconPage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PageText extends LexiconPage {
 

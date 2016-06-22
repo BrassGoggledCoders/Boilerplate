@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Mar 2, 2015, 6:27:58 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual;
@@ -13,9 +11,8 @@ package xyz.brassgoggledcoders.boilerplate.client.manual;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.client.resources.I18n;
-import xyz.brassgoggledcoders.boilerplate.manual.ILexicon;
+import net.minecraft.nbt.NBTTagCompound;
 import xyz.brassgoggledcoders.boilerplate.manual.LexiconEntry;
 
 public class GuiLexiconHistory extends GuiLexiconIndex {
@@ -30,10 +27,11 @@ public class GuiLexiconHistory extends GuiLexiconIndex {
 	@Override
 	void buildEntries() {
 		entriesToDisplay.clear();
-		ILexicon lex = (ILexicon) stackUsed.getItem();
+		stackUsed.getItem();
 		for(int i = history.size() - 1; i >= 0; i--) {
 			LexiconEntry entry = history.get(i);
-			if(I18n.format(entry.getUnlocalizedName()).toLowerCase().contains(searchField.getText().toLowerCase().trim()))
+			if(I18n.format(entry.getUnlocalizedName()).toLowerCase()
+					.contains(searchField.getText().toLowerCase().trim()))
 				entriesToDisplay.add(entry);
 		}
 	}

@@ -2,10 +2,8 @@
  * This class was created by <Vazkii>. It's distributed as
  * part of the Botania Mod. Get the Source Code in github:
  * https://github.com/Vazkii/Botania
- * 
  * Botania is Open Source and distributed under the
  * Botania License: http://botaniamod.net/license.php
- * 
  * File Created @ [Mar 6, 2014, 3:54:12 PM (GMT)]
  */
 package xyz.brassgoggledcoders.boilerplate.manual;
@@ -48,11 +46,11 @@ public final class LexiconRecipeMappings {
 	public static EntryData getDataForStack(ItemStack stack) {
 		return mappings.get(stackToString(stack));
 	}
-	
+
 	public static String stackToString(ItemStack stack) {
 		if(stack == null || stack.getItem() == null)
 			return "NULL";
-		
+
 		if(stack.hasTagCompound() && stack.getItem() instanceof IRecipeKeyProvider)
 			return ((IRecipeKeyProvider) stack.getItem()).getKey(stack);
 
@@ -60,7 +58,7 @@ public final class LexiconRecipeMappings {
 	}
 
 	public static boolean ignoreMeta(ItemStack stack) {
-		return stack.isItemStackDamageable(); //TODO
+		return stack.isItemStackDamageable(); // TODO
 	}
 
 	public static class EntryData {
