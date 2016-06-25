@@ -1,5 +1,14 @@
 package xyz.brassgoggledcoders.boilerplate.module;
 
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -11,14 +20,6 @@ import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
 import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
-
-import javax.annotation.Nonnull;
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.stream.Stream;
 
 /**
  * @author SkySom
@@ -59,15 +60,16 @@ public class ModuleHandler {
 	}
 
 	private void checkDependencies(IModule module) {
-		module.getDependencies(new ArrayList<>()).forEach(dependency -> printModuleDependencyOutcome(module, dependency));
+		module.getDependencies(new ArrayList<>())
+				.forEach(dependency -> printModuleDependencyOutcome(module, dependency));
 		if(module.getIsActive()) {
-			this.mod.getLogger().info("Module " + module.getName() + " has successful loaded");
+			this.mod.getLogger().info("Module " + module.getName() + " has successfully loaded");
 		}
 	}
 
 	private void printModuleDependencyOutcome(IModule module, IDependency dependency) {
-		this.mod.getLogger().error("Module " + module.getName() + " did not load due to issue: "
-					+ dependency.notMetMessage());
+		this.mod.getLogger()
+				.error("Module " + module.getName() + " did not load due to issue: " + dependency.notMetMessage());
 		module.setIsActive(false);
 	}
 
@@ -95,7 +97,7 @@ public class ModuleHandler {
 		TreeMap<String, IModule> moduleMap = new TreeMap<>();
 		List<IModule> moduleList = ClassLoading.getInstances(asmDataTable, Module.class, IModule.class);
 		moduleList.sort(new ModuleComparator());
-		for(IModule module: moduleList) {
+		for(IModule module : moduleList) {
 			for(Annotation annotation : module.getClass().getDeclaredAnnotations()) {
 				if(annotation instanceof Module) {
 					if(((Module) annotation).mod().equals(mod.getID())) {
