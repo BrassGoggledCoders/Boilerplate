@@ -14,4 +14,9 @@ public class ModDependency implements IDependency {
 	public boolean isMet(ModuleHandler moduleHandler) {
 		return Loader.isModLoaded(this.modid);
 	}
+
+	@Override
+	public String notMetMessage() {
+		return "Mod with modid: " + modid + " was not found";
+	}
 }

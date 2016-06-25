@@ -13,4 +13,9 @@ public class ModuleDependency implements IDependency {
 	public boolean isMet(ModuleHandler moduleHandler) {
 		return moduleHandler.isModuleEnabled(this.moduleName);
 	}
+
+	@Override
+	public String notMetMessage() {
+		return "Module with name: " + moduleName + " is not active";
+	}
 }
