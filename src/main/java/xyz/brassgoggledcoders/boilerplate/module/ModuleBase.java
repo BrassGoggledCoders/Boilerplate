@@ -4,12 +4,15 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
 import xyz.brassgoggledcoders.boilerplate.registries.BlockRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.EntityRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
+
+import java.util.List;
 
 public abstract class ModuleBase implements IModule {
 	private boolean isActive = true;
@@ -18,8 +21,8 @@ public abstract class ModuleBase implements IModule {
 	private IBoilerplateMod mod;
 
 	@Override
-	public boolean areDependenciesMet() {
-		return true;
+	public List<IDependency> getDependencies(List<IDependency> dependencies) {
+		return dependencies;
 	}
 
 	@Override
@@ -54,9 +57,13 @@ public abstract class ModuleBase implements IModule {
 
 	@Override
 	public void setMod(IBoilerplateMod mod) {
-		this.moduleHandler = mod.getModuleHandler();
 		this.registryHolder = mod.getRegistryHolder();
 		this.mod = mod;
+	}
+
+	@Override
+	public void setModuleHandler(ModuleHandler moduleHandler) {
+		this.moduleHandler = moduleHandler;
 	}
 
 	public ItemRegistry getItemRegistry() {

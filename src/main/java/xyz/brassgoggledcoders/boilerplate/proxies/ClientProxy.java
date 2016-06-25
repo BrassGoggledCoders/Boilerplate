@@ -14,7 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
-import xyz.brassgoggledcoders.boilerplate.MaterialsModule;
+import xyz.brassgoggledcoders.boilerplate.modules.materials.MaterialsModule;
 import xyz.brassgoggledcoders.boilerplate.blocks.material.BlockMetal;
 import xyz.brassgoggledcoders.boilerplate.blocks.material.BlockMetalOre;
 import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;

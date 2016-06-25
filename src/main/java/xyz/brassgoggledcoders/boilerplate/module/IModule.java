@@ -26,4 +26,6 @@ public interface IModule {
 	boolean getActiveDefault();
 
 	void setMod(IBoilerplateMod mod);
+
+	void setModuleHandler(ModuleHandler moduleHandler);
 }
