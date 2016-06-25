@@ -61,10 +61,6 @@ public class Boilerplate extends BoilerplateModBase {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
-	}
-
-	@Override
-	protected void modPostInit(FMLPostInitializationEvent event) {
 		this.getLogger().info("GNU Terry Prachett");
 	}
 
