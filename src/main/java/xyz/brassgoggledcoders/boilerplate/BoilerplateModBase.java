@@ -42,57 +42,26 @@ public abstract class BoilerplateModBase implements IBoilerplateMod {
 	public void preInit(FMLPreInitializationEvent event) {
 		this.getBoilerplateProxy().setMod(this);
 
-		this.createHandlers(event);
-		this.modPreInit(event);
-		this.afterModuleConstruct(event);
+		this.guiHandler = new GuiHandler(this);
+		this.registryHolder = new RegistryHolder(this, event.getModConfigurationDirectory());
+
+		this.moduleHandler = new ModuleHandler(this, event.getAsmData());
+		this.moduleHandler.setupModules();
+		this.moduleHandler.preInit(event);
 
 		this.getBoilerplateProxy().registerEvents();
 
-		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
-			registry.preInit();
-	}
-
-	public void createHandlers(FMLPreInitializationEvent event) {
-		if(!allHandlersCreated) {
-			this.guiHandler = new GuiHandler(this);
-			this.registryHolder = new RegistryHolder(this, event.getModConfigurationDirectory());
-
-			this.moduleHandler = new ModuleHandler(this, event.getAsmData());
-			this.moduleHandler.configureModules();
-			this.moduleHandler.preInit(event);
-
-			allHandlersCreated = true;
-		}
-	}
-
-	protected void modPreInit(FMLPreInitializationEvent event) {
-
-	}
-
-	protected void afterModuleConstruct(FMLPreInitializationEvent event) {
-
+		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::preInit);
 	}
 
 	public void init(FMLInitializationEvent event) {
-		this.modInit(event);
 		this.moduleHandler.init(event);
-		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
-			registry.init();
-	}
-
-	protected void modInit(FMLInitializationEvent event) {
-
+		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::init);
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
-		this.modPostInit(event);
 		moduleHandler.postInit(event);
-		for(BaseRegistry registry : this.getRegistryHolder().getAllRegistries())
-			registry.postInit();
-	}
-
-	protected void modPostInit(FMLPostInitializationEvent event) {
-
+		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::postInit);
 	}
 
 	@Override

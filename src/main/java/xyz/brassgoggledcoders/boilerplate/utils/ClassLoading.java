@@ -1,15 +1,14 @@
 package xyz.brassgoggledcoders.boilerplate.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.Nonnull;
-
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.relauncher.Side;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class ClassLoading {
 	public static CommonProxy createProxy(String clientString, String serverString) {

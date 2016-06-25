@@ -1,11 +1,11 @@
 package xyz.brassgoggledcoders.boilerplate.modules.debug;
 
-import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
+import xyz.brassgoggledcoders.boilerplate.utils.PlatformInfo;
 
 @Module(mod = Boilerplate.ID)
 public class DebugModule extends ModuleBase {
@@ -18,7 +18,7 @@ public class DebugModule extends ModuleBase {
 
 	@Override
 	public boolean getActiveDefault() {
-		return !FMLForgePlugin.RUNTIME_DEOBF;
+		return PlatformInfo.isDev();
 	}
 
 	@Override
