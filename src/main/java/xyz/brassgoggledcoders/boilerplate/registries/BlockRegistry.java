@@ -1,7 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
@@ -11,6 +9,8 @@ import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
 
+import java.util.Map;
+
 public class BlockRegistry extends BaseRegistry<Block> {
 	public BlockRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder) {
 		super(mod, registryHolder);
@@ -19,16 +19,17 @@ public class BlockRegistry extends BaseRegistry<Block> {
 	@Override
 	public void initiateEntries() {
 		for(Map.Entry<String, Block> entry : entries.entrySet()) {
-			entry.getValue().setCreativeTab(mod.getCreativeTab());
 			ResourceLocation blockName = new ResourceLocation(mod.getID(), entry.getKey());
 			GameRegistry.register(entry.getValue(), blockName);
-			if(entry.getValue() instanceof IHasItemBlock)
-				GameRegistry.register(((IHasItemBlock) entry.getValue()).getItemBlockClass(entry.getValue()),
-						blockName);
 
-			if(entry.getValue() instanceof IHasTileEntity)
-				GameRegistry.registerTileEntity(((IHasTileEntity) entry.getValue()).getTileEntityClass(),
+			if(entry.getValue() instanceof IHasItemBlock) {
+				GameRegistry.register(((IHasItemBlock)entry.getValue()).getItemBlockClass(entry.getValue()), blockName);
+			}
+
+			if(entry.getValue() instanceof IHasTileEntity) {
+				GameRegistry.registerTileEntity(((IHasTileEntity)entry.getValue()).getTileEntityClass(),
 						mod.getPrefix() + entry.getKey());
+			}
 		}
 		super.initiateEntries();
 	}
@@ -40,8 +41,9 @@ public class BlockRegistry extends BaseRegistry<Block> {
 
 	public void registerBlock(Block block) {
 		String name = block.getUnlocalizedName();
-		if(name.startsWith("tile."))
+		if(name.startsWith("tile.")) {
 			name = name.substring(5);
+		}
 		registerBlock(block, name);
 	}
 

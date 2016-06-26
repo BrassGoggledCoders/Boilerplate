@@ -1,10 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.blocks;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -13,11 +12,14 @@ import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Surseance
  */
 public class BlockBase extends Block implements IModAware, IHasItemBlock, IHasModel {
 	IBoilerplateMod mod;
+	boolean creativeTabSet = false;
 
 	public BlockBase(Material mat) {
 		super(mat);
@@ -51,6 +53,16 @@ public class BlockBase extends Block implements IModAware, IHasItemBlock, IHasMo
 	}
 
 	@Override
+	@Nonnull
+	public Block setCreativeTab(@Nonnull CreativeTabs tab) {
+		if(!creativeTabSet) {
+			super.setCreativeTab(tab);
+			this.creativeTabSet = true;
+		}
+		return this;
+	}
+
+	@Override
 	public IBoilerplateMod getMod() {
 		return this.mod;
 	}
@@ -58,6 +70,7 @@ public class BlockBase extends Block implements IModAware, IHasItemBlock, IHasMo
 	@Override
 	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
+		this.setCreativeTab(mod.getCreativeTab());
 	}
 
 	@Override

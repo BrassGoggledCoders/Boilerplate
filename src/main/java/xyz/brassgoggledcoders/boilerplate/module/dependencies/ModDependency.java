@@ -17,6 +17,6 @@ public class ModDependency implements IDependency {
 
 	@Override
 	public String notMetMessage() {
-		return "Mod with modid: " + modid + " was not found";
+		return "Mod with modid: " + this.modid + " was not found";
 	}
 }

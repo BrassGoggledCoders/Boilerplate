@@ -16,7 +16,8 @@ public class ItemRegistry extends BaseRegistry<Item> {
 		super(mod, registryHolder);
 	}
 
-	@Override public void initiateEntries() {
+	@Override
+	public void initiateEntries() {
 		for(Map.Entry<String, Item> itemEntry : entries.entrySet()) {
 			ResourceLocation name = new ResourceLocation(mod.getPrefix() + itemEntry.getKey());
 			GameRegistry.register(itemEntry.getValue(), name);
@@ -24,10 +25,10 @@ public class ItemRegistry extends BaseRegistry<Item> {
 		super.initiateEntries();
 	}
 
-	@Override public void initiateModels() {
+	@Override
+	public void initiateModels() {
 		super.initiateModels();
 		for(Map.Entry<String, Item> entry : entries.entrySet()) {
-			entry.getValue().setCreativeTab(mod.getCreativeTab());
 			if(entry.getValue() instanceof IHasModel) {
 				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
 				for(int i = 0; i < locations.length; i++) {
@@ -36,8 +37,7 @@ public class ItemRegistry extends BaseRegistry<Item> {
 				if(entry.getValue() instanceof ISpecialRenderedItem) {
 					mod.getBoilerplateProxy().registerISpecialRendererItem(entry.getValue());
 				}
-			}
-			else {
+			} else {
 				SafeModelLoader.loadItemModel(mod, entry.getValue());
 			}
 		}
