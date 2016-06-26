@@ -50,8 +50,13 @@ public abstract class BoilerplateModBase implements IBoilerplateMod {
 		this.moduleHandler.preInit(event);
 
 		this.getBoilerplateProxy().registerEvents();
+		this.modPreInit(event);
 
 		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::preInit);
+	}
+
+	public void modPreInit(FMLPreInitializationEvent event) {
+
 	}
 
 	public void init(FMLInitializationEvent event) {
