@@ -15,8 +15,8 @@ public abstract class BlockThin extends BlockSubBase {
 
 	public static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
-	public BlockThin(Material mat) {
-		super(mat);
+	public BlockThin(Material mat, String[] names) {
+		super(mat, names);
 	}
 
 	@Override

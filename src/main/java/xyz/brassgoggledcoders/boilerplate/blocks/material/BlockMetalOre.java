@@ -21,7 +21,7 @@ public class BlockMetalOre extends BlockSubBase implements ISimpleVariant {
 	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
 
 	public BlockMetalOre() {
-		super(Material.ROCK);
+		super(Material.ROCK, EnumBlockType.names());
 		this.setHarvestLevel("pickaxe", 2);
 		this.setUnlocalizedName("metal_ore");
 	}
