@@ -15,8 +15,9 @@ import net.minecraft.item.ItemStack;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockSubBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
+import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 
-public class BlockMetal extends BlockSubBase {
+public class BlockMetal extends BlockSubBase implements ISimpleVariant {
 	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
 
 	public BlockMetal() {
@@ -79,5 +80,10 @@ public class BlockMetal extends BlockSubBase {
 
 			return names.toArray(new String[0]);
 		}
+	}
+
+	@Override
+	public Class<? extends IBlockType> getEnumToSwitch() {
+		return BlockMetal.EnumBlockType.class;
 	}
 }
