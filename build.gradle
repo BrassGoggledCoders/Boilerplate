@@ -25,7 +25,7 @@ repositories {
 apply plugin: 'forge'
 
 project.ext {
-    buildNum = System.getenv("BUILD_NUMBER")
+    buildNum = System.getenv("bamboo_buildNumber")
     mcVersion = "1.7.10"
     bpversion = "6.3.0." + project.ext.buildNum
 }
@@ -90,7 +90,7 @@ task("uploadJars", dependsOn: "reobf") {
         uploadArchives {
             repositories {
                 mavenDeployer {
-                    repository(url: "file://" + System.getenv("local_maven"))
+                    repository(url: "file://" + System.getenv("bamboo_local_maven"))
                     pom {
                         groupId = project.group
                         version = project.version
@@ -111,7 +111,7 @@ task("uploadJars", dependsOn: "reobf") {
                             }
                             licenses {
                                 license {
-                                    name 'MMPL'
+                                    name 'MIT'
                                     url 'https://github.com/BrassGoggledCoders/Boilerplate/blob/master/LICENSE'
                                     distribution 'repo'
                                 }
@@ -121,7 +121,11 @@ task("uploadJars", dependsOn: "reobf") {
                                     id 'warlordjones'
                                     name 'warlordjones'
                                     roles { role 'developer' }
-					//TODO
+                                }
+                                developer {
+                                    id 'SkySom'
+                                    name 'SkySom'
+                                    roles { role 'developer' }
                                 }
                             }
                         }
