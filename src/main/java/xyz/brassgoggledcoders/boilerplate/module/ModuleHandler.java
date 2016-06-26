@@ -1,14 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.module;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.stream.Stream;
-
-import javax.annotation.Nonnull;
-
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -20,6 +11,14 @@ import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
 import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
+
+import javax.annotation.Nonnull;
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Stream;
 
 /**
  * @author SkySom
@@ -68,9 +67,11 @@ public class ModuleHandler {
 	}
 
 	private void printModuleDependencyOutcome(IModule module, IDependency dependency) {
-		this.mod.getLogger()
-				.error("Module " + module.getName() + " did not load due to issue: " + dependency.notMetMessage());
-		module.setIsActive(false);
+		if(!dependency.isMet(this)) {
+			this.mod.getLogger().error("Module " + module.getName() + " did not load due to issue: " +
+					dependency.notMetMessage());
+			module.setIsActive(false);
+		}
 	}
 
 	public SortedMap<String, IModule> getModules() {
