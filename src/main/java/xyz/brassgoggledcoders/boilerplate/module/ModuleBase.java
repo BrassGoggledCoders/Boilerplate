@@ -27,7 +27,10 @@ public abstract class ModuleBase implements IModule {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent) {
-
+		this.config(this.registryHolder.getConfigRegistry());
+		this.registerBlocks(this.registryHolder.getConfigRegistry(), this.registryHolder.getBlockRegistry());
+		this.registerItems(this.registryHolder.getConfigRegistry(), this.registryHolder.getItemRegistry());
+		this.registerEntities(this.registryHolder.getConfigRegistry(), this.registryHolder.getEntityRegistry());
 	}
 
 	@Override
@@ -37,6 +40,22 @@ public abstract class ModuleBase implements IModule {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent fmlPostInitializationEvent) {
+
+	}
+
+	public void config(ConfigRegistry configRegistry) {
+
+	}
+
+	public void registerItems(ConfigRegistry configRegistry, ItemRegistry itemRegistry) {
+
+	}
+
+	public void registerBlocks(ConfigRegistry configRegistry, BlockRegistry blockRegistry) {
+
+	}
+
+	public void registerEntities(ConfigRegistry configRegistry, EntityRegistry entityRegistry) {
 
 	}
 
