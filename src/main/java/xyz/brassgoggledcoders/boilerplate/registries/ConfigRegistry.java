@@ -1,16 +1,16 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
+import net.minecraftforge.common.config.Configuration;
+import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
+import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.minecraftforge.common.config.Configuration;
-import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
-import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
-import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
 
 public class ConfigRegistry extends BaseRegistry<ConfigEntry> {
 	private List<IConfigListener> listeners = new ArrayList<IConfigListener>();
@@ -25,34 +25,42 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry> {
 			this.bgcFolder = new File(bgcFolderPath);
 
 			boolean folderExists = bgcFolder.exists();
-			if(!folderExists)
+			if(!folderExists) {
 				folderExists = bgcFolder.mkdir();
+			}
 
-			if(folderExists)
+			if(folderExists) {
 				addNewConfigFile(this.mod.getID());
+			}
 		}
-		else
+		else {
 			configurationFiles.put(mod.getID(), new Configuration(suggestConfigFile));
+		}
 	}
 
 	public void alertTheListeners(String name, ConfigEntry configEntry) {
-		for(IConfigListener configListener : listeners)
+		for(IConfigListener configListener : listeners) {
 			configListener.onConfigChange(name, configEntry);
+		}
 	}
 
 	public boolean addNewConfigFile(String fileName) {
 		File newConfig = new File(bgcFolder.getPath() + File.separator + fileName + ".cfg");
 		boolean exists = newConfig.exists();
-		if(!exists)
+		if(!exists) {
 			try {
 				exists = newConfig.createNewFile();
 			}
 			catch(IOException e) {
 				e.printStackTrace();
 			}
+		}
 
-		if(exists)
+		if(exists) {
 			configurationFiles.put(fileName, new Configuration(newConfig));
+		} else {
+			mod.getLogger().fatal(fileName + " configuration file was not created.");
+		}
 		return exists;
 	}
 
@@ -84,8 +92,9 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry> {
 			configEntry.setValue(value);
 			this.alertTheListeners(name, configEntry);
 		}
-		else
+		else {
 			mod.getLogger().error("Config Entry for " + name + " not found");
+		}
 	}
 
 	public ConfigEntry getEntry(String name) {
@@ -95,32 +104,36 @@ public class ConfigRegistry extends BaseRegistry<ConfigEntry> {
 	public boolean getBoolean(String name, boolean defaultValue) {
 		boolean returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
-		if(configEntry != null)
+		if(configEntry != null) {
 			returnValue = configEntry.getBoolean(defaultValue);
+		}
 		return returnValue;
 	}
 
 	public int getInt(String name, int defaultValue) {
 		int returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
-		if(configEntry != null)
+		if(configEntry != null) {
 			returnValue = configEntry.getInt(defaultValue);
+		}
 		return returnValue;
 	}
 
 	public double getDouble(String name, double defaultValue) {
 		double returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
-		if(configEntry != null)
+		if(configEntry != null) {
 			returnValue = configEntry.getDouble(defaultValue);
+		}
 		return returnValue;
 	}
 
 	public String getString(String name, String defaultValue) {
 		String returnValue = defaultValue;
 		ConfigEntry configEntry = getEntry(name);
-		if(configEntry != null)
+		if(configEntry != null) {
 			returnValue = configEntry.getString();
+		}
 		return returnValue;
 	}
 

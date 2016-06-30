@@ -35,18 +35,22 @@ public class ConfigEntry {
 			case INTEGER:
 				property =
 						configuration.get(getCategory(), getPropertyName(), Integer.parseInt(getValue()), getComment());
-			break;
+				this.value = property.getInt() + "";
+				break;
 			case BOOLEAN:
-				property = configuration.get(getCategory(), getPropertyName(), Boolean.parseBoolean(getValue()),
-						getComment());
-			break;
+				property = configuration
+						.get(getCategory(), getPropertyName(), Boolean.parseBoolean(getValue()), getComment());
+				this.value = property.getBoolean() + "";
+				break;
 			case DOUBLE:
-				property = configuration.get(getCategory(), getPropertyName(), Double.parseDouble(getValue()),
-						getComment());
-			break;
+				property = configuration
+						.get(getCategory(), getPropertyName(), Double.parseDouble(getValue()), getComment());
+				this.value = property.getDouble() + "";
+				break;
 			default:
 				property = configuration.get(getCategory(), getPropertyName(), getValue(), getComment());
-			break;
+				this.value = property.getString();
+				break;
 		}
 		return property;
 	}
@@ -61,10 +65,12 @@ public class ConfigEntry {
 	}
 
 	public boolean getBoolean(boolean defaultValue) {
-		if(getType() == Type.BOOLEAN)
+		if(getType() == Type.BOOLEAN) {
 			return Boolean.parseBoolean(getValue());
-		else
+		}
+		else {
 			return defaultValue;
+		}
 	}
 
 	public double getDouble(double defaultValue) {
