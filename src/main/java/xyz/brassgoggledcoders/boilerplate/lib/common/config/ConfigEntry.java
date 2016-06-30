@@ -38,15 +38,19 @@ public class ConfigEntry
 		switch(getType()) {
 			case INTEGER:
 				property = configuration.get(getCategory(), getPropertyName(), Integer.parseInt(getValue()), getComment());
+				value = property.getInt() + "";
 				break;
 			case BOOLEAN:
 				property = configuration.get(getCategory(), getPropertyName(), Boolean.parseBoolean(getValue()), getComment());
+				value = property.getBoolean() + "";
 				break;
 			case DOUBLE:
 				property = configuration.get(getCategory(), getPropertyName(), Double.parseDouble(getValue()), getComment());
+				value = property.getDouble() + "";
 				break;
 			default:
 				property = configuration.get(getCategory(), getPropertyName(), getValue(), getComment());
+				value = property.getString();
 				break;
 		}
 		return property;
