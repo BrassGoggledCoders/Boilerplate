@@ -4,9 +4,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
-import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
-import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
-import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
 import xyz.brassgoggledcoders.boilerplate.items.IHasRecipe;
 
@@ -57,24 +54,15 @@ public abstract class BaseRegistry<T> {
 	}
 
 	public void initiateModels() {
-		for(Map.Entry<String, T> entry : entries.entrySet()) {
-			if(entry.getValue() instanceof IHasModel && !(entry.getValue() instanceof ISimpleVariant)) {
-				String[] locations = ((IHasModel) entry.getValue()).getResourceLocations();
-				for(int i = 0; i < locations.length; i++) {
-					SafeModelLoader.loadItemModel(mod, entry.getValue(), i, locations[i]);
-				}
-			}
-		}
+
 	}
 
 	public void initiateRecipes() {
-		for(Map.Entry<String, T> entry : entries.entrySet()) {
-			if(entry.getValue() instanceof IHasRecipe) {
-				for(IRecipe recipe : ((IHasRecipe) entry.getValue()).getRecipes()) {
-					GameRegistry.addRecipe(recipe);
-				}
+		entries.entrySet().stream().filter(entry -> entry.getValue() instanceof IHasRecipe).forEach(entry -> {
+			for(IRecipe recipe : ((IHasRecipe) entry.getValue()).getRecipes()) {
+				GameRegistry.addRecipe(recipe);
 			}
-		}
+		});
 	}
 
 	public LoadingStage getLoadingStage() {
