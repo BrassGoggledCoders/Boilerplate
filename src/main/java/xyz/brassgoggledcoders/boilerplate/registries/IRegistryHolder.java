@@ -1,9 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import java.util.List;
+import java.util.Map;
 
 public interface IRegistryHolder {
-	List<BaseRegistry> getAllRegistries();
+	Map<String, BaseRegistry> getAllRegistries();
 
 	BlockRegistry getBlockRegistry();
 
@@ -12,4 +12,6 @@ public interface IRegistryHolder {
 	EntityRegistry getEntityRegistry();
 
 	ConfigRegistry getConfigRegistry();
+
+	TESRRegistry getTESRRegistry();
 }

@@ -8,7 +8,6 @@ import xyz.brassgoggledcoders.boilerplate.client.guis.GuiHandler;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleHandler;
 import xyz.brassgoggledcoders.boilerplate.network.PacketHandler;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
-import xyz.brassgoggledcoders.boilerplate.registries.BaseRegistry;
 import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.registries.RegistryHolder;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
@@ -52,7 +51,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod {
 		this.getBoilerplateProxy().registerEvents();
 		this.modPreInit(event);
 
-		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::preInit);
+		this.getRegistryHolder().getAllRegistries().forEach((name, registry) -> registry.preInit());
 	}
 
 	public void modPreInit(FMLPreInitializationEvent event) {
@@ -61,12 +60,12 @@ public abstract class BoilerplateModBase implements IBoilerplateMod {
 
 	public void init(FMLInitializationEvent event) {
 		this.moduleHandler.init(event);
-		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::init);
+		this.getRegistryHolder().getAllRegistries().forEach((name, registry) -> registry.init());
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
 		moduleHandler.postInit(event);
-		this.getRegistryHolder().getAllRegistries().forEach(BaseRegistry::postInit);
+		this.getRegistryHolder().getAllRegistries().forEach((name, registry) -> registry.postInit());
 	}
 
 	@Override

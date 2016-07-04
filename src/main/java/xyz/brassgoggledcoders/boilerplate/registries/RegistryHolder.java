@@ -1,33 +1,36 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegistryHolder implements IRegistryHolder {
-	private List<BaseRegistry> registries;
+	private Map<String, BaseRegistry> registries;
 	private BlockRegistry blockRegistry;
 	private ItemRegistry itemRegistry;
 	private EntityRegistry entityRegistry;
 	private ConfigRegistry configRegistry;
+	private TESRRegistry tesrRegistry;
 
 	public RegistryHolder(IBoilerplateMod mod, File config) {
 		blockRegistry = new BlockRegistry(mod, this);
 		itemRegistry = new ItemRegistry(mod, this);
 		entityRegistry = new EntityRegistry(mod, this);
 		configRegistry = new ConfigRegistry(mod, this, config);
+		tesrRegistry = new TESRRegistry(mod, this);
 
-		registries = new ArrayList<>();
-		registries.add(blockRegistry);
-		registries.add(itemRegistry);
-		registries.add(entityRegistry);
-		registries.add(configRegistry);
+		registries = new HashMap<>();
+		registries.put("block", blockRegistry);
+		registries.put("item", itemRegistry);
+		registries.put("entity", entityRegistry);
+		registries.put("config", configRegistry);
+		registries.put("tesr", tesrRegistry);
 	}
 
 	@Override
-	public List<BaseRegistry> getAllRegistries() {
+	public Map<String, BaseRegistry> getAllRegistries() {
 		return this.registries;
 	}
 
@@ -49,5 +52,10 @@ public class RegistryHolder implements IRegistryHolder {
 	@Override
 	public ConfigRegistry getConfigRegistry() {
 		return this.configRegistry;
+	}
+
+	@Override
+	public TESRRegistry getTESRRegistry() {
+		return null;
 	}
 }

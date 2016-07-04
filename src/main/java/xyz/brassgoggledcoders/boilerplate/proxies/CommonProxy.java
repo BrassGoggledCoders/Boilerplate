@@ -2,7 +2,9 @@ package xyz.brassgoggledcoders.boilerplate.proxies;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
 public class CommonProxy {
@@ -25,6 +27,10 @@ public class CommonProxy {
 	public void registerEvents() {}
 
 	public void setLexiconStack(ItemStack stack) {}
+
+	public void initTESRLoader(ASMDataTable dataTable) { }
+
+	public void registerTESR(String name, Item item, Class<? extends TileEntity> tileEntityClass) { }
 
 	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;

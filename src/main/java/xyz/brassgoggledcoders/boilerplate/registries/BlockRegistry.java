@@ -1,7 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -9,17 +7,17 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
-import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
-import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
-import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
+import xyz.brassgoggledcoders.boilerplate.blocks.*;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
+
+import java.util.Map;
 
 public class BlockRegistry extends BaseRegistry<Block> {
 	public BlockRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder) {
@@ -55,17 +53,21 @@ public class BlockRegistry extends BaseRegistry<Block> {
 	@Override
 	public void initiateEntries() {
 		for(Map.Entry<String, Block> entry : entries.entrySet()) {
+			Block block = entry.getValue();
 			ResourceLocation blockName = new ResourceLocation(mod.getID(), entry.getKey());
 			GameRegistry.register(entry.getValue(), blockName);
 
-			if(entry.getValue() instanceof IHasItemBlock) {
-				GameRegistry.register(((IHasItemBlock) entry.getValue()).getItemBlockClass(entry.getValue()),
-						blockName);
+			if(block instanceof IHasItemBlock) {
+				GameRegistry.register(((IHasItemBlock) block).getItemBlockClass(block), blockName);
 			}
 
-			if(entry.getValue() instanceof IHasTileEntity) {
-				GameRegistry.registerTileEntity(((IHasTileEntity) entry.getValue()).getTileEntityClass(),
-						mod.getPrefix() + entry.getKey());
+			if(block instanceof IHasTileEntity) {
+				Class<? extends TileEntity> tileEntityClass = ((IHasTileEntity)block).getTileEntityClass();
+				GameRegistry.registerTileEntity(tileEntityClass, mod.getPrefix() + entry.getKey());
+				if(entry.getValue() instanceof IHasTESR) {
+					this.registryHolder.getTESRRegistry().addTESR(entry.getKey(), Item.getItemFromBlock(block),
+							tileEntityClass);
+				}
 			}
 		}
 		super.initiateEntries();
