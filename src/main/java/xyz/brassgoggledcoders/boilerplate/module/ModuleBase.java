@@ -5,13 +5,11 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
-import xyz.brassgoggledcoders.boilerplate.registries.BlockRegistry;
-import xyz.brassgoggledcoders.boilerplate.registries.ConfigRegistry;
-import xyz.brassgoggledcoders.boilerplate.registries.EntityRegistry;
-import xyz.brassgoggledcoders.boilerplate.registries.IRegistryHolder;
-import xyz.brassgoggledcoders.boilerplate.registries.ItemRegistry;
+import xyz.brassgoggledcoders.boilerplate.registries.*;
 import xyz.brassgoggledcoders.boilerplate.utils.ModLogger;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class ModuleBase implements IModule {
@@ -19,6 +17,7 @@ public abstract class ModuleBase implements IModule {
 	private ModuleHandler moduleHandler;
 	private IRegistryHolder registryHolder;
 	private IBoilerplateMod mod;
+	private IModuleProxy moduleProxy;
 
 	@Override
 	public List<IDependency> getDependencies(List<IDependency> dependencies) {
@@ -26,21 +25,28 @@ public abstract class ModuleBase implements IModule {
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent) {
+	public void preInit(FMLPreInitializationEvent event) {
 		this.config(this.registryHolder.getConfigRegistry());
 		this.registerBlocks(this.registryHolder.getConfigRegistry(), this.registryHolder.getBlockRegistry());
 		this.registerItems(this.registryHolder.getConfigRegistry(), this.registryHolder.getItemRegistry());
 		this.registerEntities(this.registryHolder.getConfigRegistry(), this.registryHolder.getEntityRegistry());
+		if(this.moduleProxy != null) {
+			this.moduleProxy.preInit(event);
+		}
 	}
 
 	@Override
-	public void init(FMLInitializationEvent fmlInitializationEvent) {
-
+	public void init(FMLInitializationEvent event) {
+		if(this.moduleProxy != null) {
+			this.moduleProxy.init(event);
+		}
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent fmlPostInitializationEvent) {
-
+	public void postInit(FMLPostInitializationEvent event) {
+		if(this.moduleProxy != null) {
+			this.moduleProxy.postInit(event);
+		}
 	}
 
 	public void config(ConfigRegistry configRegistry) {
@@ -57,6 +63,29 @@ public abstract class ModuleBase implements IModule {
 
 	public void registerEntities(ConfigRegistry configRegistry, EntityRegistry entityRegistry) {
 
+	}
+
+	@Override
+	@Nullable
+	public String getClientProxyPath() {
+		return "";
+	}
+
+	@Override
+	@Nullable
+	public String getServerProxyPath() {
+		return "";
+	}
+
+	@Override
+	@Nullable
+	public IModuleProxy getModuleProxy() {
+		return moduleProxy;
+	}
+
+	@Override
+	public void setModuleProxy(@Nonnull IModuleProxy moduleProxy) {
+		this.moduleProxy = moduleProxy;
 	}
 
 	@Override

@@ -15,8 +15,17 @@ public class ClassLoading {
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 		String proxyString = side == Side.CLIENT ? clientString : serverString;
 		Object proxyObject = createObjectInstance(proxyString);
-		if(proxyObject instanceof CommonProxy)
+		if(proxyObject instanceof CommonProxy) {
 			return (CommonProxy) proxyObject;
+		}
+		return null;
+	}
+
+	public static <T> T createInstanceOf(Class<T> tClass, String path) {
+		Object object = createObjectInstance(path);
+		if(object != null) {
+			return tClass.cast(object);
+		}
 		return null;
 	}
 
@@ -25,8 +34,7 @@ public class ClassLoading {
 			Class classToGrab;
 			classToGrab = Class.forName(path);
 			return createObjectInstance(classToGrab);
-		}
-		catch(ClassNotFoundException e) {
+		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
@@ -37,8 +45,7 @@ public class ClassLoading {
 	public static Object createObjectInstance(Class clazz) {
 		try {
 			return clazz.newInstance();
-		}
-		catch(InstantiationException | IllegalAccessException e) {
+		} catch(InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 
@@ -51,16 +58,16 @@ public class ClassLoading {
 		String annotationClassName = annotationClass.getCanonicalName();
 		Set<ASMDataTable.ASMData> asmDatas = asmDataTable.getAll(annotationClassName);
 		List<T> instances = new ArrayList<>();
-		for(ASMDataTable.ASMData asmData : asmDatas)
+		for(ASMDataTable.ASMData asmData : asmDatas) {
 			try {
 				Class<?> asmClass = Class.forName(asmData.getClassName());
 				Class<? extends T> asmInstanceClass = asmClass.asSubclass(instanceClass);
 				T instance = asmInstanceClass.newInstance();
 				instances.add(instance);
-			}
-			catch(ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+			} catch(ClassNotFoundException | IllegalAccessException | InstantiationException e) {
 				Utils.attemptLogErrorToCurrentMod("Failed to load: " + asmData.getClassName());
 			}
+		}
 		return instances;
 	}
 }

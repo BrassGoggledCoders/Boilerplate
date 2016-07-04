@@ -6,8 +6,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.module.IModule;
+import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
+import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
 
-public class CommonProxy {
+import javax.annotation.Nullable;
+
+public abstract class CommonProxy {
 	protected IBoilerplateMod mod;
 
 	public String translate(String text) {
@@ -34,5 +39,18 @@ public class CommonProxy {
 
 	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
+	}
+
+	public abstract IModuleProxy getModuleProxy(IModule module);
+
+	@Nullable
+	protected IModuleProxy getModuleProxy(String path) {
+		IModuleProxy moduleProxy = null;
+
+		if(path != null && !path.isEmpty()) {
+			moduleProxy = ClassLoading.createInstanceOf(IModuleProxy.class, path);
+		}
+
+		return moduleProxy;
 	}
 }

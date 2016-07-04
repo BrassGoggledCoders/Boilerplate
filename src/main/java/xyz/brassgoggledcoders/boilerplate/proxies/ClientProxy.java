@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.boilerplate.proxies;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -26,7 +25,10 @@ import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.TESRLoader;
+import xyz.brassgoggledcoders.boilerplate.module.IModule;
+import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,19 +37,18 @@ public class ClientProxy extends CommonProxy {
 
 	public static void registerFluidModel(Block fluidBlock, final ModelResourceLocation loc) {
 		Item fluidItem = Item.getItemFromBlock(fluidBlock);
-		ModelBakery.registerItemVariants(fluidItem);
-		ModelLoader.setCustomMeshDefinition(fluidItem, new ItemMeshDefinition() {
-			@Override
-			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				return loc;
-			}
-		});
-		ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase() {
-			@Override
-			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return loc;
-			}
-		});
+		if(fluidItem != null) {
+			ModelBakery.registerItemVariants(fluidItem);
+			ModelLoader.setCustomMeshDefinition(fluidItem, stack -> loc);
+			ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase() {
+				@Override
+				@Nonnull
+				protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
+					return loc;
+				}
+			});
+		}
+
 	}
 
 	public static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(Block b, Class<T> enumclazz,
@@ -113,6 +114,11 @@ public class ClientProxy extends CommonProxy {
 		item.getSubItems(item, item.getCreativeTab(), allSubItems);
 		allSubItems.forEach(itemStack -> ForgeHooksClient.registerTESRItemStack(itemStack.getItem(),
 				itemStack.getItemDamage(), tileEntityClass));
+	}
+
+	@Override
+	public IModuleProxy getModuleProxy(IModule module) {
+		return this.getModuleProxy(module.getClientProxyPath());
 	}
 
 	@Override

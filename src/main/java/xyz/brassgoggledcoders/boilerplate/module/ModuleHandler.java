@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.config.Type;
@@ -56,6 +57,7 @@ public class ModuleHandler {
 		}
 
 		this.modules.values().stream().filter(IModule::getIsActive).forEach(this::checkDependencies);
+		this.modules.values().stream().filter(IModule::getIsActive).forEach(this::setProxy);
 	}
 
 	private void checkDependencies(IModule module) {
@@ -72,6 +74,10 @@ public class ModuleHandler {
 					dependency.notMetMessage());
 			module.setIsActive(false);
 		}
+	}
+
+	private void setProxy(IModule module) {
+		module.setModuleProxy(Boilerplate.proxy.getModuleProxy(module));
 	}
 
 	public SortedMap<String, IModule> getModules() {

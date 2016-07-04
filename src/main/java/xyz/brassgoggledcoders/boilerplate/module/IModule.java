@@ -6,6 +6,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IModule {
@@ -21,11 +23,22 @@ public interface IModule {
 
 	void setIsActive(Boolean isActive);
 
+	@Nullable
+	String getClientProxyPath();
+
+	@Nullable
+	String getServerProxyPath();
+
+	@Nullable
+	IModuleProxy getModuleProxy();
+
+	void setModuleProxy(@Nonnull IModuleProxy moduleProxy);
+
 	boolean getIsActive();
 
 	boolean getActiveDefault();
 
-	void setMod(IBoilerplateMod mod);
+	void setMod(@Nonnull IBoilerplateMod mod);
 
-	void setModuleHandler(ModuleHandler moduleHandler);
+	void setModuleHandler(@Nonnull ModuleHandler moduleHandler);
 }
