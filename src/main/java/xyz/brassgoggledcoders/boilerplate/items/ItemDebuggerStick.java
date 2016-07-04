@@ -1,62 +1,56 @@
 package xyz.brassgoggledcoders.boilerplate.items;
 
-import java.util.LinkedHashMap;
-
-import javax.annotation.Nonnull;
-
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 
-/**
- * @author SkySom
- */
+import javax.annotation.Nonnull;
+import java.util.LinkedHashMap;
+
 public class ItemDebuggerStick extends ItemBase {
 	public ItemDebuggerStick() {
 		super("debugger_stick");
-		this.setCreativeTab(CreativeTabs.MISC);
+	}
+
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		if(entity instanceof IDebuggable) {
+			this.writeDebug((IDebuggable)entity);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	@Nonnull
-	public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack itemStack, World world, EntityPlayer player,
-			EnumHand hand) {
-		RayTraceResult rayTrace = rayTrace(world, player, true);
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand,
+			EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if(tileEntity instanceof IDebuggable) {
+			this.writeDebug((IDebuggable)tileEntity);
+			return EnumActionResult.SUCCESS;
+		}
+		return EnumActionResult.PASS;
+	}
+
+	public void writeDebug(IDebuggable debuggable) {
 		LinkedHashMap<String, String> debugStrings = new LinkedHashMap<String, String>();
 
-		if(rayTrace != null && rayTrace.typeOfHit != null)
-			if(rayTrace.typeOfHit == RayTraceResult.Type.BLOCK) {
-				TileEntity tileEntity = world.getTileEntity(rayTrace.getBlockPos());
-				{
-					if(tileEntity instanceof IDebuggable)
-						debugStrings.putAll(((IDebuggable) tileEntity).getDebugStrings());
-					else
-						debugStrings.put("name", world.getBlockState(rayTrace.getBlockPos()).toString());
-				}
-			}
-			else if(rayTrace.typeOfHit == RayTraceResult.Type.ENTITY) {
-				Entity entity = rayTrace.entityHit;
-				if(entity instanceof IDebuggable)
-					debugStrings.putAll(((IDebuggable) entity).getDebugStrings());
-				else
-					debugStrings.put("name", entity.getName());
-			}
+		debugStrings = debuggable.getDebugStrings(debugStrings);
 
 		if(!debugStrings.isEmpty()) {
-			for(String debugString : debugStrings.values())
-				getMod().getLogger().info(debugString);
-			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
+			for(String debugString : debugStrings.values()) {
+				this.getMod().getLogger().info(debugString);
+			}
 		}
-
-		return ActionResult.newResult(EnumActionResult.PASS, itemStack);
 	}
 
 	@Override
