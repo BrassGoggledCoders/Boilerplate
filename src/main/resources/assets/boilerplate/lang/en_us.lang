@@ -1,9 +1,0 @@
-item.debugger_stick.name=Debugging Stick Of Doom
-
-#sided types
-boilerplate.blockSide.facing=Facing Side
-boilerplate.blockSide.opposite=Opposite Side
-
-boilerplate.sidetype.input=Input
-boilerplate.sidetype.output=Output
-boilerplate.sidetype.none=None

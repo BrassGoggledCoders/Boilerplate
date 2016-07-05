@@ -1,11 +1,11 @@
-Boilerplate Lib for Minecraft 1.7.10
+Boilerplate Lib for Minecraft 1.9.4
 ===========
 
-Boilerplate aims to add a common core of different utils for steampunk-themed mods.
+Boilerplate aims to add a common core of different utils.
 
 License:
 ========
-This mod uses the MMPL v1.0. Please read it before doing anything else. Also, please don't just copy and paste massive chunks of code and claim it as your own! In the words of the CoFH team, "Don't be a jerk!"
+MIT, as per LICENCE file. 
 
 Developers & Credits:
 =====================
@@ -17,29 +17,13 @@ _Coders:_
 _Ex-Coders:_
 * Surseance: ex-leader(ish), programmer; speciality: uhhh...
 
-### Utils
-- Render utils
-- Entity utils
-- Vector handling
-- Customizable projectiles
-- Effect utils (lightning, steam, gases, etc.)
-- Inventory utils
-- Wrench compatibilities
-- A common guidebook for mods to add custom info
-
 ***
 
 Email: brasscoders@gmail.com <br/>
 Twitter: www.twitter.com/brasscoders <br/>
-Skype: arona.jones <br/>
 
 ***
 
 Want to support us?
 
 http://www.patreon.com/BrassGoggledCoders
-
-Interested in alpha builds?
-==========================
-(1.7.10) http://jenkins.k-4u.nl/view/BrassGoggledCoders/job/Boilerplate/
-(1.8.9) http://jenkins.k-4u.nl/view/BrassGoggledCoders/job/Boilerplate-1.8.9/

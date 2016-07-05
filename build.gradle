@@ -12,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
@@ -25,50 +25,39 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-project.ext {
-    buildNum = System.getenv("BUILD_NUMBER")
-    mcVersion = "1.8.9"
-    forgeVersion = "11.15.1.1855"
-}
+def build = System.getenv("bamboo_buildNumber") != null ? "." + build : ""
+version = "${minecraft_version}-${boilerplate_version}" + build
 
-version = project.ext.mcVersion + "-7.0.3." + project.ext.buildNum
-
-group= "brassgoggledcoders"
-archivesBaseName = "boilerplate"
+group= "xyz.brassgoggledcoders.boilerplate"
+archivesBaseName = "Boilerplate"
 
 minecraft {
-    version = "${project.ext.mcVersion}-${project.ext.forgeVersion}"
+    version = "${minecraft_version}-${forge_version}-${minecraft_version}"
 
-    runDir = "eclipse/"
-    mappings = "stable_22"
-
-    replace "@VERSION@", project.version
-    replaceIn "ModInfo.java"
+    mappings = "${mappings_version}"
+    runDir = "run/"
+    useDepAts = true
 
     replace "@VERSION@", project.version
-    replaceIn "BoilerplateLib.java"
+    replaceIn "Boilerplate.java"
 }
 
 compileJava {
-    sourceCompatibility = 1.7
-    targetCompatibility = 1.7
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 }
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
-        // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-        
-    // copy everything else, thats not the mcmod.info
+
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
@@ -84,15 +73,6 @@ task deobfJar(type: Jar) {
     }
 }
 
-task libJar(type: Jar) {
-    from(sourceSets.main.output) {
-        exclude("xyz/brassgoggledcoders/boilerplate/mod/**")
-        exclude("xyz/brassgoggledcoders/boilerplate/api/**")
-    }
-
-    classifier = "lib"
-}
-
 task apiJar(type: Jar) {
     from(sourceSets.main.output) {
         include("xyz/brassgoggledcoders/boilerplate/api/**")
@@ -103,7 +83,6 @@ task apiJar(type: Jar) {
 
 artifacts {
     archives deobfJar
-    archives libJar
     archives apiJar
 }
 
@@ -115,12 +94,12 @@ idea {
 
 task("uploadJars", dependsOn: "reobf") {
     description = "uploads JARs"
-    if (System.getenv("local_maven") != null) {
+    if (System.getenv("bamboo_local_maven") != null) {
         apply plugin: 'maven'
         uploadArchives {
             repositories {
                 mavenDeployer {
-                    repository(url: "file://" + System.getenv("local_maven"))
+                    repository(url: "file://" + System.getenv("bamboo_local_maven"))
                     pom {
                         groupId = project.group
                         version = project.version

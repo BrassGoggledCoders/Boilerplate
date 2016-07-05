@@ -7,7 +7,6 @@ package cofh.api.energy;
  * A reference implementation can be found at {@link EnergyStorage}.
  *
  * @author King Lemming
- *
  */
 public interface IEnergyStorage {
 
