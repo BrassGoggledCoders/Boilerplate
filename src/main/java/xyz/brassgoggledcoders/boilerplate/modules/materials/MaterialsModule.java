@@ -1,12 +1,17 @@
 package xyz.brassgoggledcoders.boilerplate.modules.materials;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.commons.lang3.ArrayUtils;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate.TabOres;
 import xyz.brassgoggledcoders.boilerplate.blocks.material.BlockMetal;
@@ -17,9 +22,6 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
 import xyz.brassgoggledcoders.boilerplate.module.dependencies.ModDependency;
 import xyz.brassgoggledcoders.boilerplate.recipes.RecipeUtils;
-
-import java.util.Arrays;
-import java.util.List;
 
 // TODO Ore Gen. Auto-deactivate if other ores are detected in the dict. Configurable.
 @Module(mod = Boilerplate.ID)
@@ -55,6 +57,8 @@ public class MaterialsModule extends ModuleBase {
 		getItemRegistry().registerItem(ingot);
 		nugget = new ItemSubBase("metals/", "nugget", almostAllMetals);
 		getItemRegistry().registerItem(nugget);
+
+		this.getConfigRegistry().addNewConfigFile("oregeneration");
 	}
 
 	@Override
@@ -64,6 +68,11 @@ public class MaterialsModule extends ModuleBase {
 
 		for(int i = 0; i < BlockMetal.EnumBlockType.values().length; i++)
 			RecipeUtils.addMetalRecipes(metal_block, ingot, nugget, i);
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event) {
+		GameRegistry.registerWorldGenerator(new OreGenerationHandler(), 5);
 	}
 
 	@Override
