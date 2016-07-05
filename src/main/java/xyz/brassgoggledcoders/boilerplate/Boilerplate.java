@@ -21,7 +21,7 @@ public class Boilerplate extends BoilerplateModBase {
 	public final static String DEPENDENCIES = "";
 
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy",
-			serverSide = "xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy")
+			serverSide = "xyz.brassgoggledcoders.boilerplate.proxies.ServerProxy")
 	public static CommonProxy proxy;
 
 	@Instance(Boilerplate.ID)

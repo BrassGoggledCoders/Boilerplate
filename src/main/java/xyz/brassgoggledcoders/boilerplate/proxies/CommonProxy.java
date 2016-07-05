@@ -1,11 +1,13 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
@@ -22,6 +24,10 @@ public abstract class CommonProxy {
 	public void registerBlockModels() {}
 
 	public void loadItemModel(Item item, int metadata, ResourceLocation location) {}
+
+	public void loadIgnoredVariants(IHasIgnoredVariants variants, Block block) { }
+
+	public void loadAllItemModels(Item item, String[] locations) { }
 
 	public void addVariantName(Item item, String... variantNames) {}
 

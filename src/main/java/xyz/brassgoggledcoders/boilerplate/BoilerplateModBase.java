@@ -35,7 +35,7 @@ public abstract class BoilerplateModBase implements IBoilerplateMod {
 		this.logger = new ModLogger(modid);
 		this.packetHandler = new PacketHandler(modid);
 		this.boilerplateProxy = ClassLoading.createProxy("xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy",
-				"xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy");
+				"xyz.brassgoggledcoders.boilerplate.proxies.ServerProxy");
 	}
 
 	public void preInit(FMLPreInitializationEvent event) {

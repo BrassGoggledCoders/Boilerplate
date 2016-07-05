@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
@@ -10,8 +9,6 @@ import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ItemRegistry extends BaseRegistry<Item> {
@@ -33,17 +30,7 @@ public class ItemRegistry extends BaseRegistry<Item> {
 		for(Map.Entry<String, Item> entry : entries.entrySet()) {
 			Item item = entry.getValue();
 			if(item instanceof IHasModel) {
-				String[] locations = ((IHasModel) item).getResourceLocations();
-				List<ItemStack> allSubItems = new ArrayList<>();
-				item.getSubItems(item, item.getCreativeTab(), allSubItems);
-				int locationsIndex = 0;
-				for(int i = 0; i < allSubItems.size(); i++) {
-					SafeModelLoader.loadItemModel(mod, item, i, locations[locationsIndex]);
-					locationsIndex++;
-					if(locationsIndex >= locations.length) {
-						locationsIndex = 0;
-					}
-				}
+				SafeModelLoader.loadAllItemModels(mod, (IHasModel)item, item);
 				if(item instanceof ISpecialRenderedItem) {
 					mod.getBoilerplateProxy().registerISpecialRendererItem(item);
 				}

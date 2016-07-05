@@ -9,7 +9,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
@@ -21,6 +20,8 @@ import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
 import xyz.brassgoggledcoders.boilerplate.client.events.ModelBakeHandler;
 import xyz.brassgoggledcoders.boilerplate.client.manual.ClientTickHandler;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
+import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
+import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderStore;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
@@ -51,8 +52,18 @@ public class ClientProxy extends CommonProxy {
 
 	}
 
-	public static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(Block b, Class<T> enumclazz,
-			String variantHeader) {
+	@Override
+	public void loadAllItemModels(Item item, String[] locations) {
+		List<ItemStack> allSubItems = new ArrayList<>();
+		item.getSubItems(item, item.getCreativeTab(), allSubItems);
+		int locationsIndex = 0;
+		for(int i = 0; i < allSubItems.size(); i++) {
+			SafeModelLoader.loadItemModel(mod, item, i, locations[locationsIndex]);
+			locationsIndex++;
+			if(locationsIndex >= locations.length) {
+				locationsIndex = 0;
+			}
+		}
 	}
 
 	@Override
@@ -64,6 +75,11 @@ public class ClientProxy extends CommonProxy {
 	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation) {
 		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, metadata, modelResourceLocation);
+	}
+
+	@Override
+	public void loadIgnoredVariants(IHasIgnoredVariants variants, Block block) {
+
 	}
 
 	@Override
