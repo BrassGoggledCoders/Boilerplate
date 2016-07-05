@@ -1,5 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -28,10 +33,6 @@ import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.TESRLoader;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
-
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClientProxy extends CommonProxy {
 	private TESRLoader tesrLoader;
@@ -73,7 +74,18 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation) {
-		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
+		// ModelResourceLocation modelResourceLocation = new ModelResourceLocation(resourceLocation, "inventory");
+		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(resourceLocation, null));
+	}
+
+	@Override
+	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation, String variant) {
+		ModelLoader.setCustomModelResourceLocation(item, metadata,
+				new ModelResourceLocation(resourceLocation, variant));
+	}
+
+	@Override
+	public void setCustomModelLocation(Item item, int metadata, ModelResourceLocation modelResourceLocation) {
 		ModelLoader.setCustomModelResourceLocation(item, metadata, modelResourceLocation);
 	}
 

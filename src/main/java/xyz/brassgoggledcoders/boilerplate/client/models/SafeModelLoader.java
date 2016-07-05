@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.boilerplate.client.models;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -44,7 +45,8 @@ public class SafeModelLoader {
 		Item item = null;
 		if(object instanceof Item) {
 			item = (Item) object;
-		} else if(object instanceof Block) {
+		}
+		else if(object instanceof Block) {
 			item = Item.getItemFromBlock((Block) object);
 		}
 
@@ -60,7 +62,8 @@ public class SafeModelLoader {
 			for(IBlockType e : variant.getEnumToSwitch().getEnumConstants()) {
 				String baseName = ForgeRegistries.BLOCKS.getKey(block).toString();
 				String variantName = "type=" + e.getName();
-				loadItemModel(mod, item, ((Enum) e).ordinal(), new ResourceLocation(baseName, variantName));
+				mod.getBoilerplateProxy().setCustomModelLocation(item, ((Enum<?>) e).ordinal(),
+						new ModelResourceLocation(baseName, variantName));
 			}
 		}
 	}

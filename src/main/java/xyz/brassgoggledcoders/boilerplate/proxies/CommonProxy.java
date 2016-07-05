@@ -1,6 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,8 +14,6 @@ import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
-
-import javax.annotation.Nullable;
 
 public abstract class CommonProxy {
 	protected IBoilerplateMod mod;
@@ -25,9 +26,11 @@ public abstract class CommonProxy {
 
 	public void loadItemModel(Item item, int metadata, ResourceLocation location) {}
 
-	public void loadIgnoredVariants(IHasIgnoredVariants variants, Block block) { }
+	public void setCustomModelLocation(Item item, int metadata, ModelResourceLocation modelResourceLocation) {}
 
-	public void loadAllItemModels(Item item, String[] locations) { }
+	public void loadIgnoredVariants(IHasIgnoredVariants variants, Block block) {}
+
+	public void loadAllItemModels(Item item, String[] locations) {}
 
 	public void addVariantName(Item item, String... variantNames) {}
 
@@ -39,9 +42,9 @@ public abstract class CommonProxy {
 
 	public void setLexiconStack(ItemStack stack) {}
 
-	public void initTESRLoader(ASMDataTable dataTable) { }
+	public void initTESRLoader(ASMDataTable dataTable) {}
 
-	public void registerTESR(String name, Item item, Class<? extends TileEntity> tileEntityClass) { }
+	public void registerTESR(String name, Item item, Class<? extends TileEntity> tileEntityClass) {}
 
 	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
@@ -59,4 +62,6 @@ public abstract class CommonProxy {
 
 		return moduleProxy;
 	}
+
+	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation, String variant) {}
 }
