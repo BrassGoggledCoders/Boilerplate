@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.boilerplate;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -9,7 +8,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import xyz.brassgoggledcoders.boilerplate.modules.materials.MaterialsModule;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
 
 @Mod(modid = Boilerplate.ID, name = Boilerplate.NAME, version = Boilerplate.VERSION,
@@ -56,22 +54,5 @@ public class Boilerplate extends BoilerplateModBase {
 	@Override
 	public Object getInstance() {
 		return instance;
-	}
-
-	@Override
-	public CreativeTabs getCreativeTab() {
-		return tabOres;
-	}
-
-	public static class TabOres extends BaseCreativeTab {
-		public TabOres() {
-			super("boilerplate");
-		}
-
-		@Override
-		public Item getTabIconItem() {
-			return Item.getItemFromBlock(MaterialsModule.metal_ore);
-		}
-
 	}
 }
