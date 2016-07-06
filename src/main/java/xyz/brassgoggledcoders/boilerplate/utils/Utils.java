@@ -4,9 +4,6 @@ import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 
-/**
- * @author Surseance
- */
 public class Utils {
 	public static IBoilerplateMod getCurrentMod() {
 		Object activeMod = Loader.instance().activeModContainer().getMod();
