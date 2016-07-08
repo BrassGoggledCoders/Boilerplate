@@ -1,6 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.utils;
 
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.FMLLog;
 
@@ -30,24 +29,5 @@ public class PositionUtils {
 			return pos.getZ();
 		else
 			return 0;
-	}
-
-	// TODO Does this already exist?
-	public static BlockPos getOffsetPosFromFacing(BlockPos start, EnumFacing facing) {
-		if(facing == EnumFacing.UP)
-			return start.up();
-		else if(facing == EnumFacing.DOWN)
-			return start.down();
-		else if(facing == EnumFacing.EAST)
-			return start.east();
-		else if(facing == EnumFacing.WEST)
-			return start.west();
-		else if(facing == EnumFacing.NORTH)
-			return start.north();
-		else if(facing == EnumFacing.SOUTH)
-			return start.south();
-		else
-			return start;
-
 	}
 }
