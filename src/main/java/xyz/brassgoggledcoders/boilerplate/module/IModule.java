@@ -40,5 +40,7 @@ public interface IModule {
 
 	void setMod(@Nonnull IBoilerplateMod mod);
 
+	IBoilerplateMod getMod();
+
 	void setModuleHandler(@Nonnull ModuleHandler moduleHandler);
 }

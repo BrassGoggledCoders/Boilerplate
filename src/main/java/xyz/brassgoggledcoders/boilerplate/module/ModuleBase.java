@@ -104,13 +104,18 @@ public abstract class ModuleBase implements IModule {
 	}
 
 	@Override
-	public void setMod(IBoilerplateMod mod) {
+	public void setMod(@Nonnull IBoilerplateMod mod) {
 		this.registryHolder = mod.getRegistryHolder();
 		this.mod = mod;
 	}
 
 	@Override
-	public void setModuleHandler(ModuleHandler moduleHandler) {
+	public IBoilerplateMod getMod() {
+		return this.mod;
+	}
+
+	@Override
+	public void setModuleHandler(@Nonnull ModuleHandler moduleHandler) {
 		this.moduleHandler = moduleHandler;
 	}
 
