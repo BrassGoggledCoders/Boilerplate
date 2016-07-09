@@ -17,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -132,6 +133,11 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void initTESRLoader(ASMDataTable dataTable) {
 		tesrLoader = new TESRLoader(dataTable);
+	}
+
+	@Override
+	public void addOBJDomain() {
+		OBJLoader.INSTANCE.addDomain(mod.getID());
 	}
 
 	@Override

@@ -50,6 +50,8 @@ public abstract class CommonProxy {
 		this.mod = mod;
 	}
 
+	public void addOBJDomain() { }
+
 	public abstract IModuleProxy getModuleProxy(IModule module);
 
 	@Nullable

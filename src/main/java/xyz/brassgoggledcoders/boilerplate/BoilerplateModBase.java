@@ -40,6 +40,9 @@ public abstract class BoilerplateModBase implements IBoilerplateMod {
 
 	public void preInit(FMLPreInitializationEvent event) {
 		this.getBoilerplateProxy().setMod(this);
+		if(this.addOBJDomain()) {
+			this.getBoilerplateProxy().addOBJDomain();
+		}
 
 		this.guiHandler = new GuiHandler(this);
 		this.registryHolder = new RegistryHolder(this, event.getModConfigurationDirectory());

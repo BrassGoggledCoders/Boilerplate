@@ -35,4 +35,8 @@ public interface IBoilerplateMod {
 	IRegistryHolder getRegistryHolder();
 
 	ModuleHandler getModuleHandler();
+
+	default boolean addOBJDomain() {
+		return false;
+	}
 }
