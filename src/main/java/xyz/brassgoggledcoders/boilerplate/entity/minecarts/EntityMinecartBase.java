@@ -14,6 +14,7 @@ public abstract class EntityMinecartBase extends EntityMinecart {
 		super(world);
 	}
 
+	@Nonnull
 	public abstract ItemMinecartBase getItem();
 
 	@Override
@@ -74,8 +75,6 @@ public abstract class EntityMinecartBase extends EntityMinecart {
 			this.entityDropItem(cartItem, 0.1F);
 		}
 	}
-
-
 
 	public int getMetadata() {
 		return 0;

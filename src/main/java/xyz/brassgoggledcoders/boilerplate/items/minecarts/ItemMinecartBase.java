@@ -26,7 +26,6 @@ public abstract class ItemMinecartBase extends ItemMinecart implements IMinecart
 	{
 		super(EntityMinecart.Type.TNT);
 		this.setUnlocalizedName(name);
-		this.setRegistryName(name);
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new DispenseItemMinecartBase());
 	}
 
@@ -85,6 +84,7 @@ public abstract class ItemMinecartBase extends ItemMinecart implements IMinecart
 		return new String[] {""};
 	}
 
+	@Nonnull
 	public abstract EntityMinecartBase getEntityFromItem(World world, ItemStack itemStack);
 }
 
