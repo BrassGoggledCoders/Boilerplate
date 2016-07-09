@@ -8,7 +8,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.proxies.CommonProxy;
+import xyz.brassgoggledcoders.boilerplate.worldgen.OreGenerationHandler;
 
 @Mod(modid = Boilerplate.ID, name = Boilerplate.NAME, version = Boilerplate.VERSION,
 		dependencies = Boilerplate.DEPENDENCIES)
@@ -48,6 +50,9 @@ public class Boilerplate extends BoilerplateModBase {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
+		if(OreGenerationHandler.haveAnyOresBeenRequested()) {
+			GameRegistry.registerWorldGenerator(new OreGenerationHandler(), 2);
+		}
 		this.getLogger().info("GNU Terry Prachett");
 	}
 
