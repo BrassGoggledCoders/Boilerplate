@@ -5,6 +5,7 @@ import java.util.Iterator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLLog;
+import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 
 public class PositionUtils {
 
@@ -34,11 +35,16 @@ public class PositionUtils {
 			return 0;
 	}
 
-	// TODO Better name
 	public static boolean isLOSClear(World world, BlockPos first, BlockPos second) {
 		Iterator<BlockPos> positions = BlockPos.getAllInBox(first, second).iterator();
 		while(positions.hasNext()) {
 			BlockPos pos = positions.next();
+			// Skip starting positions
+			if(pos.equals(first) || pos.equals(second)) {
+				Boilerplate.instance.getLogger().devInfo("Skipping " + pos.toString());
+				continue;
+			}
+			Boilerplate.instance.getLogger().devInfo("Checking " + pos.toString());
 			if(!world.isAirBlock(pos))
 				return false;
 		}
