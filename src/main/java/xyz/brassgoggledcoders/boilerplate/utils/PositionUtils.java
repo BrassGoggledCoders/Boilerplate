@@ -1,6 +1,9 @@
 package xyz.brassgoggledcoders.boilerplate.utils;
 
+import java.util.Iterator;
+
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLLog;
 
 public class PositionUtils {
@@ -29,5 +32,16 @@ public class PositionUtils {
 			return pos.getZ();
 		else
 			return 0;
+	}
+
+	// TODO Better name
+	public static boolean isLOSClear(World world, BlockPos first, BlockPos second) {
+		Iterator<BlockPos> positions = BlockPos.getAllInBox(first, second).iterator();
+		while(positions.hasNext()) {
+			BlockPos pos = positions.next();
+			if(!world.isAirBlock(pos))
+				return false;
+		}
+		return true;
 	}
 }
