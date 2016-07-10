@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
-import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
+import xyz.brassgoggledcoders.boilerplate.client.renderers.custom.IHasItemRenderHandler;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
 import java.util.Map;
@@ -31,8 +31,8 @@ public class ItemRegistry extends BaseRegistry<Item> {
 			Item item = entry.getValue();
 			if(item instanceof IHasModel) {
 				SafeModelLoader.loadAllItemModels(mod, (IHasModel)item, item);
-				if(item instanceof ISpecialRenderedItem) {
-					mod.getBoilerplateProxy().registerISpecialRendererItem(item);
+				if(item instanceof IHasItemRenderHandler) {
+					mod.getBoilerplateProxy().registerItemRenderHandler(item);
 				}
 			} else {
 				SafeModelLoader.loadItemModel(mod, item);

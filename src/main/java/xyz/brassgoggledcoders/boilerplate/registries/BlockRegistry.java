@@ -1,7 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -18,6 +16,8 @@ import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
+
+import java.util.Map;
 
 public class BlockRegistry extends BaseRegistry<Block> {
 	public BlockRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder) {
@@ -45,7 +45,7 @@ public class BlockRegistry extends BaseRegistry<Block> {
 			if(item instanceof IHasModel) {
 				SafeModelLoader.loadAllItemModels(mod, (IHasModel) item, item);
 				if(item instanceof ISpecialRenderedItem) {
-					mod.getBoilerplateProxy().registerISpecialRendererItem(item);
+					mod.getBoilerplateProxy().registerItemRenderHandler(item);
 				}
 			}
 		}
