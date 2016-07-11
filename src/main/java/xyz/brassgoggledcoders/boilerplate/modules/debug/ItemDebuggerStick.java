@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.boilerplate.items;
+package xyz.brassgoggledcoders.boilerplate.modules.debug;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
+import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
 import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;

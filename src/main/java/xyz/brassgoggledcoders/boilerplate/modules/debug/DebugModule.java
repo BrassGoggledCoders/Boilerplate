@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.boilerplate.modules.debug;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
-import xyz.brassgoggledcoders.boilerplate.items.ItemDebuggerStick;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.PlatformInfo;

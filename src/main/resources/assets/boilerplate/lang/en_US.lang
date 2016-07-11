@@ -1,4 +1,5 @@
 item.debugger_stick.name=Debugging Stick Of Doom
+item.spanner.name=Spanner
 
 #sided types
 boilerplate.blockSide.facing=Facing Side
