@@ -1,7 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate.utils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLLog;
@@ -49,5 +52,15 @@ public class PositionUtils {
 				return false;
 		}
 		return true;
+	}
+
+	public static ArrayList<IBlockState> getBlocksOfTypeNearby(World world, BlockPos pos, IBlockState state) {
+		ArrayList<IBlockState> blocks = new ArrayList<IBlockState>();
+		for(EnumFacing element : EnumFacing.VALUES) {
+			BlockPos off = pos.offset(element);
+			if(world.getBlockState(off) == state)
+				blocks.add(world.getBlockState(off));
+		}
+		return blocks;
 	}
 }
