@@ -63,10 +63,6 @@ processResources
     }
 }
 
-jar {
-    classifier = "universal"
-}
-
 task deobfJar(type: Jar) {
     from(sourceSets.main.output) {
         classifier = "deobf"
