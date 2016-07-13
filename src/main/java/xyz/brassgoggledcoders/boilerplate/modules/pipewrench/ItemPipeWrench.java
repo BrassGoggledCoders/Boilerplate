@@ -49,15 +49,15 @@ public class ItemPipeWrench extends ItemBase implements IHasRecipe {
 
 		@Override
 		public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-			if(capability == BoilerplateAPI.WRENCH_CAPABILITY)
+			if(capability == BoilerplateAPI.TOOL_CAPABILITY)
 				return true;
 			return false;
 		}
 
 		@Override
 		public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-			if(capability == BoilerplateAPI.WRENCH_CAPABILITY)
-				return BoilerplateAPI.WRENCH_CAPABILITY.cast(spanner);
+			if(capability == BoilerplateAPI.TOOL_CAPABILITY)
+				return BoilerplateAPI.TOOL_CAPABILITY.cast(spanner);
 			return null;
 		}
 	}
