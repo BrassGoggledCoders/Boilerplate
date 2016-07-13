@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.boilerplate.modules.spanner;
+package xyz.brassgoggledcoders.boilerplate.modules.pipewrench;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -9,15 +9,15 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import xyz.brassgoggledcoders.boilerplate.api.BoilerplateAPI;
-import xyz.brassgoggledcoders.boilerplate.api.ISpanner;
+import xyz.brassgoggledcoders.boilerplate.api.IPipeWrench;
 import xyz.brassgoggledcoders.boilerplate.api.SpannerImpl;
 import xyz.brassgoggledcoders.boilerplate.items.IHasRecipe;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
-public class ItemSpanner extends ItemBase implements IHasRecipe {
+public class ItemPipeWrench extends ItemBase implements IHasRecipe {
 
-	public ItemSpanner() {
-		super("spanner");
+	public ItemPipeWrench() {
+		super("pipe_wrench");
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setMaxStackSize(1);
 	}
@@ -35,29 +35,29 @@ public class ItemSpanner extends ItemBase implements IHasRecipe {
 
 	public static class CapabilityProvider implements ICapabilityProvider {
 		private final ItemStack stack;
-		private ISpanner spanner;
+		private IPipeWrench spanner;
 
 		public CapabilityProvider(ItemStack stack) {
 			this.stack = stack;
 			this.spanner = new SpannerImpl();
 		}
 
-		public CapabilityProvider(ItemStack stack, ISpanner cap) {
+		public CapabilityProvider(ItemStack stack, IPipeWrench cap) {
 			this.stack = stack;
 			this.spanner = cap;
 		}
 
 		@Override
 		public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-			if(capability == BoilerplateAPI.SPANNER_CAPABILITY)
+			if(capability == BoilerplateAPI.PIPE_WRENCH_CAPABILITY)
 				return true;
 			return false;
 		}
 
 		@Override
 		public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-			if(capability == BoilerplateAPI.SPANNER_CAPABILITY)
-				return BoilerplateAPI.SPANNER_CAPABILITY.cast(spanner);
+			if(capability == BoilerplateAPI.PIPE_WRENCH_CAPABILITY)
+				return BoilerplateAPI.PIPE_WRENCH_CAPABILITY.cast(spanner);
 			return null;
 		}
 	}

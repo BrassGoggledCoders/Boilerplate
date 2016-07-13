@@ -4,6 +4,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
 public class BoilerplateAPI {
-	@CapabilityInject(ISpanner.class)
-	public static final Capability<ISpanner> SPANNER_CAPABILITY = null;
+	@CapabilityInject(IPipeWrench.class)
+	public static final Capability<IPipeWrench> PIPE_WRENCH_CAPABILITY = null;
 }

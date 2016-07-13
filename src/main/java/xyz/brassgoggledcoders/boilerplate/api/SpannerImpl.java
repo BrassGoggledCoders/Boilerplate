@@ -2,7 +2,7 @@ package xyz.brassgoggledcoders.boilerplate.api;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class SpannerImpl implements ISpanner {
+public class SpannerImpl implements IPipeWrench {
 
 	@Override
 	public void deserializeNBT(NBTTagCompound nbt) {}

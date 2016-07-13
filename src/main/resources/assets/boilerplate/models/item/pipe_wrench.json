@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "boilerplate:items/spanner"
+        "layer0": "boilerplate:items/pipe_wrench"
     }
 }
