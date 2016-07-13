@@ -63,4 +63,8 @@ public class PositionUtils {
 		}
 		return blocks;
 	}
+
+	public static int getDistanceBetweenPositions(BlockPos clicked_pos, BlockPos saved_pos) {
+		return (int) Math.round(clicked_pos.getDistance(saved_pos.getX(), saved_pos.getY(), saved_pos.getZ()));
+	}
 }
