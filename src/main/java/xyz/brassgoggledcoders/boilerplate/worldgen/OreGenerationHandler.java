@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
@@ -41,7 +40,7 @@ public class OreGenerationHandler implements IWorldGenerator {
 							random.nextInt(conf.getInt(entry.getKey() + "_height", 128)), chunkZ + random.nextInt(16));
 					new WorldGenMinable(entry.getValue(), conf.getInt(entry.getKey() + "vein", 4)).generate(world,
 							random, pos);
-					FMLLog.warning("" + pos.toString(), "");
+					// FMLLog.warning("" + pos.toString(), "");
 				}
 			}
 		}
