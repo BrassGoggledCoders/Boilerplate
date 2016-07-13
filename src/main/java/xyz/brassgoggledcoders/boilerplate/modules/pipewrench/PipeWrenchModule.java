@@ -8,8 +8,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
-import xyz.brassgoggledcoders.boilerplate.api.IWrench;
-import xyz.brassgoggledcoders.boilerplate.api.WrenchImpl;
+import xyz.brassgoggledcoders.boilerplate.api.ITool;
+import xyz.brassgoggledcoders.boilerplate.api.ToolImpl;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 
@@ -24,18 +24,18 @@ public class PipeWrenchModule extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		CapabilityManager.INSTANCE.register(IWrench.class, new Capability.IStorage<IWrench>() {
+		CapabilityManager.INSTANCE.register(ITool.class, new Capability.IStorage<ITool>() {
 			@Override
-			public NBTTagCompound writeNBT(Capability<IWrench> capability, IWrench instance, EnumFacing side) {
+			public NBTTagCompound writeNBT(Capability<ITool> capability, ITool instance, EnumFacing side) {
 				return instance.serializeNBT();
 			}
 
 			@Override
-			public void readNBT(Capability<IWrench> capability, IWrench instance, EnumFacing side, NBTBase nbt) {
+			public void readNBT(Capability<ITool> capability, ITool instance, EnumFacing side, NBTBase nbt) {
 				if(nbt instanceof NBTTagCompound)
 					instance.deserializeNBT((NBTTagCompound) nbt);
 			}
-		}, WrenchImpl.class);
+		}, ToolImpl.class);
 		pipe_wrench = new ItemPipeWrench();
 		this.getItemRegistry().registerItem(pipe_wrench);
 	}

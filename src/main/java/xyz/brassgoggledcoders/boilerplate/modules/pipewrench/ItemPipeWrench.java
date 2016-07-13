@@ -9,8 +9,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import xyz.brassgoggledcoders.boilerplate.api.BoilerplateAPI;
-import xyz.brassgoggledcoders.boilerplate.api.IWrench;
-import xyz.brassgoggledcoders.boilerplate.api.WrenchImpl;
+import xyz.brassgoggledcoders.boilerplate.api.ITool;
+import xyz.brassgoggledcoders.boilerplate.api.ToolImpl;
 import xyz.brassgoggledcoders.boilerplate.items.IHasRecipe;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
@@ -35,14 +35,14 @@ public class ItemPipeWrench extends ItemBase implements IHasRecipe {
 
 	public static class CapabilityProvider implements ICapabilityProvider {
 		private final ItemStack stack;
-		private IWrench spanner;
+		private ITool spanner;
 
 		public CapabilityProvider(ItemStack stack) {
 			this.stack = stack;
-			this.spanner = new WrenchImpl();
+			this.spanner = new ToolImpl();
 		}
 
-		public CapabilityProvider(ItemStack stack, IWrench cap) {
+		public CapabilityProvider(ItemStack stack, ITool cap) {
 			this.stack = stack;
 			this.spanner = cap;
 		}

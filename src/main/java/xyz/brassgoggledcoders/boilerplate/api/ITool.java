@@ -2,7 +2,7 @@ package xyz.brassgoggledcoders.boilerplate.api;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public interface IWrench {
+public interface ITool {
 
 	void deserializeNBT(NBTTagCompound nbt);
 
