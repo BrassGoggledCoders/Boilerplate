@@ -7,7 +7,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLLog;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 
 public class PositionUtils {
@@ -17,8 +16,6 @@ public class PositionUtils {
 	public static boolean arePositionsAlignedOnTwoAxes(BlockPos first, BlockPos second) {
 		for(String pair : position_pairs) {
 			String[] split = pair.split("_");
-			FMLLog.warning(split[0], "");
-			FMLLog.warning(split[1], "");
 			if((convertStringToPosVal(split[0], first) == convertStringToPosVal(split[0], second))
 					&& (convertStringToPosVal(split[1], first) == convertStringToPosVal(split[1], second)))
 				return true;
@@ -66,5 +63,23 @@ public class PositionUtils {
 
 	public static int getDistanceBetweenPositions(BlockPos clicked_pos, BlockPos saved_pos) {
 		return (int) Math.round(clicked_pos.getDistance(saved_pos.getX(), saved_pos.getY(), saved_pos.getZ()));
+	}
+
+	public static EnumFacing getFacingFromPositions(BlockPos from, BlockPos to) {
+		int x = from.subtract(to).getX();
+		int y = from.subtract(to).getY();
+		int z = from.subtract(to).getZ();
+		if(x != 0) {
+
+		}
+		else if(y != 0) {
+
+		}
+		else if(z != 0) {
+
+		}
+
+		return EnumFacing.DOWN;
+
 	}
 }
