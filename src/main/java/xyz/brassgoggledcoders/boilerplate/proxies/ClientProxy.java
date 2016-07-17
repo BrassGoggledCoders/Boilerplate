@@ -1,10 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -19,7 +14,6 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
@@ -28,12 +22,15 @@ import xyz.brassgoggledcoders.boilerplate.client.manual.ClientTickHandler;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
-import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
-import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderStore;
-import xyz.brassgoggledcoders.boilerplate.client.renderers.ItemSpecialRenderer;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.TESRLoader;
+import xyz.brassgoggledcoders.boilerplate.client.renderers.custom.CustomItemRenderRegistry;
+import xyz.brassgoggledcoders.boilerplate.client.renderers.custom.IHasItemRenderHandler;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientProxy extends CommonProxy {
 	private TESRLoader tesrLoader;
@@ -111,23 +108,8 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	@SuppressWarnings({"unchecked", "deprecation"})
-	public void registerISpecialRendererItem(Item item) {
-		ISpecialRenderedItem specialRenderItem = (ISpecialRenderedItem) item;
-		ItemSpecialRenderer renderer = ItemSpecialRenderStore.getItemSpecialRenderer((ISpecialRenderedItem) item);
-		ClientRegistry.bindTileEntitySpecialRenderer(renderer.getTileClass(), renderer);
-		int length = specialRenderItem.getResourceLocations().length;
-		ModelResourceLocation[] modelLocations = new ModelResourceLocation[length];
-
-		for(int i = 0; i < length; i++) {
-			modelLocations[i] = new ModelResourceLocation(mod.getPrefix() + specialRenderItem.getResourceLocations()[i],
-					"inventory");
-		}
-
-		for(int i = 0; i < length; i++) {
-			ModelBakeHandler.getInstance().registerModelToSwap(modelLocations[i], renderer);
-			ForgeHooksClient.registerTESRItemStack(item, i, renderer.getTileClass());
-		}
+	public void registerItemRenderHandler(Item item) {
+		CustomItemRenderRegistry.addCustomRenderer(this.mod, item, (IHasItemRenderHandler)item);
 	}
 
 	@Override

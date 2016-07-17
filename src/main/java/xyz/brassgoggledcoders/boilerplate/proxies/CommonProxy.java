@@ -1,7 +1,5 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -14,6 +12,8 @@ import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
+
+import javax.annotation.Nullable;
 
 public abstract class CommonProxy {
 	protected IBoilerplateMod mod;
@@ -36,7 +36,7 @@ public abstract class CommonProxy {
 
 	public void registerItemModelVariant(Item item, int metadata, String itemModelName) {}
 
-	public void registerISpecialRendererItem(Item item) {}
+	public void registerItemRenderHandler(Item item) {}
 
 	public void registerEvents() {}
 
