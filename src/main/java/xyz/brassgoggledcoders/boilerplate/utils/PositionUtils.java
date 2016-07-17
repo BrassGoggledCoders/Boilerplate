@@ -69,17 +69,28 @@ public class PositionUtils {
 		int x = from.subtract(to).getX();
 		int y = from.subtract(to).getY();
 		int z = from.subtract(to).getZ();
-		if(x != 0) {
 
+		if(x > 0) {
+			return EnumFacing.EAST;
 		}
-		else if(y != 0) {
-
+		else if(x < 0) {
+			return EnumFacing.WEST;
 		}
-		else if(z != 0) {
-
+		else if(y < 0) {
+			return EnumFacing.DOWN;
 		}
-
-		return EnumFacing.DOWN;
-
+		else if(y > 0) {
+			return EnumFacing.UP;
+		}
+		else if(z < 0) {
+			return EnumFacing.NORTH;
+		}
+		else if(z > 0) {
+			return EnumFacing.SOUTH;
+		}
+		else {
+			// This should never happen!
+			return null;
+		}
 	}
 }
