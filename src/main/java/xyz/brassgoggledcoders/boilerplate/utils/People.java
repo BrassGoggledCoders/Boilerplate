@@ -40,7 +40,7 @@ public class People {
 
 	public static void addPerson(Person person) {
 		getInstance().everyone.put(person.name, person);
-		person.personTypeList.stream().forEach(type -> getInstance().peopleByTypes.get(type).add(person));
+		person.personTypeList.forEach(type -> getInstance().peopleByTypes.get(type).add(person));
 	}
 
 	public static Map<String, Person> getEveryone() {
