@@ -14,6 +14,7 @@ public class People {
 	static People getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new People();
+			INSTANCE.addPeople();
 		}
 		return INSTANCE;
 	}
@@ -24,7 +25,6 @@ public class People {
 		for(PersonType personType : PersonType.values()) {
 			peopleByTypes.put(personType, new ArrayList<>());
 		}
-		addPeople();
 	}
 
 	private void addPeople() {
