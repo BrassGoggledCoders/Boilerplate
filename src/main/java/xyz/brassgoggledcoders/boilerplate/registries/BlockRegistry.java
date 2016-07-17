@@ -15,7 +15,6 @@ import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
-import xyz.brassgoggledcoders.boilerplate.client.renderers.ISpecialRenderedItem;
 
 import java.util.Map;
 
@@ -37,16 +36,13 @@ public class BlockRegistry extends BaseRegistry<Block> {
 			// TODO Suppress missing inventory model errors
 			if(entry.getValue() instanceof ISimpleVariant) {
 				SafeModelLoader.loadISimpleVariant(mod, (ISimpleVariant) entry.getValue(), entry.getValue());
+			} else {
+				mod.getBoilerplateProxy()
+						.loadItemModel(item, 0, new ResourceLocation(mod.getID(), entry.getKey()), "inventory");
 			}
-			else
-				mod.getBoilerplateProxy().loadItemModel(item, 0, new ResourceLocation(mod.getID(), entry.getKey()),
-						"inventory");
 
 			if(item instanceof IHasModel) {
 				SafeModelLoader.loadAllItemModels(mod, (IHasModel) item, item);
-				if(item instanceof ISpecialRenderedItem) {
-					mod.getBoilerplateProxy().registerItemRenderHandler(item);
-				}
 			}
 		}
 		super.initiateModels();
@@ -67,8 +63,8 @@ public class BlockRegistry extends BaseRegistry<Block> {
 				Class<? extends TileEntity> tileEntityClass = ((IHasTileEntity) block).getTileEntityClass();
 				GameRegistry.registerTileEntity(tileEntityClass, mod.getPrefix() + entry.getKey());
 				if(entry.getValue() instanceof IHasTESR) {
-					this.registryHolder.getTESRRegistry().addTESR(entry.getKey(), Item.getItemFromBlock(block),
-							tileEntityClass);
+					this.registryHolder.getTESRRegistry()
+							.addTESR(entry.getKey(), Item.getItemFromBlock(block), tileEntityClass);
 				}
 			}
 		}
