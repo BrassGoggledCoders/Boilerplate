@@ -14,10 +14,8 @@ public class TESRRegistry extends BaseRegistry<Map.Entry<Item, Class<? extends T
 	}
 
 	@Override
-	public void afterRegistration() {
-		for(Map.Entry<String, Map.Entry<Item, Class<? extends TileEntity>>> entry: this.entries.entrySet()) {
-			Boilerplate.proxy.registerTESR(entry.getKey(), entry.getValue().getKey(), entry.getValue().getValue());
-		}
+	public void initiateEntry(String name, Map.Entry<Item, Class<? extends TileEntity>> tesr) {
+		Boilerplate.proxy.registerTESR(name, tesr.getKey(), tesr.getValue());
 	}
 
 	public void addTESRItem(Item item, Class<? extends TileEntity> tileEntityClass) {

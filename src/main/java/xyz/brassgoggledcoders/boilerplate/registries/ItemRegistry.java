@@ -9,34 +9,27 @@ import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.custom.IHasItemRenderHandler;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
-import java.util.Map;
-
 public class ItemRegistry extends BaseRegistry<Item> {
 	public ItemRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder) {
 		super(mod, registryHolder);
 	}
 
 	@Override
-	public void initiateEntries() {
-		for(Map.Entry<String, Item> itemEntry : entries.entrySet()) {
-			ResourceLocation name = new ResourceLocation(mod.getPrefix() + itemEntry.getKey());
-			GameRegistry.register(itemEntry.getValue(), name);
-		}
-		super.initiateEntries();
+	public void initiateEntry(String name, Item item) {
+		ResourceLocation itemRegistryName = new ResourceLocation(mod.getPrefix() + name);
+		GameRegistry.register(item, itemRegistryName);
+		super.initiateEntry(name, item);
 	}
 
 	@Override
-	public void initiateModels() {
-		for(Map.Entry<String, Item> entry : entries.entrySet()) {
-			Item item = entry.getValue();
-			if(item instanceof IHasModel) {
-				SafeModelLoader.loadAllItemModels(mod, (IHasModel)item, item);
-				if(item instanceof IHasItemRenderHandler) {
-					mod.getBoilerplateProxy().registerItemRenderHandler(item);
-				}
-			} else {
-				SafeModelLoader.loadItemModel(mod, item);
+	public void initiateModel(String name, Item item) {
+		if(item instanceof IHasModel) {
+			SafeModelLoader.loadAllItemModels(mod, (IHasModel) item, item);
+			if(item instanceof IHasItemRenderHandler) {
+				mod.getBoilerplateProxy().registerItemRenderHandler(item);
 			}
+		} else {
+			SafeModelLoader.loadItemModel(mod, item);
 		}
 	}
 

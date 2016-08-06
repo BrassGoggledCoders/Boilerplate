@@ -8,13 +8,12 @@ import xyz.brassgoggledcoders.boilerplate.config.IConfigListener;
 import xyz.brassgoggledcoders.boilerplate.items.IHasRecipe;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public abstract class BaseRegistry<T> {
 	protected IBoilerplateMod mod;
 	protected IRegistryHolder registryHolder;
 	protected BaseRegistry<T> instance;
-	HashMap<String, T> entries = new HashMap<String, T>();
+	protected HashMap<String, T> entries = new HashMap<String, T>();
 	private LoadingStage loadingStage = LoadingStage.PREINIT;
 
 	public BaseRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder) {
@@ -23,18 +22,29 @@ public abstract class BaseRegistry<T> {
 	}
 
 	public void preInit() {
-		initiateEntries();
-		initiateModels();
-		afterRegistration();
+		this.entries.forEach((name, entry) -> {
+			initiateEntry(name, entry);
+			initiateModel(name, entry);
+		});
+
 		setLoadingStage(LoadingStage.INIT);
 	}
 
-	public void afterRegistration() {
+	protected void initiateEntry(String name, T entry) {
+		if(entry instanceof IConfigListener) {
+			registryHolder.getConfigRegistry().addListener((IConfigListener) entry);
+		}
+		if(entry instanceof IModAware) {
+			((IModAware) entry).setMod(this.mod);
+		}
+	}
 
+	protected void initiateModel(String name, T entry) {
 	}
 
 	public void init() {
-		initiateRecipes();
+		this.entries.forEach(this::initiateRecipes);
+
 		setLoadingStage(LoadingStage.POSTINIT);
 	}
 
@@ -42,27 +52,12 @@ public abstract class BaseRegistry<T> {
 		setLoadingStage(LoadingStage.DONE);
 	}
 
-	public void initiateEntries() {
-		for(Map.Entry<String, T> entry : entries.entrySet()) {
-			if(entry.getValue() instanceof IConfigListener) {
-				registryHolder.getConfigRegistry().addListener((IConfigListener) entry.getValue());
-			}
-			if(entry.getValue() instanceof IModAware) {
-				((IModAware) entry.getValue()).setMod(this.mod);
-			}
-		}
-	}
-
-	public void initiateModels() {
-
-	}
-
-	public void initiateRecipes() {
-		entries.entrySet().stream().filter(entry -> entry.getValue() instanceof IHasRecipe).forEach(entry -> {
-			for(IRecipe recipe : ((IHasRecipe) entry.getValue()).getRecipes()) {
+	public void initiateRecipes(String name, T entry) {
+		if(entry instanceof IHasRecipe) {
+			for(IRecipe recipe : ((IHasRecipe) entry).getRecipes()) {
 				GameRegistry.addRecipe(recipe);
 			}
-		});
+		}
 	}
 
 	public LoadingStage getLoadingStage() {

@@ -1,13 +1,12 @@
 package xyz.brassgoggledcoders.boilerplate.registries;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.entity.SpawnEgg;
 import xyz.brassgoggledcoders.boilerplate.entity.SpawnInfo;
+
+import java.util.HashMap;
 
 public class EntityRegistry extends BaseRegistry<Class<? extends Entity>> {
 	private HashMap<String, SpawnEgg> spawnEggs = new HashMap<String, SpawnEgg>();
@@ -20,27 +19,26 @@ public class EntityRegistry extends BaseRegistry<Class<? extends Entity>> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public void initiateEntries() {
-		for(Map.Entry<String, Class<? extends Entity>> entry : entries.entrySet()) {
-			net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity(entry.getValue(), entry.getKey(),
-					++nextAvailableID, mod, 64, 1, true);
+	public void initiateEntry(String name, Class<? extends Entity> entityClass) {
+		net.minecraftforge.fml.common.registry.EntityRegistry
+				.registerModEntity(entityClass, name, ++nextAvailableID, mod, 64, 1, true);
 
-			if(spawnEggs.containsKey(entry.getKey())) {
-				SpawnEgg spawnEgg = spawnEggs.get(entry.getKey());
-				net.minecraftforge.fml.common.registry.EntityRegistry.registerEgg(entry.getValue(),
-						spawnEgg.primaryColor, spawnEgg.secondaryColor);
-			}
-
-			if(spawnInfos.containsKey(entry.getKey())) {
-				SpawnInfo spawnInfo = spawnInfos.get(entry.getKey());
-				if(EntityLiving.class.isAssignableFrom(entry.getValue()))
-					net.minecraftforge.fml.common.registry.EntityRegistry.addSpawn(
-							(Class<? extends EntityLiving>) entry.getValue(), spawnInfo.weighted, spawnInfo.minimum,
-							spawnInfo.maximum, spawnInfo.creatureType, spawnInfo.spawnBiomes);
-
-			}
+		if(spawnEggs.containsKey(name)) {
+			SpawnEgg spawnEgg = spawnEggs.get(name);
+			net.minecraftforge.fml.common.registry.EntityRegistry
+					.registerEgg(entityClass, spawnEgg.primaryColor, spawnEgg.secondaryColor);
 		}
-		super.initiateEntries();
+
+		if(spawnInfos.containsKey(name)) {
+			SpawnInfo spawnInfo = spawnInfos.get(name);
+			if(EntityLiving.class.isAssignableFrom(entityClass)) {
+				net.minecraftforge.fml.common.registry.EntityRegistry
+						.addSpawn((Class<? extends EntityLiving>) entityClass, spawnInfo.weighted,
+								spawnInfo.minimum, spawnInfo.maximum, spawnInfo.creatureType, spawnInfo.spawnBiomes);
+			}
+
+		}
+		super.initiateEntry(name, entityClass);
 	}
 
 	public void registerEntity(Class<? extends Entity> entityClass) {
