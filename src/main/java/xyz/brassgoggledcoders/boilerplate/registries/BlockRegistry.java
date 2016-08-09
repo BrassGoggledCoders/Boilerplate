@@ -16,59 +16,50 @@ import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 
-import java.util.Map;
-
 public class BlockRegistry extends BaseRegistry<Block> {
 	public BlockRegistry(IBoilerplateMod mod, IRegistryHolder registryHolder) {
 		super(mod, registryHolder);
 	}
 
 	@Override
-	public void initiateModels() {
-		for(Map.Entry<String, Block> entry : entries.entrySet()) {
-			if(entry.getValue() instanceof IHasIgnoredVariants) {
-				IHasIgnoredVariants block = (IHasIgnoredVariants) entry.getValue();
-				SafeModelLoader.loadIgnoredVariants(mod, block, entry.getValue());
-			}
-
-			Item item = Item.getItemFromBlock(entry.getValue());
-
-			// TODO Suppress missing inventory model errors
-			if(entry.getValue() instanceof ISimpleVariant) {
-				SafeModelLoader.loadISimpleVariant(mod, (ISimpleVariant) entry.getValue(), entry.getValue());
-			} else {
-				mod.getBoilerplateProxy()
-						.loadItemModel(item, 0, new ResourceLocation(mod.getID(), entry.getKey()), "inventory");
-			}
-
-			if(item instanceof IHasModel) {
-				SafeModelLoader.loadAllItemModels(mod, (IHasModel) item, item);
-			}
+	public void initiateModel(String name, Block entry) {
+		if(entry instanceof IHasIgnoredVariants) {
+			IHasIgnoredVariants block = (IHasIgnoredVariants) entry;
+			SafeModelLoader.loadIgnoredVariants(mod, block, entry);
 		}
-		super.initiateModels();
+
+		Item item = Item.getItemFromBlock(entry);
+
+		// TODO Suppress missing inventory model errors
+		if(entry instanceof ISimpleVariant) {
+			SafeModelLoader.loadISimpleVariant(mod, (ISimpleVariant) entry, entry);
+		} else {
+			mod.getBoilerplateProxy().loadItemModel(item, 0, new ResourceLocation(mod.getID(), name), "inventory");
+		}
+
+		if(item instanceof IHasModel) {
+			SafeModelLoader.loadAllItemModels(mod, (IHasModel) item, item);
+		}
+		super.initiateModel(name, entry);
 	}
 
 	@Override
-	public void initiateEntries() {
-		for(Map.Entry<String, Block> entry : entries.entrySet()) {
-			Block block = entry.getValue();
-			ResourceLocation blockName = new ResourceLocation(mod.getID(), entry.getKey());
-			GameRegistry.register(entry.getValue(), blockName);
+	public void initiateEntry(String name, Block block) {
+		ResourceLocation blockName = new ResourceLocation(mod.getID(), name);
+		GameRegistry.register(block, blockName);
 
-			if(block instanceof IHasItemBlock) {
-				GameRegistry.register(((IHasItemBlock) block).getItemBlockClass(block), blockName);
-			}
+		if(block instanceof IHasItemBlock) {
+			GameRegistry.register(((IHasItemBlock) block).getItemBlockClass(block), blockName);
+		}
 
-			if(block instanceof IHasTileEntity) {
-				Class<? extends TileEntity> tileEntityClass = ((IHasTileEntity) block).getTileEntityClass();
-				GameRegistry.registerTileEntity(tileEntityClass, mod.getPrefix() + entry.getKey());
-				if(entry.getValue() instanceof IHasTESR) {
-					this.registryHolder.getTESRRegistry()
-							.addTESR(entry.getKey(), Item.getItemFromBlock(block), tileEntityClass);
-				}
+		if(block instanceof IHasTileEntity) {
+			Class<? extends TileEntity> tileEntityClass = ((IHasTileEntity) block).getTileEntityClass();
+			GameRegistry.registerTileEntity(tileEntityClass, mod.getPrefix() + name);
+			if(block instanceof IHasTESR) {
+				this.registryHolder.getTESRRegistry().addTESR(name, Item.getItemFromBlock(block), tileEntityClass);
 			}
 		}
-		super.initiateEntries();
+		super.initiateEntry(name, block);
 	}
 
 	public void registerAndCreateBasicBlock(Material mat, String name) {
