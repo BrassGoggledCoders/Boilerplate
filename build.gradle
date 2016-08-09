@@ -25,7 +25,8 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${minecraft_version}-${boilerplate_version}." + project.bambooBuildNumber
+def buildNumber = System.getenv("bamboo_buildNumber") != null ? "." + System.getenv("bamboo_buildNumber") : ""
+version = "${minecraft_version}-${boilerplate_version}" + buildNumber
 
 group= "xyz.brassgoggledcoders.boilerplate"
 archivesBaseName = "Boilerplate"
