@@ -8,15 +8,15 @@
  */
 package xyz.brassgoggledcoders.boilerplate.client.manual.button;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
 import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.manual.RenderHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiButtonAchievement extends GuiButtonLexicon {
 
@@ -37,8 +37,9 @@ public class GuiButtonAchievement extends GuiButtonLexicon {
 		tooltip.add(TextFormatting.YELLOW + I18n.format("botaniamisc.achievements"));
 
 		int tooltipY = (tooltip.size() - 1) * 10;
-		if(k == 2)
+		if(k == 2) {
 			RenderHelper.renderTooltip(par2, par3 + tooltipY, tooltip);
+		}
 	}
 
 }

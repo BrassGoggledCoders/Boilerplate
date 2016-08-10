@@ -27,12 +27,9 @@ public class DispenseItemMinecartBase extends BehaviorDefaultDispenseItem
 			ItemMinecartBase itemMinecartBase = (ItemMinecartBase)cartItemStack.getItem();
 			entityMinecartBase = itemMinecartBase.getEntityFromItem(world, cartItemStack);
 
-			if(entityMinecartBase != null)
-			{
-				EnumFacing enumfacing = BlockDispenser.getFacing(dispenser.getBlockMetadata());
-				BlockPos blockpos = dispenser.getBlockPos().offset(enumfacing);
-				cartSpawned = itemMinecartBase.placeCart(cartItemStack, world, blockpos, entityMinecartBase);
-			}
+			EnumFacing enumfacing = dispenser.getBlockState().getValue(BlockDispenser.FACING);
+			BlockPos blockpos = dispenser.getBlockPos().offset(enumfacing);
+			cartSpawned = itemMinecartBase.placeCart(cartItemStack, world, blockpos, entityMinecartBase);
 		}
 
 		if(cartSpawned != EnumActionResult.SUCCESS)
