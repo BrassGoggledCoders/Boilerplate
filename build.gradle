@@ -32,7 +32,7 @@ group= "xyz.brassgoggledcoders.boilerplate"
 archivesBaseName = "Boilerplate"
 
 minecraft {
-    version = "${minecraft_version}-${forge_version}-${minecraft_version}"
+    version = "${minecraft_version}-${forge_version}"
 
     mappings = "${mappings_version}"
     runDir = "run/"
