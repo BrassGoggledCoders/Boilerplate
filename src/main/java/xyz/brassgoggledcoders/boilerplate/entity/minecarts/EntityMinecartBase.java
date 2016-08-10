@@ -1,26 +1,24 @@
 package xyz.brassgoggledcoders.boilerplate.entity.minecarts;
 
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.items.minecarts.ItemMinecartBase;
 
 import javax.annotation.Nonnull;
 
 public abstract class EntityMinecartBase extends EntityMinecart {
-	public EntityMinecartBase(World world)
-	{
+	public EntityMinecartBase(World world) {
 		super(world);
 	}
 
 	@Nonnull
-	public abstract ItemMinecartBase getItem();
+	public abstract ItemMinecart getItem();
 
 	@Override
 	@Nonnull
-	public ItemStack getCartItem()
-	{
+	public ItemStack getCartItem() {
 		ItemStack cartItemStack = new ItemStack(this.getItem(), 1, this.getMetadata());
 		if(!this.getName().isEmpty()) {
 			cartItemStack.setStackDisplayName(this.getName());
@@ -29,49 +27,40 @@ public abstract class EntityMinecartBase extends EntityMinecart {
 	}
 
 	@Override
-	public void killMinecart(DamageSource damageSource)
-	{
+	public void killMinecart(DamageSource damageSource) {
 		this.setDead();
 	}
 
 	@Override
 	@Nonnull
-	public EntityMinecart.Type getType()
-	{
+	public EntityMinecart.Type getType() {
 		return Type.TNT;
 	}
 
 	@Override
-	public boolean isPoweredCart()
-	{
+	public boolean isPoweredCart() {
 		return false;
 	}
 
 	@Override
-	public void setDead()
-	{
+	public void setDead() {
 		super.setDead();
-		if (this.worldObj.getGameRules().getBoolean("doEntityDrops"))
-		{
+		if(this.worldObj.getGameRules().getBoolean("doEntityDrops")) {
 			dropCart();
 		}
 	}
 
 	@Override
-	public boolean canBeRidden()
-	{
+	public boolean canBeRidden() {
 		return false;
 	}
 
-	public void dropCart()
-	{
+	public void dropCart() {
 		this.dropCartItemStack(this.getCartItem());
 	}
 
-	public void dropCartItemStack(ItemStack cartItem)
-	{
-		if(!worldObj.isRemote)
-		{
+	public void dropCartItemStack(ItemStack cartItem) {
+		if(!worldObj.isRemote) {
 			this.entityDropItem(cartItem, 0.1F);
 		}
 	}
