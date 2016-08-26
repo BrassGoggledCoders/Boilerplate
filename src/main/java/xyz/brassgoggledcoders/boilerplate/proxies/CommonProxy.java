@@ -1,19 +1,23 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
+import xyz.brassgoggledcoders.boilerplate.multiblock.IMultiblockRegistry;
+import xyz.brassgoggledcoders.boilerplate.multiblock.MultiblockEventHandler;
+import xyz.brassgoggledcoders.boilerplate.multiblock.MultiblockRegistry;
 import xyz.brassgoggledcoders.boilerplate.utils.ClassLoading;
-
-import javax.annotation.Nullable;
 
 public abstract class CommonProxy {
 	protected IBoilerplateMod mod;
@@ -50,7 +54,7 @@ public abstract class CommonProxy {
 		this.mod = mod;
 	}
 
-	public void addOBJDomain() { }
+	public void addOBJDomain() {}
 
 	public abstract IModuleProxy getModuleProxy(IModule module);
 
@@ -66,4 +70,16 @@ public abstract class CommonProxy {
 	}
 
 	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation, String variant) {}
+
+	// TODO
+
+	public IMultiblockRegistry initMultiblockRegistry() {
+
+		if(null == s_multiblockHandler)
+			MinecraftForge.EVENT_BUS.register(s_multiblockHandler = new MultiblockEventHandler());
+
+		return MultiblockRegistry.INSTANCE;
+	}
+
+	private static MultiblockEventHandler s_multiblockHandler = null;
 }
