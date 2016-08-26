@@ -35,6 +35,7 @@ public class PositionUtils {
 			return 0;
 	}
 
+	// TODO Optional ignoring of 'soft blocks' like liquids and grass
 	public static boolean isLOSClear(World world, BlockPos first, BlockPos second) {
 		Iterator<BlockPos> positions = BlockPos.getAllInBox(first, second).iterator();
 		while(positions.hasNext()) {
@@ -49,6 +50,27 @@ public class PositionUtils {
 				return false;
 		}
 		return true;
+	}
+
+	public static void removeBlocksInArea(World world, BlockPos from, BlockPos to) {
+		replaceBlocksIn(world, from, to, null);
+	}
+
+	public static void replaceBlocksIn(World world, BlockPos from, BlockPos to, IBlockState target) {
+		Iterator<BlockPos> positions = BlockPos.getAllInBox(from, to).iterator();
+		while(positions.hasNext()) {
+			BlockPos pos = positions.next();
+
+			if(pos.equals(from) || pos.equals(to))
+				continue;
+
+			if(target == null) {
+				world.setBlockToAir(pos);
+			}
+			else {
+				world.setBlockState(pos, target);
+			}
+		}
 	}
 
 	public static ArrayList<IBlockState> getBlocksOfTypeNearby(World world, BlockPos pos, IBlockState state) {
