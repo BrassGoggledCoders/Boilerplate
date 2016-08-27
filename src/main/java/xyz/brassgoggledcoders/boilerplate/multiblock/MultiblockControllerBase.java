@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.FMLLog;
 import xyz.brassgoggledcoders.boilerplate.Boilerplate;
 import xyz.brassgoggledcoders.boilerplate.multiblock.validation.IMultiblockValidator;
 import xyz.brassgoggledcoders.boilerplate.multiblock.validation.ValidationError;
-import xyz.brassgoggledcoders.boilerplate.tileentities.TileEntityBase.SyncReason;
 import xyz.brassgoggledcoders.boilerplate.utils.Utils;
 
 /**
@@ -653,25 +652,6 @@ public abstract class MultiblockControllerBase implements IMultiblockValidator {
 		return connectedParts.size();
 	}
 
-	/*
-	 * Data synchronization
-	 */
-
-	/*
-	 * Sync controller data from the given NBT compound
-	 * @param data the data
-	 * @param syncReason the reason why the synchronization is necessary
-	 */
-	protected abstract void syncDataFrom(NBTTagCompound data, SyncReason syncReason);
-
-	/**
-	 * Sync controller data to the given NBT compound
-	 * 
-	 * @param data the data
-	 * @param syncReason the reason why the synchronization is necessary
-	 */
-	protected abstract void syncDataTo(NBTTagCompound data, SyncReason syncReason);
-
 	/**
 	 * Force this multiblock to recalculate its minimum and maximum coordinates
 	 * from the list of connected parts.
@@ -1084,4 +1064,12 @@ public abstract class MultiblockControllerBase implements IMultiblockValidator {
 	static {
 		REGISTRY = Boilerplate.instance.getBoilerplateProxy().initMultiblockRegistry();
 	}
+
+	public abstract void readFromDisk(NBTTagCompound data);
+
+	public abstract void writeToDisk(NBTTagCompound data);
+
+	public abstract void readFromUpdatePacket(NBTTagCompound data);
+
+	public abstract void writeToUpdatePacket(NBTTagCompound data);
 }

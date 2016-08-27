@@ -40,22 +40,23 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 	}
 
 	@Override
-	public void readFromNBTCustom(NBTTagCompound nbtTagCompound) {
-		int[] array = nbtTagCompound.getIntArray("sideConfig");
+	public void readFromDisk(NBTTagCompound data) {
+		int[] array = data.getIntArray("sideConfig");
 		if(this.sideConfig == null)
 			this.sideConfig = new SideType[6];
 		if(array != null)
 			for(int i = 0; i < array.length; i++)
 				this.sideConfig[i] = SideType.values()[array[i]];
+		super.readFromDisk(data);
 	}
 
 	@Override
-	public NBTTagCompound writeToNBTCustom(NBTTagCompound nbtTagCompound) {
+	public NBTTagCompound writeToDisk(NBTTagCompound data) {
 		int[] array = new int[6];
 		for(int i = 0; i < this.sideConfig.length; i++)
 			array[i] = this.sideConfig[i].ordinal();
-		nbtTagCompound.setIntArray("sideConfig", array);
-		return nbtTagCompound;
+		data.setIntArray("sideConfig", array);
+		return super.writeToDisk(data);
 	}
 
 	@Override

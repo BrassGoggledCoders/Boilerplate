@@ -85,53 +85,49 @@ public abstract class MultiblockTileEntityBase extends TileEntityBase implements
 	}
 
 	@Override
-	protected void syncDataFrom(NBTTagCompound data, SyncReason syncReason) {
+	protected void readFromDisk(NBTTagCompound data) {
 
-		if(SyncReason.FullSync == syncReason) {
-
-			// We can't directly initialize a multiblock controller yet, so we cache the data here until
-			// we receive a validate() call, which creates the controller and hands off the cached data.
-			if(data.hasKey("multiblockData")) {
-				this.cachedMultiblockData = data.getCompoundTag("multiblockData");
-			}
-
+		// We can't directly initialize a multiblock controller yet, so we cache the data here until
+		// we receive a validate() call, which creates the controller and hands off the cached data.
+		if(data.hasKey("multiblockData")) {
+			this.cachedMultiblockData = data.getCompoundTag("multiblockData");
 		}
-		else {
 
-			if(data.hasKey("multiblockData")) {
-				NBTTagCompound tag = data.getCompoundTag("multiblockData");
-				if(isConnected()) {
-					getMultiblockController().syncDataFrom(tag, syncReason);
-				}
-				else {
-					// This part hasn't been added to a machine yet, so cache the data.
-					this.cachedMultiblockData = tag;
-				}
+	}
+
+	@Override
+	protected void readFromUpdatePacket(NBTTagCompound data) {
+
+		if(data.hasKey("multiblockData")) {
+			NBTTagCompound tag = data.getCompoundTag("multiblockData");
+			if(isConnected()) {
+				getMultiblockController().readFromUpdatePacket(data);
+			}
+			else {
+				// This part hasn't been added to a machine yet, so cache the data.
+				this.cachedMultiblockData = tag;
 			}
 		}
 	}
 
 	@Override
-	protected void syncDataTo(NBTTagCompound data, SyncReason syncReason) {
-
-		if(SyncReason.FullSync == syncReason) {
-
-			if(isMultiblockSaveDelegate() && isConnected()) {
-				NBTTagCompound multiblockData = new NBTTagCompound();
-				this.controller.syncDataTo(multiblockData, syncReason);
-				data.setTag("multiblockData", multiblockData);
-			}
-
+	protected NBTTagCompound writeToDisk(NBTTagCompound data) {
+		if(isMultiblockSaveDelegate() && isConnected()) {
+			NBTTagCompound multiblockData = new NBTTagCompound();
+			this.controller.writeToDisk(multiblockData);
+			data.setTag("multiblockData", multiblockData);
 		}
-		else {
+		return data;
+	}
 
-			if(this.isMultiblockSaveDelegate() && isConnected()) {
-				NBTTagCompound tag = new NBTTagCompound();
-				getMultiblockController().syncDataTo(tag, syncReason);
-				data.setTag("multiblockData", tag);
-			}
-
+	@Override
+	protected NBTTagCompound writeToUpdatePacket(NBTTagCompound data) {
+		if(this.isMultiblockSaveDelegate() && isConnected()) {
+			NBTTagCompound tag = new NBTTagCompound();
+			getMultiblockController().writeToUpdatePacket(data);
+			data.setTag("multiblockData", tag);
 		}
+		return data;
 	}
 
 	/**
@@ -299,12 +295,6 @@ public abstract class MultiblockTileEntityBase extends TileEntityBase implements
 	//// Helper functions for notifying neighboring blocks
 	protected void notifyNeighborsOfBlockChange() {
 		worldObj.notifyNeighborsOfStateChange(this.getWorldPosition(), this.getBlockType());
-	}
-
-	@Deprecated // not implemented yet
-	protected void notifyNeighborsOfTileChange() {
-		// WORLD.func_147453_f(xCoord, yCoord, zCoord, getBlockType());
-
 	}
 
 	///// Private/Protected Logic Helpers

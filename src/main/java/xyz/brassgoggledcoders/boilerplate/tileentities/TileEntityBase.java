@@ -19,55 +19,45 @@ public abstract class TileEntityBase extends TileEntity {
 		this.mod = Utils.getCurrentMod();
 	}
 
-	@Deprecated
-	public abstract void readFromNBTCustom(NBTTagCompound nbtTagCompound);
-
-	@Deprecated
-	public abstract NBTTagCompound writeToNBTCustom(NBTTagCompound nbtTagCompound);
-
-	/*
-	 * Everything below this line is #StolenByTheBrassGoggledCoders from ZeroCore. Temporarily!
-	 * TODO
-	 */
-
-	public enum SyncReason {
-		FullSync, // full sync from storage
-		NetworkUpdate // update from the other side
-	}
+	/* Orginally inspired by ZeroCore */
 
 	@Override
 	public void readFromNBT(NBTTagCompound data) {
 		super.readFromNBT(data);
-		this.readFromNBTCustom(data);
-		this.syncDataFrom(data, SyncReason.FullSync);
+		this.readFromDisk(data);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound data) {
-		data = this.writeToNBTCustom(data);
-		this.syncDataTo(super.writeToNBT(data), SyncReason.FullSync);
+		this.writeToDisk(super.writeToNBT(data));
 		return data;
 	}
 
+	protected void readFromDisk(NBTTagCompound data) {
+		this.mod.getLogger().devInfo("Read from Disk");
+	};
+
+	protected NBTTagCompound writeToDisk(NBTTagCompound data) {
+		this.mod.getLogger().devInfo("Written to Disk");
+		return data;
+	};
+
 	@Override
 	public void handleUpdateTag(NBTTagCompound data) {
-
 		super.readFromNBT(data);
-		this.syncDataFrom(data, SyncReason.NetworkUpdate);
+		this.readFromUpdatePacket(data);
 	}
 
 	@Override
 	public NBTTagCompound getUpdateTag() {
-
 		NBTTagCompound data = super.getUpdateTag();
-
-		this.syncDataTo(data, SyncReason.NetworkUpdate);
+		this.writeToUpdatePacket(data);
 		return data;
 	}
 
 	@Override
 	public final void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-		this.syncDataFrom(packet.getNbtCompound(), SyncReason.NetworkUpdate);
+		this.readFromUpdatePacket(packet.getNbtCompound());
 	}
 
 	@Nullable
@@ -76,28 +66,17 @@ public abstract class TileEntityBase extends TileEntity {
 
 		NBTTagCompound data = new NBTTagCompound();
 
-		this.syncDataTo(data, SyncReason.NetworkUpdate);
+		this.writeToUpdatePacket(data);
 		return new SPacketUpdateTileEntity(this.getPos(), 0, data);
 	}
 
-	/**
-	 * Sync tile entity data from the given NBT compound
-	 * 
-	 * @param data the data
-	 * @param syncReason the reason why the synchronization is necessary
-	 */
-	protected /* abstract */ void syncDataFrom(NBTTagCompound data, SyncReason syncReason) {
+	protected void readFromUpdatePacket(NBTTagCompound data) {
+		this.mod.getLogger().devInfo("Read from Packet");
+	};
 
-	}
-
-	/**
-	 * Sync tile entity data to the given NBT compound
-	 * 
-	 * @param data the data
-	 * @param syncReason the reason why the synchronization is necessary
-	 */
-	protected /* abstract */ void syncDataTo(NBTTagCompound data, SyncReason syncReason) {
-
-	}
+	protected NBTTagCompound writeToUpdatePacket(NBTTagCompound data) {
+		this.mod.getLogger().devInfo("Written to Packet");
+		return data;
+	};
 
 }
