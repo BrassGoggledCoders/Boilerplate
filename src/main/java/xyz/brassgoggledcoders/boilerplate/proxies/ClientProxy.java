@@ -1,5 +1,10 @@
 package xyz.brassgoggledcoders.boilerplate.proxies;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -17,8 +22,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import xyz.brassgoggledcoders.boilerplate.client.ClientHelper;
 import xyz.brassgoggledcoders.boilerplate.client.events.ClientEventsHandler;
-import xyz.brassgoggledcoders.boilerplate.client.manual.ClientTickHandler;
-import xyz.brassgoggledcoders.boilerplate.client.manual.GuiLexicon;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasIgnoredVariants;
 import xyz.brassgoggledcoders.boilerplate.client.models.SafeModelLoader;
 import xyz.brassgoggledcoders.boilerplate.client.renderers.TESRLoader;
@@ -26,10 +29,6 @@ import xyz.brassgoggledcoders.boilerplate.client.renderers.custom.CustomItemRend
 import xyz.brassgoggledcoders.boilerplate.client.renderers.custom.IHasItemRenderHandler;
 import xyz.brassgoggledcoders.boilerplate.module.IModule;
 import xyz.brassgoggledcoders.boilerplate.module.IModuleProxy;
-
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClientProxy extends CommonProxy {
 	private TESRLoader tesrLoader;
@@ -76,8 +75,8 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void loadItemModel(Item item, int metadata, ResourceLocation resourceLocation, String variant) {
-		ModelLoader
-				.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(resourceLocation, variant));
+		ModelLoader.setCustomModelResourceLocation(item, metadata,
+				new ModelResourceLocation(resourceLocation, variant));
 	}
 
 	@Override
@@ -126,8 +125,8 @@ public class ClientProxy extends CommonProxy {
 		tesrLoader.registerTESRToTile(name, tileEntityClass);
 		List<ItemStack> allSubItems = new ArrayList<>();
 		item.getSubItems(item, item.getCreativeTab(), allSubItems);
-		allSubItems.forEach(itemStack -> ForgeHooksClient
-				.registerTESRItemStack(itemStack.getItem(), itemStack.getItemDamage(), tileEntityClass));
+		allSubItems.forEach(itemStack -> ForgeHooksClient.registerTESRItemStack(itemStack.getItem(),
+				itemStack.getItemDamage(), tileEntityClass));
 	}
 
 	@Override
@@ -138,11 +137,5 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerEvents() {
 		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
-		MinecraftForge.EVENT_BUS.register(new ClientTickHandler()); // TODO
-	}
-
-	@Override
-	public void setLexiconStack(ItemStack stack) {
-		GuiLexicon.stackUsed = stack;
 	}
 }
