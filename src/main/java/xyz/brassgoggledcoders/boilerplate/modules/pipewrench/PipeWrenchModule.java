@@ -15,7 +15,7 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 
 @Module(mod = Boilerplate.ID)
 public class PipeWrenchModule extends ModuleBase {
-	public static Item pipe_wrench;
+	public static Item pipeWrench;
 
 	@Override
 	public String getName() {
@@ -36,7 +36,7 @@ public class PipeWrenchModule extends ModuleBase {
 					instance.deserializeNBT((NBTTagCompound) nbt);
 			}
 		}, ToolImpl.class);
-		pipe_wrench = new ItemPipeWrench();
-		this.getItemRegistry().registerItem(pipe_wrench);
+		pipeWrench = new ItemPipeWrench();
+		this.getItemRegistry().registerItem(pipeWrench);
 	}
 }
