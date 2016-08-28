@@ -40,6 +40,7 @@ public abstract class BlockTEBase<T extends TileEntity> extends BlockBase implem
 
 	@Override
 	@Nonnull
+	@SuppressWarnings("deprecation")
 	public TileEntity createNewTileEntity(@Nonnull World world, int meta) {
 		return createTileEntity(world, getStateFromMeta(meta));
 	}
