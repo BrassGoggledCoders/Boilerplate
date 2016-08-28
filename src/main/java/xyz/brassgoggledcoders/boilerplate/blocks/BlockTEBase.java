@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public abstract class BlockTEBase extends BlockBase implements IHasTileEntity, ITileEntityProvider {
+public abstract class BlockTEBase<T extends TileEntity> extends BlockBase implements IHasTileEntity, ITileEntityProvider {
 	public BlockTEBase(Material material, String name) {
 		super(material, name);
 		this.isBlockContainer = true;
@@ -27,6 +27,15 @@ public abstract class BlockTEBase extends BlockBase implements IHasTileEntity, I
 		super.eventReceived(state, world, pos, id, param);
 		TileEntity tileentity = world.getTileEntity(pos);
 		return tileentity != null && tileentity.receiveClientEvent(id, param);
+	}
+
+	@SuppressWarnings("unchecked")
+	public T getTileEntity(World world, BlockPos pos) {
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if(tileEntity != null && tileEntity.getClass() == this.getTileEntityClass()) {
+			return (T)tileEntity;
+		}
+		return null;
 	}
 
 	@Override
