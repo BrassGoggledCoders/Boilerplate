@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.boilerplate.containers.slots;
+package xyz.brassgoggledcoders.boilerplate.containers;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
