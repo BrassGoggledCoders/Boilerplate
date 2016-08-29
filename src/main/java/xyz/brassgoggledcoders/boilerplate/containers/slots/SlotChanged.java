@@ -1,22 +1,20 @@
 package xyz.brassgoggledcoders.boilerplate.containers.slots;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import xyz.brassgoggledcoders.boilerplate.tileentities.IOnSlotChanged;
 
-public class SlotChanged extends Slot {
-	protected IOnSlotChanged iOnSlotChanged;
+public class SlotChanged extends SlotItemHandler {
+	protected IOnSlotChanged changeReceiver;
 
-	public SlotChanged(IInventory iInventory, int slotIndex, int posX, int posY) {
-		super(iInventory, slotIndex, posX, posY);
-		if(iInventory instanceof IOnSlotChanged)
-			iOnSlotChanged = (IOnSlotChanged) iInventory;
+	public SlotChanged(IItemHandler itemHandler, IOnSlotChanged changeReceiver, int slotIndex, int posX, int posY) {
+		super(itemHandler, slotIndex, posX, posY);
+		this.changeReceiver = changeReceiver;
 	}
 
 	@Override
 	public void onSlotChanged() {
 		super.onSlotChanged();
-		if(iOnSlotChanged != null)
-			iOnSlotChanged.onSlotChanged(this);
+		changeReceiver.onSlotChanged(this);
 	}
 }
