@@ -5,12 +5,15 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class RenderEntityLivingComponent extends ComponentBase {
-	private EntityLiving entity;
+@SideOnly(Side.CLIENT)
+public class RenderEntityLivingBaseComponent extends ComponentBase {
+	private EntityLivingBase entity;
 
-	public RenderEntityLivingComponent(int xPos, int yPos, int scale, float xOffset, float yOffset, EntityLiving entity) {
+	public RenderEntityLivingBaseComponent(int xPos, int yPos, int scale, float xOffset, float yOffset, EntityLivingBase entity) {
 		super(xPos, yPos, scale, xOffset, yOffset);
 		this.entity = entity;
 	}
