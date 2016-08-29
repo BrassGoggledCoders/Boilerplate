@@ -5,9 +5,11 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,14 +22,27 @@ import xyz.brassgoggledcoders.boilerplate.utils.StringUtils;
 /**
  * @author Surseance
  */
-public class BaseArmor extends ItemArmor implements IModAware {
+public class ItemArmorBase extends ItemArmor implements IModAware {
 	String textureName;
 	IBoilerplateMod mod;
 
-	public BaseArmor(ArmorMaterial mat, EntityEquipmentSlot slot, String textureName) {
+	boolean creativeTabSet = false;
+
+	public ItemArmorBase(ArmorMaterial mat, EntityEquipmentSlot slot, String name, String textureName) {
 		super(mat, 0, slot);
 		this.setMaxStackSize(1);
+		this.setUnlocalizedName(name);
 		this.textureName = textureName;
+	}
+
+	@Override
+	@Nonnull
+	public Item setCreativeTab(@Nonnull CreativeTabs tab) {
+		if(!creativeTabSet) {
+			super.setCreativeTab(tab);
+			this.creativeTabSet = true;
+		}
+		return this;
 	}
 
 	@Override
@@ -59,11 +74,12 @@ public class BaseArmor extends ItemArmor implements IModAware {
 
 	@Override
 	public IBoilerplateMod getMod() {
-		return this.mod;
+		return mod;
 	}
 
 	@Override
 	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
+		this.setCreativeTab(mod.getCreativeTab());
 	}
 }
