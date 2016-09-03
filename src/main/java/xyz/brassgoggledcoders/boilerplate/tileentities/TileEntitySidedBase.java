@@ -68,11 +68,6 @@ public abstract class TileEntitySidedBase extends TileEntityBase implements IBlo
 		return false;
 	}
 
-	public void sendBlockUpdate() {
-		if(!worldObj.isRemote)
-			this.worldObj.notifyBlockOfStateChange(this.getPos(), worldObj.getBlockState(pos).getBlock());
-	}
-
 	@Override
 	public String[] getOverlayText(EntityPlayer player, RayTraceResult rayTrace, boolean tool) {
 		if(tool && isColorBlindActive) {

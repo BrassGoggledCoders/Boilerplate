@@ -63,9 +63,7 @@ public abstract class TileEntityBase extends TileEntity {
 	@Nullable
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
-
 		NBTTagCompound data = new NBTTagCompound();
-
 		this.writeToUpdatePacket(data);
 		return new SPacketUpdateTileEntity(this.getPos(), 0, data);
 	}
@@ -78,5 +76,10 @@ public abstract class TileEntityBase extends TileEntity {
 		this.mod.getLogger().devInfo("Written to Packet");
 		return data;
 	};
+
+	public void sendBlockUpdate() {
+		if(!worldObj.isRemote)
+			this.worldObj.notifyBlockOfStateChange(this.getPos(), worldObj.getBlockState(pos).getBlock());
+	}
 
 }
