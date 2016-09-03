@@ -79,7 +79,8 @@ public abstract class TileEntityBase extends TileEntity {
 
 	public void sendBlockUpdate() {
 		if(!worldObj.isRemote)
-			this.worldObj.notifyBlockOfStateChange(this.getPos(), worldObj.getBlockState(pos).getBlock());
+			// this.worldObj.notifyBlockOfStateChange(this.getPos(), worldObj.getBlockState(pos).getBlock());
+			this.worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(pos), worldObj.getBlockState(pos), 3);
 	}
 
 }
