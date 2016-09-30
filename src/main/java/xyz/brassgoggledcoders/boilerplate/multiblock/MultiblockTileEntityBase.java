@@ -93,6 +93,7 @@ public abstract class MultiblockTileEntityBase extends TileEntityBase implements
 			this.cachedMultiblockData = data.getCompoundTag("multiblockData");
 		}
 
+		super.readFromDisk(data);
 	}
 
 	@Override
@@ -108,6 +109,7 @@ public abstract class MultiblockTileEntityBase extends TileEntityBase implements
 				this.cachedMultiblockData = tag;
 			}
 		}
+		super.readFromUpdatePacket(data);
 	}
 
 	@Override
@@ -117,7 +119,7 @@ public abstract class MultiblockTileEntityBase extends TileEntityBase implements
 			this.controller.writeToDisk(multiblockData);
 			data.setTag("multiblockData", multiblockData);
 		}
-		return data;
+		return super.writeToDisk(data);
 	}
 
 	@Override
@@ -127,7 +129,7 @@ public abstract class MultiblockTileEntityBase extends TileEntityBase implements
 			getMultiblockController().writeToUpdatePacket(data);
 			data.setTag("multiblockData", tag);
 		}
-		return data;
+		return super.writeToUpdatePacket(data);
 	}
 
 	/**

@@ -29,8 +29,8 @@ public abstract class TileEntityBase extends TileEntity {
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound data) {
-		this.writeToDisk(super.writeToNBT(data));
-		return data;
+		this.writeToDisk(data);
+		return super.writeToNBT(data);
 	}
 
 	protected void readFromDisk(NBTTagCompound data) {
@@ -52,12 +52,13 @@ public abstract class TileEntityBase extends TileEntity {
 	public NBTTagCompound getUpdateTag() {
 		NBTTagCompound data = super.getUpdateTag();
 		this.writeToUpdatePacket(data);
-		return data;
+		return super.getUpdateTag();
 	}
 
 	@Override
 	public final void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		this.readFromUpdatePacket(packet.getNbtCompound());
+		super.onDataPacket(net, packet);
 	}
 
 	@Nullable
@@ -69,11 +70,11 @@ public abstract class TileEntityBase extends TileEntity {
 	}
 
 	protected void readFromUpdatePacket(NBTTagCompound data) {
-		this.mod.getLogger().devInfo("Read from Packet");
+		// this.mod.getLogger().devInfo("Read from Packet");
 	};
 
 	protected NBTTagCompound writeToUpdatePacket(NBTTagCompound data) {
-		this.mod.getLogger().devInfo("Written to Packet");
+		// this.mod.getLogger().devInfo("Written to Packet");
 		return data;
 	};
 
